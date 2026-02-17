@@ -1,0 +1,103 @@
+\section{Formeln zu Kurven}
+
+\subsection{Übersicht -- Kurvenformeln}
+\label{Übersicht -- Kurvenformeln}
+
+\renewcommand{\arraystretch}{2.6}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{| l | c | c | c |}
+	\hline
+						& Explizit & Parameter (Vektor) & Polar \\
+	\hline
+	Steigung 			& $y' = \dfrac{\diff y}{\diff x} = f'(x)$																		& $y' = \dfrac{\diff y}{\diff x} = \dfrac{\dot{y}(t)}{\dot{x}(t)}$																		& $y' = \dfrac{\diff y}{\diff x} = \dfrac{\dot{y}(t)}{\dot{x}(t)} = \dfrac{\dot{r} \, \sin(\varphi) + r \, \cos(\varphi)}{\dot{r} \, \cos(\varphi) - r \, \sin(\varphi)}$	\\
+	\hline
+	2. Ableitung		& $y'' = f''(x)$ 																								& $y'' = \dfrac{\dot{x} \ddot{y} - \dot{y} \ddot{x}}{\dot{x}^3}$ 																		&  																																											\\
+	\hline
+	Länge 				& $\Bigg| \int \limits_{a}^{b} \sqrt{1 + f'(x)^2} \, \diff x \Bigg|$											& $\Bigg| \int \limits_{t_1}^{t_2} \sqrt{\dot{x}(t)^2 + \dot{y}(t)^2} \, \diff t \Bigg|$ (2D)											& $\Bigg| \int \limits_{\varphi_1}^{\varphi_2} \sqrt{\dot{r}^2 + r^2} \, \diff \varphi \Bigg|$																				\\
+						& 																												& $\Bigg| \int \limits_{t_1}^{t_2} \vert \dot{\vec{c}}(t) \vert \, \diff t \Bigg|$ \quad (allg.)										& 																																											\\
+	\hline
+	% Flächen (z.T. 		& $\Bigg| \int \limits_{a}^{b} f(x) \, \diff x \Bigg|$ 															& $\Bigg| \dfrac{1}{2} \int \limits_{t_1}^{t_2} (x \dot{y} - y \dot{x}) \, \diff t \Bigg|$ \quad (2D) 									& $\Bigg| \dfrac{1}{2} \int \limits_{\alpha}^{\beta} r^2 \, \diff \varphi \Bigg|$																							\\
+	% als Sektor)			& 																												& $\Bigg| \dfrac{1}{2} \int \limits_{t_1}^{t_2} \vert \vec{c}(t) \times \dot{\vec{c}}(t) \vert \, \diff t \Bigg|$ \quad (3D)			& 																																											\\
+	Fläche zu $x$-Achse & $\Bigg| \int \limits_{a}^{b} f(x) \, \diff x \Bigg|$ 															& $\Bigg| \int \limits_{t_1}^{t_2} | \dot{x} y |  \,  \diff t \Bigg|$  									& 																						\\
+	\hline
+	Sektorfläche   		& $\Bigg| \dfrac{1}{2} \int \limits_{t_1}^{t_2} |x \dot{y} - y | \, \diff t \Bigg|$ 															& $\Bigg| \dfrac{1}{2} \int \limits_{t_1}^{t_2} |x \dot{y} - y \dot{x}| \, \diff t \Bigg|$ \quad (2D) 									& $\Bigg| \dfrac{1}{2} \int \limits_{\alpha}^{\beta} r^2 \, \diff \varphi \Bigg|$																							\\
+	zum $0$-Punkt       & 																												& $\Bigg| \dfrac{1}{2} \int \limits_{t_1}^{t_2} \vert \vec{c}(t) \times \dot{\vec{c}}(t) \vert \, \diff t \Bigg|$ \quad (3D)			& 																																											\\
+
+	\hline
+	Volumen $V_x$ 		& $\Bigg| \pi \int \limits_a^b f(x) ^2 \, \diff x \Bigg|$ 														& $\Bigg| \pi \int \limits_{t_1}^{t_2} y(t)^2 \dot{x}(t) \, \diff t \Bigg|$ 															& $\pi \Bigg| \int \limits_{\varphi_1}^{\varphi_2} r^2 \sin^2(\varphi) (\dot{r} \cos(\varphi) - r \sin(\varphi)) \, \diff \varphi \Bigg|$ 									\\
+	mit Meridian 		& 																												& 																																		& 																																											\\
+	\hline
+	Volumen $V_y$ 		& $\Bigg| \pi \int \limits_{y_1}^{y_2} f^{-1}(y)^2 \, \diff y \Bigg|$ 											& $\Bigg| \pi \int \limits_{t_1}^{t_2} x(t)^2 \dot{y}(t) \, \diff t \Bigg|$ 															& $\pi \Bigg| \int \limits_{\varphi_1}^{\varphi_2} r^2 \cos^2(\varphi) (\dot{r} \sin(\varphi) + r \cos(\varphi)) \, \diff \varphi \Bigg|$ 									\\
+	mit Meridian 		& 																												& 																																		& 																																											\\
+	\hline
+	Oberfläche $O_x$	& $\Bigg| 2 \pi \int \limits_a^b \vert f(x) \vert \sqrt{1 + f'(x)^2} \, \diff x \Bigg|$							& $\Bigg| 2 \pi \int \limits_{t_1}^{t_2} \vert y(t) \vert \sqrt{\dot{x}^2 + \dot{y}^2} \, \diff t \Bigg|$ 								& $\Bigg| 2 \pi \int \limits_{\varphi_1}^{\varphi_2} \vert r \, \sin(\varphi) \vert \sqrt{r^2 + \dot{r}^2} \, \diff \varphi \Bigg|$											\\
+	mit Meridian 		& 																												& 																																		& 																																											\\
+	\hline
+	Oberfläche $O_y$ 	& $\Bigg| 2 \pi \int \limits_{y_1}^{y_2} \vert f^{-1}(y) \vert \sqrt{1 + f^{-1}{'}(y)^2} \, \diff y \Bigg|$		& $\Bigg| 2\pi \int \limits_{t_1}^{t_2} \vert x(t) \vert \sqrt{\dot{x}^2 + \dot{y}^2} \, \diff t \Bigg|$ 								& $\Bigg| 2  \pi \int \limits_{\varphi_1}^{\varphi_2} \vert r \, \cos(\varphi) \vert \sqrt{\dot{r}^2 + r^2} \, \diff \varphi \Bigg|$ 										\\
+	mit Meridian 		& 																												& 																																		& 																																											\\
+	\hline
+	Krümmung $\kappa$ 	& $\kappa(x) = \dfrac{f''(x)}{\sqrt{1 + f'(x)^2}^3}$ 															& $\kappa(t) = \dfrac{\dot{x} \ddot{y} - \dot{y} \ddot{x}}{\sqrt{\dot{x}^2 + \dot{y}^2}^3}$ (2D) 										& $\kappa(\varphi) = \dfrac{2 \dot{r}^2 - r \ddot{r} +r^2}{\sqrt{\dot{r}^2 + r^2}^3}$																						\\
+						& 																												& $\kappa(t) = \dfrac{\vert \dot{\vec{c}}(t) \times \ddot{\vec{c}}(t) \vert}{\sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}^3}$ (3D)			& 																																											\\
+	\hline
+	Krümmungs- 			& $R = \dfrac{1}{\vert \kappa \vert} = \Bigg| \dfrac{\sqrt{1 + f'(x)^2}^3}{f''(x)} \Bigg|$ 						& $R = \dfrac{1}{\vert \kappa \vert} = \Bigg| \dfrac{\sqrt{\dot{x}^2 + \dot{y}^2}^3}{\dot{x} \ddot{y} - \dot{y} \ddot{x}} \Bigg|$ (2D)	& $R = \dfrac{1}{\vert \kappa \vert} = \Bigg| \dfrac{\sqrt{\dot{r}^2 + r^2}^3}{2 \dot{r}^2 - r \ddot{r} +r^2} \Bigg|$		 												\\
+	kreis ($R$) 		& 																												& 																																		&																																											\\
+	\hline		
+\end{tabular}
+}
+\renewcommand{\arraystretch}{1}
+
+\medskip
+Hinweis: $\dot{r} = - \dfrac{p \, \varepsilon \, \sin(\varphi)}{(1-\varepsilon \, \cos(\varphi))^2}$ \qquad bzw. für Kardioide: $\dot{r} = a(- \sin(\varphi)) = -a \, \sin(\varphi)$ \qquad \crd{$r$ entspricht $r(\varphi)$}
+
+
+\columnbreak
+
+
+\subsection{Tangenten}
+\textbf{Tangentengleichung:} $y = m \, (x - x_0) + y_0$ \qquad $m$ = Steigung \textrightarrow\ Berechung gemäss Kapitel \ref{Übersicht -- Kurvenformeln}
+
+
+\subsubsection{Berechnung Tangentensteigung bei impliziter Kurvenformel}
+
+\textrightarrow\ Implizite Differentiation! \qquad \textbf{Ziel:} $f'(x) = y' = \dfrac{\diff y}{\diff x}$
+
+\medskip
+
+\begin{minipage}[t]{0.48\columnwidth}
+	\example{Kreis}
+
+	\renewcommand{\arraystretch}{2.2}
+	\begin{tabular}{l}
+		$x^2 + y^2 = 4 \quad \Big| \diff(\ldots)$ Differential 			\\
+		$2x \, \diff x + 2y \, \diff y = 0 \quad \Big| \div \, \diff x$	\\
+		$2x + 2y \, \dfrac{\diff y}{\diff x} = 0$ 							\\
+		$\dfrac{\diff y}{\diff x} = - \dfrac{2x}{2y} = - \dfrac{x}{y}$
+	\end{tabular}
+	\renewcommand{\arraystretch}{1}
+\end{minipage}		
+\hfill
+\begin{minipage}[t]{0.48\columnwidth}
+	\example{Mit Produktregel}
+
+	\renewcommand{\arraystretch}{2.2}
+	\begin{tabular}{l}
+		$y^3 = 2 x^2 + 5 xy \quad \Big| \diff(\ldots)$ Differential 													\\ 
+		$3 y^2 \, \diff y = 4x \, \diff x + 5(1y + xy') \, \diff x \quad \Big| \div \, \diff x$ 						\\ 
+		$3 y^2 \cbl{\dfrac{\diff y}{\diff x}} = 4x + 5(y + xy') \; \Leftrightarrow \; 3 y^2 \cbl{y'} = 4x + 5y + 5xy'$	\\
+		$3 y^2 y' - 5 xy' = 4x + 5y \; \Leftrightarrow \; y'(3y^2 - 5x) = 4x + 5y$ 										\\
+		$y' = f'(x) = \dfrac{4x + 5y}{3y^2 - 5x}$ 
+	\end{tabular}
+	\renewcommand{\arraystretch}{1}
+\end{minipage}
+
+
+\subsection{Normalen}
+
+\begin{minipage}[c]{0.48\columnwidth}
+	Normale steht senkrecht zu Tangente in AP ($x_0; \, y_0$) 
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\columnwidth}
+	$$ \text{\textbf{Normalengleichung:}} \quad y = - \frac{1}{m} (x - x_0) + y_0 $$
+\end{minipage}
+

@@ -1,0 +1,15 @@
+all : stuff                 # erzegt die Definition fuer make all
+
+project : main.o lib.o      # Projekt linken
+	clang++ -Wall -o vector Vector3D.o main.o
+
+lib.o : lib.cpp             # lib.cpp compilen
+	clang++ -Wall -c lib.cpp
+
+main.o : main.cpp           # main.cpp compilen
+	clang++ -Wall -c main.cpp
+
+clean :                     # Projekt cleanup
+	rm -f project.exe lib.o main.o
+
+.PHONY : clean all          # Mariert die Targets "clean" und "all" als "PHONY" -> Lesbarkeit

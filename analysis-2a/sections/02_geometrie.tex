@@ -1,0 +1,461 @@
+\section{Geometrie}
+
+\begin{tabular}{ll c ll c ll}
+    Krümmungskreis-Radius       & S. 254    & & Bogenlänge                  & S. 514    & & Rotations-Oberfläche    & S. 515    \\
+    Krümmungskreis-Mittelpunkt  & S. 255    & & Flächeininhalt              & S. 514    & & Rotations-Volumen       & S. 515    \\
+    Krümmung                    & S. 253 ff       	
+\end{tabular}
+
+
+\subsection{Kurvendarstellungen}
+
+\textbf{Hinweis: Bei allen Formen muss der Definitionsbereich angegeben werden!}
+
+
+\begin{minipage}[t]{0.48\columnwidth}
+    \subsubsection{Explizit}
+
+    \begin{itemize}
+        \item \textbf{Eindeutige} Funktionsgleichung $y = f(x)$
+        \item Umkehrfunktion: $x = f^{-1}(y)$
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\columnwidth}
+    \subsubsection{Implizit}
+
+    \begin{itemize}
+        \item nicht eindeutige Gleichung in $x$ und $y$ \\
+            z.B. $x^2 + y^2 = 1$
+    \end{itemize}
+\end{minipage}
+
+\medskip
+
+\begin{minipage}[t]{0.48\columnwidth}
+    \subsubsection{Parameterdarstellung}
+
+    \begin{itemize}
+        \item Darstellung als Vektor: $\begin{pmatrix} x(t) \\ y(t) \\ \dots \end{pmatrix}$
+        \item $\vec{c}$ ableitbar nach $t$ (keine Knicke)
+        \item $\vec{c}$ ist regulär, wenn ableitbar und $\vec{c'} \neq \vec{0}$
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\columnwidth}
+    \subsubsection{Polarform}
+
+    \begin{itemize}
+        \item Darstellung: Radius als Funktion des Winkels:  $r = f(\varphi)$
+        \item Darstellung als Polar-Vektor: $\vec{c}(\varphi) = \begin{pmatrix} r(\varphi) \, \cos(\varphi) \\ r(\varphi) \, \sin(\varphi) \end{pmatrix}$
+        \item Im Pol bedeutet $r = 0$ ; Winkel $\varphi_0$ z.B. $\pi$
+        \item Drehung um Winkel $\alpha$: $r(\varphi) \rightarrow r(\varphi - \alpha)$ \\
+            (Drehung  im Gegenuhrzeigersinn)
+    \end{itemize}
+\end{minipage}
+
+\medskip
+
+\begin{minipage}[t]{0.48\columnwidth}
+    \subsubsection{Tangentialvektor}
+
+    \begin{itemize}
+        \item Darstellung als Vektor: $\vec{c'}(t) =  \begin{pmatrix} \dot{x}(t) \\ \dot{y}(t) \\ \dots \end{pmatrix}$
+        \item Punkt steht für Ableitung nach der Zeit
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\columnwidth}
+
+\end{minipage}
+
+
+
+\subsection[Polarkoordinaten]{Polarkoordinaten $\bm{(r, \, \varphi)}$}{197-198}
+
+\vspace{-0.2cm}
+
+$$ r = \sqrt{x^2 + y^2} \qquad \qquad 
+x = r \cdot \cos(\varphi) \qquad \qquad 
+y = r \cdot \sin(\varphi) \qquad \qquad 
+\varphi = \begin{cases}			
+    \arctan \big( \frac{y}{x} \big)         & x \geq 0 \\
+    \arctan \big( \frac{y}{x} \big) + \pi   & x < 0
+\end{cases} $$
+
+
+$$ \text{Polar-Vektor:} \quad \vec{c}(\varphi) = 
+\begin{pmatrix} r(\varphi) \, \cos(\varphi) \\ 
+r(\varphi) \, \sin(\varphi) \end{pmatrix} \qquad 
+ \text{ \textrightarrow\ } r \text{ ist eine Funktion des Winkels } \varphi $$
+
+
+\subsection{Umrechnung Darstellungsformen (Koordinatensysteme)}
+
+% \renewcommand{\arraystretch}{1.5}
+% \begin{tabular}{| l | l | l |}
+%     \hline
+%     \textbf{von}    &  \textbf{nach}    & \textbf{Vorgehen} \\
+%     \hline
+%     Parameter       & Explizit          & $t$ eliminieren; ineinander einsetzen; umformen \\
+%     \hline
+%     Ex- / Implizit  & Polar             & Ersetzen: $x = r \cdot \cos(\varphi) \quad y = r \cdot \sin(\varphi) \quad x^2 + y^2 = r^2$       \\
+%     \hline
+%     Polar           & Implizit          & Ersetzen: $r \cdot \cos(\varphi) = x \quad r \cdot \sin(\varphi) = y \quad r = \sqrt{x^2 + y^2}$  \\
+%     \hline
+%     Polar           & Parameter         &   $\begin{pmatrix}    r(\varphi) \cdot \cos(\varphi) \\
+%                                                                 r(\varphi) \cdot \sin(\varphi) \end{pmatrix} = 
+%                                             \begin{pmatrix}     x(\varphi) \\ 
+%                                                                 y(\varphi) \end{pmatrix}$                                                   \\   
+%     \hline
+%     Explizit        & Parameter         & $\begin{pmatrix} x \\ f(x) \end{pmatrix} = \begin{pmatrix} x(t) \\ y(t) \end{pmatrix}$            \\
+%     \hline		
+% \end{tabular}	
+% \renewcommand{\arraystretch}{1}
+
+
+\begin{ctabular}{lcl l}
+    \toprule
+    Parameter       & \textrightarrow\  & Explizit  & $t$ eliminieren; ineinander einsetzen; umformen                                                   \\
+    \midrule
+    Ex- / Implizit  & \textrightarrow\  & Polar     & Ersetzen: $x = r \cdot \cos(\varphi) \quad y = r \cdot \sin(\varphi) \quad x^2 + y^2 = r^2$       \\
+    \midrule
+    Polar           & \textrightarrow\  & Implizit  & Ersetzen: $r \cdot \cos(\varphi) = x \quad r \cdot \sin(\varphi) = y \quad r = \sqrt{x^2 + y^2}$  \\
+    \midrule
+    Polar           & \textrightarrow\  & Parameter &   $\begin{pmatrix}    r(\varphi) \cdot \cos(\varphi) \\
+                                                                            r(\varphi) \cdot \sin(\varphi) \end{pmatrix} = 
+                                                        \begin{pmatrix}     x(\varphi) \\ 
+                                                                            y(\varphi) \end{pmatrix}$                                                   \\
+    \midrule
+    Explizit        & \textrightarrow\  & Parameter & $\begin{pmatrix} x \\ f(x) \end{pmatrix} = \begin{pmatrix} x(t) \\ y(t) \end{pmatrix}$            \\
+    \bottomrule
+\end{ctabular}
+
+\columnbreak
+
+
+\subsection{Kreis (Kurve 2. Ordnung)}{204}
+
+\begin{minipage}[c]{0.22\columnwidth}
+    \includegraphics[width=\columnwidth]{images/kreis.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.77\columnwidth}
+    \begin{tabular}{lll}
+        $r$     & Radius (im Folgenden $R$, da konstant)    \\
+        $x_0$   & $x$-Koordinate des Kreismittelpunktes     \\
+        $y_0$   & $y$-Koordinate des Kreismittelpunktes
+    \end{tabular} 
+
+    
+    \begin{ctabular}{ l  c  c  c }
+        \toprule
+                & Implizit                          & Paramter (Vektor)                                                                                                             & Polar                     \\
+                & (Achsenkreuz in $O$)              & (Achsenkreuz in $O$)                                                                                                          & (Achsenkreuz in $O$)      \\
+        \midrule
+        Kurve   & $(x - x_0)^2+ (y - y_0)^2 = R^2$  & $\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} x_0 + R \cdot \cos(t) \\ y_0 + R \cdot \sin(t) \end{pmatrix}$   & $r(\varphi) = R$ (const)  \\
+        \bottomrule
+    \end{ctabular}
+\end{minipage}
+
+
+% \begin{tabular}{| l | c | c | c |}
+%     \hline
+%             & Implizit                          & Paramter (Vektor)                                                                                                             & Polar                     \\
+%             & (Achsenkreuz in $O$)              & (Achsenkreuz in $O$)                                                                                                          & (Achsenkreuz in $O$)      \\
+%     \hline
+%     Kurve   & $(x - x_0)^2+ (y - y_0)^2 = R^2$  & $\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} x_0 + R \cdot \cos(t) \\ y_0 + R \cdot \sin(t) \end{pmatrix}$   & $r(\varphi) = R$ (const)  \\
+%     \hline
+% \end{tabular}
+
+
+
+\subsection{Ellipse (Kurve 2. Ordnung)}{205}
+
+\begin{minipage}[c]{0.38\columnwidth}
+    \includegraphics[width=\columnwidth]{images/ellipse.PNG}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.58\columnwidth}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{lll}
+        $a$             & Grosse Halbachse (horizontal)                                                                 \\
+        $b$             & Kleine Halbachse (vertikal)                                                                   \\
+        $e$             & Extrentrizität                & $e = \sqrt{a^2 - b^2}$                                        \\
+        $\varepsilon$   & num. Exzentrizität            & $\varepsilon = \frac{e}{a} \quad (0 \leq \varepsilon < 1)$    \\
+        $p$             & Halbparameter                 & $p =\frac{b^2}{a}$                                            \\
+        $\varphi$       & Polarwinkel bei $F_2$         & $0 \leq \varphi < 2 \pi$ 	                                    \\
+        $F_1, \, F_2$   & Brennpunkte                                                                                   \\
+        $r_1, \, r_2$   & Polabstände zu $F_{1,2}$
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+\end{minipage}
+
+% \medskip
+
+% \begin{tabular}{| l | c | c | c |}
+%     \hline
+%                         & Implizit                                                          & Paramter (Vektor)                                                                                                 & Polar                                                                                                         \\
+%                         & (Achsenkreuz in $O$)                                              & (Achsenkreuz in $O$)                                                                                              & \textbf{(Achsenkreuz in $\boldsymbol{F_2}$)}                                                                               \\
+%     \hline
+%     Kurve               & $\left( \frac{x}{a} \right)^2 + \left( \frac{y}{b} \right)^2 = 1$ & $\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} a \cdot \cos(t) \\ b \cdot \sin(t) \end{pmatrix}$   & $r(\varphi) = \frac{p}{1 - \varepsilon \, \cos(\varphi)}$                                                     \\
+%                         &                                                                   & $0 \leq t < 2 \pi$                                                                                                & $0 < \varphi < 2 \pi$                                                                                         \\
+%     \hline
+%     Tangentensteigung   & $\frac{\diff y}{\diff x} = \frac{-b^2}{a^2} \frac{x_0}{y_0}$      & $\frac{\diff y}{\diff x} = \frac{\dot{y}(t)}{\dot{x}(t)} = \frac{b \cdot \cos(t)}{-a \cdot \sin(t)}$              & $\frac{\diff y}{\diff x} = \frac{\dot{y}(t)}{\dot{x}(t)} = \frac{\varepsilon - \cos(\varphi)}{\sin(\varphi)}$ \\
+%                         & $y_0 \neq 0$                                                      & $t \neq 0, \, \pi$                                                                                                & $\varphi \neq 0, \, \pi$                                                                                      \\ 
+%                         &                                                                   &                                                                                                                   & AP: $(x_0; \, y_0) = \begin{pmatrix} r_0 \cdot \cos(\varphi_0) \\ r_0 \cdot \sin(\varphi_0) \end{pmatrix}$    \\
+%     \hline
+% \end{tabular}
+
+
+\begin{ctabular}{l c  cc  cc}
+    \toprule
+                        & Implizit                                                          & & Paramter (Vektor)                                                                                                 & & Polar                                                                                                         \\
+                        & (Achsenkreuz in $O$)                                              & & (Achsenkreuz in $O$)                                                                                              & & \textbf{(Achsenkreuz in $\boldsymbol{F_2}$)}                                                                  \\
+    \midrule
+    Kurve               & $\left( \frac{x}{a} \right)^2 + \left( \frac{y}{b} \right)^2 = 1$ & & $\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} a \cdot \cos(t) \\ b \cdot \sin(t) \end{pmatrix}$   & & $r(\varphi) = \frac{p}{1 - \varepsilon \, \cos(\varphi)}$                                                     \\
+                        &                                                                   & & $0 \leq t < 2 \pi$                                                                                                & & $0 < \varphi < 2 \pi$                                                                                         \\
+    \midrule
+    Tangentensteigung   & $\frac{\diff y}{\diff x} = \frac{-b^2}{a^2} \frac{x_0}{y_0}$      & & $\frac{\diff y}{\diff x} = \frac{\dot{y}(t)}{\dot{x}(t)} = \frac{b \cdot \cos(t)}{-a \cdot \sin(t)}$              & & $\frac{\diff y}{\diff x} = \frac{\dot{y}(t)}{\dot{x}(t)} = \frac{\varepsilon - \cos(\varphi)}{\sin(\varphi)}$ \\
+                        & $y_0 \neq 0$                                                      & & $t \neq 0, \, \pi$                                                                                                & & $\varphi \neq 0, \, \pi$                                                                                      \\ 
+                        &                                                                   & &                                                                                                                   & & AP: $(x_0; \, y_0) = \begin{pmatrix} r_0 \cdot \cos(\varphi_0) \\ r_0 \cdot \sin(\varphi_0) \end{pmatrix}$    \\
+    \bottomrule
+\end{ctabular}
+
+
+
+\subsection{Kardioide (Kurve 2. Ordnung)}{100}	
+
+\begin{minipage}[t]{0.35\columnwidth}
+    \includegraphics[width=\columnwidth, align=t]{images/kardioide.PNG}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.6\columnwidth}
+    Allgemein gilt für Limaçons die Darstellung $r = f(\varphi)$ mit Pol bei $r = 0$
+
+    \medskip
+
+    \begin{tabular}{ll}
+        $a$ & Streckfaktor zum Pol 
+    \end{tabular} 
+\end{minipage}
+
+
+\begin{ctabular}{ l  c cc  cc }
+    \toprule
+            & Implizit              & & Paramter (Vektor)                                                                                                                                         & & Polar                                                 \\
+            & (Achsenkreuz in $O$)  & & (Achsenkreuz in $O$)                                                                                                                                      & & (Achsenkreuz in $O$)                                  \\
+    \midrule
+    Kurve   & --                    & & $\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} a \cdot (1 + \cos(t))\cdot \cos(t) \\ a \cdot (1 + \cos(t)) \cdot \sin(t)  \end{pmatrix} $  & & $r(\varphi) = a \cdot \Big(1 + \cos(\varphi) \Big)$   \\
+    \bottomrule
+\end{ctabular}
+
+% \begin{tabular}{| l | c | c | c |}
+%     \hline
+%             & Implizit              & Paramter (Vektor)                                                                                                                                         & Polar                                         \\
+%             & (Achsenkreuz in $O$)  & (Achsenkreuz in $O$)                                                                                                                                      & (Achsenkreuz in $O$)                          \\
+%     \hline
+%     Kurve   & --                    & $\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} a \cdot (1 + \cos(t))\cdot \cos(t) \\ a \cdot (1 + \cos(t)) \cdot \sin(t)  \end{pmatrix} $  & $r(\varphi) = a \cdot (1 + \cos(\varphi))$    \\
+%     \hline
+% \end{tabular}
+    
+
+\subsection{Parabel (Kurve 2. Ordnung)}{210}
+
+\begin{minipage}[c]{0.38\columnwidth}
+    \includegraphics[width=\columnwidth]{images/parabel.PNG}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.6\columnwidth}
+    \begin{tabular}{lll}
+    $\varepsilon$   & num. Exzentrizität    & $\varepsilon = 1$     \\
+    $p$             & Halbparameter                                 \\
+    $\varphi$       & Polarwinkel           & $0 < \varphi < 2 \pi$ \\
+    $F$             & Brennpunkt
+    \end{tabular}
+\end{minipage}
+
+
+% \begin{tabular}{| l | c | c | c |}
+%     \hline
+%                         & Implizit                          & Paramter (Vektor)                                                                                     & Polar                                                         \\
+%                         & (Achsenkreuz in $O$)              & (Achsenkreuz in $O$)                                                                                  & \textbf{(Achsenkreuz in $\boldsymbol{F_2}$)}                  \\
+%     \hline
+%     Kurve               & $y^2 = 2 \,p \, x$                & $\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} \frac{y^2}{2 \,p} \\ y \end{pmatrix}$   & $r(\varphi) = \frac{p}{1 - \varepsilon \cdot \cos(\varphi)}$  \\
+%                         &                                   & $y \in \mathbb{R}$                                                                                    & $(\varepsilon = 1)$                                           \\
+%     \hline
+%     Tangentensteigung   & $y' = f(x)' = \frac{p}{y}$        & $y' = \frac{p}{y}$                                                                                    & $ y' = \frac{1 - \cos(\varphi)}{\sin(\varphi)}$               \\
+%                         & $y \neq 0$; $y =$ Parabelpunkt    & $y \neq 0, \, y =$ Parabelpunkt                                                                       & $\varphi \neq 0, \, \pi$                                      \\
+%     \hline
+% \end{tabular}
+
+
+\begin{ctabular}{ l c cc cc}
+    \toprule
+                        & Implizit                          & &  Paramter (Vektor)                                                                                    & & Polar                                                         \\
+                        & (Achsenkreuz in $O$)              & & (Achsenkreuz in $O$)                                                                                  & & \textbf{(Achsenkreuz in $\boldsymbol{F_2}$)}                  \\
+    \midrule
+    Kurve               & $y^2 = 2 \,p \, x$                & & $\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} \frac{y^2}{2 \,p} \\ y \end{pmatrix}$   & & $r(\varphi) = \frac{p}{1 - \varepsilon \cdot \cos(\varphi)}$  \\
+                        &                                   & & $y \in \mathbb{R}$                                                                                    & & $(\varepsilon = 1)$                                           \\
+    \midrule
+    Tangentensteigung   & $y' = f(x)' = \frac{p}{y}$        & & $y' = \frac{p}{y}$                                                                                    & & $ y' = \frac{1 - \cos(\varphi)}{\sin(\varphi)}$               \\
+                        & $y \neq 0$; $y =$ Parabelpunkt    & & $y \neq 0, \, y =$ Parabelpunkt                                                                       & & $\varphi \neq 0, \, \pi$                                      \\
+    \bottomrule
+\end{ctabular}
+
+
+
+\subsection{Hyperbel (Kurve 2. Ordnung)}{207}	
+
+\begin{minipage}{0.34\columnwidth}
+    \includegraphics[width=\columnwidth]{images/hyperbel.PNG}
+\end{minipage}
+\hfill
+\begin{minipage}{0.63\columnwidth}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{lll}
+        $a$             & Halbachse horizontal                                                                                                                                          \\   
+        $b$             & Halbachse vertikal                                                                                                                                            \\
+        $e$             & Extrentrizität                        & $e = \sqrt{a^2 + b^2}$                                                                                                \\
+        $\varepsilon$   & num. Exzentrizität                    & $\varepsilon = \frac{e}{a} > 1$                                                                                       \\
+        $p$             & Halbparameter                         & $p =\frac{b^2}{a}$                                                                                                    \\
+        $\varphi$       & Polarwinkel bei $F_1$                 & $\varphi \notin \Big[ -\arccos \Big( \frac{1}{\varepsilon} \Big); \, \arccos \Big( \frac{1}{\varepsilon} \Big) \Big]$ \\
+        $F_1, \, F_2$   & Brennpunkte                                                                                                                                                   \\
+        $r_1, \, r_2$   & Polabstände zu $F_{1,2}$                                                                                                                                      \\
+        $g_1, \, g_2$   & Asymptoten; Steigung $\pm \frac{b}{a}$
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+\end{minipage}
+
+
+% \begin{tabular}{| l | c | c | c |}
+%     \hline
+%             & Implizit                                                          & Paramter (Vektor)                                                                                                 & Polar                                                         \\
+%             & (Achsenkreuz in $O$)                                              & (Achsenkreuz in $O$)                                                                                              & \textbf{(Achsenkreuz in $\boldsymbol{F_1}$)}                  \\
+%     \hline
+%     Kurve   & $\left( \frac{x}{a} \right)^2 - \left( \frac{y}{b} \right)^2 = 1$ & $\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} a \cdot \cosh(t) \\ b \cdot \sinh(t) \end{pmatrix}$ & $r(\varphi) = \frac{p}{1 - \varepsilon \cdot \cos(\varphi)}$  \\
+%             &                                                                   & $t \in \mathbb{R}$ ; \textbf{rechter Ast}                                                                         & $(\varepsilon > 1)$; \textbf{rechter Ast}                     \\
+%     \hline
+% \end{tabular}
+
+
+\begin{ctabular}{ l  cc  cc  cc }
+    \toprule
+            & Implizit                                                          & & Paramter (Vektor)                                                                                                 & & Polar                                                         \\
+            & (Achsenkreuz in $O$)                                              & & (Achsenkreuz in $O$)                                                                                              & & \textbf{(Achsenkreuz in $\boldsymbol{F_1}$)}                  \\
+    \midrule
+    Kurve   & $\left( \frac{x}{a} \right)^2 - \left( \frac{y}{b} \right)^2 = 1$ & & $\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} a \cdot \cosh(t) \\ b \cdot \sinh(t) \end{pmatrix}$ & & $r(\varphi) = \frac{p}{1 - \varepsilon \cdot \cos(\varphi)}$  \\
+            &                                                                   & & $t \in \mathbb{R}$ ; \textbf{rechter Ast}                                                                         & & $(\varepsilon > 1)$; \textbf{rechter Ast}                     \\
+    \bottomrule
+\end{ctabular}
+
+
+\subsection{Krümmung}
+
+\vspace{-0.2cm}
+
+$$ \text{Krümmung:} \quad \kappa = \frac{\diff \alpha}{\diff s} = \kappa(x_0) \quad (\text{in AP } x_0; \, y_0) $$
+
+\medskip
+
+\begin{minipage}[t]{0.55\columnwidth}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{lllll}
+        konkav: & Rechtskurve   & $f''(x) \leq 0$   & $ f' \downarrow$  & $\kappa(x) \leq 0$    \\
+        konvex: & Linkskurve    & $f''(x) \geq 0$   & $ f' \uparrow$    & $\kappa(x) \geq 0$    \\
+        \\
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.44\columnwidth}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{ll}
+        Wendepunkt  & $\kappa = 0$ \myul{und} Vorzeichenwechsel         \\
+        Scheitel    & $\kappa$ extremal (Minimum; Maximum)              \\
+        Flachpunkt  & $\kappa = 0$ \myul{aber} kein Vorzeichenwechsel 
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+\end{minipage}
+
+
+
+\begin{minipage}[c]{0.68\columnwidth}
+    \input{tikz/kruemmung.tex}
+\end{minipage}		
+\hfill
+\begin{minipage}[c]{0.3\columnwidth}
+    \textbf{Extremalwerte der Krümmung}	
+
+    \smallskip
+
+    \textbf{ \textrightarrow\ Tricks anwenden!}
+
+    \medskip
+
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{ll}
+    Maximum:    & simultan $\frac{\text{Zaehler max}}{\text{Nenner min}}$ \\
+    Minimum:    & simultan $\frac{\text{Zaehler min}}{\text{Nenner max}}$
+    \end{tabular}		
+    \renewcommand{\arraystretch}{1}
+\end{minipage}		
+    
+
+\subsection{Krümmungskreis (Approximation 2. Ordnung)}	
+
+\begin{ctabular}{ll c ll}
+    2D & Krümmungs\textbf{kreis} mit Radius $r = \frac{1}{ \vert \kappa \vert }$ & & 
+    3D & Krümmungs\textbf{kugel} mit Radius $r = \frac{1}{\vert \kappa \vert }$
+\end{ctabular}
+
+\subsubsection{Eigenschaften des Krümmungskreises}
+
+\begin{itemize}
+    \item Krümmungskreis hat gleiche Krümmung wie Kurve in Arbeitspunkt
+    \item Tangentenrichtung von Krümmungskreis und Kurve sind identisch
+    \item Zentrum des Kreises liegt auf der Normalen auf der Seite von $\ddot{\vec{c}}$
+\end{itemize}
+	
+
+\subsection{Evolute (Kurve der Krümmungskreismittelpunkte)}{262}
+
+\begin{minipage}{0.32\columnwidth}
+    \includegraphics[width=\columnwidth]{images/evolute.PNG}
+\end{minipage}
+\hfill
+\begin{minipage}{0.65\columnwidth}
+    \begin{itemize}
+        \item Die Evolute beschreibt die Kurve der Krümmungskreismittelpunkte
+        \item Die Evolute erfüllt die folgende Vektorgleichung 
+    \end{itemize}    
+
+    $$ \begin{pmatrix} x_c \\ y_c \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} + \frac{1}{\kappa} \, \vec{n} $$
+\end{minipage}
+
+
+\subsubsection{Krümmungskreis-Mittelpunkt}{255}
+
+% \renewcommand{\arraystretch}{2}
+% \begin{tabular}{| c | c | c |}
+%     \hline
+%     Explizit                            & Parameter (Vektor)                                                                        & Polar                                                                                                                                                         \\
+%     \hline
+%     $x_c = x - \frac{y'(1+y'^2)}{y''}$  & $ x_c(t) = x - \dot{y} \frac{\dot{x}^2 + \dot{y}^2}{\dot{x} \ddot{y} - \ddot{x} \dot{y}}$ & $x_c = r \cdot \cos(\varphi) - \frac{[ r^2  + \dot{r}^2 ] \cdot [ r \cdot \cos(\varphi) + \dot{r} \cdot \sin(\varphi) ] }{r^2 + 2 \dot{r}^2 - r \, \ddot{r}}$ \\
+%     $y_c = y + \frac{1 + y{'} ^2}{y''}$ & $ y_c(t) = y + \dot{x} \frac{\dot{x}^2 + \dot{y}^2}{\dot{x} \ddot{y} - \ddot{x} \dot{y}}$ & $y_c = r \cdot \sin(\varphi) - \frac{[ r^2  + \dot{r}^2 ] \cdot [ r \cdot \sin(\varphi) + \dot{r} \cdot \cos(\varphi) ] }{r^2 + 2 \dot{r}^2 - r \, \ddot{r}}$ \\
+%     \hline
+% \end{tabular}
+% \renewcommand{\arraystretch}{1}
+
+
+\renewcommand{\arraystretch}{2}
+\begin{ctabular}{ cc cc  cc }
+    \toprule
+    Explizit                            & & Parameter (Vektor)                                                                        & & Polar                                                                                                                                                         \\
+    \midrule
+    $x_c = x - \frac{y'(1+y'^2)}{y''}$  & & $ x_c(t) = x - \dot{y} \frac{\dot{x}^2 + \dot{y}^2}{\dot{x} \ddot{y} - \ddot{x} \dot{y}}$ & & $x_c = r \cdot \cos(\varphi) - \frac{[ r^2  + \dot{r}^2 ] \cdot [ r \cdot \cos(\varphi) + \dot{r} \cdot \sin(\varphi) ] }{r^2 + 2 \dot{r}^2 - r \, \ddot{r}}$ \\
+    $y_c = y + \frac{1 + y{'} ^2}{y''}$ & & $ y_c(t) = y + \dot{x} \frac{\dot{x}^2 + \dot{y}^2}{\dot{x} \ddot{y} - \ddot{x} \dot{y}}$ & & $y_c = r \cdot \sin(\varphi) - \frac{[ r^2  + \dot{r}^2 ] \cdot [ r \cdot \sin(\varphi) + \dot{r} \cdot \cos(\varphi) ] }{r^2 + 2 \dot{r}^2 - r \, \ddot{r}}$ \\
+    \bottomrule
+\end{ctabular}
+\renewcommand{\arraystretch}{1}
+

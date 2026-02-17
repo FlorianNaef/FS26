@@ -1,0 +1,989 @@
+% =========================================== PACKAGES ============================================
+\usepackage[utf8]{inputenc}         % input encoding: UTF-8
+\usepackage[T1]{fontenc}            % font encoding: T1
+\usepackage{textcomp}               % additional symbols
+\usepackage{times}                  % times new roman font
+\usepackage{inconsolata}            % inconsolata font for listings
+\usepackage[main=ngerman]{babel}    % set main language to german
+
+
+\usepackage{multicol}               % provides multicols environment
+\usepackage{geometry}               % set page layout
+
+
+\usepackage{enumitem}               % list customization
+\usepackage{outlines}               % easy nested lists
+\usepackage{tabularx}               % some nicer tables with X columns
+\usepackage{tabu}                   % more flexible tables
+\usepackage{hhline}                 % double lines in tables
+\usepackage{booktabs}               % thick and thin lines in tables
+\usepackage{boldline}               % bold (vertical) lines in tables
+
+
+\usepackage{amsmath}                % math symbols
+\usepackage{amssymb}                % more math symbols
+\usepackage{mathtools}              % more math tools needed for pmatrix modification
+\usepackage{mhsetup}                % needed to modify pmatrix environment
+\usepackage{txfonts}                % Times math font
+\usepackage[squaren]{SIunits}       % SI-units
+\usepackage{bm}                     % bold math symbols
+\usepackage{trfsigns}               % needed for "Laplace" symbol (Korrespondenz)
+\usepackage{mathrsfs}               % needed for Fourier transform "F"
+
+
+\usepackage{graphicx}               % include graphics
+\usepackage{graphbox}               % needed for aligning images in multicol environment
+\usepackage{scalerel}               % scale any objects
+\usepackage{anyfontsize}            % set any font size
+\usepackage[table]{xcolor}          % needed for colors
+
+
+\usepackage{tcolorbox}              % colored boxes
+\usepackage[outline]{contour}       % contour for text (used in custom underline command)
+\usepackage[normalem]{ulem}         % custom underline (used in custom underline command)
+
+
+\usepackage{tikz}                   % needed for TikZ drawings
+\usepackage{pgfplots}               % Draw nice plots
+
+
+\usepackage{listings}               % for nicer code display
+% to use nodes inside listing see: https://texample.net/tikz/examples/tikz-listings/
+
+
+\usepackage{hyperref}               % clickable links
+\usepackage{qrcode}                 % QR code generation (also clickable)
+
+
+\usepackage{ifthen}                 % if-then-else commands
+\usepackage{calc}                   % simple arithmetic in LaTeX commands
+
+
+\usepackage{draftwatermark}         % watermark on pages after a certain limit
+\usepackage{fancyhdr}               % custom header and footer
+\usepackage[explicit]{titlesec}     % custom section titles
+
+
+\usepackage{datetime2}              % custom date format for versioning
+
+
+% ========================================== BASIC SETUP ==========================================
+
+% --------------------------------------- DOCUMENT SETTINGS ---------------------------------------
+\hypersetup{hidelinks,
+% set pdf metadata
+            pdfauthor={\author},
+            pdftitle={\shorttitle},
+            pdfsubject={\title\ \semester},
+            pdfkeywords={Gahn go lerne!!}}
+
+% set style for URLs
+\urlstyle{same} % sets url font to the same as the preceeding text
+
+% set page layout
+\geometry{left=3mm, 
+          right=3mm, 
+          top=3mm, 
+          bottom=6mm, 
+          headheight=0mm, 
+          headsep=0mm, 
+          footskip=4mm,
+        %   showframe,
+          }
+
+\setlength{\columnsep}{1.5mm}       % distance between columns
+\setlength{\columnseprule}{0.1pt}   % thickness of column separation line
+\setlength{\parindent}{0pt}         % no paragraph indentation
+
+\setcounter{tocdepth}{2}            % only display sections and subsections in toc
+% \setcounter{secnumdepth}{0}       % uncomment to disable section numbering
+
+\DeclareMathSizes{8}{8}{6}{5}       % set math font sizes for 8pt document
+
+
+% --------------------------------------- COLOR DEFINITIONS ---------------------------------------
+\definecolor{sectioncolor}{HTML}{b4b3b2}
+\definecolor{subsectioncolor}{HTML}{dcdbdb}
+\definecolor{sectextcol}{HTML}{000000}
+\definecolor{subsectextcol}{HTML}{000000}
+
+\definecolor{backcolour}{HTML}{f5f5f0} % background color for highlighted text
+
+% TODO: define color palette
+% color palette: https://colorkit.co/color-palette-generator/FF8552-9e22bd-404E7C-C32E15-225A28/
+\definecolor{green}{HTML}{1af430}
+\definecolor{red}{HTML}{f90d09}
+\definecolor{blue}{HTML}{093ce5}
+\definecolor{orange}{HTML}{f7730e}
+\definecolor{violet}{HTML}{a516c9}
+
+% colors for listings (code)
+\definecolor{commentcolour}{HTML}{6a9955}
+\definecolor{keywordcolour}{HTML}{7f0055}
+\definecolor{stringcolour}{HTML}{9e22bd}
+\definecolor{numbercolour}{HTML}{808080}
+
+
+% ----------------------------------- LIST AND TABULAR SETTINGS -----------------------------------
+\setlist[enumerate]{%
+    labelindent=0pt,                                % no indentation for labels
+    labelwidth = \widthof{\ref{enum-\EnumitemId}},  % set label width to widest label
+    label=\bfseries\arabic*.,                       % label style bold arabic numerals (1., 2., ...)
+    itemindent=1ex,                                 % separation between label and item text
+    leftmargin=!,                                   % automatically calculate left margin
+    after=\label{enum-\EnumitemId}}                 % set label for referencing in labelwidth
+
+\setlist[itemize]{leftmargin=1.5em}                 % left margin for itemize: 1.5em
+\setlist[description]{leftmargin=2ex}               % left margin for description: 2ex
+\setlist{nosep}                                     % no vertical spacing between list items
+
+\renewcommand{\arraystretch}{1}                     % stretch table rows
+
+\setcounter{MaxMatrixCols}{32}                      % increase max columns in matrix environments
+
+% ----------------------------------- TIKZ & PGF-PLOTS SETTINGS -----------------------------------
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{bending}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{angles}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{petri}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes}
+\usetikzlibrary{calc}
+
+\pgfplotsset{compat=1.18}
+
+% ------------------------------------ OTHER PACKAGE SETTINGS -------------------------------------
+
+% define and set new date style for versioning as YYYYMMDD
+\DTMnewdatestyle{vnumdate}{%
+    \renewcommand{\DTMdisplaydate}[4]{\number##1\DTMtwodigits{##2}\DTMtwodigits{##3}}%
+    \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+}
+\DTMsetdatestyle{vnumdate}
+
+
+% setup for ulem and contour packages
+\renewcommand{\ULdepth}{1.75pt} % set underline depth
+\contourlength{0.7pt}           % set contour length
+
+
+% ====================================== SETUP AND COMMANDS =======================================
+
+% custom font size for paragraph titles
+\newcommand{\semilarge}{\fontsize{9}{8}\selectfont} % new font size \semilarge (9pt)
+
+\ExplSyntaxOn
+% custom underline command for exclusions on lowercase letters such as g, j, p, q, y
+\newrobustcmd{\myul}[1]{%
+    \if_mode_math:
+        \text{%
+            \uline{\phantom{$#1$}}%
+            \llap{\contour{white}{$#1$}}%
+        }
+    \else:
+        \uline{\phantom{#1}}%
+        \llap{\contour{white}{#1}}%
+    \fi:
+}
+
+\renewrobustcmd{\underline}[1]{%
+    \if_mode_math:
+        \text{%
+            \uline{\phantom{$#1$}}%
+            \llap{\contour{white}{$#1$}}%
+        }
+    \else:
+        \uline{\phantom{#1}}%
+        \llap{\contour{white}{#1}}%
+    \fi:
+}
+\ExplSyntaxOff
+
+
+% setup header and footer
+\pagestyle{fancy}
+\fancyhf{}                          % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}  % remove header rule
+\renewcommand{\footrulewidth}{0pt}  % remove footer rule
+\fancyfoot[C]{\thepage}             % page number in center of footer
+
+
+% --------------------------------------- TITLE FORMATTING ----------------------------------------
+
+\titleclass{\part}{straight}
+
+% part formatting
+\titleformat{\part}
+            {\huge\bfseries}
+            {\thepart}
+            {1em}
+            {#1}
+
+\titlespacing{\part}
+             {0.6ex}
+             {1ex}
+             {1ex}
+
+% section formatting
+\titleformat{\section}
+            % {\fontsize{9}{8}\selectfont\bfseries}
+            {\Large\bfseries}
+            {}
+            {0mm}
+            {\tikz{
+                \node[fill=sectioncolor,            % fill color:       sectioncolor
+                      text=sectextcol,              % text color:       sectextcol
+                      text width=\columnwidth-4pt,  % text width:       columnwidth - 2x padding
+                      text depth=0pt,               % text depth:       0pt (needed so text stays vertically centered)
+                      minimum height=5mm,           % minimum height:   5mm
+                      inner sep=2pt,                % inner padding:    2pt
+                      align=left]                   % text alignment:   left
+                      {\thesection\ #1};}}
+
+\titleformat{numberless, name=\section}
+            % {\fontsize{9}{8}\selectfont\bfseries}
+            {\Large\bfseries}
+            {}
+            {0mm}
+            {\tikz{
+                \node[fill=sectioncolor,            % fill color:       sectioncolor
+                      text=sectextcol,              % text color:       sectextcol
+                      text width=\columnwidth-4pt,  % text width:       columnwidth - 2x padding
+                      text depth=0pt,               % text depth:       0pt (needed so text stays vertically centered)
+                      minimum height=5mm,           % minimum height:   5mm
+                      inner sep=2pt,                % inner padding:    2pt
+                      align=left]                   % text alignment:   left
+                      {#1};}}
+
+\titlespacing{\section}
+             {0mm}
+             {.2ex}
+             {.2ex}
+
+
+% subsection formatting
+\titleformat{\subsection}
+            {\large\bfseries}
+            {}
+            {0mm}
+            {\phantomsection\tikz{
+                \node[fill=subsectioncolor,         % fill color:       subsectioncolor 
+                      text=subsectextcol,           % text color:       subsectextcol 
+                      text width=\columnwidth-4pt,  % text width:       columnwidth - 2x padding 
+                      text depth=0pt,               % text depth:       0pt (needed so text stays vertically centered)
+                      minimum height=5mm,           % minimum height:   5mm 
+                      inner sep=2pt,                % inner padding:    2pt 
+                      align=left]                   % text alignment:   left
+                      {\thesubsection\ #1};}}
+
+\titleformat{numberless, name=\subsection}
+            {\large\bfseries}
+            {}
+            {0mm}
+            {\phantomsection\tikz{
+                \node[fill=subsectioncolor,         % fill color:       subsectioncolor 
+                      text=subsectextcol,           % text color:       subsectextcol 
+                      text width=\columnwidth-4pt,  % text width:       columnwidth - 2x padding 
+                      minimum height=5mm,           % minimum height:   5mm 
+                      inner sep=2pt,                % inner padding:    2pt 
+                      align=left]                   % text alignment:   left
+                      {#1};}}
+
+\titlespacing{\subsection}
+             {0mm}
+             {1ex}
+             {.2ex}
+
+
+% subsubsection formatting
+\titleformat{\subsubsection}
+            {\large\bfseries}
+            {\myul{\thesubsubsection\ }}
+            {0mm}
+            {\phantomsection{}\myul{#1}}
+
+\titlespacing{\subsubsection}
+             {0mm}
+             {1ex}
+             {1ex}
+
+
+% paragraph formatting
+\titleformat{\paragraph}[runin]
+            {\semilarge\bfseries}
+            {}
+            {0mm}
+            {#1\normalfont :\;}
+
+\titlespacing{\paragraph}
+             {0mm}
+             {0ex}
+             {0.1ex}
+
+
+% new alias for paragraph '\para' (shorter than \paragraph)
+\let\para\paragraph%
+
+% custom command for examples
+\newcommand{\example}[1]{\subsubsection*{Beispiel: #1}}
+
+
+% ----------------------------------- CUSTOM TABULAR SPECIFIERS -----------------------------------
+
+% centered fixed width column type
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+ % centered variable width column type
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% centered math column type
+\newcolumntype{M}{>{$}c<{$}}
+
+
+% inline tikz node for later referencing
+\newcommand{\tikznode}[2]{% from https://tex.stackexchange.com/a/402466/121799
+	\ifmmode%
+	\tikz[remember picture,baseline= (#1.base),inner sep=0pt] \node(#1){$#2$};
+	\else
+	\tikz[remember picture,baseline= (#1.base),inner sep=0pt] \node(#1){#2};
+	\fi}
+
+
+% custom inline tcolorbox
+\newtcbox{\mybox}
+            [1]
+            [backcolour]
+            {on line,
+            arc=0pt,
+            outer arc=0pt,
+            colback=#1,
+            colframe=#1,
+            boxsep=0pt,
+            left=1pt,
+            right=1pt,
+            top=1pt,
+            bottom=1pt,
+            boxrule=0pt}
+
+
+\makeatletter
+
+% ------------------------------- SECTIONING COMMANDS CUSTOMIZATION -------------------------------
+
+% section: add optional argument to command for script page numbers
+\let\old@sec\section%
+\RenewDocumentCommand{\section}{somg}{%
+    \IfBooleanTF{#1}{
+        \IfNoValueTF{#2}{
+            \IfNoValueTF{#4}{
+                \old@sec*{#3}
+            }{
+                \old@sec*{#3 {\small(S. #4)}}
+            }
+        }{
+            \IfNoValueTF{#4}{
+                \old@sec*[#2]{#3}
+            }{
+                \old@sec*[#2]{#3 {\small(S. #4)}}
+            }
+        }%
+    }{
+        \IfNoValueTF{#2}{
+            \IfNoValueTF{#4}{
+                \old@sec{#3}
+            }{
+                \old@sec{#3 {\small(S. #4)}}
+            }
+        }{
+            \IfNoValueTF{#4}{
+                \old@sec[#2]{#3}
+            }{
+                \old@sec[#2]{#3 {\small(S. #4)}}
+            }
+        }%
+    }
+}
+
+
+% subsection: add optional argument to command for script page numbers
+\let\old@subsec\subsection%
+\RenewDocumentCommand{\subsection}{somg}{%
+    \IfBooleanTF{#1}{
+        \IfNoValueTF{#2}{
+            \IfNoValueTF{#4}{
+                \old@subsec*{#3}
+            }{
+                \old@subsec*{#3 {\small(S. #4)}}
+            }
+        }{
+            \IfNoValueTF{#4}{
+                \old@subsec*[#2]{#3}
+            }{
+                \old@subsec*[#2]{#3 {\small(S. #4)}}
+            }
+        }%
+    }{
+        \IfNoValueTF{#2}{
+            \IfNoValueTF{#4}{
+                \old@subsec{#3}
+            }{
+                \old@subsec{#3 {\small(S. #4)}}
+            }
+        }{
+            \IfNoValueTF{#4}{
+                \old@subsec[#2]{#3}
+            }{
+                \old@subsec[#2]{#3 {\small(S. #4)}}
+            }
+        }%
+    }
+}
+
+
+% subsubsection: add optional argument to command for script page numbers
+\let\old@subsubsec\subsubsection%
+\RenewDocumentCommand{\subsubsection}{somg}{%
+    \IfBooleanTF{#1}{
+        \IfNoValueTF{#2}{
+            \IfNoValueTF{#4}{
+                \old@subsubsec*{#3}
+            }{
+                \old@subsubsec*{#3 {\small(S. #4)}}
+            }
+        }{
+            \IfNoValueTF{#4}{
+                \old@subsubsec*[#2]{#3}
+            }{
+                \old@subsubsec*[#2]{#3 {\small(S. #4)}}
+            }
+        }%
+    }{
+        \IfNoValueTF{#2}{
+            \IfNoValueTF{#4}{
+                \old@subsubsec{#3}
+            }{
+                \old@subsubsec{#3 {\small(S. #4)}}
+            }
+        }{
+            \IfNoValueTF{#4}{
+                \old@subsubsec[#2]{#3}
+            }{
+                \old@subsubsec[#2]{#3 {\small(S. #4)}}
+            }
+        }%
+    }
+}
+
+
+% custom text rightarrow to match tikz arrows
+\renewrobustcmd{\textrightarrow}{%
+    \raisebox{0.2ex}{%
+        \tikz[line width=0.11ex, >={Stealth[length=1.1ex, inset=0.2ex]}]{%
+            \draw (0,-0.13ex) to (0.55em, -0.13ex);%
+            \draw (0, 0.13ex) to (0.55em,  0.13ex);%
+            \draw[line width=0pt, ->] (0.8em,0) to (0.9em,0);%
+        }%
+    }%
+}%
+
+% custom text leftrightarrow to match tikz arrows
+\newrobustcmd{\textlrarrow}{%
+    \raisebox{0.2ex}{%
+        \tikz[line width=0.11ex, >={Stealth[length=1.1ex, inset=0.2ex]}]{%
+            \draw (0.35em,-0.13ex) to (0.9em, -0.13ex);%
+            \draw (0.35em, 0.13ex) to (0.9em,  0.13ex);%
+            \draw[line width=0pt, ->] (1.15em,0) to (1.25em,0);%
+            \draw[line width=0pt, <-] (0,0) to (0.1em,0);%
+        }%
+    }%
+}%
+
+
+% renews the pmatrix environment to use \lgroup and \rgroup instead of \left( and \right)
+\renewenvironment{pmatrix}{%
+    \left\lgroup%
+    \matrix@check\pmatrix\env@matrix%
+}{
+    \endmatrix\right\rgroup%
+}
+
+% renews the pmatrix* environment to use \lgroup and \rgroup instead of \left( and \right)
+\MHInternalSyntaxOn%
+\renewenvironment{pmatrix*}[1][c]
+  {\left\lgroup\MT_matrix_begin:N #1}
+  {\MT_matrix_end:\right\rgroup}
+\MHInternalSyntaxOff%
+
+
+% new environment for centered tabulars
+\NewDocumentEnvironment{ctabular}{m}
+                        {\center\tabular{#1}}
+                        {\endtabular\endcenter}
+
+
+% custom command for size matched colored brackets
+\newcommand{\bbr}[2]{\colorlet{saved}{.}\color{#1}\left(\color{saved}#2\color{#1}\right)\color{saved}}
+
+
+% custom command for differential operator d
+\newcommand{\diff}{\ensuremath{\mathop{} \! \mathrm{d}}}
+\newcommand{\dd}{\diff}
+
+
+% custom command for underset limes operator
+\newcommand{\limes}[1]{\ensuremath{\underset{#1}{\lim}}}
+
+% custom command for absolute value
+\newcommand{\abs}[1]{\ensuremath{\left|#1\right|}}
+
+
+% shortcuts for colored text
+\newcommand{\cgn}[1]{{\color{green}#1}}
+\newcommand{\crd}[1]{{\color{red}#1}}
+\newcommand{\cbl}[1]{{\color{blue}#1}}
+\newcommand{\cor}[1]{{\color{orange}#1}}
+\newcommand{\cvt}[1]{{\color{violet}#1}}
+
+
+% bullet command for items in tables
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+
+% customizes watermark and page color after a certain page limit
+% colors all pages after the specified limit red
+% source: https://stackoverflow.com/questions/2720534/force-a-maximum-number-of-pages-in-latex 
+\newcounter{page@count}
+\setcounter{page@count}{0}
+\gdef\maxpages{\pagelimit}
+\ifx\latex@outputpage\@undefined\relax% ChkTeX 21
+    \global\let\latex@outputpage\@outputpage% ChkTeX 21
+\fi%
+\gdef\@outputpage{% ChkTeX 21
+    \addtocounter{page@count}{1}%
+    \ifnum\value{page@count}>\maxpages\relax%
+        % change page background to red and add watermark
+        \SetWatermarkText{\pagelimit\ Seiten Limit erreicht!}%
+        \SetWatermarkScale{0.35}%
+        \pagecolor{red}
+        \latex@outputpage%
+    \else%
+        \SetWatermarkText{}%
+        \latex@outputpage%
+    \fi%
+}
+
+
+% remove title from table of contents, needed for layout
+\renewcommand{\tableofcontents}{%
+    \@starttoc{toc}
+}
+
+
+% scale super- and subscript -- not used currently, instead resized math font
+% \catcode`_=\active% chktex 41 --> suppress ChkTeX warning
+% \catcode`^=\active% chktex 41
+% \newcommand_[1]{\ensuremath{\sb{\mathrm{\scaleobj{0.7}{#1}}}}}
+% \newcommand^[1]{\ensuremath{\sp{\mathrm{\scaleobj{0.7}{#1}}}}}
+
+
+\makeatother
+
+
+% new environment for layout --> automatically adjusts to landscape or portrait
+\ExplSyntaxOn
+\NewDocumentEnvironment{layout}{}{
+    \dim_compare:nNnT{\paperwidth}<{\paperheight}
+    {
+        % PORTRAIT LAYOUT
+        \str_case:en{\str_lowercase:f\titleoption}
+        {
+            {ultra~compact}
+            {
+                \str_if_eq:eeTF {\str_lowercase:f\enableToC}{true}
+                {
+                    \begin{minipage}[t]{0.1\columnwidth} % DigDes-like formatting
+                        \raisebox{-.3\columnwidth}{\qrcode[level=L, 
+                                version=0,
+                                height=0.9\columnwidth]{\repo}}\hfill
+                        \normalfont\footnotesize\rotatebox[origin=tr]{90}{V \version{}}
+                    \end{minipage}\hfill
+                    \begin{minipage}[t]{0.89\columnwidth}
+                        \raggedright%
+                        \normalfont\Huge\bfseries\title{}\\[1mm]
+                        \normalfont\Large\semester\ --\ \dozent{}\\
+                        \large Autoren:\ \author{}\\
+                        % Contributors block
+                            \ifdefined\contributors
+                                \normalsize\large Mitwirkende:\ \contributors{}\\[1mm]
+                            \else
+                                \myul{\url{\repo}}
+                            \fi
+                        % Contributors block end
+                    \end{minipage}\par
+                    \ifdefined\contributors
+                        \small\myul{\url{\repo}}
+                    \fi
+                        \section*{\contentsname}
+                        \group_begin:
+                        \setlength{\columnsep}{5mm}
+                        \begin{multicols}{2}
+                            \tableofcontents%
+                        \end{multicols}
+                        \group_end:
+                        \hrule
+                    \begin{multicols*}{2}
+                    \raggedcolumns%
+                }
+                {
+                    \begin{multicols*}{2}
+                    \raggedcolumns%
+                    \begin{minipage}[t]{0.2\columnwidth} % MathFML-like formatting
+                    \raisebox{-.3\columnwidth}{\qrcode[level=L, 
+                                version=0,
+                                height=0.9\columnwidth]{\repo}}\hfill
+                        \normalfont\footnotesize\rotatebox[origin=tr]{90}{V \version{}}
+                    \end{minipage}\hfill
+                    \begin{minipage}[t]{0.79\columnwidth}
+                        \raggedright%
+                        \normalfont\Huge\bfseries\title{}\\[1mm]
+                        \normalfont\Large\semester\ --\ \dozent{}\\
+                        \large Autoren:\ \author{}\\
+                        % Contributors block
+                            \ifdefined\contributors
+                                \normalsize\large Mitwirkende:\ \contributors{}\\[1mm]
+                            \else
+                                \myul{\url{\repo}}
+                            \fi
+                        % Contributors block end
+                    \end{minipage}\par
+                    \ifdefined\contributors
+                        \small\myul{\url{\repo}}
+                    \fi
+                }
+            }
+            {compact}
+            {
+                \str_if_eq:eeTF {\str_lowercase:f\enableToC}{true}
+                {
+                    \begin{minipage}[t]{0.1\columnwidth} % Elo-like formatting
+                        \raisebox{-.3\columnwidth}{\qrcode[level=L, 
+                                version=0,
+                                height=0.9\columnwidth]{\repo}}\hfill
+                        \normalfont\footnotesize\rotatebox[origin=tr]{90}{V \version{}}
+                    \end{minipage}\hfill
+                    \begin{minipage}[t]{0.89\columnwidth}
+                        \raggedright%
+                        \normalfont\Huge\bfseries\title{}\\[1mm]
+                        \normalfont\Large\semester\ --\ \dozent{}\\
+                        \large Autoren:\ \author{}\\
+                        % Contributors block
+                            \ifdefined\contributors
+                                \normalsize\large Mitwirkende:\ \contributors{}\\[1mm]
+                            \else
+                                \myul{\url{\repo}}
+                            \fi
+                        % Contributors block end
+                    \end{minipage}\par
+                    \ifdefined\contributors
+                        \small\myul{\url{\repo}}
+                    \fi
+                    \section*{\contentsname}
+                    \group_begin:
+                    \setlength{\columnsep}{5mm}
+                    \begin{multicols}{2}
+                        \tableofcontents%
+                    \end{multicols}
+                    \group_end:
+                    \vfill
+                    \newpage
+                    \begin{multicols*}{2}
+                    \raggedcolumns%
+                }
+                {
+                    \begin{multicols*}{2}
+                    \raggedcolumns%
+                    \begin{minipage}[t]{0.2\columnwidth} % MathFML-like formatting
+                        \raisebox{-.3\columnwidth}{\qrcode[level=L, 
+                                version=0,
+                                height=0.9\columnwidth]{\repo}}\hfill
+                        \normalfont\footnotesize\rotatebox[origin=tr]{90}{V \version{}}
+                    \end{minipage}\hfill
+                    \begin{minipage}[t]{0.79\columnwidth}
+                        \raggedright%
+                        \normalfont\Huge\bfseries\title{}\\[1mm]
+                        \normalfont\Large\semester\ --\ \dozent{}\\
+                        \large Autoren:\ \author{}\\
+                        % Contributors block
+                            \ifdefined\contributors
+                                \normalsize\large Mitwirkende:\ \contributors{}\\[1mm]
+                            \else
+                                \myul{\url{\repo}}
+                            \fi
+                        % Contributors block end
+                    \end{minipage}\par
+                    \ifdefined\contributors
+                        \small\myul{\url{\repo}}
+                    \fi
+                }
+            }
+            {normal}
+            {
+                \hfill\null\vspace{1cm}
+                \begin{center}
+                    \normalfont\fontsize{35}{32}\selectfont\bfseries\title{}\\[7.5mm]
+                    \normalfont\huge\semester\ --\ \dozent{}\\
+                    \Large Autoren:\\
+                    \Large\author{}\\[2mm]
+                    % Contributors block
+                        \ifdefined\contributors
+                            \Large Mitwirkende:\\
+                            \Large\contributors{}\\[2mm]
+                        \fi
+                    % Contributors block end
+                    \large Version:\\
+                    \large\version{}\\
+                    \normalfont\myul{\url{\repo}}\\[2mm]
+                    \qrcode[level=L, 
+                            version=0,
+                            height=2cm]{\repo}
+                \end{center}
+                \vfill
+                \thispagestyle{empty}
+                \str_if_eq:eeT {\str_lowercase:f\enableToC}{true}
+                {
+                    \section*{\contentsname}
+                    \group_begin:
+                    \setlength{\columnsep}{5mm}
+                    \begin{multicols}{2}
+                        \tableofcontents%
+                    \end{multicols}
+                    \group_end:
+                    \vfill
+                }
+                \newpage
+                \begin{multicols*}{2}
+                \raggedcolumns%
+            }
+        }
+    }
+    
+    \dim_compare:nNnT{\paperwidth}>{\paperheight}
+    {
+        % LANDSCAPE LAYOUT
+        \begin{multicols*}{3}
+        \raggedcolumns%            
+        \begin{minipage}[t]{0.18\columnwidth}
+            \vspace{-0.225\columnwidth}
+            \qrcode[level=L, 
+                    version=0,
+                    height=0.9\columnwidth]{\repo}\\[1.5mm]
+            \normalfont\footnotesize V \version{}
+            \smallskip
+        \end{minipage}\hfill
+        \begin{minipage}[t]{0.81\columnwidth}
+            \raggedright%
+            \normalfont\Huge\bfseries\title{}\\
+            \normalfont\Large\semester\ --\ \dozent{}\\
+            \large Autoren:\ \author{}\\
+            % Contributors block
+                \ifdefined\contributors
+                    \normalsize\large Mitwirkende:\ \contributors{}\\[0.5mm]
+                    \footnotesize\myul{\url{\repo}}
+                \else
+                    \normalsize\myul{\url{\repo}}
+                \fi
+            % Contributors block end
+        \end{minipage}\par % \par needed or else there is an underfull hbox warning
+        \str_if_eq:eeT {\str_lowercase:f\enableToC}{true}
+        {
+            \section*{\contentsname}
+            \resizebox{\columnwidth}{!}{%
+                \begin{minipage}[t]{1.2\columnwidth}
+                    \begin{multicols}{2}
+                        \tableofcontents%
+                    \end{multicols}
+                \end{minipage}
+            }\par
+        }
+    }%
+}
+{\end{multicols*}}
+\ExplSyntaxOff
+
+% ---------------------------------------- LISTINGS SETUP -----------------------------------------
+
+% hack to fix asterisk in lstlisting. Otherwise it would be centered vertically
+\makeatletter
+\lst@CCPutMacro%
+    \lst@ProcessOther{"2A}{% ChkTeX 18
+         {\raisebox{0.125pt}{*}}}
+    \@empty\z@\@empty% ChkTeX 21
+\makeatother
+
+
+% % inline lst tikz node for later referencing
+% \newcommand{\lstnode}[2][0.5ex]{
+% 	\tikz[overlay, remember picture, inner sep=0pt, yshift=#1, minimum width=0mm]\node(#2){};
+% }
+
+
+% custom inline listings with box around them
+\newcommand{\mylstbox}[2][columns=fullflexible]{%
+    \mybox{%
+        \lstinline[#1]{#2}}}
+\newcommand{\mytclstbox}[2][black]{%
+    \mybox{%
+        \lstinline[basicstyle=\sffamily\footnotesize\color{#1}, columns=fullflexible]{#2}}}
+
+
+% basic listings style
+\lstdefinestyle{basestyle}{
+%   === Text Formatting (font, style and color) ===
+    basicstyle=\ttfamily,               % Monospaced font for code
+    commentstyle=\color{commentcolour}, % Only change color for comments
+    keywordstyle=\bfseries\color{keywordcolour},    % Bold and color for keywords
+    numberstyle=\ttfamily\tiny\color{numbercolour}, % Monospaced (tiny) font for line numbers
+    stringstyle=\color{stringcolour},   % Only change color for strings
+%   === Code Formatting (spacing, line breaks, etc.) ===
+    breakatwhitespace=false,    % Don't break only at whitespace
+    breaklines=true,            % Enable automatic line breaks (when lines are too long)
+    keepspaces=true,            % TODO: Check if it would be better without this
+    showspaces=false,           % Spaces set to invisible
+    showstringspaces=false,     % Spaces in strings set to invisible
+    showtabs=false,             % Don't show tab characters
+    tabsize=2,                  % Tab size set to 2 spaces (this refers to the spaces used for tabs inside the code)
+    columns=[l]fullflexible,    % Column formatting, see listings manual for more information
+%   === Frame and Background Formatting (borders, padding, etc.) ===
+    frame=single,           % Single frame around code
+    framexleftmargin=0.5ex, % Padding from left frame to code
+    framesep=0pt,           % Padding between frame and code
+    framerule=0pt,          % Thickness of frame (set to 0pt for no frame)
+    backgroundcolor=\color{backcolour}, % Background color
+    captionpos=b,           % Caption at the bottom
+%   === Size and Margin Setup ===
+    linewidth=\columnwidth, % Line width set to column width
+    xleftmargin=2.5ex,      % Left margin set to 2.5ex          % XXX: xleftmargin needs to be extended if line numbers reach 100
+%   === Line Number Formatting ===
+    numbers=left,   % Line numbers on the left
+    numbersep=4pt,  % Separation between line numbers and code
+%   === Encoding Setup ===
+    extendedchars=true,     % Allow for extended characters
+    inputencoding=cp1252,   % Windows-1252 encoding, as utf-8 is somewhat broken :(
+}
+
+% Define new if and new command for coloring angle brackets in listings after a # directive (e.g. #include <iostream>)
+\newif\ifcoloranglebrackets
+\coloranglebracketsfalse
+\newcommand{\coloroncondition}[1][stringcolour]{\ifcoloranglebrackets\color{#1}\fi}
+
+% C++ style for listings
+\lstdefinestyle{cppstyle}{%
+	language=[11]C++,   % Set language to C++ 11
+%   === Additional Default Keywords ===
+    morekeywords={% For some odd reason, these keywords are not included in the default C++ 11 keyword list
+        final,%
+        override,%
+    },
+%   === Additional Types ===
+    keywordstyle={[2]\color{keywordcolour}}, % [2] generates a second keyword style group
+    morekeywords={[2]%
+%       === cstdint (stdint.h) ===
+        intmax_t,%
+        int8_t,%
+        int16_t,%
+        int32_t,%
+        int64_t,%
+        int_least8_t,%
+        int_least16_t,%
+        int_least32_t,%
+        int_least64_t,%
+        int_fast8_t,%
+        int_fast16_t,%
+        int_fast32_t,%
+        int_fast64_t,%
+        intptr_t,%
+        uintmax_t,%
+        uint8_t,%
+        uint16_t,%
+        uint32_t,%
+        uint64_t,%
+        uint_least8_t,%
+        uint_least16_t,%
+        uint_least32_t,%
+        uint_least64_t,%
+        uint_fast8_t,%
+        uint_fast16_t,%
+        uint_fast32_t,%
+        uint_fast64_t,%
+        uintptr_t,%
+%       === cstddef (stddef.h) ===
+        ptrdiff_t,%
+        size_t,%
+        max_align_t,%
+        nullptr_t
+    },
+    keywordstyle={[3]\color{green!70!blue}},
+%   following code is used to colorize includes between angle brackets < >
+%   source: https://tex.stackexchange.com/questions/409859/listings-how-to-colorize-strings-between-angle-brackets 
+    moredelim=**[directive][\coloranglebracketstrue]\#, % directive is not documented, but only affects directives such as '#'
+    moredelim=**[s][\coloroncondition]{<}{>} % Add a string delimiter that is colored if \coloranglebrackets is true
+}
+
+
+% VHDL style for listings
+\lstdefinestyle{vhdlstyle}{%
+    language=VHDL,  % Set language to VHDL
+    % upquote=false,  % TODO: Check if this is needed
+    keywordstyle={[2]\color{orange}},
+%   === Additional Types ===
+    morekeywords={[2],%
+        bit,%
+        bit_vector,%
+        boolean,%
+        integer,%
+        string,%
+        std_logic,%
+        std_logic_vector,%
+        std_ulogic,%
+        std_ulogic_vector,%
+        time,%
+        unsigned,%
+        signed,%
+        natural,%
+        note,%
+        warning,%
+        error,%
+        failure%
+    },
+%   === Additional Default Functions ===
+    keywordstyle={[3]\color{blue!80!black}},
+    morekeywords={[3],%
+        rising_edge,%
+        falling_edge,%
+        ceil,%
+        floor,%
+        log2,%
+        to_integer,%
+        to_unsigned,%
+        to_signed,%
+        to_bit,%
+        to_bitvector,%
+        to_stdlogic,%
+        to_stdulogic,%
+        to_stdlogicvector,%
+        to_stdulogicvector,%
+        resize,%
+        real,%
+    },
+%   === Additional String Delimiter ' ===
+    morestring=[m]',
+}
+
+\lstset{
+    style=basestyle,    % base style for listings (styles are cumulative)
+    style=cppstyle,     % C++ style for listings (builds on top of base style)
+    % style=vhdlstyle,    % VHDL style for listings (builds on top of base style)
+}

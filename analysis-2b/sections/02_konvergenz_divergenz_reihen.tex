@@ -1,0 +1,153 @@
+\section{Konvergenz -- Divergenz von Reihen}	
+
+\subsection{Treppenfläche / Restfläche / Cauchy-Bedingung}
+
+\subsubsection{Treppenfläche}
+
+Summand als Rechteck mit Breite $1$ und Höhe $a_n$ darstellen \\
+Fläche des Rechtecks $A = \vert a_n \vert$
+
+
+\subsubsection{Restfläche / Cauchy-Bedingung (2)}
+
+\begin{tabular}{ll}
+    (1) & "Letzter Summand" ($a_n$)                                                                 \\
+        & \textbf{Wenn} \cbl{$\sum$ konvergiert}, \textbf{dann} $a_n \to 0 \quad (n \to \infty)$    \\
+        & \textbf{Wenn} $a_n \to 0$, \textbf{dann} \crd{$\sum$ divergent} \quad $(n \to \infty)$    \\
+    \\
+    (2) & "Mehrere letzte Summanden"                                                                \\
+        & $a_{n+1} + a_{n+2} + \ldots + a_m \qquad (m > n \in \mathbb{N})$ entspricht "Rest"        \\
+        & \cbl{$\sum$ Konvergenz} \textlrarrow\ "Rest" $\to 0 \; (m, \: n \to \infty)$
+\end{tabular}
+
+
+\subsection{Majorante (Konvergenzverdacht)}
+Summand $\vert a_n \vert \leq c_n$ \qquad $c_n $ ist Major
+
+\begin{center}
+    \textbf{Wenn} $\sum c_n$ \cbl{konv}, \textbf{dann} $\sum \vert a_n \vert$ \cbl{konv} und \textbf{dann} $\sum a_n $ \cbl{konv} \qquad
+    $\vert \sum a_n \vert \leq \sum \vert a_n \vert \leq \sum c_n$
+\end{center}
+
+\vspace{-0.2cm}
+
+
+\subsection{Minorante (Divergenzverdacht)}
+
+Summand $a_n \geq d_n \geq 0$ (!) \qquad $d_n $ ist Minor
+
+\begin{center}
+    \textbf{Wenn} $\sum d_n$ \crd{divergent}, \textbf{dann} $\sum a_n$ \crd{divergent}
+\end{center}
+
+\vspace{-0.2cm}
+
+
+\subsection{Cauchy Wurzel-Kriterium}{474}
+
+\vspace{-0.2cm}
+
+$$ \sum\limits _{n=1}^\infty a_n \; \text{ \textrightarrow\ } \sqrt[n]{\vert a_n \vert}: \qquad 
+\sqrt[1]{\vert a_1 \vert}; \,  \sqrt[2]{\vert a_2 \vert}; \, \sqrt[3]{\vert a_3 \vert} \, \ldots $$
+$$ \lim\limits_{n \to \infty} \sqrt[n]{\vert a_n \vert} := \alpha \in \mathbb{R}_0^+ \quad \text{oder} \quad \alpha = +\infty $$
+
+\begin{tabular}{lllll}
+    $\alpha \in [0, 1)$ & \textrightarrow\  & $\sum \vert a_n \vert$ \cbl{konvergent}   & \textrightarrow\ & $\sum a_n$ \cbl{konvergent}    \\ 
+    $\alpha > 1$        & \textrightarrow\  & $\sum \vert a_n \vert$ \crd{divergent}    & \textrightarrow\ & $\sum a_n$ \crd{divergent}     \\ 
+    $\alpha = 1$        & \textrightarrow\  & unklarer Fall
+\end{tabular}
+
+
+\subsection{Quotientenkriterium}{474}
+
+\vspace{-0.2cm}
+
+$$ \sum\limits _{n=1}^\infty a_n \; \text{ \textrightarrow\ } \Bigg| \frac{a_{n+1}}{a_n} \Bigg|: \quad
+\Bigg| \frac{a_2}{a_1} \Bigg| ; \, \Bigg| \frac{a_3}{a_2} \Bigg| ; \; \Bigg| \frac{a_4}{a_3} \Bigg| ; \, \ldots \quad (a_n \neq 0) $$
+
+$$ \lim\limits_{n \to \infty} \Bigg| \frac{a_{n+1}}{a_n} \Bigg| := \tilde{\alpha} \in \mathbb{R}_0^+ \quad \text{oder} \quad \tilde{\alpha} = +\infty $$
+
+\begin{tabular}{lllll}
+    $\tilde{\alpha} \in [0, 1)$ & \textrightarrow\  & $\sum \vert a_n \vert$ \cbl{konvergent}   & \textrightarrow\  & $\sum a_n$ \cbl{konvergent}   \\ 
+    $\tilde{\alpha} > 1$        & \textrightarrow\  & $\sum \vert a_n \vert$ \crd{divergent}    & \textrightarrow\  & $\sum a_n$ \crd{divergent}    \\ 
+    $\tilde{\alpha} = 1$        & \textrightarrow\  & unklarer Fall
+\end{tabular}
+
+
+\subsection{Integralkriterium}{475}
+
+\textbf{Bedingungen: Summanden $\bm{\geq 0}$; Summanden $\bm{\downarrow}$} \\
+Summandenfunktion $f(x)$ mit $x \in [1 ; \infty)$ \qquad $f(n) = a_n = $ Summand 
+
+\renewcommand{\arraystretch}{2.4}
+\begin{tabular}{llll}
+    (1) & $\int \limits_{1}^{\infty} f(x) \; \diff x = \infty$  & \textrightarrow\ $\sum a_n = \infty$          & \crd{Divergenz}   \\
+    (2) & $\int \limits_{1}^{\infty} f(x) \; \diff x < \infty$  & \textrightarrow\ $\sum a_n \in \mathbb{R}$    & \cbl{Konvergenz} 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Wahl der geeigenten Methode}
+
+\begin{tabular}{ll}
+    (1) & $\Big| \frac{a_{n+1}}{a_n} \Big| $ versuchen: Wenn $\tilde{\alpha} \in \mathbb{R}_0^+$ oder $\tilde{\alpha} = \infty$ \textrightarrow\ Methode ok                 \\
+        & Falls $\tilde{\alpha} = 1$, dann andere Methode wählen (nicht Wurzelkriterium) \\
+    \\
+    (2) & $\Big| \frac{a_{n+1}}{a_n} \Big| $ versuchen: Wenn $\tilde{\alpha} \notin \mathbb{R}_0^+$ und $\tilde{\alpha} \notin \infty$ \textrightarrow\ \crd{unbest. div.}  \\
+        & dann Wurzelkriterium versuchen
+\end{tabular}
+
+
+\subsection[Grenzwerte mit n-ten Wurzeln und Fakultäten]{Grenzwerte mit $\bm{n}$-ten Wurzeln und Fakultäten}
+
+\renewcommand{\arraystretch}{2.3}
+\begin{tabular}{ll}
+    $\lim\limits_{x \to \infty} (1 + \frac{a}{x})^x = \e^a$ ($a$ = const)           & $\lim\limits_{x \to \infty} \sqrt[n]{a} = 1$                                  \\
+    $\lim\limits_{n \to \infty} \sqrt[n]{n} = 1$                                    & $\lim\limits_{n \to \infty} \sqrt[n]{n^{\alpha}} = 1$ ($\alpha$ = const)      \\
+    $\lim\limits_{n \to \infty} \sqrt[n]{\vert p(n) \vert} = 1$ ($p(n) \neq 0)$     & $\lim\limits_{n \to \infty} \sqrt[n]{\vert r(n) \vert} = 1$ $(r(n) \neq 0)$   \\ 
+    $\lim\limits_{n \to \infty} \frac{K^n}{n!} = 0$ ($K$ = const)                   & $\lim\limits_{n \to \infty} \sqrt[n]{n!} = + \infty$                          \\
+    $\lim\limits_{n \to \infty} \sqrt[n]{\frac{K^n}{n!}} = 0$ ($K$ = const $> 0$)   & $\lim\limits_{n \to \infty} \frac{n}{\sqrt[n]{n!}} = \e$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection[Konvergenzen von Summen]{Konvergenzen von Summen $\bm{\sum a_n}$}
+
+\begin{tabular}{ll}
+    bedingt:            & Original $\sum a_n$ konvergiert, aber Umordnungen können neue         \\
+                        & Summe ergeben oder divergieren                                        \\
+                        & \textrightarrow\ Jede Summe $\in \mathbb{R}$ und $\pm \infty$ möglich \\
+    \\
+    unbedingt:          & Jede Umordnung konvergiert zur gleichen Summe \\
+    \\
+    \textbf{absolut:}   & $\sum\limits _{n=1}^\infty \vert a_n \vert < \infty$ \textlrarrow\ unbedingte Konvergenz              \\
+                        & Wenn $\sum\limits _{n=1}^\infty \vert a_n \vert = \infty$, dann $\sum$ pos. Summanden $=\infty$    \\
+                        & Wenn $\sum\limits _{n=1}^\infty \vert a_n \vert = \infty$, dann $\sum$ neg. Summanden $= -\infty$
+\end{tabular}
+
+\vspace{0.2cm}
+
+\textbf{Umordnung: Jeden Summanden genau einmal verwenden!}
+
+
+\subsection{Reihenprodukte}
+
+$\left( \sum\limits _{n=0}^\infty a_n \right)  \cdot \left(  \sum\limits _{n=0}^\infty b_n \right) = \ldots$ \qquad \textrightarrow\ siehe folgende Unterkapitel
+
+
+\subsubsection{Faltung / Diagonalanordnung / Cauchy}
+
+\vspace{-0.3cm}
+
+$$ c_n = \sum\limits _{n=0}^\infty a_k b_{n-k} \quad  (n \to \infty) \quad \sum\limits _{n=0}^\infty c_n = a b \quad \textbf{(wenn absolut konvergent)} $$ 
+$c_n$ = Summe der Indizes = $n$
+
+
+\subsubsection{Rechtecksprodukt $(\bm{n \in} \mathbb{N}_0)$}
+
+\vspace{-0.6cm}
+
+$$ = (a_0 + a_1 + a_2 + \ldots)(b_0 + b_1 + b_2 + \ldots) \quad (n \to \infty) = a b \quad \textbf{(wenn absolut konvergent)} $$
+
+\columnbreak
+

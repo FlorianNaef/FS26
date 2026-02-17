@@ -1,0 +1,278 @@
+\section{Hydrostatik}
+
+\subsection{Festkörper, Flüssigkeit, Gas}
+
+\subsubsection{Festkörper}
+
+\begin{itemize}
+    \item Kein Fluid
+    \item Festes Volumen; feste Gestalt
+    \item Moleküle / Atome befinden sich in regelmässiger Gitter-Anordnung
+    \item Inkompressibel (sehr schlecht komprimierbar)
+    \item Kraft: Weiterleitung (längs ihrer Wirkungslinie)
+    \item Druck: Verstärkung 
+\end{itemize}
+
+
+\subsubsection{Ideale Flüssigkeit}
+
+\begin{itemize}
+    \item Fluid
+    \item Festes Volumen; keine feste Gestalt
+    \item Moleküle / Atome bewegen sich chaotisch aneinander vorbei
+    \item Moleküle / Atome füllen den Raum aus / berühren sich
+    \item Inkompressibel (schlecht komprimierbar)
+    \item Reibungsfrei (keine Scherkräfte)
+    \item Kraft: Verstärkung
+    \item Druck: Weiterleitung (gleichmässig)
+\end{itemize}
+
+
+\subsubsection{Gas}
+
+\begin{itemize}
+    \item Fluid
+    \item Kein festes Volumen; keine feste Gestalt
+    \item Moleküle / Atome fliegen mit hoher Geschwindigkeit durch den Raum
+    \item Es gibt sehr viel Zwischenraum 
+    \item Moleküle / Atome führen bei Zusammenstoss unter sich oder mit Gefässwand elestische Stösse aus
+    \item Kompressibel (gut komprimierbar)
+    \item Reibungsfrei (keine Scherkräfte)
+\end{itemize}
+
+
+\subsection[Druck / Schubspannung]{Druck $\bm{p}$ / Schubspannung $\bm{\tau}$}
+
+\textbf{Druck ist eine skalare Grösse (hat keine Richtung)} 
+
+$$\boxed{ p = \frac{F_{\perp}}{A} } \qquad \qquad \boxed{ \tau = \frac{F_{\parallel}}{A} } $$
+
+\begin{tabular}{c l c}
+    $p$             & Druck                         & $[p] = \pascal = \frac{\newton}{\meter^2}$    \\
+    $\tau$          & Schubspannung (Scherkraft)    & $[\tau] = \newton$                            \\
+    $F_{\perp}$     & Kraft senkrecht zu $A$        & $[F_{\perp}] = \newton$                       \\
+    $F_{\parallel}$ & Kraft parallel zu $A$         & $[F_{\parallel}] = \newton$                   \\
+    $A$             & Fläche                        & $[A] = \meter^2$
+\end{tabular}
+
+\medskip
+
+\textbf{In abgeschlossenen, miteinander verbundenen Systemen herrscht ein Druck-Gleichgewicht!} 
+
+$$ \boxed{ p_1 = p_2  \quad \Leftrightarrow  \quad \frac{F_1}{A_1} = \frac{F_2}{A_2} }$$
+
+
+
+\subsubsection{Weitere Einheiten von Druck}
+
+\vspace{-0.2cm}
+$$ \bm{1 \, \bbar = 10^5 \pascal} \qquad \text{Absolutdruck: Vergleich zu Vakuum} $$
+
+\begin{tabular}{ll}
+    $1 \, \hecto \pascal$   & $= 100 \, \pascal = 1 \, \milli \bbar $                                       \\
+    $1 \, \mathrm{at}$      & $= 1 \, \mathrm{kp \cdot \centi \meter^{-2}} = 9.81 \cdot 10^4 \, \pascal$    \\
+    $1 \, \mathrm{at"u}$    & $= 1 \, \mathrm{at}$ (Überdruck; Vergleich zu normalem Luftdruck)             \\
+    $1 \, \mathrm{Torr}$    & $= \frac{1}{760} \, \mathrm{at}$ (1 mm-Hg-Säule)
+\end{tabular}
+
+
+\subsection{Kompression}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ \text{Flüssigkeiten:} \qquad \Delta p = \frac{1}{\kappa} \cdot - \frac{\Delta V}{V} = K \cdot - \frac{\Delta V}{V} } $$  
+$$ \boxed{ \text{Gase:} \qquad \Delta p = p(h) - p_0 = \frac{1}{\kappa_T} \cdot - \frac{\Delta V}{V} } $$
+
+
+\begin{tabular}{c l c}
+    $\Delta p$              & Druckerhöhung                     & $[\Delta p] = \pascal = \frac{\newton}{\meter^2}$     \\
+    $\kappa$                & Kompressibilität (Flüssigkeit)    & $[\kappa] = \frac{1}{\pascal}$                        \\
+    $K = \frac{1}{\kappa}$  & Kompressionsmodul                 & $[K] = \pascal$                                       \\
+    $\kappa_T$              & Kompressibilität (Gas)            & $[\kappa_T] = \frac{1}{\pascal}$                      \\
+    $- \frac{\Delta V}{V}$  & realtive Volumen-Abnahme          & $\Big[ \frac{\Delta V}{V} \Big] = 1$ 
+\end{tabular}
+
+
+\subsection[Dichte]{Dichte $\bm{\rho}$}
+
+
+\begin{minipage}[c]{0.48\columnwidth}
+    $$ \boxed{ \rho = \frac{m}{V} \quad \Leftrightarrow \quad m = \rho \cdot V } $$	 
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\columnwidth}
+    \begin{tabular}{c l c}
+        $\rho$  & Dichte    & $[\rho] = \frac{\kilogram}{\meter^3}$ \\
+        $m$     & Masse     & $[m] = \kilogram$                     \\
+        $V$     & Volumen   & $[V] = \meter^3$
+    \end{tabular}
+\end{minipage}
+
+
+\subsubsection{Wichtige Dichten}	
+
+\begin{tabular}{l c l}
+    $\rho_{\rm Wasser} = 1000 \, \frac{\kilogram}{\meter^3}$    & &  $\rho_{\rm Luft} = 1.2 \, \frac{\kilogram}{\meter^3}$
+   
+\end{tabular}
+
+
+\subsection{Boyle-Mariotte}	
+\textbf{Das Gesetz von Boyle-Mariotte beschreibt die Kompressibilität von Gasen.} \\
+\textbf{ \textrightarrow\ Das Gesetz gilt nur bei konstanter Temperatur!} 
+
+$$ \boxed{ p_1 \cdot V_1 = p_2 \cdot V_2 = \, \const \quad \Leftrightarrow \quad \frac{p_1}{p_2} = \frac{\rho_1}{\rho_2} } $$ 
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+    $\rho_x$    & Gas-Dichte    & $[\rho_x] = \frac{\kilogram}{\meter^3}$   \\
+    $p_x$       & Gas-Druck     & $[p_x] = \pascal $                        \\
+    $V_x$       & Volumen       & $[V_x] = \meter^3$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Hydrostatischer Druck (Schweredruck)}
+
+\textbf{Gilt nur für Flüssigkeiten!} 
+
+$$ \boxed{ p = \rho \cdot g \cdot h }$$	
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+    $\rho$  & Dichte der Flüssigkeit                                    & $[\rho] = \frac{\kilogram}{\meter^3}$ \\
+    $h$     & Höhe \textbf{unter} der Flüssigkeits-Oberfläche           & $[h] = \meter$                        \\
+    $g$     & Erdbeschleunigung $g = 9.81 \, \frac{\meter}{\second^2}$  & $[g] = \frac{\meter}{\second^2}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\smallskip
+
+\textbf{Der Druck ist nur von der Höhe der darüberliegenden Flüssigkeit abhängig, nicht von deren Volumen oder Gewicht.}
+
+
+\subsection{Barometrische Höhenformel (Gase)}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ p(h) = p_0 \cdot e^ {- \frac{\rho_0}{p_0} \cdot g \cdot h} }$$	
+
+
+\begin{tabular}{c l c}
+    $p(h)$      & Schweredruck des Gases bei Höhe $h$                                       & $[p(h)] = \pascal$                        \\
+    $p_0$       & Luftdruck auf Meereshöhe $p_0 = 10^5 \, \pascal$                          & $[p_0] = \pascal$                         \\ 
+    $\rho_0$    & Luft-Dichte auf Meereshöhe $\rho_0 = 1.2 \, \frac{\kilogram}{\meter^3}$   & $[\rho_0] = \frac{\kilogram}{\meter^3}$   \\
+    $h$         & Höhe über Meer                                                            & $[h] = \meter$                            \\
+    $g$         & Erdbeschleunigung $g = 9.81 \, \frac{\meter}{\second^2}$                  & $[g] = \frac{\meter}{\second^2}$    
+\end{tabular}
+
+
+\subsection{Statischer Auftrieb (Fluid)}
+
+Der Auftrieb eines Körpers entspricht dem Gewicht der von ihm verdrängten Flüssigkeit (Archimedes). 
+
+
+\begin{minipage}{0.6\columnwidth}
+    $$ \boxed{ F_A = \rho_{\rm Fl} \cdot V_K \cdot g } $$
+    $$ \boxed{ F_A = F_{\rm G,Fl} = m_{\rm Fl} \cdot g = \rho_{\rm Fl} \cdot V_K \cdot g } $$
+\end{minipage}
+\hfill
+\begin{minipage}{0.28\columnwidth}
+    \includegraphics[width=\columnwidth]{images/auftrieb.jpg}
+\end{minipage}
+
+\smallskip
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+    $F_A$           & Auftriebskraft                                        & $[F_A] = \newton$                                 \\
+    $\rho_{\rm Fl}$ & Dichte \textbf{verdrängtes Fluid}                     & $[\rho_{\rm Fl}] = \frac{\kilogram}{\meter^3}$    \\
+    $V_K$           & Verdrängtes Fluid-Volumen                             & $[V_K] = \meter^3$                                \\
+    $g$         & Erdbeschleunigung $g = 9.81 \, \frac{\meter}{\second^2}$  & $[g] = \frac{\meter}{\second^2}$                  \\
+    $m_{\rm Fl}$    & Masse des \textbf{verdrängten Fluids}                 & $[m_{\rm Fl}] = \kilogram$                        \\
+    $F_{\rm G,Fl}$  & Gewichtskraft \textbf{verdrängtes Fluid}              & $[F_{\rm G,Fl}] = \newton$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection[Oberflächenspannung]{Oberflächenspannung $\bm{\sigma}$}
+
+\begin{minipage}[c]{0.3\columnwidth}
+    $$ \boxed{ \sigma := \frac{F}{l} } $$ 
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.65\columnwidth}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{c l c}
+    $\sigma$    & Oberflächenspannung   & $[\sigma] = \frac{\newton}{\meter}$   \\
+    $F$         & Kraft                 & $[F] = \newton$                       \\
+    $l$         & Länge                 & $[l] = \meter$
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+\end{minipage}
+
+\medskip
+
+\textbf{Die Länge $\bm{l}$ entspricht der gesamten Berührungslänge zwischen Flüssigkeit und Festkorper / Gas}
+
+\smallskip
+
+\begin{tabular}{ll c|c ll}
+    Zylinder & $l = 2 \, \pi \, r$ & &
+    Lamellen & $l = 2 \, b$  (beidseitig!)
+\end{tabular}
+
+
+\subsection[Kapillarität]{Kapillarität $\bm{h}$}
+
+\vspace{-0.2cm}
+
+$$\boxed{  h = \frac{2 \cdot \sigma}{\rho \cdot g \cdot r} = \frac{\sigma}{\rho \cdot g \cdot d} }$$ 
+
+
+\begin{tabular}{c l c}
+    $\sigma$    & Totale Grenzflächenspannung   & $[\sigma] = \frac{\newton}{\meter}$   \\
+    $\rho$      & Dichte der Flüssigkeit        & $[\rho] = \frac{\kilogram}{\meter^3}$ \\
+    $r$         & Radius der Kapillare          & $[r] = \meter$                        \\
+    $d$         & Durchmesser der Kapillare     & $[r] = \meter$ 
+\end{tabular}
+
+\medskip
+
+\begin{minipage}[b]{0.48\columnwidth}
+    \begin{center}
+        \includegraphics[width=0.3\columnwidth]{images/kapillaritaet_benetzend.png}
+
+        benetzend
+    \end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\columnwidth}
+    \begin{center}
+        \includegraphics[width=0.3\columnwidth]{images/kapillaritaet_nicht_benetzend.png}
+
+        nicht benetzend
+    \end{center}
+\end{minipage}
+
+
+\columnbreak
+
+
+\subsection[Druck in Seifenblase]{Druck in Seifenblase $\bm{p}$}
+
+\begin{minipage}[c]{0.3\columnwidth}
+    $$ \boxed{ p = \frac{2 \cdot \sigma}{r} } $$ 
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.66\columnwidth}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{c l c}
+        $\sigma$    & Oberflächenspannung       & $[\sigma] = \frac{\newton}{\meter}$ \\
+        $r$         & Radius der Seifenblase    & $[r] = \meter$
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+\end{minipage}
+
+\smallskip
+

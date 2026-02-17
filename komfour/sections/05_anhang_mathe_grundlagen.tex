@@ -1,0 +1,235 @@
+
+\section{Mathematische Grundlagen}
+
+\subsection{Trigonometrie}
+
+\begingroup
+\renewcommand{\arraystretch}{2}
+\setlength{\tabcolsep}{0mm}
+\scalebox{0.33}{
+\Huge
+\begin{tabularx}{3\columnwidth}{rp{1mm}V{3}*{17}{C}}
+    \rowcolor{subsectioncolor!30}$\bm{\alpha}$\phantom{${}^{\circ}$} && $0$ & $\dfrac{\pi}{6\mathstrut}$ & $\dfrac{\pi}{4}$ & $\dfrac{\pi}{3}$ & $\dfrac{\pi}{2}$ & $\dfrac{2\pi}{3}$ & $\dfrac{3\pi}{4}$ & $\dfrac{5\pi}{6}$ & $\pi$ & $\dfrac{7\pi}{6}$ & $\dfrac{5\pi}{4}$ & $\dfrac{4\pi}{3}$ & $\dfrac{3\pi}{2}$ & $\dfrac{5\pi}{3}$ & $\dfrac{7\pi}{4}$ & $\dfrac{11\pi}{6}$ & $2\pi$ \\\hline
+    \rowcolor{subsectioncolor!30}$\bm{\alpha^\circ}$ && \phantom{${}^\circ$}$0^\circ$ & $30^\circ$ & $45^\circ$ & $60^\circ$ & $90^\circ$ & $120^\circ$ & $135^\circ$ & $150^\circ$ & $180^\circ$ & $210^\circ$ & $225^\circ$ & $240^\circ$ & $270^\circ$ & $300^\circ$ & $315^\circ$ & $330^\circ$ & $360^\circ$ \\\hline
+    $\bm{\sin(\alpha)}$ && $0$ & $\dfrac{1}{2\mathstrut}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{\sqrt{3}}{2}$ & $1$ & $\dfrac{\sqrt{3}}{2}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{1}{2}$ & $0$ & $-\dfrac{1}{2}$ & $-\dfrac{\sqrt{2}}{2}$ & $-\dfrac{\sqrt{3}}{2}$ & $-1$ & $-\dfrac{\sqrt{3}}{2}$ & $-\dfrac{\sqrt{2}}{2}$ & $-\dfrac{1}{2}$ & $0$ \\\hline
+    $\bm{\cos(\alpha)}$ && $1$ & $\dfrac{\sqrt{3}}{2\mathstrut}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{1}{2}$ & $0$ & $-\dfrac{1}{2}$ & $-\dfrac{\sqrt{2}}{2}$ & $-\dfrac{\sqrt{3}}{2}$ & $-1$ & $-\dfrac{\sqrt{3}}{2}$ & $-\dfrac{\sqrt{2}}{2}$ & $-\dfrac{1}{2}$ & $0$ & $\dfrac{1}{2}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{\sqrt{3}}{2}$ & $1$ \\\hline
+    $\bm{\tan(\alpha)}$ && $0$ & $\dfrac{\sqrt{3}}{3\mathstrut}$ & $1$ & $\sqrt{3}$ & $\pm\infty$ & $-\sqrt{3}$ & $-1$ & $-\dfrac{\sqrt{3}}{3}$ & $0$ & $\dfrac{\sqrt{3}}{3}$ & $1$ & $\sqrt{3}$ & $\pm\infty$ & $-\sqrt{3}$ & $-1$ & $-\dfrac{\sqrt{3}}{3}$ & $0$ \\\hline
+    $\bm{\cot(\alpha)}$ && $\pm\infty$ & $\sqrt{3}$ & $1$ & $\dfrac{\sqrt{3}}{3\mathstrut}$ & $0$ & $-\dfrac{\sqrt{3}}{3}$ & $-1$ & $-\sqrt{3}$ & $\pm\infty$ & $\sqrt{3}$ & $1$ & $\dfrac{\sqrt{3}}{3}$ & $0$ & $-\dfrac{\sqrt{3}}{3}$ & $-1$ & $-\sqrt{3}$ & $\pm\infty$ \\
+\end{tabularx}}
+\endgroup
+
+
+\subsubsection{Beziehungen zwischen $\bm{\sin(x)}$ und $\bm{\cos(x)}$}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ll}
+    $\sin(-a) = -\sin(a)$                                                               & $\cos(-a) = \cos(a)$          \\
+    $\sin(\pi - a) = \sin(a)$                                                           & $\cos(\pi -a) = - \cos(a)$    \\		
+    $\sin(\pi + a) = -\sin(a)$                                                          & $\cos(\pi + a) = - \cos(a)$   \\	
+    $\sin \Big( \frac{\pi}{2} - a \Big) = \sin \Big( \frac{\pi}{2} + a \Big) = \cos(a)$ & $\cos \Big( \frac{\pi}{2} - a \Big) = - \cos \Big( \frac{\pi}{2} + a \Big) = \sin(a)$		 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Additionstheoreme}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l}
+    $\sin(a \pm b) = \sin(a) \cdot \cos(b) \pm \cos(a) \cdot \sin(b)$           \\
+    $\cos(a \pm b) = \cos(a) \cdot \cos(b) \mp \sin(a) \cdot \sin(b) $          \\
+    $\tan(a \pm b) = \frac{\tan(a) \pm \tan(b)}{1 \mp \tan(a) \cdot \tan(b)}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Summen und Differenzen}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l}
+    $\sin(a) + \sin(b) = 2 \cdot \sin \Big( \frac{a+b}{2} \Big) \cdot \cos \Big( \frac{a-b}{2} \Big)$   \\
+    $\sin(a) - \sin(b) = 2 \cdot \sin \Big( \frac{a-b}{2} \Big) \cdot \cos \Big( \frac{a+b}{2} \Big)$   \\
+    $\cos(a) + \cos(b) = 2 \cdot \cos \Big( \frac{a+b}{2} \Big) \cdot \cos \Big( \frac{a-b}{2} \Big)$   \\
+    $\cos(a) - \cos(b) = -2 \cdot \sin \Big( \frac{a+b}{2} \Big) \cdot \sin \Big( \frac{a-b}{2} \Big)$  \\
+    $\tan(a) \pm \tan(b) = \frac{\sin(a \pm b)}{\cos(a) \cdot \cos(b)}$ 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Produkte}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l}
+    $\sin(a) \cdot \sin(b) = \frac{1}{2} \big( \cos(a-b) - \cos(a+b) \big) $ \\
+    $\cos(a) \cdot \cos(b) = \frac{1}{2} \big( \cos(a-b) + \cos(a+b) \big) $ \\	
+    $\sin(a) \cdot \cos(b) = \frac{1}{2} \big( \sin(a-b) + \sin(a+b) \big) $ 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Winkelvielfache und Halbwinkel}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l}
+    $\sin(2a) = 2 \, \sin(a) \cdot \cos(a)$                                 \\
+    $\sin(3a) = 3 \, \sin(a) -4 \, \sin^3(a)$                               \\ \medskip
+    $\sin(4a) = 8 \, \cos^3(a) \cdot \sin(a) - 4 \, \cos(a) \cdot \sin(a)$  \\
+    $\cos(2a) = \cos^2(a) - \sin^2(a)$                                      \\
+    $\cos(3a) = 4 \, \cos^3(a) -3 \, \cos(a)$                               \\  \medskip 
+    $\cos(4a) = 8 \, \cos^4(a) - 8 \, \cos^2(a) + 1$                        \\
+    $\sin \Big( \frac{a}{2} \Big) = \sqrt{\frac{1}{2} \big(1-\cos(a) \big)} \qquad \cos \Big( \frac{a}{2} \Big) = \sqrt{\frac{1}{2} \big(1+\cos(a) \big)}$ 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Potenzen}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ll}
+    $\sin^2(a) = \frac{1}{2} \big(1-\cos(2a) \big)$                   & $\cos^2(a) = \frac{1}{2} \big(1+\cos(2a) \big)$                     \\	
+    $\sin^3(a) = \frac{1}{4} \big(3\, \sin(a) - \sin(3a) \big)$       & $\cos^3(a) = \frac{1}{4} \big(\cos(3a) + 3 \, \cos(a) \big)$        \\	
+    $\sin^4(a) = \frac{1}{8} \big(\cos(4a) -4 \, \cos(2a) +3 \big)$   & $\cos^4(a) = \frac{1}{8} \big(\cos(4a) + 4 \, \cos(2a) +3 \big)$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+
+
+
+\subsection{Exponentialgesetze (reell)}
+
+\begin{tabular}{lllll}
+    $a^x \cdot a^y = a^{x + y}$ & $\frac{a^x}{a^y} = a^{x-y}$ & $(a^x)^y = a^{x \cdot y}$ & $a^x \cdot b^x = (a \cdot b)^x$ & $\frac{a^x}{b^x} = \big( \frac{a}{b} \big) ^x$
+\end{tabular}
+
+
+\subsection{Logarithmen-Gesetze (reell)}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lll}
+    $\log_a(x \cdot y) = \log_a(x) + \log_a(y)$ & & $\log_a(\frac{x}{y}) = \log_a(x) - \log_a(y)$   \\
+    $\log_a(x^y) = y \cdot \log_a(x)$           & & $\log_b(r) = \frac{\log_a(r)}{\log_a(b)}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Diverse Formeln}
+
+\vspace{-0.5cm}
+
+\begin{minipage}[t]{0.55\columnwidth}
+    \begin{align*}
+        (a \pm b)^3 &= a^3 \pm 3a^2b + 3ab^2 \pm b^3            \\
+        (a \pm b)^4 &= a^4 \pm 4a^3b + 6a^2b^2 \pm 4ab^3 + b^4  \\
+        r^2         &= (x - x_m)^2 + (y - y_m)^2
+    \end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.43\columnwidth}
+    \begin{align*}
+        x_{1,2}             &= \frac{-b \crd{\pm} \sqrt{b^2 - 4ac}}{2a} \text{ \crd{reell}} \\
+        \left(a+b\right)^n  &= \sum\limits_{k=0}^n \binom{n}{k} \, a^{n-k} \cdot b^k        \\
+        \binom{n}{k}        &= \frac{n!}{k!\left(n-k\right)!}
+    \end{align*}
+\end{minipage}
+
+
+\subsection{Transformationen von Funktionen}	
+
+\begin{tabular}{lll}
+    1.  & Streckung um $\bm{\frac{1}{a}}$ in $x$-Richtung               & $y = f(a \cdot x)$    \\
+        & Spiegelung an $y$-Achse bei $\bm{-a}$                                                 \\
+    2.  & Verschiebung nach links ($\bm{+b}$) oder rechts ($\bm{-b}$)   & $y = f(x \pm b)$      \\
+    3.  & Streckung um $\bm{c}$ in $y$-Richtung                         & $y = c \cdot f(x)$    \\
+        & Spiegelung an $x$-Achse bei $\bm{-c}$                                                 \\
+    4.  & Verschiebung nach oben ($\bm{+d}$) oder unten ($\bm{-d}$)     & $y = f(x) \pm d $ 
+\end{tabular}
+    
+    
+\subsection{Integraltionsregeln}
+
+\vspace{-0.2cm}
+
+\begin{minipage}[t]{0.4\columnwidth}
+    \subsubsection{Linearität}
+
+    \vspace{-0.5cm}
+
+    $$ \int \limits_{a}^{b} \alpha f(x) \, \diff x = \alpha \int \limits_{a}^{b} f(x) \, \diff x $$
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.58\columnwidth}
+    \subsubsection{Elementartransformation}
+
+    $$ \int f(\alpha \, x + \beta) \, \diff x = \frac{1}{\alpha} \, F(\alpha \, x + \beta) $$
+\end{minipage}
+
+
+\subsubsection{Partielle Integration (Produktregel)}
+
+\vspace{-0.5cm}
+
+$$ \int f' \cdot g \, \diff x =  f \cdot g - \int f \cdot g' \, \diff x \qquad \qquad
+\int f \cdot g' \, \diff x = f \cdot g - \int f' \cdot g \, \diff x $$
+
+\textrightarrow\ Partielle Integration darf mehrfach angewendet werden. \\
+\textbf{PI sollte wenn möglich vermieden werden! Produkte in Summen umschreiben!}
+
+
+\subsubsection{Substitution}
+
+\vspace{-0.2cm}
+
+$$ \int f(x) \, dx = \int f(g(t)) \cdot g'(t) \, \diff t \qquad \text{ \textrightarrow\ siehe Beispiel} $$
+
+\textbf{\crd{Integrationsgrenzen anpassen!} (ev. mit Umkehrfunktion)} 
+
+
+\example{Substitution}
+
+\begin{tabular}{ll}
+    $\int \limits_0^{\sqrt{\pi}} x^3 \cdot \cos(x^2) \, \diff x$    & \cbl{Substitution: $a = x^2$} \crd{ \textbf{auch auf Grenzen anwenden!}}  \\
+                                                                    & \cbl{$\diff a = 2 \, x \cdot \, \diff x$ \textrightarrow\ 
+                                                                     $\diff x = \frac{\diff a}{2x} = \frac{\diff a}{2 \sqrt{a}} $}  \\
+\end{tabular}
+
+$\int \limits_{\crd{0}}^{\crd{\pi}} a \, \sqrt{a} \cdot \cos(a) \frac{\diff a}{2 \sqrt{a}} 
+= \int \limits_{\crd{0}}^{\crd{\pi}} a \, \sqrt{a} \cdot \cos(a) \, \frac{1}{2} \frac{1}{\sqrt{a}} \, \diff a 
+= \frac{1}{2} \int \limits_{\crd{0}}^{\crd{\pi}} a \cdot \cos(a) \, \diff a = ... $
+
+
+\subsubsection{Spezielle Regeln (Faktor in Integral = Ableitung)}		
+
+\vspace{-0.2cm}
+
+\renewcommand{\arraystretch}{2.3}
+\begin{tabular}{ll}
+    Allg. Potenzregel   & $\int f'(x) \cdot f(x)^{\alpha} \, \diff x = \frac{f(x)^{\alpha + 1}}{\alpha + 1} + C \quad   (\alpha \neq -1)$   \\
+    Allg. Log-Regel     & $\int f'(x) \cdot \frac{1}{f(x)} \, \diff x = \int \frac{f'(x)}{f(x)} \, \diff x = \ln(\vert f(x) \vert ) + C$    \\
+    Allg. Exp-Regel     & $\int f'(x) \cdot \e^{f(x)} \, \diff x = \e^{f(x)} + C$
+\end{tabular}				
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Wichtige Integrale}
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{ccc}
+        \toprule
+        $\bm{f(x)}$     & $\bm{F(x)}$                   & \textbf{Bedingung}    \\
+        \midrule
+        $\sin(n \, x)$  & $- \frac{\cos(n \, x)}{n}$    & $(n \neq 0)$          \\
+        \midrule
+        $\cos(n \, x)$  & $\frac{\sin(n \, x)}{n}$      & $(n \neq 0)$          \\
+        \midrule
+        \cbl{$\e^{-\jimg \, n \, \omega_f \, t}$}       & \cbl{$ \frac{\e^{- \jimg \, n \, \omega_f \, t}}{- \jimg \, n \, \omega_f} = \frac{\jimg}{ n \, \omega_f} \e^{-\jimg \, n \, \omega_f \, t}$} & \cbl{$(n \neq 0)$} \\
+        \midrule
+        $t \, \sin(n \omega_f t)$                       & $\frac{\sin(n \omega_f t)}{(n \omega_f)^2} - \frac{t \cos(n \omega_f t)}{n \omega_f}$                                                         & $(n \neq 0)$       \\
+        \midrule
+        $t \cos{(n \omega_f t)}$                        & $\frac{\cos{(n \omega_f t)}}{(n \omega_f)^2} + \frac{t \sin(n \omega_f t)}{n \omega_f}$                                                       & $(n \neq 0)$       \\
+        \bottomrule
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+\end{center}
+
+

@@ -1,0 +1,509 @@
+\section{Objektorientierung}
+
+Objektorientierung soll es erleichtern, eine Abbildung der Realität zu erstellen. 
+Viele Dinge aus der Wirklichkeit können als Modell dargestellt / simplifiziert werden. 
+Diese Modelle können in Software in sogenannte Objekte \texttt{umgewandelt} werden.
+
+\subsection{Objekte}
+
+Objekte stellen Dinge, Sachverhalte oder Prozesse dar. Sie sind ein rein gedankliches Konzept.\\
+Sie kennzeichnen sich durch:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item eine \textbf{Identität}, welche es erlaubt Objekte voneinander zu unterscheiden
+    \item \textbf{statische Eigenschaften} zur Darstellung des \textbf{Zustandes} des Objekts in Form von \textbf{Attributen}
+    \item \textbf{dynamische Eigenschaften} zur Darstellung des \textbf{Verhaltens} des Objekts in Form von \textbf{Methoden}
+\end{itemize}
+
+
+\subsection{Klassen \& Instanzen}
+
+Ähnliche Objekte können in \textbf{Klassen} zusammengefasst werden, um Programmieraufwand tiefer zu halten. 
+Verwendete Objekte werden als \textbf{Instanz} eingesetzt. Diese Objekte haben dieselben Attribute, allerdings andere Werte.\\
+Eine Beispielklasse:\\
+
+\lstinputlisting{code/class_example.cpp}
+
+\subsubsection{Header-Datei}
+
+Reihenfolge in der Header-Datei:
+
+\begin{enumerate}[itemsep=1pt, parsep=0pt]
+    \item Dateikommentar mit Lizenzvereinbarung.
+    \item \textit{\color{blue} \texttt{Includes} des verwendete System Header}
+    \item \textit{\color{blue} \texttt{Includes} der Projektbezogenen Header}
+    \item \textit{\color{blue} Definition von Konstanten}
+    \item \textit{\color{blue} Typedef's und Definitionen von Strukturen}
+    \item \textit{\color{blue} allenfalls extern-Deklaration von Global-Variablen}
+    \item \textit{\color{blue} Funktionsprototypen, ink. Kommentar der Schnittstelle, bzw. Klassendeklarationen}
+\end{enumerate}
+
+Die \textit{blauen} Punkte müssen sich im Includeguard befinden(\#pragma once). 
+Pro Header-Datei sollte nur eine Oberklasse deklariert sein. 
+Kleine Unterklassen können im gleichen Header stehen.
+
+\subsubsection{Reihenfolge der Implementation}
+
+\begin{enumerate}[itemsep=1pt, parsep=0pt]
+    \item Dateikommentar mit Lizenzvereinbarung
+    \item \texttt{includes} der eigenen Header
+    \item \texttt{includes} der Projektbezogenen Header
+    \item \texttt{includes} der verwendeten System Header
+    \item allenfalls globale und statische Variablen
+    \item Präprozessor-Direktiven
+    \item Funktionsprototypen von lokalen, internen Funktionen (in nameless Namespace)
+    \item Definition von Funktionen und Klassen
+\end{enumerate}
+
+\subsection{UML}
+
+Die \texttt{Unified Modeling Language} ist eine normierte Sprache um Objekte grafisch darzustellen. 
+Sie geht extrem ins Detail. 
+Darum hier nur ein Ausschnitt:
+
+\subsubsection{UML-Klassendiagramm Notation}
+
+Besteht immer aus 3 Boxen:\\
+
+\noindent
+\begin{minipage}{0.5\columnwidth}
+\begin{center}
+    \begin{tikzpicture}[
+        umlclass/.style={
+            draw,
+            rectangle split,
+            rectangle split parts=3,
+            fill=blue!10,
+            minimum width=3cm,
+            font=\small\ttfamily,
+            % QUESTA È LA RIGA FONDAMENTALE:
+            align=left 
+        }
+    ]
+        \node [umlclass] (Student) {
+            \centering \textbf{Student} % Centriamo solo il nome
+            \nodepart{second}
+                + IDNumber : int \\
+                \# name : std::string \\
+                - bierkonsum : float \\
+                \# investedTimeInET : long int
+            \nodepart{third}
+                - doStuff(time : int\&) : void \\
+                + \textit{useless(void)} : retType*
+        };
+    \end{tikzpicture}
+    % \includegraphics[width=0.8\columnwidth]{images/UML-Klassendiagramm Notation.png}    
+\end{center}
+\end{minipage}
+\begin{minipage}{0.45\columnwidth}
+
+    Zu oberst der Name, in der Mitte Attribute(Variablen) und unten Methoden.
+    Die Methoden und Attribute fangen mit einem Symbol an, welches die Sichtbarkeit definiert und haben ein bestimmtes Merkmal:
+
+\end{minipage}
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item + : public (überall sichtbar)
+    \item - : private (nur in  aktueller Klasse sichtbar)
+    \item \# : protected (in aktueller und Unterklassen sichtbar)
+    \item \textit{Italic} : Funktion oder Klasse ist Abstrakt (=0)
+    \item \underline{Unterstrichen} : Funktion oder Attribut ist static
+    \item \verb|<Name der Klasse>| :  Konstruktor (ohne \verb|<>|)
+    \item $\sim$\verb|<Name der Klasse>| : Destruktor (ohne \verb|<>|)
+\end{itemize}
+
+
+
+\subsection{class vs struct}
+
+Eine class und struct können fast identisch verwendet werden. 
+Eine class hat standardmässig Sichtbarkeit private, Struct public(wenn nichts definiert wird).
+
+\subsection{Inkludierte Dokumentation}
+
+Mann kann im H-File direkt die Dokumentation zu der Schnittstelle schreiben. 
+Das ermöglicht das einfachere Verwenden der Schnittstelle.
+Dies wird in einem Blockkommentar, nach folgendem Muster realisiert:
+
+\lstinputlisting{code/codedocumentation.cpp}
+
+Es kann immer mehr geschrieben werden, man sollte sich aber auf das Nötige beschränken.
+
+\section{Konstruktoren und Destruktoren}
+
+Konstruktoren und Destruktoren sind spezielle Methoden von Klassen. 
+Diese haben immer denselben Namen wie die Klasse und \textbf{kein} Rückgabetyp(auch nicht void).\\
+Aufrufparameter haben folgende Bedeutung:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \textbf{\texttt{Keine}} : Default Konstruktor
+    \item \textbf{\texttt{const-Referenz auf eigene Klasse}} : copy Konstruktor
+    \item \textbf{Alles andere} : User-Defined
+\end{itemize}
+
+\subsection{Konstruktoren}
+
+Konstruktoren bereiten die Instanz auf ihre Funktion vor. \\
+
+Wichtig ist, dass ein Konstruktor immer \textbf{alle} Attribute der Klasse initialisiert.
+Konstruktoren werden wie folgt aufgerufen:\\
+
+\subsubsection{User-Defined}
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item Default $\rightarrow$ ohne Aufrufparameter
+    \item Copy $\rightarrow$ mit einer const Referenz auf eine andere Instanz
+    \item sonstige $\rightarrow$ werden anhand ihrer Aufrufparameter unterschieden, Sprechweise:\texttt{überladen}
+\end{itemize}
+
+Werden verschiedene Konstruktoren definiert, muss der Default zuerst aufgerufen werden, wenn dieser erhalten bleiben soll.\\
+
+\subsubsection{Implizit}
+
+Falls ein expliziter nicht angegeben wurde, dieser jedoch aus technischen Gründen benötigt wird:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item Default $\rightarrow$ macht nichts, alle Parameter bleiben uninitialisiert
+    \item Copy $\rightarrow$ dieser kopiert alle Attribute der anderen Instanz eins-zu-eins(bytewise). Problematisch, wenn die Instanz Pointer auf etwas hat.
+    \item ...
+\end{itemize}
+
+Wenn ein Objekt einen Pointer auf einen allokierten Speicher hat, muss eine spezielle Copy Methode verwendet werden. 
+Der Pointerwert / Adresse wo dieser hinzeigt, wird einfach kopiert. 
+Falls dann das erste Objekt den Speicher freigibt, wird die Speicheralokation gelöscht. 
+Sobald Objekt 2 nun den Speicher aufruft, zeigt dieser auf ungültigen Speicher $\rightarrow$ \textit{Segmentation fault}.\\
+Darum \textbf{MUSS} dem Objekt ein separater Speicherbereich gegeben werden.\\
+
+Merke: Konstruktoren werden immer dann gerufen (evtl. auch \textbf{implizit}) wenn ein neues Objekt in den Speicher gelegt wird.\\
+
+\subsection{Destruktor}
+
+Ein Destruktor eintfernt eine Instanz aus dem Speicher, 
+hat keine Aufrufparameter und auch kein Rückgabewert. 
+Es kann immer nur \textbf{einen} Destruktor geben. 
+Wenn der Destruktor fertig ist, sollte kein Speicher mehr vom Objekt belegt sein.\\
+Destruktoren sollten immer \textbf{virtuell definiert werden} (siehe \ref{Virtual}). 
+Mit anderen virtuellen Funktionen \textbf{müssen} sie virtuel definiert werden. 
+Der Funktionsname beginnt mit einer Tilde($\sim$). 
+Der Destruktor wird evtl. auch Implizit aufgerufen z.b., wenn aus einer Funktion wieder herausgesprungen wird. 
+
+\subsection{Beispiel}
+
+\lstinputlisting{code/constructor.cpp}
+
+\section{Initialisierungslisten und direkte Initialisierung}
+
+Die Initialisierung von Datentypen kann auf verschiedene Arten erreicht werden. 
+Es wird zwischen Zuweisung und Initialisierung unterschieden.
+
+\subsection{POD's}
+
+\texttt{plain old datastructure} / built in datatypes
+
+\lstinputlisting{code/pod_init.cpp}
+
+\subsection{Non PODs}
+
+\lstinputlisting{code/non_pod_init.cpp}
+
+\subsection{User defined Constructor}
+
+Um eine Klasse richtig initialisieren zu können muss der Ctor korrekt definiert werden. 
+Eine sogenannte Initialisierungsliste wird verwendet:
+
+\lstinputlisting{code/userdefined_ctro.cpp}
+
+\section{Assertions}
+
+Assertions sollten Annahmen über korrekte Wertebelegung darstellen. 
+Sie sind kein C spezifisches Konzept und sollten \textbf{nur zu Testzwecken} eingesetzt werden. 
+Im Releasebuild sollten sie deaktiviert werden. 
+Dafür gibt es spezifische Präprozessorflags.
+Der Header \textbf{$<$assert.h$>$} bzw. \textbf{$<$cassert$>$} stellt hierfür ein Präprozessor-Makro \texttt{assert(Bedingung)} zur Verfügung, um solche Zusicherungen auszudrücken.\\
+Beispiel:\\
+
+\lstinputlisting{code/assertions.cpp}
+
+Das obige Beispiel hat eine Assertion. 
+Diese würde im Test, falls ein Nullpointer übergeben wird ein Fehler ausgegeben. 
+
+\section{This-Pointer}
+
+Mit dem \texttt{this Pointer} kann ein Pointer des aufrufenden Objekt zurückgegeben werden. Bsp:
+
+\lstinputlisting{code/this_pointer.cpp}
+
+Nacheinander werden diese Funktionen durchlaufen da Funktion(2) vom zurückgegebenen Pointer aus Funktionsaufruf 1 aus gerufen wird.
+Die funktion wird \textbf{Kaskadiert}
+
+
+\section{Overloading}
+
+Operator Overloading bedeutet das bestehende Operatoren \texttt{überladen} werden im Sinne neu definiert / darüber geladen. 
+Sie erhalten \textbf{neue Bedeutung} für eine Klasse.
+
+
+\subsection{Methodenoverloading}
+
+Methoden dürfen in Cpp gleich heissen, sie müssen aber unterschiedliche Aufrufparameter haben.
+\lstinputlisting{code/method_overloading.cpp}
+
+
+\subsection{Operator overloading}
+
+Es können die inkludierten Operatoren von Cpp überladen werden. 
+Erlaubte Operatoren sind:\\
+\begin{tabular}{lllllllll}
+    +            & -               & *           & ⁄                      & \%                           & $\wedge$                & \&                            & $|$              & $\sim$          \\
+    !            & =               & \textless{} & \textgreater{}         & +=                           & -=                      & *=                            & ⁄=               & \%=             \\
+    $\wedge$=    & \&=             & $|$=        & \textless{}\textless{} & \textgreater{}\textgreater{} & \textless{}\textless{}= & \textgreater{}\textgreater{}= & ==               & !=              \\
+    \textless{}= & \textgreater{}= & \&\&        & $\|$                   & ++                           & $--$                    & ,                             & -\textgreater{}* & -\textgreater{} \\
+    ( )          & {[} {]}         & new         & delete                 & new{[} {]}                   & delete{[} {]}           &                               &                  &                
+\end{tabular}
+
+Nicht erlaubte Operatoren sind: \texttt{.} \texttt{.*} \texttt{::} und \texttt{?:}.
+
+Es wird zwischen overloading global und in Methode unterschieden.
+
+\subsubsection{Global}
+
+Globales overloading funktioniert mit einer als \texttt{friend} deklarierten Funktion. 
+Als friend deklarierte Funktionen agieren als \textbf{globale Funktion} und haben vollen zugriff auf \textbf{alle Parameter einer Klasse}. 
+Sie sind daher zu vermeiden da sie eher ein Workaround sind und zu Problemen führen können.\\ 
+
+Syntax : \verb|<returntype> operator<type>(type val1, type val2);|\\
+BSP:\\
+
+\lstinputlisting{code/operator_overloading_global.cpp}
+
+Die Funktion kann von überall aus dem Programm ausgeführt werden. 
+Es sollte nur dann verwendet werden, wenn der erste Parameter (links) nicht eine Instanz der Klasse ist da der erste Aufrufparameter immer die Instanz sein muss.  
+
+\subsubsection{Methoden}
+
+Ein Operator kann auch als Methode einer Klasse definiert werden. 
+Sie haben nur noch ein Aufrufparameter.\\
+Syntax : \verb|<returntype> operator<typ>(type in);|\\
+Der 2. Parameter ist das Objekt selbst, welche die Methode aufruft.
+
+\lstinputlisting{code/operator_overloading_method.cpp}
+
+Die obigen Funktionen machen alle dasselbe. 
+Sie unterscheiden sich durch die \textbf{unterschiedlichen Argumente}. 
+Diese decken verschiedene Eingabetypen ab. 
+Es wäre schlechter Stil, die Typkonvertierung dem Compiler implizit zu überlassen! 
+Ein Fall, bei dem das anderstypige Argument zuerst kommt, muss noch per Globalem Overloading gelöst werden. 
+Da der erste Aufrufparameter, beim Overloading mit Methoden, immer zuerst kommt. 
+ 
+\section{Default Argumente}
+
+Default Argumente werden als Parameterwert verwendet, wenn keiner mitgegeben wird.
+Parameter werden von links nach rechts mit Werten belegt. 
+Wenn manche Aufrufparameter keinen Default wert erhalten, müssen diese weiter Links stehen, als welche mit Default wert.  
+
+\lstinputlisting{code/default_argumente.cpp}
+
+Default Argumente können überall verwendet werden bis auf Aufrufparameter von Operatoroverloading. 
+Dort sind sie \textbf{nicht} erlaubt. 
+Dort machen sie aber ohnehin keinen Sinn. 
+
+\section{Getter \& Settermethoden}
+
+Getter und Settermethoden werden Typischerweise verwendet um Lese und Schreibzugriffe auf eine Klasse zu regeln. 
+Attribute sind \textbf{alle Parameter einer Klasse}. 
+Mit einer Get oder Set Methode kann der Zugriff auf diese kontrolliert / angepasst werden.\\
+
+\lstinputlisting{code/getter_settermethoden.cpp}
+
+\section{Vererbung}
+
+Vererbung erlaubt es Attribute und Methoden von anderen Klassen zu übernehmen. 
+Die Oberklasse, Baisklasse oder Superklasse \texttt{vererbt} an eine Unterklasse, derived class oder eine Spezialisierung. 
+Bei der Vererbung werden immer \textbf{alle} Attribute oder Methoden weitergegeben. 
+
+\subsubsection{UML}
+
+In einem UML Diagramm wird vererbung wie folgt dargestellt:\\
+\noindent
+\begin{minipage}{0.6\columnwidth}
+\begin{center}
+    \includegraphics[width=\columnwidth]{images/uml.png}    
+\end{center}
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
+
+Unterklasse erbt (die Attribute und Methoden) von Superklasse. 
+
+\end{minipage}
+
+Dies stellt eine \texttt{ist ein beziehung} dar. 
+Es ist sehr wichtig, dass die Pfeilspitze \colorbox{red!65}{\textbf{genau so!}} aussieht wie in der Darstellung da ansonsten Verwechslungsgefahr mit anderen Mechanismen entstehen könnte.
+
+\subsubsection{Syntax}
+
+\lstinputlisting{code/vererbung_syntax.cpp}
+
+\subsubsection{UML++}
+
+\noindent
+\begin{minipage}{0.6\columnwidth}
+\begin{center}
+            \includegraphics[width=\columnwidth]{images/uml++.png}    
+\end{center}
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
+    Vererbung ist auch über mehrere Stufen Möglich:\\
+    Z.b. C4 Erbt alles von C2 und C1
+\end{minipage}
+
+\subsubsection{Sichtbarkeit}
+
+Die Sichtbarkeit ist durch das Public definiert. 
+Es ist möglich die Sichtbarkeit aller Attribute und Methoden einzuschränken. 
+Mit \textbf{Public} wird alles mit der originalen Sichtbarkeit übernommen. 
+Mit \textbf{protected} wird alles was public war protected. 
+Mit \textbf{private} wird alles private (nicht sehr nützlich).
+
+\begin{center}
+    \includegraphics[width=0.7\columnwidth]{images/Vererbung.png}    
+\end{center}
+
+Wird eine Vererbung private durchgeführt, sind keine Attribute oder Methoden mehr sichtbar.
+
+\subsubsection{Constructor / Destructor chaining}
+
+Grundsätzlich initialisieren ctors nur die eigene Klasse. 
+Dh Superklassen initialisieren sich selbst. 
+Eine Subklasse initialisiert sich, indem sie zunächst einen Ctor der Superklasse aufruft und danach sich selbst \textbf{IMPLIZIT}. 
+Man kann das auch explizit machen:
+
+\lstinputlisting{code/ctor_unterklasse.cpp}
+
+Note: Da der Konstruktor aufgerufen wird kann auch ein evtl Private Attribut der Oberklasse initialisiert werden.
+Gleiches gilt mit dem Dtor, nur umgekehrte Reihenfolge (erst wird der Dtor von der subklasse aufgerufen, dann.....).
+
+\subsection{Überschreiben von Methoden}
+
+Geerbte Funktionen können \texttt{überschrieben} werden. 
+Die Unterklasse definiert eine neue Methode mit demselben Namen.
+Allerdings kann es dann zu Mehrdeutigkeit kommen:\\
+Im folgenden Beispiel haben eine Subklasse und eine Oberklasse eine print Funktion welche \textbf{nicht} virtual gekennzeichnet ist:
+
+\lstinputlisting{code/methodenueberschreiben.cpp}
+
+Dieses Beispiel soll zeigen, dass Pointer, welche eigentlich von einer Oberklasse auf eine Unterklasse zeigen auf die \texttt{Eigenen} Funktionen der Oberklasse zeigt, solange diese nicht überschrieben worden sind.
+Dies kann als Verhalten gewünscht sein. 
+
+\subsection{virtual, final, override und scopeoperator}
+
+\subsubsection{virtual}\label{Virtual}
+
+Mit \textbf{virtual} kann eine Methode gekennzeichnet werden, dass diese Methode von einer Unterklasse überschrieben wird.
+Somit würde das obige Beispiel nicht mehr funktionieren und es wird immer die Printfunktion der Unterklasse aufgerufen. 
+In einer Unterklasse ist virtual nicht mehr zwingend zu schreiben.
+Eine Klasse mit einer virtuellen Funktion wird als Polymorph bezeichnet.
+
+\subsubsection{Virtual beim Dtor}
+
+Ist eine Methode als virtual deklariert, so muss der Dtor \textbf{ZWINGEND} auch als virtual deklariert werden.
+
+\subsubsection{Override}
+
+Soll eine Methode eine geerbte Methode ersetzen so muss diese mit \texttt{Override} gekennzeichnet werden. 
+Solch eine Methode ist automatisch auch virtual.
+Der Compiler kann so überprüfen, ob eine virtual Methode vorhanden ist.
+
+\subsubsection{Final}
+
+Final kann zum einen verbieten, dass eine Methode einer Klasse überschrieben wird
+(Logischerweise geht das nur bei virtuellen Methoden). 
+Zum anderen kann sie auch das weitere Erben einer Klasse verbieten. 
+
+\subsubsection{Scopeoperator}
+
+Per Scopeoperator kann (::) eine Methode aus einer Oberklasse gezielt aufgerufen werden. 
+Mit diesem wird garantiert die Funktion welche definiert wird aufgerufen, egal ob diese aufgrund virtual überschrieben wird. 
+
+\lstinputlisting{code/virtual.cpp}
+
+\subsubsection{RTTI / Typing / Binding}
+
+Wird kein Virtual verwendet, nennt man das \textbf{static binding}. 
+Mit virtual wird es \textbf{dynamic binding} genannt, da erst bei Laufzeit bekannt ist, um welchen Pointer es sich handelt.\\
+Um bei Laufzeit herauszufinden, um welchen Typ es sich handelt kann die \textbf{Run-time Type Information} verwendet werden. 
+Dies geschieht mit der \textbf{typeid()} Funktion aus dem Header \textbf{$<$typeinfo$>$}\\
+typeid gibt ein std::type\_info zurück. 
+
+\lstinputlisting{code/RTTI.cpp}
+
+\subsubsection{Implementation von RTTI}
+
+Das RTTI System arbeitet meistens mit einem so genannten V-Table in dem zu allen(evtl geerbten) virtuellen Methoden ein Pointer definiert ist. 
+Die Klasse erhält zusätzlich einen V-table Pointer. 
+Zur Laufzeit kann die Instanz via V-table die korrekte Methode ermitteln.\\
+
+Das folgende Beispiel zeigt das die Memory-map von einem Array mit 2 Oberklassenpointer. 
+Ein Pointer zeigt auf eine Oberklasse, die anderen auf Unterklassen, welche virtuelle Methoden überschrieben haben. 
+Der V-pointer der Ober- und Unterklasse ist darum unterschiedlich / sie zeigen nicht auf denselben Vtable. 
+Die Unterklassen zeigen wiederum auf denselben Vtable.  
+
+\begin{center}
+        \includegraphics[width=\columnwidth]{images/vtable.png}
+\end{center}
+
+\subsection{Abstrakte Klassen}
+
+Wenn Klassen zwar festlegt, dass eine Methode da ist, diese aber noch nicht implementieren, nennt man das eine abstrakte Methode. 
+Man spricht dann von einer abstrakten Klasse.
+Eine abstrakte Methode wird in UML \textit{\textbf{kursiv}} dargestellt.
+Es ist egal, ob die abstrakten Methoden selbst definiert sind oder geerbt. 
+Abstrakte Klassen kann man nicht instanziieren.
+Es gibt kein spezielles Schlüsselwort dafür, man weist der Methode bei Definition 0 zu: 
+
+\lstinputlisting{code/abstraktemethode.cpp}
+
+\subsection{Organisation der H files}
+
+Generell gilt immer noch: Jedes H File hat ein Cpp File. 
+Allerdings können Unterklassen in ein H File zusammengefasst werden, falls diese nicht allzu Umfänglich sind. 
+Ansonsten sollte ein neues H File erstellt werden. 
+Für abstrakte Klassen fällt die Implementierung in einem Cpp file weg.
+
+\subsection{Mehrfachvererbung}
+
+Folgender Vererbungszweig ist möglich:\\
+\noindent
+\begin{minipage}{0.5\columnwidth}
+    \begin{center}
+        \includegraphics[width=0.7\columnwidth]{images/Mehrfachvererbung.png}    
+    \end{center}  
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+Solche Gebilde sind zwar möglich, sollten jedoch vermieden werden, da schnell sehr kompliziert und kaum lesbar. 
+Es entsteht schnell Mehrdeutigkeit durch die verschiedenen Erbzweige.\\
+Bei der Definition einer Klasse können weitere Oberklassen mit einem Komma getrennt angegeben werden :
+
+\end{minipage}
+
+\lstinputlisting{code/Mehrfachvererbung.cpp}
+
+\subsection{Static} 
+
+Static im Zusammenhang mit Klassen bindet eine Methode oder ein Attribut an die Objektklasse und nicht an die Objektinstanz (ähnlich zu Python Klassenvariablen).
+
+
+\subsubsection{Methoden}
+
+Static Methoden müssen im Header-File deklariert und im Cpp-File definiert werden. 
+Sie dürfen nur auf Static definierte Attribute zugreifen da keine Objektinstanz vorhanden. 
+Hauptanwendungen sind Hilfsfunktionen wie Funktionsaufrufcounter oder Umrechnungsfunktionen. 
+Bei der Deklaration wird der Klassennamen verwendet (siehe Bsp). 
+
+\subsubsection{Attribute}
+
+Static Attribute müssen im H deklariert und im Cpp File definiert werden. 
+Sie werden verwendet für z.B. Objektspezifische Konstanten oder im Zusammenhang mit Static Counter. 
+
+\subsubsection{Bsp}
+
+\lstinputlisting{code/static.cpp}

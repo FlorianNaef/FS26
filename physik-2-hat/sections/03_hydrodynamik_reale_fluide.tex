@@ -1,0 +1,378 @@
+\section{Hydrodynamik - Reale Fluide}
+
+\textbf{Reale Fluide nehmen Scherkräfte auf (Reibung)}
+
+\subsection{Newton'sches Reibungs-Gesetz}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ \tau = \eta \cdot \frac{v}{d} }  \qquad  \boxed{ \tau = \eta \cdot \frac{\diff v}{\diff z} } $$
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+    $\tau$                      & Schubspannung                             & $[\tau] = \newton$                                \\
+    $\eta$                      & Dynmaische Zähigkeit (Viskosität)         & $[\eta] = \pascal \, \second$                     \\
+    $v$                         & Geschwindigkeitsdifferenz zw. Auflagen    & $[v] = \frac{\meter}{\second}$                    \\
+    $z$                         & Richtung senkrecht zur Verschiebung       & $[z] = \meter$                                    \\
+    $d$                         & Distand zwischen den Auflagen             & $[d] = \meter$                                    \\
+    $\frac{\diff v}{\diff z}$   & Geschwindigkeits-Gradient in z-Richtung   & $[\frac{\diff v}{\diff z}] = \frac{1}{\second}$ 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\medskip
+
+
+\para{Werte für $\bm{\eta}$}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{ll c|c ll}
+    $\eta_{\rm Luft}$   & $:= 2 \cdot 10^{-5} \, \pascal \, \second$    & &  $\eta_{\rm Oel}$   & $:= 0.1 \, \pascal \, \second$ \; bis \; $1 \, \pascal \, \second$ \\
+    $\eta_{\rm Wasser}$ & $:= 10^{-2} \, \pascal \, \second$            & & \\
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\medskip
+
+
+\subsubsection{Kinematische Zähigkeit $\bm{\nu}$}
+
+\begin{minipage}[c]{0.3\columnwidth}
+    $$ \boxed{ \nu = \frac{\eta}{\rho} } $$
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.68\columnwidth}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{c l c}
+        $\nu$   & Kinemtaische Zähigkeit    & $[\nu] = \frac{\meter^2}{\second}$    \\
+        $\rho$  & Dichte                    & $[\rho] = \frac{\kilogram}{\meter^3}$ \\	
+    \end{tabular}
+    \renewcommand{\arraystretch}{1.5}
+\end{minipage}
+
+
+\subsection[Stokes'sche Reibung]{Stokes'sche Reibung $\bm{F_R}$}
+
+Verwendet für z.B. Kugel in Öl oder fallende Wassertropfen
+
+$$ \boxed{ F_R = 6 \cdot \pi \cdot \eta \cdot R \cdot v } $$
+
+\begin{tabular}{c l c}
+    $F_R$   & Reibungskraft                     & $[F_R] = \newton$                         \\
+    $\eta$  & Dynamische Zähigkeit (Viskosität) & $[\eta] = \mathrm{\pascal \, \second}$    \\
+    $R$     & Kugelradius                       & $[R] = \meter$                            \\
+    $v$     & Geschwindigkeit                   & $[v] = \frac{\meter}{\second}$		
+\end{tabular}
+
+
+\subsubsection{Kugelfall-Viskosimeter}
+
+\begin{minipage}{0.35\columnwidth}
+    \includegraphics[width=\columnwidth]{images/kugelfall-viskosimeter.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\columnwidth}
+    \raggedright
+
+    Auf eine Kugel, welche in einer Flüssigkeit hinabgleitet wirken folgende Kräfte: 
+
+    \medskip
+
+    \begin{tabular}{ll}
+        $F_G$   & Gewichtskraft         \\
+        $F_A$   & statischer Auftrieb   \\
+        $F_R$   & Stokes'sche Reibung
+    \end{tabular}
+
+    \medskip
+
+    Ansatz zum Lösen von Aufgaben: \textbf{Kräftegleichgewicht}
+\end{minipage}
+
+
+
+\subsection{Hagen-Poiseuille}
+
+Beschreibung von \myul{laminaren} Strömungen in einem \myul{runden Rohr} \textrightarrow\ Schichtströmung
+
+\subsubsection{Gesetz von Hagen-Poiseuille}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ \dot{V} = \frac{\pi \cdot \Delta \, p \cdot R^4}{8 \cdot \eta \cdot l} } $$
+
+
+\subsubsection{Geschwindigkeitsverteilung von $\bm{r=0}$ bis $\bm{R}$}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ v(r) = \frac{1}{4 \cdot \eta} \cdot \frac{\Delta \, p}{l} \, (R^2 - r^2) } $$
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+    $v(r)$                              & Fliessgeschwindigkeit beim Radius $r$ & $[v(r)] = \frac{\meter}{\second}$         \\
+    $r$                                 & betrachteter Radius                   & $[r] = \meter$                            \\
+    $\eta$                              & Dynamische Zähigkeit (Viskosität)     & $[\eta] = \pascal \, \second$             \\
+    $R$                                 & Rohr-(Innen)Radius                    & $[R] = \meter$                            \\
+    $\Delta \, p$                       & Druckdifferenz                        & $[\Delta \, p] = \pascal$                 \\
+    $\dot{V} = \frac{\diff V}{\diff t}$ &  Volumenstrom                         & $[\dot{V}] = \frac{\meter^3}{\second}$	\\
+    $l$                                 & Länge des Rohrs                       & $[l] = \meter$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\columnbreak
+
+
+\subsection[Reynolds-Zahl]{Reynolds-Zahl $\bm{\Rey}$}
+
+Die Reynoldszahl ist ein Richtmass für die Wirbelbildung.
+
+\smallskip
+\begin{itemize}
+    \item Druck-Differenz (Bernoulli) begünstigt Wirbelbildung
+    \item Innere Reibung (Schubspannung) verhindert Wirbelbildung 
+\end{itemize}
+
+$$ \boxed{ \Rey = \frac{\Delta \, p}{\tau} = \frac{\rho \cdot \overline{v} \cdot d}{\eta}} \qquad \quad \text{mit } \; \overline{v} = \frac{\dot{V}}{A} $$
+
+
+\begin{tabular}{c l c}
+    $\Rey$          & Reynolds-Zahl                         & $[\Rey] = 1$                              \\
+    $\eta$          & Dynamische Zähigkeit (Viskosität)     & $[\eta] = \pascal \, \second$             \\
+    $\overline{v}$  & Mittlere Geschwindigkeit              & $[\overline{v}] = \frac{\meter}{\second}$ \\
+    $d$             & Typische Dimension (Rohrdurchmesser)  & $[d] = \meter$                            \\
+    $\Delta \, p$   & Druckdifferenz                        & $[\Delta p] = \pascal$                    \\
+    $\tau$          & Schubspannung                         & $[\tau] = \newton$
+\end{tabular}
+
+\medskip
+
+\textbf{Sobald die Reynolds-Zahl $\bm{\Rey}$ grösser ist als ein kritischer Wert bilden sich Wirbel.} \\
+\textrightarrow\ Rohr:  $\Rey_{\rm kritisch} \approx 2320$
+
+
+\subsubsection{Ähnlichkeitsgesetz}
+
+\begin{itemize}
+    \item Reynolds-Zahl dient auch richtigem Vergleich von Modellversuchen \\
+        \textrightarrow\ Gleiche Reynolds-Zahl bedeutet gleiches Verhalten
+    \item  Gleiche Reynolds-Zahl bedeutet auch gleiche relative Grenzschicht-Dicke $D$ (siehe Abschnitt \ref{Prandl'sche Grenzschicht-Dicke})
+\end{itemize}
+
+
+\subsection{Turbulente / Laminare Rohrströmung}
+
+\subsubsection{Hilfe, um Reynoldszahl zu bestimmen (laminar)}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ \Delta p = 32 \cdot \eta \cdot l \cdot \frac{v}{d^2} }  $$
+
+
+\subsubsection{Druckunterschied in laminare / turbulente Strömung}
+
+$$ \lambda_{\rm turbulent} = \frac{0.316}{\sqrt[4]{\Rey}}  \qquad \qquad \lambda_{\rm laminar} = \frac{64}{\Rey} $$
+$$ \boxed{ \Rightarrow \Delta p_x = \lambda_x \frac{l}{d} \cdot \frac{\rho}{2} \cdot v^2 } $$
+
+
+\begin{tabular}{c l c}
+    $\Delta \, p_x$ & Druckdifferenz (laminar / turbulent)  & $[\Delta p] = \pascal$                \\
+    $\eta$          & Dynamische Zähigkeit (Viskosität)     & $[\eta] = \pascal \, \second$         \\
+    $l$             & Rohr-Länge                            & $[l] = \meter$                        \\
+    $v$             & Fliess-Geschwindigkeit                & $[v] = \frac{\meter}{\second}$        \\
+    $d$             & Rohr-Durchmesser                      & $[d] = \meter$                        \\		
+    $\rho$          & Dichte des Fluids                     & $[\rho] = \frac{\kilogram}{\meter^3}$ \\
+    $\Rey$          & Reynolds-Zahl                         & $[\Rey] = 1$
+\end{tabular}
+
+
+\subsubsection{Unbekannt / Gemischt (Pratische Anwendung)}
+
+Vorgehen, wenn man nicht weiss, ob sich Wirbel bilden oder nicht
+
+\smallskip
+
+\begin{enumerate}
+    \item Laminar rechnen (um fehlenden Parameter $\rho, \; v, \; d, \text{ oder } \eta$ zu bestimmen) 
+    \item Aus Resultat Reynolds-Zahl $\Rey$ berechnen
+    \item Mit kritischer Reynolds-Zahl $\Rey_{\rm kritisch}$ vergleichen
+    \item Beim \textbf{Überschreiten} \textrightarrow\ Turbulent rechnen!
+\end{enumerate}
+
+
+\subsection[Prandl'sche Grenzschicht-Dicke]{ $\bm{D}$}
+\label{Prandl'sche Grenzschicht-Dicke}
+
+\begin{minipage}[t]{0.4\columnwidth}
+    \includegraphics[width=\columnwidth, align=t]{images/prandl.png}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.58\columnwidth}
+    Prandl'sche Grenzschicht-Dicke $D$ beschreibt, in welcher \textbf{Distanz} die \textbf{Geschwindigkeit} eines laminar bewegten Teils
+    (z.B. ein Flugzeugflügel) \textbf{Null} ist. 
+
+    \medskip
+
+    Die Geschwindigkeit innerhalb der Grendschicht $D$ nimmt von Teil bis hin zum äussersten Rand \textbf{linear} ab.
+
+    $$\boxed{ D = \sqrt{\frac{\eta}{\rho} \cdot \frac{l}{v}} } $$
+\end{minipage}
+
+\medskip
+
+\begin{tabular}{c l c}
+    $D$     & Prandl'sche Grenzschicht-Dicke                    & $[D] = \meter$                        \\
+    $\eta$  & Dynamische Zähigkeit (Viskosität)                 & $[\eta] = \pascal \, \second$         \\
+    $\rho$  & Dichte des Fluids                                 & $[\rho] = \frac{\kilogram}{\meter^3}$ \\
+    $l$     & Länge des bewegten Teils (in Richtung von $v$)    & $[l] = \meter$                        \\
+    $v$     & Geschwindigkeit                                   & $[v] = \frac{\meter}{\second}$
+\end{tabular}
+
+
+\subsection{Bernoulli-Gleichung mit innerer Reibung}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ p_1 +  \rho \cdot g \cdot h_1 + \frac{1}{2} \, \crd{\alpha_1} \cdot \rho \cdot v_1^2
+= p_2 +  \rho \cdot g \cdot h_2 + \frac{1}{2} \, \crd{\alpha_2} \cdot \rho \cdot v_2^2 \crd{+ \Delta \, p_v} } $$
+
+\renewcommand{\arraystretch}{1.6}
+\begin{ctabular}{c| c |c}
+                                    & laminar                                                   & turbulent                                                 \\ 
+    \hline 
+    Korrekturfaktoren               & $\alpha_1 = \alpha_2 = 2$                                 & $\alpha_1 \approx \alpha_2 \approx 1$                     \\ 
+    \hline 
+    Druckverlust $\Delta \, p_v$    & \multicolumn{2}{c}{$\Delta p_v = \lambda_x \frac{l}{d} \cdot \frac{\rho}{2} \cdot v^2$}                               \\ 
+    \hline 
+                                    & $\lambda_{\rm laminar} = \frac{64}{\Rey}$                 & $\lambda_{\rm turbulent} = \frac{0.316}{\sqrt[4]{\Rey}}$  \\
+\end{ctabular} 
+\renewcommand{\arraystretch}{1}
+
+
+\subsection[Druckwiderstand]{Druckwiderstand $\bm{F_D}$}
+
+Beschreibt die turbulente Luftreibungskraft $F_R$ und wird meist als Luftwiderstand bezeichnet.
+
+$$ \boxed{ F_D = \Delta \, p \cdot A_s = \frac{1}{2} \, \cdot \rho \cdot v^2 \cdot A_s \cdot c_W } $$
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+    $F_D$           & Druckwiderstand                           & $[F_D] = \newton$                     \\
+    $\Delta \, p$   & Druckdifferenz                            & $[\Delta \, p] = \pascal$             \\
+    $\rho$          & Luft-Dichte                               & $[\rho] = \frac{\kilogram}{\meter^3}$ \\
+    $c_W$           & Widerstandsbeiwert / Widerstandszahl      & $[c_W] = 1$                           \\
+    $v$             & Strömungs-Geschwindigkeit                 & $[v] = \frac{\meter}{\second}$        \\
+    $A_s$           & Projizierte Fläche senkrecht zur Strömung & $[A_s] = \meter$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\medskip
+
+\textrightarrow\ Der Widerstandsbeiwert $c_W$ ist \textbf{geometrieabhängig}!
+
+
+
+\subsection[Auftriebskraft nach Kutta-Jukowski]{Auftriebskraft $\bm{F_A}$ nach Kutta-Jukowski}
+
+Beschreibt die Proportionalität zwischen dynamischem Auftrieb und Zirkulation.
+
+$$ \boxed{ F_A = \rho \cdot v \cdot l \cdot \Gamma } $$
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+    $F_A$       & Dynamischer Auftrieb      & $[F_A] = \newton$                     \\
+    $\rho$      & Dichte des Fluids         & $[\rho] = \frac{\kilogram}{\meter^3}$ \\
+    $v$         & Geschwindigkeit           & $[v] = \frac{\meter}{\second}$        \\
+    $l$         & Länge quer zur Strömung   & $[l] = \meter$                        \\
+    $\Gamma$    & Zirkulation               & $[\Gamma] = \frac{\meter^2}{\second}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Zirkulation $\bm{\Gamma}$}
+
+Die Zirkulation ist ein Mass für die \textbf{Rotation} im Strömungsfeld
+
+$$ \boxed{ \Gamma = \oint \vec{v} \bullet \diff \vec{s} } $$
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{c l c}
+    $\Gamma$                        & Zirkulation                       & $[\Gamma] = \frac{\meter^2}{\second}$     \\
+    $\vec{v} \bullet \iff \vec{s}$  & Geschwindigkeit entlang dem Weg   & $[\vec{v}] = \frac{\meter}{\second}$      \\
+                                    & Skalarprodukt: $\vec{v} \bullet  \diff \vec{s} = a \cdot b \cdot \cos(\varphi)$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection[Dynamischer Auftrieb]{Dynamischer Auftrieb $\bm{F_A}$}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ F_A = c_A \cdot \underbrace{\frac{1}{2} \cdot \rho \cdot v^2 }_{\substack{\Delta \, p}} \cdot A_{\|}	} $$
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+    $F_A$       & Dynamischer Auftrieb                              & $[F_A] = \newton$                     \\
+    $c_A$       & Auftriebskoeffizient                              & $[c_A] = 1$                           \\
+    $\rho$      & Luft-Dichte                                       & $[\rho] = \frac{\kilogram}{\meter^3}$ \\
+    $v$         & Strömungsgeschwindigkeit                          & $[v] = \frac{\meter}{\second}$        \\
+    $A_{\|}$    & Projizierte Fläche \textbf{parallel} zur Strömung & $[A_{\|}] = \meter^2$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Wissenswertes zum dynamischen Auftrieb}
+
+\begin{itemize}
+    \item Ein gerade ausgerichtetes, symmetrisches Stromlinienprofil erzeugt \textbf{keinen} dynamischen Auftrieb
+    \item An einem asymmetrischen Flügelprofil entsteht dynamischer Auftrieb 
+\end{itemize}
+
+
+\subsection[Induzierter Widerstand]{Induzierter Widerstand $\bm{F_W}$}
+
+Kommt durch Energieverlust (Wirbelbildung) zu Stande, welcher entsteht, wenn die Umgebungsluft in Bewegung gesetzt wird.
+
+$$ \boxed{ F_W = c^*_W \cdot \frac{1}{2} \cdot \rho \cdot v^2 \cdot A_{\|} } $$
+
+
+\begin{tabular}{c l c}
+    $F_W$       & Induzierter Widerstand                            & $[F_W] = \newton$                     \\
+    $\rho$      & Luft-Dichte                                       & $[\rho] = \frac{\kilogram}{\meter^3}$ \\
+    $c^*_W$     & Widerstands-Koeffizient                           & $[c*_W] = 1$                          \\
+    $v$         & Strömungsgeschwindigkeit                          & $[v] = frac{\meter}{\second}$         \\
+    $A_{\|}$    & Projizierte Fläche \textbf{parallel} zur Strömung & $[A_{\|}] = \meter^2$
+\end{tabular}
+
+\columnbreak
+
+
+
+\subsection[Gleitwinkel]{Gleitwinkel $\bm{\varphi}$}
+
+Gibt die zurückgelegte Stecke pro verbrauchte Höhe an. Im Luft-Kanal ist dies der Anstell-Winkel.
+
+$$ \boxed{ \tan(\varphi) = \frac{F_W}{F_A} = \frac{c^*_W}{c_A}= \frac{v_V}{v_H} } $$
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+    $\varphi$   & Gleitwinkel                   & $[\varphi] = \degree$             \\
+    $F_W$       & Widerstandskraft              & $[F_W] = \newton$                 \\
+    $F_A$       & Auftriebskraft                & $[F_A] = \newton$                 \\ 
+    $c^*_W$     & Widerstands-Koeffizient       & $[c^*_W] = 1$                     \\
+    $c_A$       & Auftriebs-Koeffizient         & $[c_A] = 1$                       \\
+    $v_V$       & Vertikal-Geschwindigkeit      & $[v_V] = \frac{\meter}{\second}$  \\
+    $v_H$       & Horizontal-Geschwindigkeit    & $[v_H] = \frac{\meter}{\second}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Helmholz'sche Wirbelsätze}
+
+\begin{enumerate}
+    \item Wirbel hat kein Anfang und kein Ende
+    \item Wirbel besteht immer aus denselben Fluidteilchen
+    \item Zirkulation zeitlich konstant
+\end{enumerate}
+
+\columnbreak
+

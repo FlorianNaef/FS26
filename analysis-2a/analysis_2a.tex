@@ -1,0 +1,44 @@
+% ========================================= TEMPLATE INFO ========================================
+%
+% Author:       P4ntomime
+% Version:      1.0.0
+% Last updated: 2024-02-18
+% Brief:        A LaTeX template for summaries. See README.md for more information.
+% 
+% ================================================================================================
+\documentclass[8pt, a4paper, twoside, landscape]{extarticle}
+% Font size:    8pt
+% Paper size:   A4
+% style:        twoside (needed, so odd and even pages have different margins)
+% orientation:  portrait. (use 'landscape' for landscape orientation)
+
+
+% ========================================= DOCUMENT INFO =========================================
+\def\title{Analysis 2a}                             % title
+\def\shorttitle{An2a}                               % short title (displayed as PDF title)
+\def\dozent{Prof. Dr. Berhard Zgraggen}             % lecturer
+\def\semester{FS 2026}                              % semester
+\def\author{Simone Stitz, Mirko Ratti}              % author(s)
+\def\repo{https://gitlab.com/sstitz/analysis-2a}    % repository link
+\def\version{3.0.\today}                            % version
+\def\pagelimit{4}                                   % page limit -> causes pages after limit to be red
+\def\titleoption{ultra compact}                     % options: ultra compact, compact, normal
+\def\enableToC{false}
+
+% ================================= PACKAGES, SETUP AND COMMANDS ==================================
+\input{preamble.tex}
+
+
+% =========================================== DOCUMENT ============================================
+\begin{document}
+    \begin{layout}
+        \input{sections/01_integralrechnung.tex}
+    \end{layout}
+
+    \begin{multicols*}{2}
+        \raggedcolumns
+        \input{sections/02_geometrie.tex}
+        \input{sections/03_formeln_kurven.tex}
+        \input{sections/04_sonstiges.tex}
+    \end{multicols*}   
+\end{document}

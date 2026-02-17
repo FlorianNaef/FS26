@@ -1,0 +1,108 @@
+\section{Spektren}
+
+\subsection{Spektraldarstellungen}
+
+\subsubsection{Kosinus- und Sinus-Amplitudendiagramm}
+
+Koeffizienten $a_n$ und $b_n$ als Stabdiagramm
+
+\begin{center}
+    \includegraphics[width=0.9\linewidth]{images/spektrum_sinus_cosinus_neu.png}
+\end{center} 
+
+
+\subsubsection{Einseitiges Amplituden-/ Phasendiagramm}
+
+Schwingung ist Summe aus zwei phasenverschobenen Kosinusschwingungen \\
+(Hat nicht zwingend Ähnlichkeit zum Amplitudendiagramm.) 
+
+\smallskip
+
+$A_n$ und $\varphi_n$ \textrightarrow\ Addition der komplexen Amplituden
+
+\smallskip
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{ll}
+    $A_n = \vert a_n - \jimg b_n \vert = \sqrt{a_n^2 + b_n^2}$  & ($n = 1, \, 2, \, 3, \, \ldots)$                  \\  \medskip
+    $\varphi_n = \arg(a_n - \jimg b_n)$                         & ($n = 1, \, 2, \, 3 \, \ldots)$                   \\
+    $A_0 = \Big| \frac{a_0}{2} \Big|$                           & $\varphi_0 = \arg(a_0 - \jimg b_0) = \arg(a_0)$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\begin{center}
+    \includegraphics[width=0.9\linewidth]{images/spektrum_einseitig_neu.png}
+\end{center}
+
+\vspace{-0.2cm}
+
+
+\subsubsection{Zweiseitiges Amplituden-/ Phasendiagramm (komplex)}
+
+Zwei Diagramme für Betrag $\vert c_k \vert$ und Winkel $\arg(c_k)$ in jedem Punkt. \\
+\textrightarrow\ Das einseitige Amplitudendiagramm auf zwei Seiten aufgeteilt!
+
+\smallskip
+
+\begin{tabular}{lll}
+    $c_k = 0$                               & \textrightarrow\  & $\arg(c_k) = 0$               \\
+    $\vert c_k \vert = \vert c_{-k} \vert$  &                   & gerade (achsensymmetrisch)    \\
+    $\arg(c_{-k}) = - \arg(c_k)$            &                   & ungerade (punktsymmetrisch)   
+\end{tabular}
+
+\medskip
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lcl}
+    $A_n = \vert a_n - \jimg b_n \vert = \vert 2 c_n \vert = 2 \vert c_n \vert$ & & $\varphi_n = \arg(a_n - \jimg b_n) = \arg(2 c_n) = 2 \arg(c_n)$   \\
+    \textrightarrow\ $c_k = \frac{A_n}{2}$                                      & & \textrightarrow\ $\arg(c_n) = \frac{\arg(A_n)}{2}$ 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\smallskip
+
+\textrightarrow\ \textbf{Ausnahme:} $\bm{|c_0| = A_0}$
+
+\begin{center}
+    \includegraphics[width=0.9\linewidth]{images/spektrum_zweiseitig_neu.png}
+\end{center}
+
+\vspace{-0.2cm}
+
+
+\subsection{Zeit- und Frequenzbereich}
+
+\begin{tabular}{ll}
+    Zeitbereich:        & Aussagen über Funktion    \\
+    Frequenzbereich:    & Aussagen über Spektrum	
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{ll}
+    Fourier-Analyse:    & aus Funktion $f(t)$ die Fourier-Reihe bilden          \\
+    Fourier-Synthese:   & Aus Spektrum Fourier-Reihe (und somit $f(t)$) finden 
+\end{tabular}
+
+
+\columnbreak
+
+\para{Legende für folgenden Bilder}
+
+\begin{enumerate}[label=\protect\circlednumber{\arabic*}]
+    \item Sinus- / Kosinusamplitudendiagramm
+    \item Einseitiges Amplituden- / Phasendiagramm
+    \item Zweiseitiges Amplituden- / Phasendiagramm
+\end{enumerate}
+
+\begin{center}
+    \includegraphics[width=0.9\linewidth]{images/zeit_frequenz_1.png}
+    \includegraphics[width=0.9\linewidth]{images/zeit_frequenz_3.png}
+    \includegraphics[width=0.9\linewidth]{images/zeit_frequenz_2.png}
+\end{center}
+
+
+\subsubsection{(Periodisches) Weisses Rauschen}
+
+Überlagerung von Schwingungen aller möglicher Frequenzen mit gleicher Amplitude und zufälliger Phase 
+

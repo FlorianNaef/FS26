@@ -1,0 +1,106 @@
+\section{Basics}
+
+\subsection{Grundsätzlich}
+
+C++ ist sehr ähnlich zu C. Es gibt aber einige wichtige Änderungen zu C:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item zu benutzender Compiler heisst jetzt \texttt{clang++}
+    \item Nativen Bool Typ : \textbf{bool}
+    \item richtiges Konstanten Schlüsselwort : \textbf{constexpr}
+    \item Standartbibliotheken haben kein .h mehr beim Aufrufen
+    \item C Standartbibliotheken können weiter verwendet werden, haben aber ein C im Header(stdio.h $\rightarrow$ cstdio)
+    \item Char-Literale (z. B. 'A') haben in C++ den Datentyp char (in C war es int)(Brauchen ein const)
+    \item Es gibt benannte Namensräume. Wichtigster Namensraum für die STL: \texttt{std}
+\end{itemize}
+
+\subsection{Hello world C++}
+
+\lstinputlisting{code/hello_World.cpp}
+
+\subsection{Range-based for Loop}\label{forEach}
+
+Range based for Loops laufen automatisch ein Array ab, ohne das zuerst die Grösse ermittelt werden muss. 
+Die C for loop syntax wurde etwas erweitert.
+Syntax:
+
+\lstinputlisting{code/forEach.cpp}
+
+Siehe: Als Array Name wird ein \texttt{Pointer} auf das Array verlangt, nicht auf das erste Element!  
+Ein foreach funktioniert \textbf{nicht} mit einem \textbf{Pointerpointer}. 
+
+\subsection{Streams}
+
+Ein Stream repräsentiert einen generischen sequentiellen Datenstrom. Z.b: ein Eingabefeld, Dateien oder Netzwerktraffic.\\
+Die wichtigsten Operatoren sind:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \verb|<<| : Inserter $\rightarrow$  Daten einfügen
+    \item \verb|>>| :  Extractor $\rightarrow$ Daten herausholen
+\end{itemize}
+
+Für Standardklassen sind diese Operatoren bereits definiert.
+
+\subsubsection*{Standardstreams}
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \textbf{cin} : Standard Eingabe
+    \item \textbf{cout} : Standard Ausgabe
+    \item \textbf{cerr} : Standard Fehlerausgabe, 
+    \item \textbf{clog} : Standard Log Ausgabe, möglicherweise mit cerr gekoppelt 
+\end{itemize}\vspace{0.5em}
+
+\textbf{\texttt{cin}/\texttt{cout} Immer ganz links!}, operatoren klar und lesbar anordnen
+
+\subsubsection{Streamformatierung}
+
+Formatierungen der Streams können mit folgenden Schlüsselwörtern erreicht werden:
+
+
+\begin{center}
+    \begin{tabular}{ll}
+        \rowcolor[RGB]{239,239,239} 
+        \textbf{Flag} & \textbf{Wirkung}                                        \\ \hline
+        boolalpha     & bool-Werte werden textuell ausgegeben                   \\
+        dec           & Ausgabe erfolgt dezimal                                 \\
+        fixed         & Gleitkommazahlen im Fixpunktformat                      \\
+        hex           & Ausgabe erfolgt hexadezimal                             \\
+        internal      & Ausgabe innerhalb Feld                                  \\
+        left          & linksbündig                                             \\
+        oct           & Ausgabe erfolgt oktal                                   \\
+        right         & rechtsbündig                                            \\
+        scientific    & Gleitkommazahl wissenschaftlich                         \\
+        showbase      & Zahlenbasis wird gezeigt                                \\
+        showpoint     & Dezimalpunkt wird immer ausgegeben                      \\
+        showpos       & Vorzeichen bei positiven Zahlen anzeigen                \\
+        skipws        & Führende Whitespaces nicht anzeigen                     \\
+        unitbuf       & Leert Buffer des Outputstreams nach Schreiben           \\
+        uppercase     & Alle Kleinbuchstaben in Grossbuchstaben wandeln
+    \end{tabular}
+\end{center}
+
+\cor{Folgende Funktionen setzten Header \textbf{$<$iomanip$>$} voraus:}
+
+
+\begin{tabular}{|l|p{4cm}|p{2cm}|}
+        \hline
+        \textbf{Manipulator}     & \textbf{Effekt / Funktionsweise} & \textbf{Gültigkeit} \\ 
+        \hline
+        \texttt{setw(n)}         & Setzt die minimale Feldbreite. Ist der Inhalt kürzer, wird mit Füllzeichen (Standard: Leerzeichen) aufgefüllt. & \textbf{Einmalig. Auch für Strings.} \\ 
+        \hline
+        \texttt{setprecision(n)} & \textbf{Ohne \texttt{fixed}}: legt die Gesamtzahl signifikanter Stellen fest. \newline \textbf{Mit \texttt{fixed}}: legt nur die Anzahl der Nachkommastellen fest. & \textbf{Dauerhaft (für den Stream).} \\ 
+        \hline
+        \texttt{fixed}           & Erzwingt Festkommadarstellung und deaktiviert die wissenschaftliche Notation. Reihenfolge zu \texttt{setprecision} ist egal. & \textbf{Dauerhaft.} \\ 
+        \hline
+\end{tabular}
+
+
+\subsection{Namespaces}
+
+Namespaces helfen, Namenskonflikte zu verhindern. 
+Sie fügen ein Namensvorsatz zu allen Variablen. 
+Können sehr mächtig sein, führt aber zu Komplexität
+
+\cor{Besser mit kleine Buchstaben starten}
+
+\lstinputlisting{code/namespace.cpp}

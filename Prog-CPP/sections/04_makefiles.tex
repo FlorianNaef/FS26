@@ -1,0 +1,58 @@
+\section{Makefiles}
+
+Makefiles sollten generell das Umsetzten des Codes in Maschinencode vereinfachen.
+Es ist eine \texttt{Skriptingsprache} welche grob nach dem Muster \texttt{Erzeugnis/target} : \texttt{Abhängigkeiten/Dependency} folgt. 
+Dann folgt indentiert der Befehl, um dieses Erzeugnis zu erzeugen.\\
+Wenn ein Erzeugnis keine Datei zurückgibt, muss dieser als \texttt{.PHONY} markiert werden. 
+Das verhindert, dass eine Datei mit demselben Namen das Ausführen verhindert.\\
+Am besten sieht man das an einem Beispiel:
+
+\lstinputlisting[language = Make, frame=single]{code/make1}
+
+Der Befehl \texttt{make all} baut nun das Projekt.\\
+Sind die o Dateien noch aktuell werden diese nicht erneut kompiliert. 
+Das Projektverzeichnis kann einfach durch \texttt{make clean} aufgeräumt werden.
+
+\subsection{Platzhalter}
+
+In einem Makefile können auch Platzhalter verwendet werden:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \textbf{\$ @} Dateiname des Targets
+    \item \textbf{\$ $<$} Dateiname der ersten Dependency des aktuellen Targets
+    \item \textbf{\$ $\wedge$} Dateiname aller Dependencies des aktuellen Targets durch Leerzeichen getrennt
+\end{itemize}
+
+Mit diesen Mitteln kann ein Professionelleres Makefile erstellt werden, welches relativ universell eingesetzt werden kann:
+
+\lstinputlisting[language = Make, frame=single]{code/make2}
+
+\columnbreak
+
+\section{Styleguide}
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \textbf{Variablen, Konstanten}
+    \begin{itemize}[itemsep=1pt, parsep=0pt]
+        \item mit Kleinbuchstaben beginnen
+        \item erster Buchstaben von zusammengesetzten Wörtern ist gross (mixed case)
+        \item keine Underscores
+    \end{itemize}
+    Beispiele : counter, maxSpeed
+    \item \textbf{Funktionen}
+    \begin{itemize}[itemsep=1pt, parsep=0pt]
+        \item mit Kleinbuchstaben beginnen
+        \item erster Buchstaben von zusammengesetzten Wörtern ist gross (mixed case)
+        \item Namen beschreiben Tätigkeiten
+        \item keine Underscores
+    \end{itemize}
+    Beispiele : getCount(), init(), setMaxSpeed()
+    \item \textbf{Klassen, Strukturen, Enums}
+    \begin{itemize}[itemsep=1pt, parsep=0pt]
+        \item mit Grossbuchstaben beginnen
+        \item erster Buchstaben von zusammengesetzten Wörtern ist gross (mixed case)
+        \item keine Underscores
+        \item Namen beschreiben Dinge
+    \end{itemize}
+    Beispiele : MotorController, Queue, Color
+\end{itemize}

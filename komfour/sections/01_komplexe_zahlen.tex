@@ -1,0 +1,349 @@
+\section{Komplexe Zahlen}
+
+\subsection{Darstellungsformen von komplexen Zahlen}
+
+\subsubsection{Normalform (kartesisch)} 
+
+\vspace{-0.2cm}
+
+$$ z = z_1 + \, \jimg z_2 \qquad z_1 = \RE(z) \qquad z_2 = \IM(z) \qquad \vert z \vert = \sqrt{z_1^2 + z_2^2} $$
+
+
+\para{Umrechnung in Polarform} 
+
+\vspace{-0.2cm}
+
+$$ r =  \vert z \vert = \sqrt{z_1^2 + z_2^2} \qquad 
+\varphi = 
+\begin{cases}			
+    \arctan \Big( \frac{z_2}{z_1} \Big) \quad \quad  \big| \,  z_1 \geq 0,  & \quad \arccos \Big( \frac{z_1}{r} \Big) \, \big| \,  z_2 \geq 0  \\
+    \arctan \Big( \frac{z_2}{z_1} \Big) + \pi \, \:  \big| \, z_1 < 0,      & \: - \arccos \Big( \frac{z_1}{r} \Big) \, \big| \,  z_2 < 0
+\end{cases} $$ 
+
+
+\subsubsection{Polarform / \cbl{Eulerform}}
+
+\vspace{-0.2cm}
+
+$$ z = r \cdot \cjs(\varphi) = r \cdot \big[ \cos(\varphi) + \jimg \sin(\varphi)] = \cbl{r \cdot \e^{ \jimg \varphi}} \qquad \varphi = \arg(z) $$
+
+
+\para{Umrechnung in Normalform (kartesisch)}
+
+\vspace{-0.2cm}
+
+$$ \RE(z) = z_1 = \vert z \vert \, \cos(\varphi) \qquad \qquad \IM(z) = z_2 = \vert z \vert \, \sin(\varphi) $$ 
+
+
+\subsubsection{Wichtige Zusammenhänge}
+
+\vspace{-0.2cm}
+
+$$ \jimg^2 = -1 \qquad \frac{1}{\jimg} = -\jimg \qquad \e^{\jimg \, \pi} = -1 \qquad
+\e^{\jimg \frac{\pi}{2}} = \jimg \qquad \jimg^{\jimg} = \e^{- \frac{\pi}{2} + 2k \pi} \qquad | \cjs(\varphi)| = 1 $$
+
+
+\subsubsection{Geometrische Aspekte von komplexen Zahlen}
+
+\begin{minipage}[t]{0.49\columnwidth}
+    \includegraphics[width=\columnwidth, align=t]{images/komplexe_zahlen_uebersicht.png}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\columnwidth}
+    \para{komplex-konjugieren}
+
+    \textrightarrow\ Spiegelung an \textbf{reeller} Achse
+
+    \medskip
+
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{l c l}
+        $\overline{a + b} = \overline{a} + \overline{b}$            & & $\overline{a - b} = \overline{a} - \overline{b}$          \\ 
+        $\overline{a \cdot b} = \overline{a} \cdot \overline{b}$    & & $\overline{a \div b} = \overline{a} \div \overline{b}$
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+
+    \medskip
+    \medskip
+
+    \para{Multiplikation mit $\bm{(-1)}$}
+
+    \textrightarrow\ Punktspeigelung am Ursprung
+\end{minipage}
+
+
+\subsection{Rechenoperationen}
+
+\subsubsection{Addition / Subtraktion}
+
+Gleiches Vorgehen wie in $\mathbb{R}$ (\textbf{kartesisch})
+
+\smallskip
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{ll}
+    Addition:       & $(a_1 + \jimg a_2) + (b_1 + \jimg b_2) = (a_1 + b_1) + \jimg (a_2 + b_2)$ \\
+    Subtraktion:    & $(a_1 + \jimg a_2) - (b_1 + \jimg b_2) = (a_1 - b_1) + \jimg (a_2 - b_2)$ 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Multiplikation}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{ll}
+    kartesisch:     & $(a_1 + \jimg a_2) \cdot (b_1 + \jimg b_2) = (a_1 b_1 - a_2 b_2) + \jimg (a_1 b_2 + a_2 b_1)$ \\
+    \textbf{polar:} & $a \cdot b = \vert a \vert \vert b \vert \, e^{\jimg (\varphi_1 + \varphi_2)}$                \\
+                    & \textrightarrow\ Beträge multiplizieren und Argumente (Winkel) addieren
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Division}
+
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{ll}
+    kartesisch:     & $\frac{(a_1 + \jimg a_2)}{(b_1 + \jimg b_2)} = \frac{(a_1 + \jimg a_2) \cbl{(b_1 - \jimg b_2)}}{(b_1 + \jimg b_2) \cbl{(b_1 - \jimg b_2)}} = \frac{\text{ausmultiplizieren}}{b_1^2 + b_2^2}$ \\
+    \textbf{polar:} & $\frac{a}{b} = \frac{\vert a \vert}{\vert b \vert} \, \e^{\jimg (\varphi_1 - \varphi_2)}$                                                                                                    \\
+                    & \textrightarrow\ Beträge dividieren und Argumente (Winkel) subrahieren
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\smallskip
+
+\textbf{Hinweis:} Es gilt: $\Big| \frac{a}{b} \Big| = \frac{\vert a \vert}{\vert b \vert}$ 
+
+
+\subsubsection{Potenzieren (De Moivre)}
+
+\textbf{Potenzgesetze gelten weiterhin für \myul{ganzzahlige} Exponenten!}
+
+$$ z^n = r^n \cdot \big[ \cos(\alpha) + \jimg \sin(\alpha) \big]^n = r^n \cdot \big[ \cos(n \alpha) + \jimg \sin(n \alpha) \big] \text{ für } n \in \mathbb{N} $$
+
+Mit der Formel von de Moivre können \textbf{Mehrfachwinkelformeln} aus der Trigo hergleitet werden:
+
+\includegraphics[width=\columnwidth]{images/mehrfachwinkel.PNG}
+\includegraphics[width=\columnwidth]{images/mehrfachwinkel_2.PNG}
+
+
+\subsubsection{Wurzel ziehen (Radizieren)}
+
+\crd{\textbf{Die Wurzelgesetze gelten in den komplexen Zahlen NICHT!}}
+	
+\smallskip
+
+Die $n$-te Wurzel einer (komplexen) Zahl hat \textbf{$\bm{n}$ Lösungen}, angeordnet in einem regelmässigen $n$-Eck um den Ursprung.
+
+$$ z^n = a \qquad \qquad \vert z \vert = \sqrt[n]{\vert a \vert} \qquad \qquad \arg(z) = \frac{\arg(a)}{n} $$
+
+
+\example{$\bm{\sqrt[\cbl{4}]{-16} \quad (z^n = a = -16)}$}
+
+
+\begin{minipage}[t]{0.55\columnwidth}
+
+    $$ \vert z \vert = \vert z_i \vert =  \sqrt[n]{\vert a \vert} = \sqrt[4]{16} = 2 $$
+    
+    \smallskip
+
+    $\vert z_i \vert = \sqrt[\cbl{4}]{16} = 2$ 
+    \medskip
+
+    $\arg(z_1) = \frac{\arg(a)}{n} = \frac{180 \degree}{\cbl{4}} = 45 \degree$  \\
+    $\arg(z_2) = 45 \degree + \frac{360 \degree}{\cbl{4}} = 135 \degree$        \\
+    $\arg(z_3) = 135 \degree + 90 \degree = 225 \degree$                        \\
+    $\arg(z_4) = 225 \degree + 90 \degree = 315 \degree$ 
+
+    \medskip
+
+    \begin{tabular}{l c l}
+        $z_1 = \sqrt{2} + \jimg \sqrt{2} $  & & $z_2 = - \sqrt{2} + \jimg \sqrt{2}$ \\
+        $z_3 = - \sqrt{2} - \jimg \sqrt{2}$ & & $z_4 = \sqrt{2} - \jimg \sqrt{2}$
+    \end{tabular}
+    
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.4\columnwidth}
+    \includegraphics[width=\columnwidth, align=t]{images/wurzel.png}
+\end{minipage}
+
+\medskip
+
+% Beginn - Code von Fabian Steiner
+% NOTE: j durch \jimg ersetzt
+$$ z = r \cdot \e^{\varphi \jimg} \rightarrow z^\frac{1}{n} = \sqrt[n]{z} = \{ \sqrt[n]{z} \cdot \e^{\left( \frac{\varphi}{n}+ k\cdot\frac{2\pi}{n}\right)\cdot \jimg} \quad \vert k\in \mathbb{N} \And k > n\} $$
+% Ende - Code von Fabian Steiner
+
+\columnbreak
+
+
+\para{Einheitswurzel $\bm{\sqrt[n]{1}}$}		
+
+Durch Multiplikation mit der $n$-ten Einheitswurzel erreicht man eine reine Drehung um $\frac{360}{n}$ Grad im \textbf{Gegenuhrzeigersinn}. \\	
+\textbf{Achtung!} Die erste Lösung von $\sqrt[n]{1}$ ist immer die reelle Zahl 1\\
+\textrightarrow\ nächste Lösung verwenden!
+
+\includegraphics[width=\columnwidth]{images/einheitswurzel.PNG}
+
+
+\subsubsection{Komplexwertige Exponentialfunktion}
+
+\vspace{-0.2cm}
+
+$$ \e^z = \e^{z_1 + \jimg z_2} = \e^{z_1} \cdot \e^{\jimg z_2} = \e^{z_1} \cdot \cjs(z_2) $$
+
+\textrightarrow\ Die Exponentialfunktion ist $2 \pi \jimg$-periodisch (auf imaginärer Achse)
+
+\medskip
+
+\para{Exponentialgesetze}
+
+Die Exponentialgesetze bleiben in $\mathbb{C}$ für \myul{ganzzahlige} Exponenten erhalten!
+
+\smallskip
+
+\begin{tabular}{l c l c l}
+    $\e^a \cdot \e^b = \e^{a+b}$    & & $\e^a : \e^b = \e^{a-b}$    & & $a, \; b \in \mathbb{C}$    \\
+    $(\e^a)^k = \e^{ka}$            & &                             & & $k \in \mathbb{Z}$
+\end{tabular}
+
+
+\example{Exponentialfunktion}
+
+\begin{itemize}
+    \item $\e^z = e^{\cor{1}\cbl{-\frac{\pi}{2}} \jimg} = \e^{\cor{1}} \cdot \cjs(\cbl{- \frac{\pi}{2}}) = \e \cdot (- \jimg) = -2.781 \jimg$
+    \item $\e^z = \e^{\cor{\ln(2)} + \cbl{3 \pi} \jimg} = \e^{\cor{\ln(2)}} \cdot \cjs(\cbl{3 \pi}) = 2 \cdot \cjs(\pi) = -2$ 
+\end{itemize}
+
+
+
+\subsubsection{Komplexwertige Logarithmusfunktion}
+
+\textbf{\crd{Ehemalige Log-Gesetze sind nur noch Kongruenzgesetze!}}
+
+$$ \Ln(z) = \ln(\vert z \vert) + \jimg \arg(z) \qquad (z \in \mathbb{C}, \, z \neq 0) $$
+
+\textrightarrow\ Die Exponentialfunktion ist $2 \pi \jimg$-periodisch (wie komplexe Exponentialfunktion)
+
+    
+
+\subsubsection{Allgemeine Potenzfunktion}
+
+\textbf{\crd{Es existieren keine Potenz- oder Kongruenzgesetze!}} 
+$$ a^b = \e^{b \cdot \Ln(a)} \qquad (a, \; b \in \mathbb{C}, \; a \neq 0) $$
+
+
+\subsubsection{Komplexwertige Trigonometrische Funktionen}
+
+\vspace{-0.2cm}
+
+$$ \sin(z) = \frac{\e^{\jimg z} - \e^{-\jimg z}}{2 \jimg} \qquad \qquad \cos(z) = \frac{\e^{\jimg z} + \e^{-\jimg z}}{2} \qquad \qquad
+\tan(z) = \frac{\sin(z)}{\cos(z)} $$ 
+
+
+\subsection{Polynome (vgl. Radizieren)}
+Alle Nullstellen des Polynoms $p(z) = a_n z^n + a_{n-1}z^{n-1} + \ldots + a_0$ liegen in der Gauss'schen Zahlenebene in einer
+Kreisscheibe um den Ursprung mit Radius $\sum\limits _{k=0}^n \bigl| \frac{a_k}{a_n} \bigl|$
+
+\smallskip
+
+Für Gleichungen vom Grad $\geq$ 5 existieren \textbf{keine} nur aus den 4 Grundoperationen und Wurzeln zusammengesezten Lösungsformeln.	
+
+
+\subsubsection{Polynome mit Koeffizienten $\bm{\in \mathbb{C}}$}
+
+Wichtige Eigenschaften von komplexen \textbf{und} reellen Polynomen:
+
+\smallskip
+
+\begin{enumerate}[itemsep=0.2cm]
+    \item Jedes komplexe Polynom vom Grad $\geq 1$ hat in $\mathbb{C}$ mindestens eine Nullstelle
+    \item Ein komplexes Polynom vom Grad $n$ zerfällt in $\mathbb{C}$ in lauter Linearfaktoren. \\
+        Die Faktoren müssen \textbf{nicht} verschieden sein.
+        Die Zerlegung ist bis auf die Reihenfolge eindeutig. \\
+        Beispiel: $a_n z^n + a_{n-1}z^{n-1} + \ldots + a_0 \quad \underrightarrow{\text{umformen}} \quad a_n \cdot (z - z_1) \cdot (z - z_2) \cdot \ldots \cdot (z - z_n)$
+    \item Vielfachheit: Ein komplexes Polynom vom Grad $n$ hat in $\mathbb{C}$ genau $n$ (verschiedene) Nullstellen, wenn diese mit ihrer 
+        Vielfachheit gezählt werden
+\end{enumerate}
+
+\medskip
+
+
+\para{Tipps und Tricks für Lösung von $\bm{p(z) = 0}$}
+
+\smallskip
+
+\begin{tabular}{ll}
+    \toprule
+    \textbf{Methode}    & \textbf{Beispiel für Anwendung}                                               \\
+    \midrule
+    Mitternachtsformel  & $p(z) = z^2 + (5 - 4 \jimg) z + (3 - 11 \jimg)$                               \\
+    \midrule
+    Wurzel ziehen       & $p(z) = z^3 -8 \jimg \quad \Leftrightarrow \quad z^3 = 8 \jimg$               \\
+    \midrule
+    ausklammern         & $p(z) = 1 z^3 + \jimg z^2 + 4z + 4 \jimg = z^2(z + \jimg) + 4(z + \jimg)$     \\
+    \midrule
+    3. Binom            & $(z^2 + 4) = (z^2 - (-4)) = (z^2 - (2 \jimg)^2)$                              \\
+    \midrule 
+    2. Binom	        & $(z^4 - 4 \jimg z^2 - 4) = (z^4 - 4 \jimg z^2 + 4 \jimg^2)= (z^2 - 2\jimg)^2$ \\
+    \midrule
+    NS abspalten        & Polynomdivision: $p(z) : (z - z_0)$ mit $z_0$ = NS                            \\
+    \bottomrule
+\end{tabular}
+
+\smallskip
+
+
+\subsubsection{Spezialfall: Polynome mit Koeffizienten $\bm{\in \mathbb{R}}$}
+
+Wichtige Eigenschaften von \textbf{reellen}  Polynomen:
+
+\smallskip
+
+\begin{enumerate}[itemsep=0.2cm]
+    \item Nicht-reelle Nullstellen treten immer als konjugiert-komplexe Paare mit gleicher Vielfachheit auf
+    \item Im reellen zerfällt $p(z)$ in (reelle) Linearfaktoren und nicht weiter zerlegbare quadratische Faktoren \\
+        Beispiel: $(z-z_0) \cdot (z- \overline{z_0}) \quad \underrightarrow{\text{ quadratischer reller Faktor}} \quad (z^2 - 2 \, \RE(z_0) \cdot z + \vert z_0 \vert ^2)$ 
+    \item Ein Polynom mit reellen Koeffizienten von \textbf{un}geradem Grad hat mindestens eine reelle Nullstelle
+\end{enumerate}
+
+\smallskip
+
+\textbf{Hinweis:} \\
+Wenn man eine (komplexe) Nullstelle $z_0$ des reellen Polynoms kennt, so kennt man auch die Nullstelle $\overline{z_0}$ \\
+Man muss nun \textbf{beide Nullstellen} bzw. ein \textbf{reelles quadratisches Polynom} von $p(z)$ abspalten!
+
+\columnbreak
+
+
+\subsection{Überlagerung von sinusförmigen Schwingungen}
+
+\vspace{-0.2cm}
+
+$$ \text{Darstellung einer Schwingung:} \quad A \cdot \sin(\omega t + \varphi) \quad \text{mit } \omega = \frac{2 \pi}{T} $$
+
+$A \cdot \sin(\omega t + \varphi)$ entspricht \textbf{Imaginärteil} von 
+$A \cdot \big[ \cos(\omega t + \varphi) + \jimg \sin(\omega t + \varphi) \big] = A \cdot \e^{\jimg (\omega t + \varphi)}$ 
+
+\includegraphics[width=\columnwidth]{images/summe-schwingungen.PNG}
+
+\smallskip
+
+\begin{tabular}{lll@{}}
+    Komplexe Amplitude $z_i(0)$ & $z_i(0) = A \cdot \e^{\jimg \varphi_i}$                                                                                       & (zeitunabhängig)  \\
+    'Schwingung' / 'Rotation'   & $z(t) = A \cdot \e^{\jimg (\omega t + \varphi)} = \underbrace{A \cdot \e^{\jimg \varphi}}_{z_i(0)} \cdot \e^{\jimg \omega t}$ & (zeitabhängig)
+\end{tabular}
+
+
+\para{Überlagerung gleichfrequenter Schwingungen ($\bm{z(t) = z_1(t) + z_2(t)}$)}
+
+Überlagerung gleichfrequenter Schwingungen entspricht grafischer Addition der beiden 'Zeiger' zu jedem Zeitpunkt.
+
+\smallskip
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+    reelle Amplitude:   & $A = \vert A_1 \cdot \e^{\jimg \varphi_1} + A_2 \cdot \e^{\jimg \varphi_2} \vert$      & (Betrag)  \\
+    Nullphasenwinkel    & $\varphi_0 = \arg(A_1 \cdot \e^{\jimg \varphi_1} + A_2 \cdot \e^{\jimg \varphi_2})$   & (Winkel)	
+\end{tabular}
+\renewcommand{\arraystretch}{1}

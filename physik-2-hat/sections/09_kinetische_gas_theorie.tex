@@ -1,0 +1,159 @@
+\section{Kinetische Gas-Theorie}
+
+\subsection{Aequipartitionsgesetz}
+
+\textbf{Mittlere kinetische Energie} 
+
+\smallskip
+
+Idealisierte Annahmen: 
+
+\begin{itemize}
+	\item Moleküle = Massenpunkte
+	\item Keine (bzw.) elastische Zusammenstösse
+	\item Keine Kräfte zwischen den Molekülen
+	\item Elastischer Stoss gegen Wand 
+	\item Alle Moleküle haben gleiche Geschwindigkeit
+	\item $\frac{1}{6}$ aller Moleküle fliegen gegen eine einzelne Wand
+\end{itemize}
+
+\medskip
+
+
+\begin{minipage}[c]{0.48\columnwidth}
+	$$ \boxed{ \overline{E} = f \cdot \frac{k \cdot T}{2} } $$
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\columnwidth}
+	\begin{tabular}{ll}
+		$f = 3$	& 1-atomiges Gas \\
+		$f = 5$	& 2-atomiges Gas \\
+		$f = 6$	& 3-atomiges Gas \\
+	\end{tabular}
+\end{minipage}
+
+\medskip
+
+\begin{tabular}{c l c}
+	$\overline{E}$	& Mittlere kinetische Energie												& $[\overline{E}] = \joule$ 		\\
+	$f$ 			& Freiheitsgrade 															& $[f] = 1$ 						\\
+	$k$ 			& Boltzmann-Konstante $k = 1.381 \cdot 10^{-23} \, \frac{\joule}{\kelvin}$	& $[k] = \frac{\joule}{\kelvin}$	\\
+	$T$ 			& \textbf{Absolute} Temperatur 												& $[T] = \kelvin$
+\end{tabular}
+
+
+\subsection{Geschwindigkeiten}
+
+\subsubsection{Mittlere quadratische Geschwindigkeit $\bm{u}$}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ u = \sqrt{\frac{3 \cdot k \cdot T}{m}} = \sqrt{ \frac{3 \cdot R \cdot T}{M}} } $$
+
+
+\subsubsection{Mittlere Geschwindigkeit $\bm{\overline{v}}$}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ \overline{v} = \sqrt{\frac{8 \cdot k \cdot T}{\pi \cdot m}} = \sqrt{ \frac{8 \cdot R \cdot T}{\pi \cdot M}} } $$
+
+
+\subsubsection{Wahrscheinlichste Geschwindigkeit $\boldsymbol{v_0}$}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ v_0 = \sqrt{\frac{2 \cdot k \cdot T}{m}} = \sqrt{ \frac{2 \cdot R \cdot T}{M}} } $$
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+	$k$ & Boltzmann-Konstante $k = 1.381 \cdot 10^{-23} \, \frac{\joule}{\kelvin}$	& $[k] = \frac{\joule}{\kelvin}$			\\
+	$T$ & \textbf{Absolute} Temperatur 												& $[T] = \kelvin$ 							\\
+	$m$ & Masse des Teilchens 														& $[m] = \kilogram$							\\
+	$M$ & Mol-Masse 																& $[M] = \frac{\kilogram}{\mole}$			\\
+	$R$	& Universelle Gaskonstante $R = 8.314 \, \frac{\joule}{\mole \, \kelvin}$ 	& $[R] = \frac{\joule}{\mole \, \kelvin}$ 	\\
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Maxwell-Boltzmann-Verteilung}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ f(m, \, T, \, v) = \sqrt{\frac{2 \cdot m^3}{\pi \cdot k^3 \cdot T^3 }}  \cdot v^2 \cdot \e ^{- \frac{m \cdot v^2}{2 \cdot k \cdot T}} } $$
+
+
+\begin{tabular}{c l c}
+	$m$ & Masse des Teilchens 														& $[m] = \kilogram$ 				\\
+	$k$ & Boltzmann-Konstante $k = 1.381 \cdot 10^{-23} \, \frac{\joule}{\kelvin}$	& $[k] = \frac{\joule}{\kelvin}$	\\
+	$T$ & \textbf{Absolute} Temperatur 												& $[T] = \kelvin$ 					\\
+	$v$ & Geschwindigkeit 															& $[v] = \frac{\meter}{\second}$
+\end{tabular}
+
+
+\subsection[Mittlere freie Weglänge]{Mittlere freie Weglänge $\boldsymbol{\overline{\lambda}}$}
+
+Gibt an, um welche Strecke sich ein Molekül im Mittel bis zum nächsten Zusammenstoss fortbewegen kann.
+
+$$ \boxed{ \overline{\lambda} = \frac{1}{\sqrt{2}} \cdot \frac{1}{n \cdot (\pi \cdot d^2 )} }  \qquad \text{mit Wirkungsquerschnitt } \sigma = \pi \cdot d^2$$
+
+\begin{tabular}{c l c}
+	$n$ & \crd{Molekül-Dichte} 	& $[n] = \frac{1}{\meter^3}$	\\	
+	$d$ & Molekül-Durchmesser 	& $[d] = \meter^2$
+\end{tabular}
+
+
+\subsection{Dichtefunktion}
+
+\begin{minipage}[c]{0.58\columnwidth}
+	Verteilungsfunktion der mittleren, freien Weglänge 
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.38\columnwidth}
+	$$ \boxed{ f(x) = \frac{1}{\overline{\lambda}} \cdot \e^{- \frac{x}{\overline{\lambda}}}  } $$
+\end{minipage}
+
+
+\subsection{Transportvorgänge}
+
+\subsubsection{Wärmeleitung}
+
+Transport von \textbf{kinetischer Energie} (als Wärme wahrgenommen)
+
+$$ \boxed{ j_Q = - \lambda_Q \cdot \frac{\mathrm{dT}}{\mathrm{dx}} \qquad \quad \lambda_Q = \frac{1}{6} \cdot n \cdot \overline{v} \cdot \overline{\lambda} \cdot f \cdot k }  $$
+
+\medskip
+
+\begin{minipage}[c]{0.48\columnwidth}
+	\subsubsection{Diffusion}
+
+	Transport von \textbf{Masse} 
+	$$ \boxed{ j_D = -D \cdot \frac{\mathrm{dn}}{\mathrm{dx}} \qquad \quad  D = \frac{1}{3} \cdot \overline{v} \cdot \overline{\lambda} }  $$
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\columnwidth}
+	\subsubsection{Viskosität}
+
+	Transport von \textbf{Impuls} 
+	$$ \boxed{ \tau = - \eta \cdot \frac{\mathrm{dv}}{\mathrm{dx}} \qquad \quad  \eta = \frac{1}{3} \cdot n \cdot \overline{v} \cdot \overline{\lambda} \cdot \rho }  $$
+\end{minipage}
+
+\medskip
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+	$j_Q$ 					& Wärmestrom 																& $[j_Q] = \frac{\watt}{\meter^2}$ 			\\
+	$\lambda_Q$ 			& Wärmeleitfähigkeit 														& $[\lambda_Q] = \frac{\watt}{\kelvin}$ 	\\
+	$j_D$ 					& Diffusionsstrom 															& $[j_D] = ?$ 								\\
+	$D$ 					& Diffusionskonstante 														& $[D] = \frac{\meter^2}{\second}$ 			\\
+	$\tau$ 					& Schubspannung 															& $[\tau] = \newton$ 						\\
+	$\eta$ 					& Viskosität	 															& $[\eta] = \pascal \, \second$ 			\\
+	$n$ 					& \crd{Molekül-Dichte} 														& $[n] = \frac{1}{\meter^3}$				\\	
+	$\overline{v}$ 			& Mittlere Geschwindigkeit 													& $[\overline{v}] = \frac{\meter}{\second}$	\\
+	$\overline{\lambda}$ 	& Mittlere freie Weglänge 													& $[\overline{\lambda}] = \meter$ 			\\
+	$f$ 					& Anzahl Freiheitsgrade 													& $[f] = 1$ 								\\
+	$k$ 					& Boltzmann-Konstante $k = 1.381 \cdot 10^{-23} \, \frac{\joule}{\kelvin}$	& $[k] = \frac{\joule}{\kelvin}$			\\
+	$T$ 					& \textbf{Absolute} Temperatur 												& $[T] = \kelvin$ 							\\
+	$\rho$ 					& Dichte 																	& $[\rho] = \frac{\kilogram}{\meter^3}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+

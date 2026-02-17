@@ -1,0 +1,53 @@
+% ========================================= TEMPLATE INFO ========================================
+%
+% Author:       P4ntomime
+% Version:      1.0.0
+% Last updated: 2024-02-18
+% Brief:        A LaTeX template for summaries. See README.md for more information.
+% 
+% ================================================================================================
+\documentclass[8pt, a4paper, twoside]{extarticle}
+% Font size:    8pt
+% Paper size:   A4
+% style:        twoside (needed, so odd and even pages have different margins)
+% orientation:  portrait. (use 'landscape' for landscape orientation)
+
+
+% ========================================= DOCUMENT INFO =========================================
+\def\title{Physik 2 - HAT}           				% title
+\def\shorttitle{Ph2 - HAT} 							% short title (displayed as PDF title)
+\def\dozent{Dr. David Sourlier}         			% lecturer
+\def\semester{FS 2023}    	 						% semester
+\def\author{Simone Stitz}        					% author(s)
+\def\repo{https://gitlab.com/sstitz/physik-2-hat}   % repository link
+\def\version{2.0.\today}    						% version
+\def\pagelimit{30}           						% page limit -> causes pages after limit to be red
+\def\titleoption{compact}   						% options: ultra compact, compact, normal
+\def\enableToC{true}
+
+% ================================= PACKAGES, SETUP AND COMMANDS ==================================
+\input{preamble.tex}
+
+
+% =========================================== DOCUMENT ============================================
+\begin{document}
+    \begin{layout}
+		\part{Hydrostatik / Hydrodynamik}
+        \input{sections/01_hydrostatik.tex}
+		\input{sections/02_hydrodynamik_ideale_fluide.tex}
+		\input{sections/03_hydrodynamik_reale_fluide.tex}
+
+		\part{Thermodynamik}
+		\input{sections/04_dehnung_streckung.tex}
+		\input{sections/05_ideales_gas.tex}
+		\input{sections/06_reales_gas.tex}
+		\input{sections/07_waerme.tex}
+		\input{sections/08_phasen.tex}
+		\input{sections/09_kinetische_gas_theorie.tex}
+		\input{sections/10_temperaturstrahlung.tex}
+		\input{sections/11_rueckwandlung_innere_energie.tex}
+		
+		\part{Anhang}
+		\input{sections/99_anhang.tex}
+    \end{layout}
+\end{document}

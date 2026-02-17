@@ -1,0 +1,115 @@
+\section{Molmassen wichtiger Atome}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c | c | c }
+    \textbf{Symbol} & \textbf{Molekül}  & \textbf{Molmasse}                 \\
+    \hline
+    H               & Wasserstoff       & $1.008 \, \frac{\gram}{\mole}$    \\
+    C               & Kohlenstoff       & $12.011 \, \frac{\gram}{\mole}$   \\
+    N               & Stickstoff        & $14.007 \, \frac{\gram}{\mole}$   \\
+    O               & Sauerstoff        & $15.999 \, \frac{\gram}{\mole}$   \\
+    Al              & Aluminium         & $26.982 \, \frac{\gram}{\mole}$   \\
+    Si              & Silicium          & $28.982 \, \frac{\gram}{\mole}$   \\
+\end{tabular}
+\renewcommand{\arraystretch}{1.3}
+
+
+\section{Ansätze zu Aufgaben}
+
+\subsection{Barometer}
+
+\begin{minipage}[t]{0.4\columnwidth}
+    \includegraphics[width=\columnwidth, align=t]{images/manometer.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.5\columnwidth}
+    $$ \boxed{ p_1 = p_0 + \underbrace{ \rho_{Fl} \cdot g \cdot h}_{\substack{p_s}} } $$
+ 
+    \begin{tabular}{ll}
+        $p_1$   & Gemessener Druck  \\
+        $p_0$   & Luftdruck         \\
+        $p_s$   & Schweredruck
+    \end{tabular}
+
+    \medskip
+
+    \textrightarrow\ Bernoulli \\
+    \textrightarrow\ Kontinuität
+\end{minipage}
+
+
+
+
+\subsection{Pitotrohr}
+Prandtl'sches Staurohr; Staudruckmesser \\
+Zur Messung von Strümungsgeschwindigkeiten 
+
+\begin{center}
+    \includegraphics[width=0.73\columnwidth]{images/pitotrohr.png}
+\end{center}
+
+
+$$ \boxed{ \text{Bernoulli horizontal:} \quad \underbrace{p_1}_{\substack{p_L}} + \frac{1}{2} \, \rho_1 \cdot \underbrace{v_1^2}_{\substack{0}} = \underbrace{p_2}_{\substack{p_L - \Delta p}} + \frac{1}{2} \, \underbrace{\rho_2}_{\substack{\rho_L}} \cdot v_2^2} $$
+
+$$ 0 = - \Delta p + \frac{1}{2} \, \rho_L \cdot v_2^2 \qquad \Rightarrow \Delta p =\frac{1}{2} \, \rho_L \cdot v_2^2 $$
+
+$$ \text{Gleichsetzen:} \quad \Delta p = \rho_{Fl} \cdot g \cdot h $$
+
+
+\subsection{Pumpe}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ W = P \cdot t = F \cdot \Delta s = p \cdot A \cdot \Delta s = p \cdot \Delta V } \qquad  \qquad \boxed{ F = p \cdot A }  $$
+
+$$ \boxed{ P =  \frac{W}{t} = \frac{p \cdot V}{t} = p  \cdot  \dot{V} } $$
+
+
+\subsection{Bewegungen}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ P = F \cdot v } \qquad \qquad \boxed{ E_{\rm kin} = \frac{1}{2} \, m \cdot v^2 } $$
+
+
+
+\subsection{U-Rohr}
+
+\begin{minipage}[t]{0.35\columnwidth}
+\includegraphics[width=\columnwidth, align=t]{images/u-rohr.png}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.6\columnwidth}
+
+    Ansatz: Druckgleichgewicht 
+
+    $$ \boxed{ p_1 = p_2 } $$
+
+    $$ \boxed{ \rho_1 \cdot g \cdot h_1 = \rho_2 \cdot g \cdot h_2 } $$
+\end{minipage}
+
+
+\subsection{Wasser mit Dampf erhitzen}
+
+Ein Tasse mit $m_W = 200 \, \gram$ Wasser  mit einer Temperatur von $T_K = 20 \, \celsius$ wird an
+der Wasserdampfdüse einer Kaffeemaschine mittels Wasserdampf erhitzt. \\
+Der aus der Kaffeemaschine ausströmende Wasserdampf ist $T_H = 96 \, \celsius$ heiss. \\
+Am Schluss haben Sie 10 \% mehr Wasser in der Tasse. (entspricht $m_D$)\\
+Wie warm ist das Wasser nun?
+
+$$ \text{Ansatz: 1. Hauptsatz} \quad \Delta Q_{\rm zu} = \Delta Q_{\rm ab} $$ 
+$$ m_W \cdot c_W \, (T_M - T_K) = q_s \cdot m_D + m_D \cdot c_W \, (T_H - T_M) $$
+
+
+\subsection{Eis in Wasser schmelzen}
+
+In einem Gefäss beifinden sich $m_W = 1 \, \kilogram$ Wasser. \\
+Dazu wird ein Eiswürfel von $m_E = 20 \, \gram$ gegeben. \\
+Das Eis hat eine Temperatur von $T_E = -5 \, \celsius$ und das Wasser hat eine Temperatur $T_W$. Die Temperatur $T_0$ steht 
+für $0 \, \celsius$ bzw. $275.15 \, \kelvin$ \\
+Gesucht ist die Mischtemperatur $T_M$ 
+
+$$ \Delta Q_{\rm ab} = \Delta Q_{\rm zu} $$
+$$ m_W \cdot c_W \cdot (T_W - T_M) = m_E \cdot c_E \cdot (T_0 - T_E) + q_f \cdot m_E + m_E \cdot c_W \cdot (T_M - T_0) $$
+
+

@@ -1,0 +1,126 @@
+\section{Potenzreihen}
+
+\vspace{-0.2cm}
+
+$$ \sum\limits _{n=0}^\infty a_n (x - x_0)^n = f(x) \qquad \quad a_n = \frac{f^{(n)}(x_0)}{n!} \quad \text{(Taylor-Theorie)} $$
+
+\begin{tabular}{lllll}
+    $a_n$   & Koeffizienten (Gewichte)  & & $x_0$   & Entwicklungsstelle \\
+    $x$     & Variable                  & & $f(x)$  & Summenfunktion 
+\end{tabular}
+
+
+\subsection{Wichtige Potenzreihen}{1076 ff}
+
+\textbf{Hinweis:} In folgender Notation gilt Entwicklungsstelle $x_0 = 0$
+
+\renewcommand{\arraystretch}{3}
+\begin{tabular}{ll}
+    $\sum\limits _{n=0}^\infty 1 \: x^n = \frac{1}{1-x} $                                           & \cbl{Konvergenz} wenn $(\vert x \vert < 1)$ \quad Geom. Reihe G.R.            \\
+    $\sum\limits _{n=0}^\infty \frac{1}{n!} x^n = \mathrm{e}^x $                                    & \cbl{Konvergenz} wenn  $(\vert x \vert < \infty \: ; \: x \in \mathbb{R})$    \\
+    $\sum\limits _{n=0}^\infty \frac{(-1)^{n}}{n+1} x^{n+1} = \ln(1+x)$                             & \cbl{Konvergenz} wenn $(-1 < x \leq 1)$                                       \\
+    $\sum\limits _{n=0}^\infty \frac{1}{n+1} x^{n+1} = - \ln(1-x)$                                  & \cbl{Konvergenz} wenn $(\vert x \vert < 1)$                                   \\
+    $ 2 \cdot \sum\limits _{n=0}^\infty \frac{x^{2n+1}} {2n+1} = \ln \Big( \frac{1+x}{1-x} \Big)$   & \cbl{Konvergenz} wenn $(\vert x \vert < 1)$                                   \\
+    $\sum\limits _{n=0}^\infty \frac{(-1)^{n}}{(2n+1)!} x^{2n+1} = \sin(x)$                         & \cbl{Konvergenz} wenn $(\vert x \vert < \infty)$                              \\
+    $\sum\limits _{n=0}^\infty \frac{(-1)^{n}}{(2n)!} x^{2n} = \cos(x)$                             & \cbl{Konvergenz} wenn $(\vert x \vert < \infty)$                              \\
+    $\sum\limits _{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!} = \sinh(x)$                                 & \cbl{Konvergenz} wenn $(\vert x \vert < \infty)$                              \\
+    $\sum\limits _{n=0}^\infty \frac{x^{2n}}{(2n)!} = \cosh(x)$                                     & \cbl{Konvergenz} wenn $(\vert x \vert < \infty)$                              \\
+    $\sum\limits _{n=0}^\infty \frac{(-1)^{n} \, x^{2n+1}}{2n+1} = \arctan(x)$                      & \cbl{Konvergenz} wenn $(\vert x \vert < 1)$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Substitution}
+
+Ein Term kann jederzeit substituiert werden. \\
+\textbf{Der Definitionsbereich darf nicht verlassen werden!} 
+
+
+\example{Substitution}
+
+\vspace{-0.2cm}
+
+$$ \sum\limits _{n=0}^\infty \Bigl( \underbrace{-\frac{8}{3}(x+1) }_{\substack{q}} \Bigr)^n \quad \text{ \textrightarrow\ Auf Geom. Reihe bringen durch Substitution} $$
+\textbf{Def-Bereich:} \quad $\vert q \vert < 1$ damit Geom. Reihe \cbl{konvergent} \textrightarrow\ $\big| -\frac{8}{3}(x+1) \Big| < 1$
+
+
+\subsection{Summieren / Taylor-Entwicklung}
+
+\renewcommand{\arraystretch}{2.3}
+\begin{tabular}{llll}
+    Summieren:          & $\sum\limits _{n=0}^\infty a_n (x - x_0)^n$   & \textrightarrow\ & $f(x)$                                         \\
+    Taylor-Entwicklung: & $f(x)$                                        & \textrightarrow\ & $\sum\limits _{n=0}^\infty a_n (x - x_0)^n$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Konvergenzbereich (Kreisscheibe)}
+
+\begin{minipage}[c]{0.35\linewidth}
+    $$ \underbrace{\vert x - x_0 \vert}_{\substack{\text{Kreisscheibe}}} <
+    \underbrace{\frac{1}{\lim\limits_{n \to \infty} \sqrt[n]{\vert a_n \vert}}}_{\substack{\text{Radius}}} $$
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.64\linewidth}
+    \include{tikz/konvergenzradius}
+\end{minipage}
+
+
+\subsubsection{Spezialfälle}
+
+\vspace{-0.3cm}
+
+\renewcommand{\arraystretch}{2.2}
+\begin{tabular}{lll}
+    1)  & $\lim\limits_{n \to \infty} \sqrt[n]{\vert a_n \vert} = 0^+$          & \textrightarrow\ $r = + \infty$           \\
+    2)  & $\limsup\limits_{n \to \infty} \sqrt[n]{\vert a_n \vert}$ ev. nötig   & untere Grenze bei versch. mögl. Radien    \\
+    3)  & $\lim\limits_{n \to \infty}\vert \frac{a_{n+1}}{a_n} \vert$           & geht auch (Wurzelersatz)
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Rand des Konvergenzbereichs}
+
+Es ist eine Spezialanalyse nötig, um zu sehen, ob auch Randstellen konvergieren!
+
+\smallskip
+
+Randstelle konkret in Reihe einsetzen und mit einer der folgenden Methoden auf Konvergenz untersuchen: \\
+Leibniz, Majorante, Minorante, Integral, ...
+
+
+\subsection{Ableiten einer Reihe}
+
+\vspace{-0.2cm}
+
+$$ \sum\limits _{n=0}^\infty a_n \, x^n = f(x) \quad  \underrightarrow{\text{ableiten}} \quad 
+ \sum\limits _{n=0}^\infty a_n \, n \, x^{n-1} = f'(x)  \qquad \vert x \vert < r$$ 
+
+
+\subsubsection{Höhere Ableitungen}
+
+Logik wiederholen! \qquad \textbf{Konvergenzradius $\bm{\vert x \vert < r}$ bleibt erhalten}
+
+$$ \text{Zweite Ableitung:} \quad  \sum\limits _{n=0}^\infty a_n \; n(n-1) \, x^{n-2} = f''(x) \qquad \vert x \vert < r $$
+$$ n \text{-te Ableitung:} \qquad \sum\limits _{n=0}^\infty a_n \, n(n-1) \, \cdots \, (n-i+1) \, x^{n-i} = f^{(i)}(x) $$
+
+
+\subsection{Integrieren einer Reihe}
+
+\textbf{Konvergenzradius $\bm{\vert \bm{x} \vert < r}$ bleibt erhalten} 
+
+$$ \sum\limits _{n=0}^\infty a_n x^n = f(x) \quad \text{ \textrightarrow\ } \quad 
+\sum\limits _{n=0}^\infty a_n \frac{x^{n+1}}{n+1} = \int f(x) \, \diff x + C  \qquad \vert x \vert < r $$
+
+\textbf{Hinweis:} Der Koeffizient vor $x^{n+1}$ entspricht dem Term $\frac{a_n}{n+1}$
+\smallskip
+Für Konstante C: Entwicklungsstelle $x_0$ auf beiden Seiten einsetzen \quad (hier: $x_0 = 0$)
+
+
+\subsection{Limitsatz von Abel (Rand)}
+
+\vspace{-0.2cm}
+$$ \sum\limits _{n=0}^\infty a_n x^n = f(x) \qquad x = r \text{(Rand rechts)} \quad \sum\limits _{n=0}^\infty a_n r^n \text{(Zahlenreihe)} $$
+$$ \text{Wenn Zahlenreihe \cbl{konvergiert}, dann } \sum\limits _{n=0}^\infty a_n r^n = f(x=r) = \lim\limits_{x \to r^-} f(x) $$
+\textrightarrow\ analog mit linkem Rand $(x = -r)$ und rechtsseitiges Limit
+

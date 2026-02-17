@@ -1,0 +1,267 @@
+
+\section{Temperaturstrahlung}
+
+\begin{itemize}
+	\item Wärmestahlung = Berührungslose Übertragung von Wärme 
+	\item In Form von elektromagnetischen Wellen ($\lambda$ @ IR)
+	\item Körper absorbiert elektromagn. Strahlung und erhöht seine Temperatur
+	\item Jeder Körper mit $T > 0 \, \kelvin$ straht Wärme ab (Temp-strahlung)
+	\item Für jede Wellenlänge muss ein Körper gleich viel Energie abstahlen, wie er zuvor aufgenommen hat!
+\end{itemize}
+
+
+\columnbreak
+
+\subsection{Strahlungs-Gesetze}
+
+\subsubsection{Stefan-Boltzmann-Gesetz}
+
+\begin{itemize}
+	\item Idealer schwarzer Körper (Hohlraum) absorbiert \textbf{alle Wellenlängen zu 100 \%}
+	\item Je mehr ein Körper absorbiert, desto mehr muss er emmitieren \textbf{(Energie-Gleichgewicht)}
+\end{itemize}
+
+
+Ein schwarzer Körper (=Hohlraumstrahler) der Temperatur $T$ hat eine totale Abstrahlungs-Leistung \textbf{pro Oberfläche} $K_S$ von: 
+$$ \boxed{ K_S = \sigma \cdot T^4 }  $$
+
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+	$K_S$ 		& Schwarzkörper-Emission 																			& $[K_S] = \mathrm{\frac{W}{m^2}}$ 					\\
+	$\sigma$ 	& Stefan-Boltzmann-Konstante $\sigma = 5.671 \cdot 10^{-8} \, \frac{\watt}{\meter^2 \, \kelvin^4}$ 	& $[\sigma] = \frac{\watt}{\meter^2 \, \kelvin^4}$	\\
+	$T$ 		& \textbf{Absolute} Temperatur 																		& $[T] = \mathrm{K}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Wien'sches Verschiebungsgesetz}
+
+Verschiebung der maximalen Wellenlänge:
+
+$$ \boxed{ \lambda_{\rm max} \cdot T = \const = b } $$
+
+\begin{tabular}{c l c}
+	$\lambda_{\rm max}$	& Wellenlängen-Maximum (Planck) 							& $[\lambda_{\rm max}] = \meter$	\\
+	$T$ 				& \textbf{Absolute} Temperatur 								& $[T] = \mathrm{K}$				\\
+	$b$					& Konstante: $b = 2.898 \cdot 10^{-3} \, \meter \, \kelvin$	& $ [b] = \meter \, \kelvin$
+\end{tabular}
+
+
+
+\subsubsection{Planck'sches Gesetz der Quantenmechanik}
+
+Ein Oszillator, welcher auf ein anderes Energieniveau (=Elektronen-Kreisbahnen nach Bohr) wechselt, setzt die Energiedifferenz 
+$\Delta E$ in ein Lichtquant (Photon) mit entsprechender Frequenz $f$ um. \\
+Je nach Vorzeichen von $\Delta E$ wird das Photon emmitiert oder absorbiert.
+
+$$ \boxed { \Delta E = h \cdot f }  $$
+
+\begin{tabular}{c l c}
+	$\Delta E$ 	& spektrale Abstrahlung (Energie) 												& $[\Delta E] = \joule$ 				\\
+	$h$ 		& Panck'sches Wirkungsquantum $h = 6.628 \cdot 10^{-34} \, \joule \, \second$	& $[h] =  \joule \, \second$			\\
+	$f$ 		& Frequenz des Photons 															& $ [f] = \frac{1}{\second} = \hertz$
+\end{tabular}
+
+
+\subsection{Wärmetransport (an Beispiel Hauswand)}
+
+\includegraphics[width=\columnwidth]{images/Waermetransport.png}
+
+
+\subsubsection{Wärmeleitung}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ j = - \lambda \cdot \frac{\diff T}{\diff x}  } $$ 
+
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+	$j$ 						& Wärmestromdiche 			& $[j] = \frac{\watt}{\meter^2}$ 								\\
+	$\lambda$ 					& Wärmeleitfähigkeit 		& $[\lambda] = \frac{\watt}{\meter \, \kelvin}$ 				\\
+	$\frac{\diff T}{\diff x}$ 	& Wärmeabnahme / Gradient 	& $ \Big[\frac{\diff T}{\diff x} Big] = \frac{\kelvin}{\meter}$	\\
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Wärmeübergang}
+
+\vspace{-0.2cm}
+
+$$ \boxed{\mathrm{innen:} \quad  j = \alpha_i \cdot (T_i - T_{wi} )  \qquad \mathrm{mit } \alpha_i = 8 \, \frac{\watt}{\meter^2 \, \kelvin} } $$ 
+$$ \boxed{\mathrm{aussen:} \quad  j = \alpha_a \cdot (T_{wa} - T_a )  \qquad \mathrm{mit } \alpha_a = 20 \, \frac{\watt}{\meter^2 \, \kelvin} } $$ 
+
+
+\subsubsection{Wärmedurchgang}
+Material + Dicke zusammengefasst
+
+$$ \boxed{ j = k \cdot (T_i - T_a) = k \cdot \Delta T  \qquad \mathrm{mit} \, k = \frac{\lambda}{d} } \qquad \qquad
+\cor{  \boxed{ P =  \dot{Q} = j \cdot A } } $$ 
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+	$j$ 						& Wärmestromdiche 			& $[j] = \frac{\watt}{\meter^2}$ 								\\
+	$\lambda$ 					& Wärmeleitfähigkeit 		& $[\lambda] = \frac{\watt}{\meter \, \kelvin}$ 				\\
+	$\alpha_i$ 					& Wärmeübergangszahl innen 	& $[\alpha_i] = \frac{\watt}{\meter^2 \, \kelvin}$				\\
+	$\alpha_a$ 					& Wärmeübergangszahl aussen & $[\alpha_a] = \frac{\watt}{\meter^2 \, \kelvin}$				\\
+	$T_{wa}$ 					& Temperatur Wand aussen 	& $[T_{wa}] = \kelvin$ 											\\
+	$T_a$ 						& Aussentemperatur 			& $[T_a] = \kelvin$ 											\\
+	$T_{wi}$ 					& Temperatur Wand innen 	& $[T_{wi}] = \kelvin$ 											\\
+	$T_i$ 						& Innentemperatur 			& $[T_i] = \kelvin$ 											\\
+	$k$ 						& Wärmedurchgangszahl 		& $[k] = \frac{\watt}{\meter^2 \, \kelvin}$						\\
+	$d$ 						& Dicke der Wand 			& $[d] = \meter$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Wärmedurchgang komplett}
+
+Der komplette Wärmedurchgang leitet sich her durch die \textbf{Erhaltung der Wärmestrondichte $\bm{j}$} und errechnet sich mit:
+
+$$ \boxed{\text{n Schichten:} \quad \frac{1}{k_{\rm tot}} = \frac{1}{\alpha_i} + \sum_x  \frac{1}{k_x} + \frac{1}{\alpha_a} } $$
+
+$$ \boxed{\text{zylindrisch:} \quad \frac{1}{k_{\rm tot}} = r_a \Biggl( \frac{1}{\alpha_i \cdot r_i} + \sum_x \frac{1}{\lambda_x} \cdot \ln \Biggl( \frac{r_{xa}}{r_{xi}} \Biggr) + \frac{1}{\alpha_a} \cdot \frac{1}{r_a} \Biggr) } $$
+
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+	$k_x$ 		& Wärmedurchgangszahl $x$-te Schicht 	& $[k_x] = \frac{\watt}{\meter^2 \, \kelvin}$ 		\\
+	$\alpha_i$ 	& Wärmeübergangszahl innen 				& $[\alpha_i] = \frac{\watt}{\meter^2 \, \kelvin}$	\\
+	$\alpha_a$ 	& Wärmeübergangszahl aussen 			& $[\alpha_a] = \frac{\watt}{\meter^2 \, \kelvin}$ 	\\
+	$r_i$ 		& Innenradius Rohr 						& $[r_i] = \meter$									\\
+	$r_a$ 		& Aussenradius Rohr 					& $[r_a] = \meter$									\\
+	$\lambda_x$ & Wärmeleitfähigkeit 					& $[\lambda] = \frac{\watt}{\meter \, \kelvin}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Wärme-Bedarf (Heizleistung)}
+
+Der Wärme-Bedarf (=Heizleistung) setzt sich zusammen aus \textbf{Wärmeverlust durch Wärmeleitung} und durch
+\textbf{Wärmeverlust durch Luftaustausch}: 
+
+$$ \underbrace{\text{Wärmeverlust}}_{\substack{\dot{Q}}}  = \underbrace{\text{Heizleistung}}_{\substack{P}} $$
+$$ \boxed{ P = \dot{Q}_{\rm tot} = \dot{Q}_W + \dot{Q}_L }  $$
+
+\begin{minipage}{0.4\columnwidth}
+	$$ \boxed{ \dot{Q}_W = A \cdot j = A \cdot k \cdot \Delta T } $$
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\columnwidth}
+	$$ \boxed{ \dot{Q}_L = c_L \cdot \rho_L \cdot \dot{V} \cdot \Delta T} $$
+\end{minipage}
+
+$$ \boxed{ \text{allgemein:} \quad \dot{Q}_{\rm tot} = \sum_{i=1}^n  \Big[ (A_i \cdot k_i + c_L \cdot \rho_L \cdot \dot{V} ) \cdot \Delta T \Big] } $$
+
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+	$\dot{Q}_{\rm tot}$	& Totaler Wärmeverlust														& $[\dot{Q}_{\rm tot}] = \frac{\joule}{\second} = \watt$	\\
+	$\dot{Q}_W$ 		& Wärmeleitung 																& $[\dot{Q}_W] = \frac{\joule}{\second} = \watt$			\\
+	$\dot{Q}_L$ 		& Luftaustausch 															& $[\dot{Q}_L] = \frac{\joule}{\second} = \watt$			\\
+	$k_i$ 				& Wärmedurchgangszahl $i$-te Schicht 										& $[k_i] = \frac{\watt}{\meter^2 \, \kelvin}$ 				\\
+	$\dot{V}$ 			& Volumenstrom 																& $[\dot{V}] = \frac{\meter^3}{\second}$ 					\\
+	$\rho_L$ 			& Dichte der Luft: $\rho_L = 1.2 \, \frac{\kilogram}{\meter^3}$				& $[\rho_L] = \frac{\kilogram}{\meter^3}$ 					\\
+	$c_L$ 				& Wärmekapazität Luft: $c_L = 1000 \, \frac{\joule}{\kilogram \, \kelvin}$ 	& $[c_L] = \frac{\joule}{\kilogram \, \kelvin}$ 			\\
+	$A$ 				& Fläche der Wärmeleitung 													& $[A] = \meter^2$ 											\\
+	$\Delta T$ 			& Temperaturdifferenz 														& $[\Delta T] = \kelvin$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Wärmeverlust durch Abstrahlung}
+
+Durch Strahlung kann auch Wärme übertragen werden.
+
+$$ \boxed{ j_{12} = c_{12} \cdot (T_1^4 - T_2^4) = \sigma \cdot \varepsilon \cdot (T_1^4 - T_2^4) }   $$
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+	$j_{12}$ 		& Wärme-Transport durch Strahlungsaustausch 														& $[j_{12}] = \frac{\watt}{\meter^2}$ 				\\
+	$c_{12}$ 		& Strahlungsaustauschzahl 																			& $[c_{12}] = \frac{\watt}{\meter^2 \, \kelvin^4}$ 	\\
+	$\sigma$ 		& Stefan-Boltzmann-Konstante $\sigma = 5.671 \cdot 10^{-8} \, \frac{\watt}{\meter^2 \, \kelvin^4}$	& $[\sigma] = \frac{\watt}{\meter^2 \, \kelvin^4}$	\\
+	$\varepsilon$ 	& Emissionsverhältnis 																				& $[\varepsilon] = 1$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Zustandsänderungen}
+
+\vspace{-0.2cm}
+
+$$ \text{Erinnerung 1. Hauptsatz}: \quad  \Delta U = \Delta W + \Delta Q $$
+
+
+\subsubsection{Isotherm}
+
+\textbf{bei konstanter Temperatur}
+
+\smallskip
+
+\begin{minipage}[c]{0.48\columnwidth}	
+	$$ \boxed{ W_{\rm ab} = n \cdot R \cdot T \cdot \ln \Bigg( \frac{V_1}{V_2}  \Bigg) }  $$
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\columnwidth}
+	$$ \boxed{ \Delta Q_{\rm zu} = W } \quad  (\Delta U = 0) $$
+\end{minipage}
+
+
+\subsubsection{Isobar}
+
+\textbf{bei konstantem Druck}
+
+\smallskip
+
+\begin{minipage}[c]{0.48\columnwidth}
+	$$ \boxed{ W_{\rm ab} = p \cdot (V_2 -V_1) } $$
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\columnwidth}
+	$$ \boxed{ \Delta Q_{\rm zu} = n \cdot C_{mp} \cdot \Delta T } $$
+\end{minipage}
+
+
+\subsubsection{Isochor}
+
+\textbf{bei konstantem Volumen}
+
+\smallskip
+
+\begin{minipage}[c]{0.4\columnwidth}
+	$$ \boxed{ W = 0 } $$
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.58\columnwidth}
+	$$ \boxed{ \Delta Q_{\rm zu} = n \cdot C_{mV} \cdot \Delta T }  \quad  (\Delta U = \Delta Q) $$
+\end{minipage}
+
+
+\subsubsection{Adiabatisch}
+
+\textbf{ohne Wärme-Austausch}
+
+\smallskip
+
+\begin{minipage}[c]{0.48\columnwidth}
+	$$ \boxed{ W_{\rm ab} = n \cdot C_{mV} \cdot \Delta T }  $$
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\columnwidth}
+	$$ \boxed{ \Delta Q = 0} $$
+\end{minipage}
+
+\medskip
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+	$C_{mp}$ 	& Isobare Wärme-Kapazität $(p = \const)$ 									& $[C_{mp}] = \frac{\joule}{\mole \, \kelvin}$	\\
+	$C_{mV}$ 	& Isochore Wärme-Kapazität $(V = \const)$ 									& $[C_{mV}] = \frac{\joule}{\mole \, \kelvin}$	\\
+	$R$			& Universelle Gaskonstante $R = 8.314 \, \frac{\joule}{\mole \, \kelvin}$ 	& $[R] = \frac{\joule}{\mole \, \kelvin}$		\\
+	$n$ 		& Mol-Zahl 																	& $[n] = \mole$ 								\\
+	$T$			& \textbf{Absolute} Temperatur												& $[T] = \kelvin$								\\
+	$V_x$		& Volumen																	& $[V_x] = \meter^3$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+

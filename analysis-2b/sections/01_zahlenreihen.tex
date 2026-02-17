@@ -1,0 +1,74 @@
+\section{Zahlenreihen}{470 ff}
+
+\subsection{Grundbegriffe zu Reihen}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{ll}
+	Summandenfolge $a_n$	& $a_1, \: a_2, \: a_3, \: \ldots \: a_n$ 									\\
+	Partialsumme (Folge) 	& $s_n = a_1 + a_2 + \ldots + a_{a-1} + a_n = \sum\limits _{i=1}^n a_i$	 	\\
+	Summe 					& $\lim\limits_{n \to \infty} s_n = s$ \quad falls Konvergenz ($s \in \mathbb{R}$)
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Geometrische Reihe}{20}
+
+\vspace{-0.5cm}
+
+\begin{center}
+	$$ \sum\limits _{i=0}^n q^i = q^0 + q^1 + \ldots + q^{n-1} + q^n = \frac{q^{n+1}-1}{1-q} \qquad  (q = \text{ const}) $$ 
+
+	$ n \to \infty$ \qquad \cbl{$\vert q \vert < 1$ \textrightarrow\ Konvergenz zu $\frac{1}{1-q}$} \qquad \qquad 
+	\crd{ $\vert q \vert \geq 1$ \textrightarrow\ Divergenz}
+\end{center}
+
+\vspace{-0.3cm}
+
+
+\subsection{Harmonische Reihe}
+
+\vspace{-0.2cm}
+
+$$ \sum\limits _{n=1}^\infty \frac{1}{n} = \frac{1}{1} + \frac{1}{2} + \ldots + \frac{1}{n} + \ldots + \frac{1}{\infty}  = \infty \qquad \text{\crd{Divergenz!}} $$
+
+\begin{tabular}{ll}
+	Harmonische Zahl $H_n$:	& Summe aller Zahlen $a_1$ bis $a_n$ 				\\
+							& $H_n \approx \ln(n) + \gamma + \frac{1}{2n} + R_n$
+\end{tabular}
+
+	
+\subsection{Superharmonische Reihe}
+
+\vspace{-0.2cm}
+
+$$ \sum\limits _{n=1}^\infty \frac{1}{n^{\alpha}} \quad (\alpha > 1) \qquad \text{\cbl{Konvergenz}} $$
+
+\vspace{-0.2cm}
+
+
+\subsection{Raffsumme (Teleskopsumme)}
+
+\vspace{-0.2cm}
+
+$$ \sum\limits _{i=1}^n  (a_{i+1} - a_i) \quad \text{ \textrightarrow\ Benachbarte Differenzen }$$
+$$ s_n = (a_2 - a_1) + (a_3 - a_2) + \ldots + (a_n - a_{n+1}) + (a_{n+1} - a_n) = a_{n+1} - a_1 $$	
+$$ n \to \infty  \quad s_n = -a_1 \text{ wenn } a_n \to 0 \quad \text{\cbl{Konvergenz}} $$
+
+\vspace{-0.2cm}
+
+
+\subsection{Leibnizreihe (Leibniz-Kriterium)}{476}	
+
+\begin{enumerate}
+	\item Vorzeichenwechsel Summanden $(-1)^n, \; (-1)^{n-1}, \; (-1)^{n+1}$
+	\item $a_n \to 0$ wenn $n \to \infty$ \qquad ("Letzter Summand")
+	\item $\vert a_n \vert \downarrow$ \qquad (absolut monoton fallend)
+\end{enumerate}
+
+\vspace{-0.2cm}
+
+$$ \text{ \textrightarrow\ Die Reihe } \sum\limits _{n=1}^\infty a_n \; \quad \text{\cbl{konvergiert, wenn \textbf{alle} Bedingungen erfüllt sind}} $$
+
+\textbf{Fehlerabschätzung:} \quad $\vert s_n - s \vert \leq \vert a_{n+1} \vert$
+
+	

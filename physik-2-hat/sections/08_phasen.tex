@@ -1,0 +1,204 @@
+\section{Phasen und Phasenübergänge}
+
+\subsection{Phasen}
+
+\begin{description}
+	\item[Fest:] feste Gestalt; festes Volumen
+	\item[Flüssig:] keine feste Gestalt; festes Volumen
+	\item[Gasförmig:] keine feste Gesalt; kein festes Volumen
+	\item[Plasma:] bei sehr hoher Temperatur ist Materie ionisiert (Elektronengas)
+\end{description}
+
+
+\subsection[Dampfdruck]{Dampfdruck $\boldsymbol{p_s(T)}$}
+
+\begin{itemize}
+	\item \textbf{Der Dampfdruck bedeutet das Gleichgewicht der Flüssigkeit mit ihrer Dampfphase}
+	\item Der Dampfdruck ist das Niveau des kontanten Drucks im 2-Phasengebiet eines realen Gases nach van der Waals
+	\item Der Dampfdruck ist nur \textbf{temperaturabhängig}
+	\item Bei Kompression oder Expansion ändert sich der Dampfdruck nicht, sondern der Anteil Flüssigkeit zu Gas muss ändern
+\end{itemize}
+
+\begin{center}
+	\includegraphics[width=0.9\columnwidth]{images/dampfdruck.jpg}
+\end{center}
+
+\begin{itemize}
+	\item \textbf{Verdunsten} \textrightarrow\ Schnellste Teilchen treten aus Flüssigkeit aus
+	\item \textbf{Sieden/Verdampfen} \textrightarrow\ Dampfdruck = Umgebungsdruck
+\end{itemize}
+
+
+
+\subsection{Dampfdruck-Kurve (Clausius-Clapeyron)}
+
+\textbf{Kondensieren \textlrarrow\ Verdampfen}  \qquad flüssig \textlrarrow\ gasförmig
+
+$$ \boxed{ \frac{\diff \, p_s}{\diff \, T} = \frac{q_s}{T \cdot  \Big( \frac{1}{\rho_g} - \frac{1}{\rho_f} \Big) } } $$
+
+
+\subsubsection{Dampfdruck $\boldsymbol{p_s(T)}$ von Wasser (Clausius-Clapeyron)}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ p_s(T) = p_{s0} \cdot e^{\frac{q_s \cdot M_W}{R}} \cdot \Big( \frac{1}{T_0} - \frac{1}{T} \Big) } $$
+$$ p_{s0} = 610.7 \, \pascal \qquad T_0 = 273 \, \kelvin \qquad q_s = 2420 \, \frac{\kilo \joule}{\kilogram} \qquad M_W = 18.02 \, \frac{\gram}{\mole} $$
+
+
+
+\subsection{Schmelzdruck-Kurve (Clausius-Clapeyron)}
+
+\textbf{Erstarren \textlrarrow\ Schmelzen}  \qquad fest \textlrarrow\ flüssig
+
+$$ \boxed{ \frac{\diff \, p_f}{\diff \, T} = \frac{q_f}{T \cdot \Big( \frac{1}{p_f} - \frac{1}{p_s} \Big) } } $$
+
+
+\subsection{Gasdruck-Kurve (Clausius-Clapeyron)}
+
+\textbf{Desublimieren \textlrarrow\ Sublimieren} \qquad fest \textleftarrow\ gasförmig
+
+$$ \boxed{ \frac{\diff \, p_{sub}}{\diff \, T} = \frac{q_s + q_f}{T \cdot \Big( \frac{1}{\rho_g} - \frac{1}{\rho_s} \Big) } } $$
+
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}	
+	$q_s$ 		& Spezifische Verdampfungs-Wärme 	& $[q_s] = \frac{\joule}{\kilogram}$		\\
+	$q_f$ 		& Spezifische Schmelz-Wärme 		& $[q_f] = \frac{\joule}{\kilogram}$ 		\\
+	$q_s + q_f$ & Spezifische Sublimations-Wärme 	&	 										\\
+	$p_s$ 		& Dampfdruck 						& $[p_s] = \pascal$ 						\\
+	$p_f$ 		& Schmelzdruck 						& $[p_f] = \pascal$ 						\\
+	$p_g$ 		& Schmelzdruck 						& $[p_g] = \pascal$ 						\\
+	$\rho_g$ 	& Dichte Gas 						& $[\rho_g] = \frac{\kilogram}{\meter^3}$	\\
+	$\rho_f$ 	& Dichte Flüssgkeit 				& $[\rho_f] = \frac{\kilogram}{\meter^3}$	\\
+	$\rho_s$ 	& DichteFestkörper 					& $[\rho_s] = \frac{\kilogram}{\meter^3}$	
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Formeln von Magnus}
+
+Die Formeln von Magnus dienen der vereinfachten Berechnung des Dampfdrucks von Wasser = Sättigungsdruck 
+
+\subsubsection{Dampfdruck von Wasser $\boldsymbol{p_s(\theta) \quad (\theta \geq 0 \, \celsius)}$}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ p_s(\theta) = p_{s0} \cdot 10^{ \frac{7.5 \cdot \theta}{\theta + 237} } } $$
+
+
+
+\subsubsection{Schmelzdruck von Wasser $\bm{p_s(\theta) \quad (\theta \leq 0 \, \celsius)}$}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ p_s(\theta) = p_{s0} \cdot 10^{ \frac{9.5 \cdot \theta}{\theta + 265.5} } } $$
+
+
+\begin{tabular}{c l c}
+	$p_s$ 		& Dampfdruck / Schmelzdruck 									& $[p_s] = \pascal$ 	\\
+	$p_{s0}$ 	& Dampfdruck bei $0\, \celsius \quad p_{s0} = 610.7 \, \pascal$	& $[p_{s0}] = \pascal$	\\
+	$\theta$ 	& Temperatur 													& $[\theta] = \celsius$
+	
+\end{tabular}
+
+
+\subsection{Umkehrformeln von Magnus}
+
+\begin{minipage}[t]{0.48\columnwidth}
+	\subsubsection{$\boldsymbol{\theta(p_s)}$ für $\boldsymbol{p_s \geq p_{s0}}$}
+
+	\vspace{-0.2cm}
+
+	$$ \boxed{ \theta(p_s) = \frac{237 \cdot \log \big( \frac{p_s}{6.107} \big) }{7.5 - \log \big( \frac{p_s}{6.107} \big)} } $$	
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\columnwidth}
+	\subsubsection{$\boldsymbol{\theta(p_s)}$ für $\boldsymbol{p_s \leq p_{s0}}$}
+
+	\vspace{-0.2cm}
+
+	$$ \boxed{ \theta(p_s) = \frac{265.5 \cdot \log \big( \frac{p_s}{p_{s0}} \big)  }{9.5 - \log \big( \frac{p_s}{p_{s0}} \big)} } $$
+\end{minipage}
+
+
+\subsection{Luftfeuchtigkeit}
+
+\begin{minipage}[t]{0.48\columnwidth}
+	\subsubsection{Abs.Luftfeuchtigkeit $\bm{f}$}
+
+	\vspace{-0.2cm}
+
+	$$ \boxed{ f = \frac{m_W}{V}  } $$
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\columnwidth}
+	\subsubsection{Rel. Luftfeuchtigkeit $\boldsymbol{f_r}$}
+
+	\vspace{-0.2cm}
+
+	$$ \boxed{ f_r = \frac{m_W}{m_S} = \frac{p_D}{p_S} = \frac{p_D}{p_S(\theta)} } $$
+\end{minipage}
+
+\medskip
+
+\begin{tabular}{c l c}
+	$f$ 		& Absolute Luftfeuchtigkeit 				& $[f] = 1$ 			\\
+	$f_r$ 		& Relative Luftfeuchtigkeit 				& $[f_r] = 1$ 			\\
+	$m_W$ 		& Masse Wasserdampf 						& $[m_W] = \kilogram$ 	\\
+	$m_S$ 		& Masse Wasserdampf bei Sättigung 			& $[m_S] = \kilogram$ 	\\
+	$V$ 		& Volumen 									& $[V] = \meter^3$ 		\\
+	$p_D$ 		& Partialdruck Wasserdampf 					& $[p_D] = \pascal$ 	\\
+	$p_S$ 		& Dampfdruck = Sättigungsdruck Wasserdampf 	& $[p_s] = \pascal$ 	\\
+	$\theta$ 	& Temperatur 								& $[\theta] = \celsius$
+\end{tabular}
+
+
+\subsubsection{Feuchte vs. trockene Luft}
+
+\textbf{Feuchte Luft ist leichter als trockene Luft!}
+
+$$ \boxed{ \rho_F < \rho_T } \qquad (\text{da } M_W < M_L) $$
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c l c}
+	$\rho_F$	& Dichte feuchte Luft 	& $[\rho_F] = \frac{\kilogram}{\meter^3}$	\\
+	$\rho_T$	& Dichte trockene Luft 	& $[\rho_F] = \frac{\kilogram}{\meter^3}$	\\
+	$M_W$ 		& Molmasse $H_2O$ 		& $[M_W] = \frac{\gram}{\mole}$ 			\\
+	$M_S$ 		& Molmasse Luft 		& $[M_W] = \frac{\gram}{\mole}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+
+\subsection[Taupunkts-Temperatur]{Taupunkts-Temperatur $\boldsymbol{\theta_d}$}
+
+Temperatur, bei welcher 100\% Luftfeuchtigkeit herrscht.
+
+\smallskip
+
+Wenn die Taupunkt-Temperatur \textbf{unterschritten} wird, dann kondensiert Wasser.
+
+$$ \boxed{ \theta_d (\theta, f_r) = \frac{237 \cdot \Big( \log(f_r) + \frac{7.5 \cdot \theta}{\theta + 237}    \Big)}{7.5 - \Big( \log(f_r) + \frac{7.5 \cdot \theta }{\theta + 237} \Big) } } $$
+$$ \boxed{ \theta_d (x) = \frac{237 \cdot x}{7.5 - x}  \qquad  \text{mit } \quad  x(\theta, f_r) = \log(f_r) + \frac{7.5 \cdot \theta}{\theta + 237} } $$
+
+
+\begin{tabular}{c l c}
+	$\theta_d$	& Taupunkts-Temperatur 		& $[\theta_d] = \celsius$ 	\\
+	$f_r$ 		& Relative Luftfeuchtigkeit & $[f_r] = 1$ 				\\
+	$\theta$ 	& Temperatur 				& $[\theta] = \celsius$
+\end{tabular}
+
+
+\subsection[Relative Innen-Feuchte]{Relative Innen-Feuchte $\boldsymbol{f_{ri}}$}
+
+\vspace{-0.2cm}
+
+$$ \boxed{ f_{ri} = \frac{p_s(\theta_a)}{p_s(\theta_i)} \cdot f_{ra} } $$
+
+\begin{tabular}{c l c}
+	$f_{ri}$ 		& Relative Feuchte im Inneren 		& $[f_{ri}] = 1$ 				\\
+	$f_{ra}$ 		& Relative Feuchte der Aussenluft 	& $[f_{ra}] = 1$ 				\\
+	$p_s(\theta_i)$ & Dampfdruck bei Innentemperatur 	& $[p_s(\theta_i)] = \pascal$ 	\\
+	$p_s(\theta_a)$ & Dampfdruck bei Aussentemperatur 	&  $[p_s(\theta_a)] = \pascal$
+\end{tabular}
+

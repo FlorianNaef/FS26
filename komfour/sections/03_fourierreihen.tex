@@ -1,0 +1,240 @@
+\section{Fourierreihen periodischer Funktionen}
+
+Darstellung einer \textbf{periodischen} Funktion $f(t)$ mit Periodendauer $T > 0$ durch eine Linearkombination von Sinus- und Kosinusfunktionen,
+deren Frequenzen ganzzahlige Vielfache der Kreisfrequenz (Winkelgeschwindigkeit) $\omega_f = \frac{2 \pi}{T} = 2 \pi v$ sind. 
+
+\smallskip
+
+\textbf{Hinweis:} In \cbl{blau} ist jeweils die komplexe Fourier-Theorie abgebildet.
+$$ \FR[f(t)] = \frac{a_0}{2} + \sum\limits _{n=1}^\infty \big[ a_n \cdot \cos(n \, \omega_f \, t) + b_n \cdot \sin(n \, \omega_f \, t) \big] $$
+$$ \cbl{\FR[f(t)] = \sum\limits _{k = -\infty}^\infty \: \big( c_k \cdot \e^{\jimg \, k \, \omega_f \, t} \big)} $$
+
+
+\subsection{Orthagonalitätsbeziehungen Basisfunktionen}
+
+\begin{tabular}{ll}
+    $\int \limits_{0}^{T} \cos(m \, \omega_f \, t) \cdot \cos(n \, \omega_f \, t) \, \diff t = 
+    \begin{cases}
+        T,              & m = n = 0 \\
+        \frac{T}{2},    & m = n > 0 \\
+        0,              & m \neq n
+    \end{cases}$ 
+    & $(m, \; n \in \mathbb{N}_0)$ \\
+    \\
+    $\int \limits_{0}^{T} \sin(m \, \omega_f \, t) \cdot \sin(n \, \omega_f \, t) \, \diff t =      		
+    \begin{cases}
+        \frac{T}{2},    & m = n     \\
+        0,              & m \neq n
+    \end{cases} $ 
+    & $(m, \; n \in \mathbb{N})$    \\
+    \\
+    $\int \limits_{0}^{T} \cos(m \, \omega_f \, t) \cdot \sin(n \, \omega_f \, t) \, \diff t = 0$ 	
+    & $(m \in \mathbb{N}_0, \; n \in \mathbb{N})$ 
+\end{tabular}
+
+
+\subsection{Berechnung der Fourier-Koeffizienten}
+
+\textbf{$\bm{\frac{a_0}{2}}$ entspricht dem Mittelwert (Gleichstromanteil) der Funktion $\bm{f(t)}$ auf dem \\
+Intervall [0 ; T)}
+
+\smallskip
+
+\renewcommand{\arraystretch}{2.5}
+\begin{tabular}{l c l}
+    $a_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \cos(n \, \omega_f \, t) \, \diff t$                           & $(n = 0, \, 1, \, 2, \, \ldots)$                                                                  \\
+    $b_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \sin(n \, \omega_f \, t) \, \diff t$                           & $(n = 1, \, 2, \, 3, \, \ldots)$                                                                  \\	
+    \cbl{$c_n = \overline{c_{-n}} = \frac{1}{T} \int \limits_0^T f(t) \cdot \e^{- \jimg \, n \, \omega_f \, t} \, \diff t$} & $\cbl{(n = 0, \, 1, \, 2, \, \ldots)}$    & \textrightarrow\ Für $n = 0: \, c_0 = \frac{a_0}{2}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\smallskip
+
+\crd{ \textrightarrow\ Trigo-Produkte in Integralen in SUMMEN umwandeln!!}
+
+
+\subsubsection{Umrechnung der Fourierkoeffizienten}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{ll}
+    $c_n = \overline{c_{-n}} = \frac{a_n - \jimg \, b_n }{2}$   & ($n = 0, \, 1, \, 2, \, \ldots \text{ wobei } b_0 = 0$)   \\
+    $a_n = 2 \, \RE(c_n) = c_n + c_{-n}$                        & ($n = 0, \, 1, \, 2, \, \ldots$)                          \\
+    $b_n = -2 \, \IM(c_n) = \jimg (c_n - c_{-n})$               & ($n = 1, \, 2, \, 3, \, \ldots$) 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\columnbreak
+
+
+\subsection{Sätze zur Berechnung der Koeffizienten}
+
+\subsubsection{Symmetrie von Funktionen}
+
+\begin{minipage}{0.48\linewidth}
+    \begin{tabular}{l | c | c}
+                    & gerade    & ungerade  \\ 
+        \hline
+        gerade      & gerade    & ungerade  \\
+        \hline
+        ungerade    & ungerade  & gerade    \\
+    \end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.43\linewidth}
+    \begin{tabular}{ll}
+        gerade:     &  $f(-t) = f(t)$ \\
+        \\ 
+        ungerade:   & $f(-t) = - f(t)$ 
+    \end{tabular}
+\end{minipage}
+
+\smallskip
+
+\begin{tabular}{lll}
+    $f(t)$ gerade   & $b_n = 0$                 & $a_n = \frac{4}{T} \cdot \int \limits_{0}^{\frac{T}{2}} f(t) \cdot \cos(n \, \omega_f \, t) \, \diff t$   \\    \medskip
+                    & \cbl{$\IM(c_k) = 0$}      & \cbl{$c_n = \frac{a_n}{2}$ (reell)}                                                                       \\
+    $f(t)$ ungerade & $a_n = 0$                 & $b_n = \frac{4}{T} \cdot \int \limits_{0}^{\frac{T}{2}} f(t) \cdot \sin(n \, \omega_f \, t) \, \diff t$   \\	
+                    & \cbl{$\RE(c_k) = 0$}      & \cbl{$c_n = \jimg \frac{b_n}{2}$ (imaginär)}
+\end{tabular}
+    
+
+\subsubsection{Linearität}
+
+$f(x)$ mit Koeffizienten $a_n^{(f)} , \, b_n^{(f)}$ \qquad $g(x)$ mit Koeffizienten $a_n^{(g)} , \, b_n^{(g)}$ \\
+\textrightarrow\ $h(t) = r \cdot f(t) + s \cdot g(t)$ mit festem $s, \, r \in \mathbb{R}$
+
+$$ a_n^{(h)} = r \cdot a_n^{(f)} + s \cdot a_n^{(g)} \qquad \qquad b_n^{(h)} = r \cdot b_n^{(f)} + s \cdot b_n^{(g)} $$
+
+
+\subsubsection{Zeitstreckung / -stauchung / -spiegelung ("Ähnlichkeit")}
+
+$g(t) = f(r \cdot t)$ mit $0 \neq r \in \mathbb{R}$ \qquad \cor{$\omega_g = \frac{2 \pi}{T_g}$ in Basisfunktionen!}
+
+$$ a_n^{(g)} = a_n^{(f)} \qquad \qquad b_n^{(g)} = \sgn(r) \cdot b_n^{(f)} $$
+
+
+\subsubsection{Zeitverschiebung}
+$g(t) = f(t + t_0)$
+
+\smallskip
+
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{ll}
+    $ a_n^{(g)} = \cos(n \, \omega_f \, t_0) \cdot a_n^{(f)} + \sin(n \, \omega_f \, t_0) \cdot b_n^{(f)}$      & $n = 0$ \quad [mit $b_0 = 0, \, 1, \, 2, \, \ldots$]  \\ 
+    $ b_n^{(g)} = -\sin(n \, \omega_f \, t_0) \cdot a_n^{(f)} + \cos(n \, \omega_f \, t_0) \cdot  b_n^{(f)}$    & $n = 1, \, 2, \, 3, \, \ldots$                        \\	
+    $ \cbl{c_k^{(g)} = \e^{\jimg \, k \, \omega_f \, t_0} \cdot c_k^{(f)}}$                                     & $\cbl{k  =1, \, 2, \, 3, \, \ldots}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Konvergenzverhalten von Fourierreihen}
+
+\subsubsection{Optimalität der Fourierreihe}
+
+Abstand zwischen zwei Funktionen zeigt, wie gut die Approximation der Funktion ist \\
+\textrightarrow\ $f$ und $g$ sind $T$-periodisch und stückweise stetig mit Limes
+
+$$ \Vert f - g \Vert = \sqrt{\frac{2}{T} \int \limits_0^T  [f(t) - g(t)]^2 \, \diff t } $$ 
+
+\textrightarrow\ Fourier-Reihe approximiert eine Funktion am Besten!
+
+\smallskip
+
+mittlere quadrierte Abweichung: $\frac{T}{2} \vert \vert f - g \vert \vert ^2$
+
+
+\subsubsection{Bessel'sche Ungleichung}
+
+unendlich-dimensionaler Satz von Pythagoras
+$$ \frac{a_0^2}{2} + \sum \limits_{n=1}^\infty \big( a_n^2 + b_n^2 \big) \leq  \frac{2}{T} \int \limits_0^T \big[f(t) \big]^2 \, \diff t = \Vert f \Vert ^2 $$
+
+
+\subsubsection{Satz von Parseval}
+
+unendlich-dimensionaler Satz von Pythagoras \textrightarrow\ Summe der Quadrate ist beschränkt
+$$ \frac{a_0^2}{2} + \sum \limits_{n=1}^\infty \big( a_n^2 + b_n^2 \big) = \frac{2}{T} \int \limits_0^T [f(t)]^2 \, \diff t = \Vert f \Vert ^2 $$
+$$ \cbl{ \sum \limits_{k= -\infty}^\infty \vert c_k \vert ^2 = \frac{1}{T} \int \limits_0^T \big[ f(t) \big]^2 \, \diff t } $$
+
+
+\subsubsection{Konvergenz im Mittel}
+
+Jede Funktion $f$ kann durch eine abbrechende Fourierreihe bezüglich ihres Abstandes beliebig genau approximiert werden.
+Die Fläche zwischen Approximation und Funktion geht gegen 0 \quad $\Vert s_m(t) - f(t) \Vert \searrow 0$ \\
+\textrightarrow\ Das heisst nicht, dass man überall absolute Übereinstimmung hat!
+
+$$ \lim \limits_{m \to 0} \Vert \sum\limits _{n=1}^m \big[ a_n \cdot \cos(n \, \omega_f \, t) + b_n \cdot \sin(n \, \omega_f \, t) \big] - f(t) \Vert = 0 $$
+$$ \cbl{\lim \limits_{m \to 0} \Vert \sum\limits _{k= -m}^m \: \big( c_k \, \e^{ \jimg \, k \, \omega_f \, t} \big) - f(t) \Vert = 0} $$
+
+
+\subsubsection{Konvergenz der Fourierkoeffizienten}
+
+Die Fourierkoeffizienten bilden Nullfolgen 
+
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{l}
+    $\lim \limits_{n \to \infty} a_n = \lim \limits_{n \to \infty} \frac{2}{T} \int \limits_0^T f(t) \cdot \cos(n\, \omega_f \, t) \, \diff t = 0$                                                                  \\
+    $\lim \limits_{n \to \infty} b_n = \lim \limits_{n \to \infty} \frac{2}{T} \int \limits_0^T f(t) \cdot \sin(n\, \omega_f \, t) \, \diff t = 0$                                                                  \\
+    $\cbl{\lim \limits_{n \to \infty} c_n = \lim \limits_{n \to \infty} \overline{c_{-n}} = \lim \limits_{n \to\infty} \frac{1}{T} \int \limits_0^T f(t) \cdot  \e^{- \jimg \, n \, \omega_f \, t} \, \diff t = 0}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Konvergenzgeschwindingkeit der Fourierkoeffizienten}
+
+Ist die $T$-periodische Funktion $f$ ($m-2$)-mal stetig differenzierbar und ihre ($m-1$)-ste Ableitung stückweise stetig mit Limes und 
+stückweise monoton, so existiert eine (nur von $f$ abhängige) Konstante $\in \mathbb{R}$ mit
+
+$$ \vert a_n \vert \leq \frac{c}{n^m} \quad \text{und} \quad \vert b_n \vert \leq \frac{c}{n^m} \quad (m, \, n \in \mathbb{N}) $$
+
+
+\subsubsection{Punktweise Konvergenz (Satz von Dirichlet)}
+
+Wenn die linksseitige $f(t_0 - 0)$ \textbf{und} die rechtsseitige Ableitung $f(t_0 + 0)$ existieren, dann konvergiert die Fourierreihe gegen:	
+
+$$ \frac{f(t_0 - 0) + f(t_0 + 0)}{2} \qquad \text{(Mitte einer Sprungstelle)} $$
+
+
+Ist die Funktion in $t_0$ \textbf{stetig} und die beidseitigen Ableitungen existieren, dann konvergiert die Fourierreihe gegen:	
+
+$$ \frac{f(t_0 - 0) + f(t_0 + 0)}{2} = \frac{f(t_0) + f(t_0)}{2} = f(t_0) \qquad \text{(Funktionswert)} $$
+
+\textbf{Hinweis:}
+Der Satz von Dirichlet wird gebraucht, um aus Fourier-Koeffizienten Reihen darzustellen. \\
+\textbf{ \textrightarrow\ Passende Entwicklungsstelle $\bm{t_0}$ verwenden!}
+
+\columnbreak
+
+% Beginn Code Fabian Steiner (reformatted and slightly modified)
+\subsection{Summenberechnung S mit Fourierreihe}
+
+Die Summenberechnung soll anhand eines Beispiels erklärt werden.
+
+\example{Summenberechnung mit Fourierreihe}
+
+Aus der gegebenen Fourierreihe $\FR[\sin(t)]$ soll die Summe S berechnet werden:
+$$ FR[\sin(t)] = \frac{1}{2\pi} + \frac{15}{5\pi} * \cos(t) + \frac{13}{2\pi} * \sin(t) + \frac{15}{7\pi} * \cos(t) + \ldots $$
+$$ S = \frac{1}{5} + \frac{1}{7} + \frac{1}{9} + \ldots $$
+
+In der Fourierreihe $\FR[\sin(t)]$ soll $t$ so gewählt werden, dass die Schwingungen wegfallen und die Koeffizienten möglichst der Summe ähneln. \\
+\textrightarrow\ Wähle $t=0$, sodass übrig bleibt:
+
+$$ \underbrace{\frac{1}{2\pi} + \frac{15}{5\pi} + \frac{15}{7\pi} + \ldots}_{Q} = \sin(0) = 0 $$
+
+Dies entspricht noch nicht der gesuchten Summe $S$. Es ist eine \textbf{Umformung} nötig:
+$$ Q * \frac{\pi}{15} = \frac{1}{30} + \underbrace{\frac{1}{5} + \frac{1}{7}+ \ldots}_{S} \qquad \underrightarrow{\text{auflösen nach }S} \qquad
+\bm{S = -\frac{1}{30}} $$
+% Ende Code Fabian Steiner
+
+
+\subsection{Gibbs'sches Phänomen}
+
+Fourierreihen überschwingen bei Sprungstellen um 8.94 \% 
+
+\smallskip
+
+\textrightarrow\ Je mehr Summanden in der Fourierreihe sind, desto kleiner ist der Effekt dieser Überschwinger! 
+
+\begin{center}
+    \includegraphics[width=0.85\linewidth]{images/gibbs.PNG}
+\end{center}
+

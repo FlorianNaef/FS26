@@ -1,0 +1,21 @@
+CXX = clang++               # Verwendeter Compiler
+CXXFLAGS = -Wall -c         # compilerflags
+LDFLAGS = -o                # loader flags
+BIN = main                  # binary output / Name des .exe file
+OBJS = drink.o drinktest.o  # objectfiles
+
+all: $(BIN)                 # Make all befehl
+
+%.o: %.cpp                  # cpp Files zu o dateien compilen
+	$(CXX) $(CXXFLAGS) $<
+
+$(BIN): $(OBJS)             # Linken zu exe file
+	$(CXX) $(LDFLAGS) $@ $^
+
+run: $(BIN)                 # Projekt ausfuehren
+	./$(BIN)
+
+clean:                      # o. Dateien entfernen
+	rm -f $(OBJS) $(BIN)
+
+.PHONY: clean all           # Markiert clean & all als PHONY

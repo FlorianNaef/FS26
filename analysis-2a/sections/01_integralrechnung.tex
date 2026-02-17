@@ -1,0 +1,231 @@
+\section{Integralrechnung}{493}
+
+\subsection{Rechenregeln mit Integralen}{508-510}
+
+\renewcommand{\arraystretch}{2.3}
+\begin{tabular}{ll}
+    Zerlegung:          & $\int \limits_{a}^{b} f_1(x) + f_2(x) \, \diff x 
+                        = \int \limits_{a}^{b} f_1(x) \, \diff x + \int \limits_{a}^{b} f_2(x) \, \diff x$                                      \\
+                        & $\int \limits_{a}^{c} f(x) \, \diff x = \int \limits_{a}^{b} f(x) \, \diff x + \int \limits_{b}^{c} f(x) \, \diff x$  \\
+    Grenzen tauschen:   & $ \int \limits_{a}^{b} f(x) \, \diff x = -  \int \limits_{b}^{a} f(x) \, \diff x $                                    \\
+    Gleiche Grenzen:    & $\int \limits_{a}^{a} f(x) \, \diff x = 0$
+\end{tabular}		
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Integrationsregeln}{494 - 496}
+
+\vspace{-0.2cm}
+
+\begin{minipage}[t]{0.4\columnwidth}
+    \subsubsection{Linearität}
+
+    \vspace{-0.5cm}
+
+    $$ \int \limits_{a}^{b} \alpha f(x) \, \diff x = \alpha \int \limits_{a}^{b} f(x) \, \diff x $$
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.58\columnwidth}
+    \subsubsection{Elementartransformation}
+
+    $$ \int f(\alpha \, x + \beta) \, \diff x = \frac{1}{\alpha} \, F(\alpha \, x + \beta) + C$$
+\end{minipage}
+
+
+\subsubsection{Partielle Integration (Produktregel)}
+
+\vspace{-0.5cm}
+
+$$ \int f' \cdot g \, \diff x =  f \cdot g - \int f \cdot g' \, \diff x \qquad \qquad
+\int f \cdot g' \, \diff x = f \cdot g - \int f' \cdot g \, \diff x $$
+
+\textrightarrow\ Partielle Integration darf mehrfach angewendet werden. \\
+\textbf{PI sollte wenn möglich vermieden werden! Produkte in Summen umschreiben!}
+
+
+\subsubsection{Substitution}
+
+\vspace{-0.2cm}
+
+$$ \int f(x) \, dx = \int f(g(t)) \cdot g'(t) \, \diff t \qquad \text{ \textrightarrow\ siehe Beispiel} $$
+
+\textbf{\crd{Integrationsgrenzen anpassen!} (ev. mit Umkehrfunktion)} 
+
+
+\example{Substitution}
+
+\begin{tabular}{ll}
+    $\int \limits_0^{\sqrt{\pi}} x^3 \cdot \cos(x^2) \, \diff x$    & \cbl{Substitution: $a = x^2$} \crd{ \textbf{auch auf Grenzen anwenden!}}  \\
+                                                                    & \cbl{$\diff a = 2 \, x \cdot \, \diff x$ \textrightarrow\ 
+                                                                     $\diff x = \frac{\diff a}{2x} = \frac{\diff a}{2 \sqrt{a}} $}  \\
+\end{tabular}
+
+$\int \limits_{\crd{0}}^{\crd{\pi}} a \, \sqrt{a} \cdot \cos(a) \frac{\diff a}{2 \sqrt{a}} 
+= \int \limits_{\crd{0}}^{\crd{\pi}} a \, \sqrt{a} \cdot \cos(a) \, \frac{1}{2} \frac{1}{\sqrt{a}} \, \diff a 
+= \frac{1}{2} \int \limits_{\crd{0}}^{\crd{\pi}} a \cdot \cos(a) \, \diff a = ... $
+
+
+
+\subsubsection{Universalsubstitution (Weierstrass) / Rationalisierung}
+
+Rationale Terme aus $\sin(x)$ und $\cos(x)$ substituieren: (verknüpft durch +  -  *  : ) 
+
+\smallskip
+
+\begin{minipage}[c]{0.55\columnwidth}
+    % \renewcommand{\arraystretch}{2}
+    % \begin{tabular}{| c | c | c | c |}
+    %     \hline
+    %     $\sin(x)$               & $\cos(x)$                 & $\diff x$                     &   $t = \tan \Big( \frac{x}{2} \Big)$  \\
+    %     \hline
+    %     $\frac{2 t}{1 + t^2}$   & $\frac{1 - t^2}{1 + t^2}$ & $\frac{2}{1 + t^2} \diff t$   &                                       \\
+    %     \hline
+    % \end{tabular}
+    % \renewcommand{\arraystretch}{1}
+
+    \begin{tabular}{ c cc cc}
+            \toprule
+            $\sin(x)$               & & $\cos(x)$                 & & $\diff x$                     \\
+            \midrule
+            $\frac{2 t}{1 + t^2}$   & & $\frac{1 - t^2}{1 + t^2}$ & & $\frac{2}{1 + t^2} \diff t$   \\
+            \bottomrule
+    \end{tabular}
+
+    \smallskip
+
+    \textrightarrow\ $t = \tan \Big( \frac{x}{2} \Big)$
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.42\columnwidth}
+    \crd{Definitionsbereich: \\
+         $-\pi < x < \pi$, da sonst $t \notin \mathbb{R}$}
+\end{minipage}
+
+
+\subsubsection{Spezielle Regeln (Faktor in Integral = Ableitung)}		
+
+\vspace{-0.2cm}
+
+\renewcommand{\arraystretch}{2.3}
+\begin{tabular}{ll}
+    Allg. Potenzregel   & $\int f'(x) \cdot f(x)^{\alpha} \, \diff x = \frac{f(x)^{\alpha + 1}}{\alpha + 1} + C \quad   (\alpha \neq -1)$   \\
+    Allg. Log-Regel     & $\int f'(x) \cdot \frac{1}{f(x)} \, \diff x = \int \frac{f'(x)}{f(x)} \, \diff x = \ln(\vert f(x) \vert ) + C$    \\
+    Allg. Exp-Regel     & $\int f'(x) \cdot \e^{f(x)} \, \diff x = \e^{f(x)} + C$
+\end{tabular}				
+\renewcommand{\arraystretch}{1}
+
+
+\subsection{Uneigentliche Integrale}{520}
+
+\subsubsection{Integrationsbereich auf x-Achse unbeschränkt ($\mathbb{D}_f$)}
+
+\vspace{-0.2cm}
+
+\renewcommand{\arraystretch}{2.3}
+\begin{tabular}{lll}
+    $\int \limits_a^{\infty} f(x) \, \diff x :=$            & $\lim \limits_{t \rightarrow \infty} \int \limits_a^t f(x) \, \diff x$                    & $a \in \mathbb{R}$ \quad $x \in [a; \infty)$      \\
+    $\int \limits_{- \infty}^{b} f(x) \, \diff x :=$        & $\lim \limits_{t \rightarrow \infty} \int \limits_t^b f(x) \, \diff x$                    & $b \in \mathbb{R}$ \quad $x \in (- \infty; b]$    \\
+    $\int \limits_{- \infty}^{\infty} f(x) \, \diff x :=$   & $\int \limits_{- \infty}^{C} f(x) \, \diff x + \int \limits_{C}^{\infty} f(x) \, \diff x$ & (Zerlegung)
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\textbf{Wenn $\bm{f(x)}$ (stetig) nicht $\bm{\rightarrow}$ 0, dann liegt Divergenz vor!}
+
+
+\subsubsection{Integrationsbereich auf y-Achse unbeschränkt ($\mathbb{W}_f)$}
+
+\vspace{-0.2cm}
+
+\renewcommand{\arraystretch}{2.7}
+\begin{tabular}{ll}
+    links ($x_0 = a$)           & $\int \limits_{a^+}^{b} f(x) \, \diff x = \lim \limits_{t \to a^+} \int \limits_t^b f(x) \, \diff x$                              \\
+    rechts ($x_0 = b$)          & $\int \limits_{a}^{b^-} f(x) \diff x = \lim \limits_{t \to b^-} \int \limits_a^t f(x) \, \diff x$                                 \\
+    zwischen ($x_0 \in (a;b))$  & $\int \limits_{a}^{x_0^-} f(x) \, \diff x = \int \limits_{a}^{x_0^-} f(x) \, \diff x + \int \limits_{x_0^+}^{b} f(x) \, \diff x$  \\
+    beide ($x_0 = a; x_0 = b$)  & $\int \limits_{a^+}^{b^-} f(x) \, \diff x = \int \limits_{a^+}^{C} f(x) \, \diff x + \int \limits_{C}^{b^-} f(x) \, \diff x$ 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\smallskip
+
+\textbf{Generell gilt: Bei Unstetigkeitsstellen wird Integral zerlegt!}
+
+
+\subsection{Referenz uneigentlicher Integrale}
+
+\vspace{-0.2cm}
+
+\begin{minipage}[c]{0.48\columnwidth}
+    $$ \int \limits_{a}^{\infty} \frac{1}{x^{\alpha}} \, \diff x = 
+    \begin{cases}			
+        \infty      & \crd{\text{Div}} \quad \alpha \in (0; 1]         \\
+        \mathbb{R}  & \cbl{\text{Konv}} \quad \alpha > 1
+    \end{cases}$$  
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\columnwidth}
+    $$ \int \limits_{0^+}^{b > 0} \frac{1}{x^{\beta}} \, \diff x = 
+    \begin{cases}		
+        \mathbb{R}  & \cbl{\text{Konv}} \quad 0 \leq \beta < 1  \\
+        \infty      & \crd{\text{Div}} \qquad \beta > 1         \\
+        \infty      & \crd{\text{Div}} \qquad \beta = 1
+    \end{cases} $$ 
+\end{minipage}
+
+
+\subsection{Majoranten- / Minorantenprinzip}
+
+\subsubsection{Majorantenprinzip ("Grösser-Gleich-Term")}
+
+$\crd{\vert} f(x) \crd{\vert} \leq g(x)$ \qquad $g(x)$ = Majorante \qquad $D_f = D_g$ zw. Grenzen von Integral
+
+$$ \text{Wenn } \int \limits_{...}^{...} g(x) \, \diff x \text{ \cbl{konv.} \textrightarrow\ } 
+\int \limits_{...}^{...} \vert f(x) \vert \, \diff x \text{ \cbl{ konv.} \textrightarrow\ } 
+\int \limits_{...}^{...} f(x) \, \diff x  \text{ \cbl{ konv.}} $$
+
+
+\subsubsection{Minorantenprinzip ("Kleiner-Gleich-Term")}
+
+$0 \leq f(x)$ \quad $0 \leq g(x) \leq f(x)$ \quad $g(x)$ = Minorante \quad $D_f = D_g$ zw. Grenzen von Integral
+
+$$ \text{Wenn } \int \limits_{...}^{...} g(x) \, \diff x \text{ \crd{div.} \textrightarrow\ } 
+\int \limits_{...}^{...} f(x) \, \diff x \text{ \crd{ div.}} $$
+
+
+\subsection{Integraltabelle}{495}
+        
+\begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{| c  c  c |}
+        \hline
+        \textbf{Ableitung} $\bm{\frac{\diff f}{\diff x}}$   & \textbf{Funktion} $\bm{f(x)}$ & \textbf{Stammfunktion} $\bm{F(x)}$    \\ 
+        \hline
+        $0$                                                 & $c \; (c \in \mathbb{R})$     & $c \cdot x$                           \\ 
+        $c$                                                 & $c \cdot x$                   & $c \frac{x^2}{2}$                     \\
+        $a \cdot x^{a-1} $                                  & $x^a \; (a \in \mathbb{R}\diagdown \lbrace -1 \rbrace)$ &  $\frac{x^{a+1}}{a+1} $ \\
+        $- \frac{1}{x^2} $                                  & $\frac{1}{x}$                 & $\ln(\vert x \vert)$                  \\ 
+        \hline
+        $\e^x$                                              & $\e^x$                        & $\e^x$                                \\ 
+        $a \, \e^{ax}$                                      & $\e^{ax}$                     & $\frac{1}{a} \e^{ax}$                 \\ 
+        $a^x \, \ln(\vert a \vert)$                         & $a^x$                         & $\frac{a^x}{\ln(\vert a \vert)}$      \\
+        \hline
+        $\frac{1}{x}$                                       & $\ln(\vert x \vert)$ &        $x \, ( \ln(\vert x \vert) - 1) $       \\
+        \hline
+        $\cos(x)$                                           & $\sin(x)$                     & $- \cos(x)$                           \\
+        $- \sin(x)$                                         & $\cos(x)$                     & $\sin(x)$                             \\
+        $1 + \tan^2(x)$                                     & $\tan(x)$                     & $- \ln(\vert \cos(x) \vert)$          \\
+        \hline
+        $\cosh(x)$                                          & $\sinh(x)$                    & $\cosh(x)$                            \\
+        $\sinh(x)$                                          & $\cosh(x)$                    & $\sinh(x)$                            \\
+        $1 - \tanh^2(x)$                                    & $\tanh(x)$                    & $\ln(\cosh(x))$                       \\
+        \hline
+        $\frac{1}{\sqrt{1 - x^2}}$                          & $\arcsin(x)$                  & $x \cdot \arcsin(x) + \sqrt{1- x^2 }$ \\
+        $- \frac{1}{\sqrt{1 - x^2}}$                        & $\arccos(x)$                  & $x \cdot \arccos(x) - \sqrt{1- x^2 }$ \\
+        $\frac{1}{1 + x^2}$                                 & $\arctan(x)$                  & $x \cdot \arctan(x) - \frac{1}{2} \ln(1 + x^2) $ \\
+        \hline
+        $\frac{1}{\sqrt{x^2 + 1}}$                          & $\mathrm{arsinh}(x)$          & $x \cdot \mathrm{arsinh}(x) - \sqrt{x^2 +1 } $ \\
+        $\frac{1}{\sqrt{x^2 - 1}}$                          & $\mathrm{arcosh}(x)$          & $x \cdot \mathrm{arcosh}(x) - \sqrt{x^2 - 1} $ \\	
+        $\frac{1}{1- x^2}$                                  & $\mathrm{artanh}(x)$          & $x \cdot \mathrm{artanh}(x) - \frac{1}{2} \ln(1-x^2) $ \\
+        \hline
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+\end{center}

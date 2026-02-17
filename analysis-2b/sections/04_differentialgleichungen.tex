@@ -1,0 +1,499 @@
+\section{Differentialgleichungen}
+
+\subsection{Übersicht}
+
+\vspace{-0.2cm}
+
+$$ \text{DGL (explizit):} \quad y'' = \underbrace{2 \, y' - x^2 \, y + \frac{1}{2}x}_{\substack{\text{r.h.s.} \; f(x, y, y')}}
+    \quad (\text{Ordnung } n = 2), \text{ linear!} $$
+
+\begin{tabular}{ll}
+    DGL             & Gleichlung, welche mind. eine Ableitung der gesuchten                             \\
+    \smallskip
+                    & Funktion $y$ enthält                                                              \\
+    \smallskip
+    Ordnung $n$     & \textbf{höchste} in DGL vorkommende Ableitung von $y$                             \\
+    \smallskip
+    Variable $x$    & Modellvariable in einem Intervall                                                 \\
+    \smallskip
+    r.h.s.          & right hand side \quad $f(x, y', y'', \, \ldots \, y^{(n-1)} )$                    \\
+    \smallskip
+    Anfangswerte    & Jede DGL der Ordnung $n$ hat $n$ Anfangswerte                                     \\
+    \smallskip
+                    & $y(x_0) = y_0$ \quad $y'(x_0) = y_1$  \quad $\ldots$ \quad  $y^{(n-1)} = y_{n-1}$ \\
+    Linearität      & DGL ist \textbf{linear in $\bm{y}$}, wenn alle $y$-Terme linear vorkommen         \\
+                    & ($x$-Terme ändern Linearität von $y$ nicht)
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{ll}
+    \smallskip
+    spez. Lösung    & Menge aller Lösungen   $\mathbb{L}$ erfüllen auch Anfangsbedindungen  \\
+    allg. Lösung    & Menge aller Lösungen $\mathbb{L}$ ohne spezifische Anfangsbedingungen \\	
+                    & (Synonym: allg. Integral) 
+\end{tabular}
+
+
+\subsection{Picard-Lindelöf}
+
+Schema zur Beruteilung der \textbf{Lösbarkeit} einer DGL
+
+\smallskip
+
+\begin{tabular}{ll}
+    (1) & $f(x, y, y', \, ... \, y^{(n-1)} )$ lokal bei $x_0 ; y_0$ stetig \\
+    (2) & alle partielle Ableitungen bilden: $f_y = \frac{\partial f}{\partial y}$ ; $f_y' = \frac{\partial f}{\partial y'}$ ; ... 
+\end{tabular}
+
+\medskip
+
+\textbf{Wenn} (1) erfüllt und alle (2) lokal bei $x_0 ; y_0$ beschränkt, \textbf{dann} ist DGL lokal eindeutig lösbar 
+(inkl. Anfangsbedingungen)
+
+\smallskip
+
+\textbf{Wenn} (1) erfüllt aber (2) \myul{nicht} erfüllt, dann ist alles möglich \\
+\textbf{ \textrightarrow\ Singularitäts-Test durchführen:} \\	
+Polstellen $f_y$ nach $y$ auflösen, in DGL einsetzen und konrollieren, ob DGL erfüllt ist
+
+
+\subsection{ABC-Analyse}
+
+Schema zur Überprüfung, ob \textbf{Lösungsmenge} $\mathbb{L}$ \textbf{vollständig} ist 
+
+\smallskip
+
+\begin{tabular}{ll}
+    A   & Verifizieren, ob gefundene Lösung $y$ DGL erfüllt (Einsetzen)         \\
+    B   & Alle Anfangswerte lösbar? \textrightarrow\ GlSys mit $\det \neq 0$    \\
+    C   & Eindeutigkeit mit Picard-Lindelöf prüfen
+\end{tabular}
+
+
+\subsection[Lösungsmethoden DGL Ordnung 1]{Lösungsmethoden DGL Ordnung $\bm{n=1}$}
+
+\subsubsection{Trennung der Variablen (separiert)}
+\label{Trennung der Variablen (separiert)}
+
+\vspace{-0.2cm}
+
+$$ y' = f(x \, ; \, y) = ( \text{Faktor in } x) * ( \text{Faktor in } y) = \tilde{f}(x) * g(y) $$ 
+
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{ll}
+    (1) & $\frac{y'}{g(y)} = \tilde{f}(x)$ mit $g(y) \neq 0$                                                                            \\
+    (2) & $\int \limits_{x_0}^{x} \frac{y'}{g(y)} \, \diff \tilde{x} = \int \limits_{x_0}^{x} \tilde{f}(\tilde{x}) \, \diff \tilde{x}$   \\
+    (3) & $\int \limits_{y_0}^{y} \frac{\diff \tilde{y}}{g(y)} =$ gelöstes Integral                                                     \\
+    (4) & Integral links lösen = gelöstes Integral rechts                                                                               \\
+    (5) & Gleichung auflösen nach $y$ \textrightarrow\ Formel in $x$                                                                    \\
+    (6) & Singularitätstest um weitere Lösungen zu finden                                                                               \\
+        & $g(y) = 0 \,$ \textrightarrow\ $y = \ldots$ in DGL einsetzen und verifizieren 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Linearterm}
+
+\vspace{-0.2cm}
+
+$$ y' = f(x \, ; \, y) = f( \underbrace{ax + by +c}_{\substack{z}}) \qquad y(x_0) = y_0 $$
+separiert: \quad $z' = a + b \, f(z)$ \qquad $z(x_0) = z_0 = a  \,x_0 + b \, y_0 + c$ 
+
+\smallskip
+
+\textrightarrow\ weiter in Abschnitt \ref{Trennung der Variablen (separiert)} mit $\tilde{f}(x) = 1$ und Substitution $y = z$
+
+
+\subsubsection{Gleichgradigkeit}
+
+\vspace{-0.2cm}
+
+$$ y' = f(x \, ; \, y) = f \Big( \underbrace{\frac{y}{x}}_{\substack{z}} \Big) \qquad y(x_0) = y_0 ; (x ; x_0 \neq 0) $$ 
+
+separiert: \quad $z' = \frac{1}{x} (f(z) - z)$ \qquad $z(x_0) = z_0 = \frac{y_0}{x_0}$ \\
+\textrightarrow\ weiter in Abschnitt \ref{Trennung der Variablen (separiert)} mit $\tilde{f}(x) = \frac{1}{x}$ und Substitution $y = z$ 
+
+\medskip
+
+\para{Umkehrfunktions-Trick}
+
+Variablen $x$ und $y$ vertauschen wenn:
+
+\smallskip
+
+\begin{itemize}
+    \item $f(\frac{y}{x})$ verkehrt herum, also $f(\frac{x}{y})$
+    \item Ableitung (Steigung) $y'$ steht im Kehrwert $\frac{1}{y'}$
+\end{itemize}
+
+
+\subsection[Lineare DGL n=1]{Lineare DGL $\bm{n=1}$}
+
+\vspace{-0.2cm}
+
+$$ 1 \, y' +  f(x) \, y = g(x) \qquad g(x) \text{ ist Störterm} \qquad \text{Anfangswert: } y(x_0) = y_0 $$
+$$ \text{\textbf{Lösungsmenge:}} \quad \mathbb{L} = \mathbb{L}_H + y_p \quad (\bm{y_p} \text{ \textbf{ist stationärer Anteil}}) $$
+
+\textbf{Gesamte Rechnung inkl. homogenem Teil ohne Integrations-Grenzen durchführen!}
+
+
+\subsubsection{Homogen \textrightarrow\ Störterm $\bm{g(x) = 0}$}
+
+\vspace{-0.2cm}
+
+$$ 1 \, y' +  \cgn{f(x)} \, y = \cbl{g(x)} \quad \text{ \textlrarrow\ } \quad y' = -f(x) \, y $$ 
+$$ y = \underbrace{y_0}_{\substack{k}} \, \e^{- \int \limits_{x_0}^{x} \cgn{f(\tilde{x})} \, d\tilde{x}} \qquad 
+(y_0 \in \mathbb{R}) \text{ \textrightarrow\ } \mathbb{L}_H $$ 
+
+
+\subsubsection{Partikulär / Inhomogen \textrightarrow\ Störterm $\bm{g(x) \neq 0}$}
+
+\vspace{-0.2cm}
+
+$$ y_p = k(x) \cdot  \e^{- \int \cgn{f(x)} \, \diff x} \quad \text{mit} \quad k(x) = \int \cbl{g(x)} \cdot \e^{\, \int \cgn{f(x)} \, \diff x} \, \diff x $$
+
+
+\subsection{Kurvenmengen}
+
+\begin{tabular}{lll}
+    A   & $y = c \cdot x$ \quad Parameter $(c \in \mathbb{R}$)                  \\  \smallskip
+    	& Geraden durch (0;0), $c$ = Steigung                                   \\
+    B   & $\frac{x^2}{a} + \frac{y^2}{b} = 1$ \quad Parameter ($a; \, b > 0$)   \\  \smallskip
+        & Ellipsen zentriert in (0;0), Halbachsen $\sqrt{a} \, ; \, \sqrt{b}$   \\  
+    C   & $x^2 + y^2 = c^2$ \\
+        & Kreise zentriert in (0;0), Radius $\sqrt{c}$
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{llll}
+    polar:  & $\frac{p}{1- \varepsilon \, \cos(\varphi)}$   & $\varphi \in \mathbb{D}_{\varphi}$    & $0 \leq \varepsilon < 1$ Ellipse \\
+            &                                               & $\varepsilon = 1$ Parabel             & $\varepsilon > 1$ Hyperbel
+\end{tabular}
+
+
+\subsection{Senkrechte Kurven / Orthagonaltrajektorien}
+
+Schneiden Originalkurven \myul{immer} senkrecht
+
+\smallskip
+
+\begin{tabular}{ll}
+    (1) & Originalkurve = $\mathbb{L}$ von DGL                                  \\
+        & Originalkurve Ableiten; Parameter-Elimination                         \\  \medskip
+        & \textrightarrow\ Originalkurven sind nun als DGL ausgedrückt          \\  
+    (2) & DGL $y'$ in neue DGL \cbl{$\tilde{y}'$} transformieren                \\
+        & \textrightarrow\ $\mathbb{L}$ der neuen DGL sind senkrechte Kurven    \\
+        & $y' = f(x \, ; \, y)$ \quad \textrightarrow\ \quad \cbl{$\tilde{y}' = - \frac{1}{f(x \, ; \, y)}$} \qquad \textrightarrow\ DGL \cbl{$\tilde{y}'$} lösen!
+\end{tabular}
+
+
+\subsection{Richtungsfelder (für DGL 1. Ordnung)}
+
+\begin{minipage}[c]{0.33\columnwidth}
+    \includegraphics[width=\columnwidth]{images/richtungsfeld.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.6\columnwidth}
+    DGL liefert Steigung in jedem Punkt
+
+    \medskip
+
+    Durch einsetzen von Punkten kann ein Richtungsfeld gezeichnet werden
+
+    \medskip
+
+    Auflösung: $h = \Delta x =$ const
+\end{minipage}
+
+
+\subsection[Lineare DGL]{Lineare DGL $\bm{n=2}$}
+\label{Lineare DGL n=2}
+
+\vspace{-0.2cm}
+
+$$ 1 \, y'' + a_1 \, y' + a_0 \, y = f(x) \qquad f(x) \text{ ist Störterm} $$
+$a_0, \, a_1$ konstante Koeffizienten $\in \mathbb{R}$ \\
+Anfangswerte: $y(x_0) = y_0$ und $y'(x_0) = y_1$
+
+$$ \text{ \textbf{Lösungsmenge:}} \quad \mathbb{L} = \mathbb{L}_H + y_p $$
+
+
+\subsubsection{Homogen \textrightarrow\ Störterm $\bm{f(x) = 0}$}
+
+\vspace{-0.3cm}
+
+$$ \text{char. Gleichung:} \quad \underbrace{1 \, \lambda^2 + a_1 \, \lambda + a_0}_{\substack{\text{char. Polynom}}} = 0 \qquad
+\lambda_{1,2} = - \frac{a_1}{2} \pm \sqrt{\Bigg( \frac{a_1}{2} \Bigg)^2 - a_0} $$
+
+
+\begin{tabular}{ll}
+    $D > 0$ & $\lambda_{1,2} \in \mathbb{R}$ ; $\lambda_1 \neq \lambda_2$ \qquad (starke Dämpfung)                                                                      \\ \medskip
+            & $\mathbb{L}_H = A \, \e^{\lambda_1 \, x} + B \, \e^{\lambda_2 \, x}$ \quad ($A, B \in \mathbb{R}$)                                                        \\ 
+    $D < 0$ & $\lambda_{1,2} \notin \mathbb{R}$ ; $\lambda_{1,2} = - \frac{a_1}{2} \pm j \underbrace{\sqrt{\vert D \vert}}_{\substack{\alpha}}$ \qquad (Schwingfall)    \\ \medskip
+            & $\mathbb{L}_H = A \, \e^{- \frac{a_1}{2} x} \cdot \cos(\alpha \, x) + B \, \e^{- \frac{a_1}{2} x} \cdot \sin(\alpha \, x)$ \quad ($A, B \in \mathbb{R}$)  \\
+    $D = 0$ & $\lambda_1 = \lambda_2 = - \frac{a_1}{2} \in \mathbb{R}$ \qquad (Aperiodischer Grenzfall)                                                                 \\
+            & $\mathbb{L}_H = A \; \e^{\lambda_1 \, x} + B \; x \; \e^{\lambda_1 \, x}$ \quad ($A, B \in \mathbb{R}$)\\
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{ll}
+    Amplituden $A, B \in \mathbb{R}$        & (Schwing-) Frequenz $\alpha = \sqrt{\vert D \vert}$   \\
+    Dämpfungen $\lambda_1$ und $\lambda_2$ 
+\end{tabular}
+
+
+\subsubsection{Partikulär / Inhomogen \textrightarrow\ Störterm $\bm{f(x) \neq 0}$ \textrightarrow\ \ref{Ansatz rechte Seite}}
+
+$$ \text{ \textbf{Faltungsintegral = Grundlösung} } \quad 
+y_p (x) = \int \limits_{x_0}^{x} \underbrace{g(x + x_0 - t)}_{\substack{(1)}} \cdot \underbrace{f(t)}_{\substack{(2)}} \, \diff t $$
+
+\begin{tabular}{ll}
+    (1) & homogene Lösung mit Anfang $g(x_0) = 0 \, ; \; g'(x_0) = 1$   \\
+    (2) & Störterm $f(t)$
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{ll}
+Vorteile: & Störung direkt verwendet \\
+    & Neutraler Anfang mit $y_p(x_0) = 0$ und  $y'_p(x_0) = 0$ \\
+    & Anfangsbedingungen für y nur mit $\mathbb{H}$ lösbar\\
+\end{tabular}
+
+
+\subsection[Ansatz rechte Seite]{Ansatz rechte Seite (Störung $\bm{f(x)\neq 0}$)}
+\label{Ansatz rechte Seite}
+
+\begin{tabular}{ll}
+    \medskip
+    $\cgn{p_n(x)}$  & Polynom vom Grad $n$ \quad (z.B. $a x^2 + b x + c$ für $n = 2$)                   \\  
+    $\cbl{q_n(x)}$  & Lösungs-Polynom vom gleichen Grad $n$ \quad (z.B. $a x^2 + b x + c$ für $n = 2$)  \\  \medskip
+                    & \textrightarrow\ Koeffizienten bestimmen durch einsetzen in DGL                   \\  \medskip
+    $r_n$, $s_n$    & Amplituden \textrightarrow\ $y_p$ in DGL einsetzen                                \\  
+    $a_1$, $a_0$    & Koeffizienten $\in \mathbb{R}$
+\end{tabular}
+
+
+\subsubsection{Störung = Polynom in $\bm{x}$}
+
+\vspace{-0.2cm}
+
+$$ y'' + a_1 \, y' + a_0 \, y = \cgn{p_n(x)} $$
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lll}
+    a)  & $a_0 \neq 0$              & \textrightarrow\ $y_p = \cbl{q_n(x)}$           \\
+    b)  & $a_0 = 0$ ; $a_1 \neq 0$  & \textrightarrow\ $y_p = x \cdot \cbl{q_n(x)}$   \\
+    c)  & $a_0 = a_1 = 0$           & \textrightarrow\ $y_p = x^2 \cdot \cbl{q_n(x)}$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Störung = Polynom * $\bm{\e^{bx}}$}
+
+\vspace{-0.2cm}
+
+$$ y'' + a_1 \, y' + a_0 \, y = \e^{b x} \cgn{p_n(x)} $$ 
+
+\begin{tabular}{ll}
+    a)  & wenn $b$ \textbf{keine} Lösung der char. Gleichung ist    \\  \medskip
+        & \textrightarrow\ $y_p = e^{b x} \cbl{q_n(x)}$             \\
+    b)  & wenn $b$ \textbf{einfache} Lösung der char. Gleichung ist \\  \medskip
+        & \textrightarrow\ $y_p = \e^{b x} x \, \cbl{q_n(x)}$       \\
+    c)  & wenn $b$ \textbf{doppelte} Lösung der char. Gleichung ist \\
+        & \textrightarrow\ $y_p = \e^{b  x} x^2 \, \cbl{q_n(x)}$
+\end{tabular}
+
+
+\subsubsection{Störung = Polynom * $\bm{e^{cx} * (\sin(bx) + \cos(bx))}$}
+
+\vspace{-0.2cm}
+
+$$ y'' + a_1 \, y' + a_0 \, y = \e^{cx} \big( \cgn{p_n(x)} \, \cos(bx) + \cbl{q_n(x)} \, \sin(bx) \big) $$ 
+
+
+\begin{tabular}{ll}
+    a)  & wenn $c + \jimg b$ keine Lösung der char. Gleichung ist                                       \\  \medskip
+        & \textrightarrow\ $y_p = \e^{c x} \big( r_n(x) \, \cos(bx) + s_n(x) \, \sin(bx) \big)$         \\
+    b)  & wenn $c + \jimg b$ Lösung der char. Gleichung ist                                             \\
+        & \textrightarrow\ $y_p = \e^{c x} \, x \, \big( r_n(x) \, \cos(bx) + s_n(x) \, \sin(bx) \big)$
+\end{tabular}
+
+
+\subsection[Lineare DGL Ordnung n in N]{Lineare DGL Ordnung $\bm{n \in}\mathbb{N}$ }
+
+\vspace{-0.2cm}
+$$ \text{Form:} \quad 1 \, y^{(n)} + a_{n-1} \, y^ {(n-1)} + \ldots + a_2 \, y'' + a_1 \, y' + a_0 \, y = f(x) $$ 
+
+$f(x)$ ist Störterm \qquad \qquad $a_0, \, a_1, \,  \ldots \, , \, a_n$ konstante Koeffizienten $\in \mathbb{R}$ 
+
+\smallskip
+
+Anfangswerte: $y(x_0) = y_0$ \quad $y'(x_0) = y_1$ \quad $\ldots$ \quad  $y^{(n-1)}(x_0)$
+
+$$ \text{ \textbf{Lösungsmenge:}} \quad \mathbb{L} = \mathbb{L}_H + y_p $$
+
+
+\subsubsection{Homogen \textrightarrow\ Störterm $\bm{f(x)=0}$}
+
+\vspace{-0.2cm}
+
+$$ \text{char. Gleichung:} \quad \underbrace{1 \, \lambda^n + a_{n-1} \, \lambda^{n-1} + \ldots + a_2 \, \lambda^2 + a_1 \, \lambda + a_0}
+_{\substack{\text{char. Polynom}}} = 0 $$ 
+
+\textrightarrow\ $\lambda$ finden und gemäss folgender Tabelle Baustein finden:
+
+\medskip
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{ll}
+    a)  & \textbf{reelle $\bm{r}$-fache} Lösung $\lambda_1 \in \mathbb{R}$                                                                              \\  \medskip
+        & \textrightarrow\ $y_1 = \e^{\lambda_1 x}$, \quad $y_2 = x \, \e^{\lambda_1 x}$, \quad $\ldots$ \quad $y_r = x^{r-1} \, \e^{\lambda_1 x}$      \\
+    b)  & \textbf{komplexe $\bm{k}$-fache} Lösung $\lambda_2 \in \mathbb{C}$ (komplex-konjugiert)                                                       \\
+        & mit $\lambda_2 = \alpha + \jimg \beta $ und $\beta \neq 0$                                                                                    \\
+        & \textrightarrow\ $y_1 = \cvt{A_1} \cdot \e^{\alpha x} \cos(\beta x) + \cvt{A_2} \e^{\alpha x} \sin(\beta x)$                                  \\
+        & \textrightarrow\ $y_{n} = \cvt{A_{2n-1}} \e^{\alpha x} x^{n-1} \, \cos(\beta x) + \cvt{A_{2n}} \e^{\alpha x} x^{n-1} \, \sin(\beta x)$
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\medskip
+
+\textbf{Homogene Lösung $\mathbb{H}$ ist Superposition aller Bausteine! \\
+Vor Bausteine eine \cvt{freie Amplitude $A_1, A_2 ... A_n$} $\in \mathbb{R}$ packen}
+
+
+\subsubsection{Partikulär / Inhomogen \textrightarrow\ Störterm $\bm{f(x) \neq 0}$}
+
+\vspace{-0.2cm}
+
+$$ \text{ \textbf{Faltungsintegral = Grundlösung}} \quad 
+    y_p (x) = \int \limits_{x_0}^{x} \underbrace{g(x + x_0 - t)}_{\substack{(1)}} \cdot \underbrace{f(t)}_{\substack{(2)}} \, \diff t $$
+
+
+\begin{tabular}{ll}
+    (1) & homogene Lösung mit Anfang: $g(x_0) = 0, \, g'(x_0) = 0, \quad \ldots \quad \bm{g^{(n-1)} = 1}$    \\
+    (2) & Störterm $f(t)$
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{ll}
+    Vorteile:   & Störung direkt verwendet                              \\
+                & $y_p$ hat neutralen Anfang                            \\
+                & Anfangsbedingungen für y nur mit $\mathbb{H}$ lösbar 
+\end{tabular}
+
+
+\subsection[Ansatz rechte Seite]{Ansatz rechte Seite (Störung $\bm{f(x)\neq 0}$)}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{ll}
+    $p_m(x)$, $q_m(x)$  & Polynome vom Grad $m$ \quad (z.B. $a \, x^2 + b \, x +c$ für $m = 2$) \\
+    $r_m$, $s_m$        & Amplituden \textrightarrow\ $y_p$ in DGL einsetzen                    \\
+    $a_n$               & Koeffizienten $\in \mathbb{R}$ für $1 \neq k \neq n-1$, $a_n = 1$     \\
+    $r$                 & Vielfachheit einer komplexen Lösung (Resonanz) 
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+
+\subsubsection{Störung =  $\bm{e^{\alpha x}}$ * Polynom}
+
+\vspace{-0.2cm}
+
+$$ \sum\limits _{k=0}^n a_k \, y^{(k)} = \e^{\alpha x} p_m(x) $$ 
+
+\begin{tabular}{ll}
+    a)  & wenn $\alpha$ \textbf{keine} Lösung der char. Gleichung ist           \\    \medskip
+        & \textrightarrow\ $y_p = \e^{\alpha x} q_m(x)$                         \\
+    b)  & wenn $\alpha$ \textbf{$\bm{r}$-fache} Lösung der char. Gleichung ist  \\
+        & \textrightarrow\ $y_p = \e^{\alpha x} x^r \, q_m(x)$
+\end{tabular}
+
+
+
+\subsubsection{Störung = $\bm{e^{\alpha x}}$ * Polynom * Schwingung}
+
+\vspace{-0.2cm}
+
+$$ \sum\limits _{k=0}^n a_k \, y^{(k)} = \e^{\alpha x} \Big( p_m(x) \, \cos(\beta x) + q_m(x) \, \sin(\beta x) \Big) $$
+
+\begin{tabular}{ll}
+    a)  & wenn $\alpha + \jimg \beta$ \textbf{keine} Lösung der char. Gleichung ist                                     \\   \medskip
+        & \textrightarrow\ $y_p = \e^{\alpha x} \Big( r_m(x) \, \cos(\beta x) + s_m(x) \, \sin(\beta x) \Big)$          \\
+    b)  & wenn $\alpha + \jimg \beta$ \textbf{$\bm{r}$-fache} Lösung der char. Gleichung ist                            \\
+        & \textrightarrow\ $y_p = \e^{\alpha x} \, x^r \, \Big( r_m(x) \, \cos(\beta x) + s_m(x) \, \sin(\beta x) \Big)$
+\end{tabular}
+
+
+% NOTE: Folgender Inhalt ist von Fabian Steiner übernommen, da dieser Stoff erst nach den FS 2022 Teil von Analysis 2b war
+% Reformatting: Simone Stitz
+\subsection{DGL Gleichungssysteme vom Grad 2}
+
+\newcommand{\RomanNumeralCaps}[1]
+{\MakeUppercase{\romannumeral #1}}
+
+\vspace{-0.2cm}
+
+$$
+\begin{matrix}
+    \text{\RomanNumeralCaps{1}}\\
+    \text{\RomanNumeralCaps{2}}\\
+    \text{}
+\end{matrix}	
+\left|
+\begin{matrix}
+    \dot{x} = ax & + & by & + & e \\
+    \dot{y} = cx & + & dy & + &\underbrace{f}_{\text{störf.}} 
+\end{matrix}
+\right| \qquad a, b, c, d \in \mathbb{R} , (x; y) = ? $$
+
+
+Matrix erstellen / umformen auf folgende Form:
+
+$$ \begin{matrix}
+    \text{\RomanNumeralCaps{1}}\\
+    \text{\RomanNumeralCaps{2}}
+\end{matrix}
+\left(
+\begin{matrix}
+    \dot{x}\\
+    \dot{y}
+\end{matrix}
+\right)
+= 
+\left(
+\begin{matrix}
+    x\\
+    y
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
+    a & b \\
+    c & d
+\end{matrix}
+\right)
++ 
+\left(
+\begin{matrix}
+    e\\
+    f
+\end{matrix}
+\right)
+$$
+
+
+Vereinfacht sich zu:
+
+\vspace{-0.4cm}
+
+\begin{align*}
+    1 & \ddot{x} - (a+d)\dot{x} + (ad-bc)x = \overbrace{\dot{e}-de+bf}^{\text{Störterm}}  \\
+    1 & \ddot{y} - (a+d)\dot{y} + (ad-bc)y = \dot{f} - af + ce
+\end{align*}
+
+\textrightarrow\ Lösbar wie in Abschnitt \ref*{Lineare DGL n=2} beschrieben \\
+\textrightarrow\ Wenn $x$ gefunden wurde kann $y = \frac{\dot{x}- ax-e}{b \neq 0}$ verwendet werden

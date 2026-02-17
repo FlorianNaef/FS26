@@ -1,0 +1,1 @@
+class Unterklasse : public Oberklasse1, public Oberklasse2{};
