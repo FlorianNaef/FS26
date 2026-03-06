@@ -300,7 +300,7 @@ TSWLatexianTemp*
 # xwatermark package
 *.xwm
 
-# OS Specific
+# Macos
 .DS_Store
 
 # REVTeX puts footnotes in the bibliography by default, unless the nofootinbib
