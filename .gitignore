@@ -11,6 +11,8 @@
 *.cb
 *.cb2
 .*.lb
+# Build folder
+build
 
 ## Intermediate documents:
 *.dvi
@@ -294,6 +296,9 @@ TSWLatexianTemp*
 
 # xwatermark package
 *.xwm
+
+# Macos
+.DS_Store
 
 # REVTeX puts footnotes in the bibliography by default, unless the nofootinbib
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.

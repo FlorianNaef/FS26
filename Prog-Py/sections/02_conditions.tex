@@ -1,0 +1,35 @@
+\section{Conditional Branching}
+\begin{itemize}
+    \item \textbf{Basic Structures}: \texttt{if}, \texttt{elif}, and \texttt{else} execute code blocks based on conditions. Consistent indentation is required.
+    \item \textbf{Match-case}: Introduced in Python 3.10 to recognize specific patterns and data structures.
+\end{itemize}
+
+\lstinputlisting[language=python]{code/conditions.py}
+
+\subsection{Boolean Expressions and Operators}
+\begin{itemize}
+    \item \textbf{Walrus Operator (\texttt{:=})}: Assigns and returns a value within an expression.
+    \item \textbf{Ternary Operator}: Compact syntax for simple single-line conditional assignments.
+    \item \textbf{\texttt{==} vs \texttt{is}}:
+    \begin{itemize}
+        \item \texttt{==} checks value equality; 
+        \item \texttt{is} checks object identity in memory (ideal for checking \texttt{None}).
+    \end{itemize} 
+    \item \textbf{\texttt{in} Operator}: Checks presence in objects implementing \texttt{\_\_contains\_\_()} (Only usable on iterable Objects: lists, strings, dicts).
+\end{itemize}
+
+\lstinputlisting[language=python]{code/boolean_expressions.py}
+
+\subsection{Exception Handling}
+\begin{itemize}
+    \item \textbf{LBYL (Look Before You Leap)}: A defensive style where you explicitly check for conditions (\texttt{if os.path.exists}) before making a call. This can be prone to "race conditions" where the state changes between the check and the action.
+    \item \textbf{EAFP (Easier to Ask Forgiveness than Permission)}: The 'Pythonic' approach. Assume the operation will succeed and wrap it in a \texttt{try/except} block. This is generally cleaner and more robust in multi-threaded environments.
+    \item \textbf{Catching Exceptions}: Always catch specific exceptions (e.g., \texttt{FileNotFoundError}) rather than generic ones. Use the \texttt{as} keyword to inspect the exception object.
+    \item \textbf{Flow Control}:
+    \begin{itemize}
+        \item \texttt{else}: Runs only if the \texttt{try} block succeeded without errors.
+        \item \texttt{finally}: Always runs (e.g., for closing file handles), regardless of whether an exception was raised or caught.
+    \end{itemize}
+\end{itemize}
+
+\lstinputlisting[language=python]{code/exceptions.py}
