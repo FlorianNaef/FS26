@@ -1,0 +1,71 @@
+\section{Iterations}
+\subsection{Slicing}
+\begin{itemize}
+   \item Syntax: \texttt{part = x[start:end:step]}.
+   \item Start is inclusive (default 0).
+   \item End is exclusive (default end index).
+   \item Step is optional (default 1). A negative step indicates reverse order.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+data = [0, 1, 2, 3, 4, 5.0, [1,2,3]]
+part = data[::-1] # Reverse order
+\end{lstlisting}
+
+\subsection{For-loops}
+\begin{itemize}
+    \raggedright
+    \item Internally calls \texttt{iter()} to return an iterator.
+    \item Uses the \texttt{next(iterator)} method to get the next element until a \texttt{StopIteration} exception is raised.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+for value in iterable:
+    expression1
+\end{lstlisting}
+
+\subsubsection{Loop-control statements}
+\begin{itemize}
+    \item \textbf{break}: Terminates a loop before completion.
+    \item \textbf{continue}: Skips the remaining code in the loop for the current iteration.
+    \item \textbf{else keyword}: Executed when the loop ends normally, meaning it has not encountered a \texttt{break} statement.
+\end{itemize}
+
+\subsubsection{Dictionaries}
+\begin{lstlisting}[language=Python]
+for key in data:                # Iterates keys
+for value in data.values():     # Iterates values
+for key, value in data.items(): # Iterates both keys and values
+\end{lstlisting}
+
+\subsubsection{Enumerate}
+\begin{itemize}
+    \item Used when a counter is needed while iterating through elements.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+for i, fruit in enumerate(fruits, start=10):
+    print(i, fruit)
+\end{lstlisting}
+
+\subsubsection{Zip}
+\begin{itemize}
+    \item Iterates over multiple iterables at the same time.
+    \item \textbf{Objects of different lengths}: The \texttt{zip()} function stops as soon as the shortest iterable is exhausted. Any remaining elements in the longer iterables are simply ignored.
+\end{itemize}
+
+\lstinputlisting[language=Python]{code/zip.py}
+
+\subsection{Comprehensions}
+\begin{itemize}
+    \item \textbf{Base Syntax}: \texttt{[expression for item in iterable]}.
+    \item \textbf{Nested for loops}: Evaluated from left to right.
+    \item \textbf{Can also call functions}: Built-in functions, like \texttt{any()}, can be used.
+    \item \textbf{\color{red}Conditional Syntax}: The position of the \texttt{if} statement completely changes its behavior. 
+    \begin{itemize}
+        \item \textbf{Filtering (Only \texttt{if})}: Must be placed at the \textbf{\color{orange}END}. It filters elements out of the iterable.
+        \item \textbf{Modifying (\texttt{if/else})}: Must be placed at the \textbf{\color{orange}BEGINNING} (before the \texttt{for} loop). It changes the value of the element based on the condition but does not filter it out.
+    \end{itemize}
+\end{itemize}
+
+\lstinputlisting[language=Python]{code/comprehensions.py}
