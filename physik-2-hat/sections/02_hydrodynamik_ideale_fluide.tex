@@ -75,12 +75,13 @@ $$ \boxed{ p_1 +  \rho \cdot g \cdot h_1 + \frac{1}{2} \, \rho \cdot v_1^2 = p_2
 \medskip
 
 
+
 \subsubsection*{Hydrodynamisches Paradoxon}
 
 \textbf{Je grösser die Strömungsgeschwindigkeit, desto kleiner der Druck} \\
 \textrightarrow\ Gegen jede Intuition!
 
-Se un estremità è aperta allora $p=0$ (ad Esempio in una siringa)
+Falls ein Ende offen ist, gilt $p=0$ (zum Beispiel bei einer Spritze).
 
 \subsubsection*{Formule derivate}
 
@@ -116,38 +117,43 @@ Bei einer horizontalen Strömung entfällt die pot. Energie (pro Volumen)
 \end{align*}
 
 \subsection{Kraft auf rohr}
-Viene utilizzato il simbolo $\vec{I}$ per l'impulso  per evitare confusione con la pressione $p$.
-
-\subsubsection{Principi Fondamentali}
+Das Symbol $\vec{I}$ wird für den Impuls verwendet, um Verwechslungen mit dem Druck $p$ zu vermeiden.
+\subsubsection{Grundprinzipien}
 \begin{itemize}
-    \item \textbf{Solidi:} $\vec{I} = m \cdot \vec{v}$ La variazione temporale dell'impulso corrisponde alla forza: $\frac{d\vec{I}}{dt} = \vec{F}$
-    \item \textbf{Fluidi (Volume di controllo):} L'impulso totale in un volume $V$ è definito come:
+    % Definition des Impulses für Festkörper
+    \item \textbf{Festkörper:} $\vec{I}=m \cdot \vec{v}$ Die zeitliche Änderung des Impulses entspricht der F: $\frac{d\vec{I}}{dt} = \vec{F}$
+    
+    % Definition des Impulses für Fluide (Kontrollvolumen)
+    \item \textbf{Fluide (Kontrollvolumen):} Der Gesamtimpuls in einem Volumen $V$ ist definiert als:
     $$\vec{I} = \iiint_V \rho \cdot \vec{v} \, dV$$
-    \item \textbf{Equazione della conservazione:} La somma delle forze esterne è pari alla variazione del flusso di quantità di moto:
+    
+    % Erhaltungssatz der Mechanik
+    \item \textbf{Erhaltungsgleichung:} Die Summe der äußeren Kräfte entspricht der Änderung des Impulsflusses:
     $$\sum \vec{F} = \frac{d\vec{I}}{dt}$$
 \end{itemize}
 
-\subsubsection{Bilancio dell'Impulso (Stazionario)}
-Per un fluido che scorre in un condotto con portata volumetrica $Q$ (o $\dot{V}$), il bilancio tra ingresso (1) e uscita (2):
+\subsubsection{Impulsbilanz (Stationär)}
+Für ein Fluid, das in einer Leitung mit dem Volumenstrom $Q$ (oder $\dot{V}$) fließt, gilt die Bilanz zwischen Einlass (1) und Auslass (2):
 $$\rho Q \vec{v}_1 + \sum \vec{F} = \rho Q \vec{v}_2 \qquad \rightarrow \qquad \sum \vec{F} = \rho \dot{V} (\vec{v}_2 - \vec{v}_1)$$
 
-\example{Scomposizione nelle Componenti $x$ e $y$}
-\begin{minipage}{0.55\columnwidth}	
-	\begin{itemize}
-		\item Equazione di base:
-		$$\underbrace{\rho Q \vec{v}_1}_{\vec{I}\text{ in Entrata}} + \sum \vec{F} = \underbrace{\rho Q \vec{v}_2}_{\vec{I}\text{ in Usicta}}$$
+\example{Zerlegung in $x$ und $y$ Richtung}
+\begin{minipage}{0.55\columnwidth}  
+    \begin{itemize}
+        \item Grundgleichung:
+        $$\underbrace{\rho Q \vec{v}_1}_{\vec{I}\text{ am Eintritt}} + \sum \vec{F} = \underbrace{\rho Q \vec{v}_2}_{\vec{I}\text{ am Austritt}}$$
 
-		\item \textbf{Asse $x$:}
-		$$\rho Q v_{1} + p_1 A_{1} - p_2 A_{2} + F_{tubo \rightarrow fl, x} = 0$$
-		
-		\item \textbf{Asse $y$:} ($m$: massa totale fl. nel tubo)
-		$$0 - p_2 A_{2} - m\cdot g + F_{tubo \rightarrow fl, y} = \rho Q v_{2}$$
-	\end{itemize}
+        \item \textbf{x-Achse:}
+        $$\rho Q v_{1} + p_1 A_{1} - p_2 A_{2} + F_{\text{Rohr} \rightarrow \text{Fl}, x} = 0$$
+        
+        \item \textbf{y-Achse:} ($m$: Gesamtmasse im Rohr)
+        $$0 - p_2 A_{2} - m\cdot g + F_{\text{Rohr} \rightarrow \text{Fl}, y} = \rho Q v_{2}$$
+    \end{itemize}
 \end{minipage}
 \begin{minipage}{0.45\columnwidth}
-	\includegraphics[width=\linewidth]{images/rohr_kraft.png}
+    % Pfad zum Bild bleibt unverändert
+    \includegraphics[width=\linewidth]{images/rohr_kraft.png}
 \end{minipage}
 
 \begin{center}
-	\textit{le forze di pressione agiscono sempre verso l'interno del volume di controllo.} ($p \cdot A$)
+    \textit{Druckkräfte wirken immer in Richtung des Inneren des Kontrollvolumens.} ($p \cdot A$)
 \end{center}
