@@ -18,17 +18,17 @@
 
 \subsection{Barometer}
 
-\begin{minipage}[t]{0.4\columnwidth}
+\begin{minipage}[t]{0.38\columnwidth}
     \includegraphics[width=\columnwidth, align=t]{images/manometer.jpg}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.5\columnwidth}
-    $$ \boxed{ p_1 = p_0 + \underbrace{ \rho_{Fl} \cdot g \cdot h}_{\substack{p_s}} } $$
+    $$ \boxed{ p_x = p_0 + \underbrace{ \rho_{Fl} \cdot g \cdot h}_{\substack{p_s}} } $$
  
     \begin{tabular}{ll}
-        $p_1$   & Gemessener Druck  \\
+        $p_x$   & Gemessener Druck  \\
         $p_0$   & Luftdruck         \\
-        $p_s$   & Schweredruck
+        $p_s$   & Schweredruck (Dal fluido)
     \end{tabular}
 
     \medskip
@@ -38,23 +38,50 @@
 \end{minipage}
 
 
-
-
-\subsection{Pitotrohr}
-Prandtl'sches Staurohr; Staudruckmesser \\
-Zur Messung von Strümungsgeschwindigkeiten 
+\subsection{Tubo di Pitot (Tubo di Prandtl)}
+Strumento per la misurazione della velocità di un fluido ($\rho_L$).
 
 \begin{center}
+    % Inserisci qui l'immagine
     \includegraphics[width=0.73\columnwidth]{images/pitotrohr.png}
 \end{center}
 
+\textbf{Assunzioni:}
+\begin{itemize}
+    \item \textbf{Bernoulli orizzontale:} Poiché i fori $A$ e $B$ sono alla stessa quota 
+    ($y_1 \approx y_2$), la differenza di pressione idrostatica dell'aria 
+    ($\rho_L g \Delta y$) è trascurabile rispetto alla pressione dinamica.
+    \item \textbf{Punto di ristagno (1):} In punta l'aria si ferma completamente $\Rightarrow v_1 = 0$.
+    \item \textbf{Pressione statica (2):} Ai fori laterali l'aria scorre indisturbata $\Rightarrow v_2 = v$.
+\end{itemize}
 
-$$ \boxed{ \text{Bernoulli horizontal:} \quad \underbrace{p_1}_{\substack{p_L}} + \frac{1}{2} \, \rho_1 \cdot \underbrace{v_1^2}_{\substack{0}} = \underbrace{p_2}_{\substack{p_L - \Delta p}} + \frac{1}{2} \, \underbrace{\rho_2}_{\substack{\rho_L}} \cdot v_2^2} $$
+\vspace{0.3cm}
+\textbf{Manometro a U:}
+La differenza di pressione è bilanciata dal dislivello $h$ del liquido manometrico ($\rho_{Fl}$):
+$$ p_1 = p_2 + \rho_{Fl} \cdot g \cdot h $$
 
-$$ 0 = - \Delta p + \frac{1}{2} \, \rho_L \cdot v_2^2 \qquad \Rightarrow \Delta p =\frac{1}{2} \, \rho_L \cdot v_2^2 $$
+\textbf{Equazione di Bernoulli:}
+$$ p_1 + \frac{1}{2}\rho_L \cdot v_1^2 = p_2 + \frac{1}{2}\rho_L \cdot v_2^2 \qquad p_1 \text{ Sostituire con eq. manometro}$$ 
+$$ p_2 + \rho_{Fl} \cdot g \cdot h = p_2 + \frac{1}{2}\rho_L \cdot v_2^2$$
 
-$$ \text{Gleichsetzen:} \quad \Delta p = \rho_{Fl} \cdot g \cdot h $$
 
+\textbf{Soluzione finale:}
+$$ \frac{1}{2} \rho_L v^2 = \rho_{Fl} \cdot g \cdot h \implies \boxed{v = \sqrt{\frac{2 \cdot \rho_{Fl} \cdot g \cdot h}{\rho_L}}} $$
+
+\subsection{U-Rohr}
+
+\begin{minipage}{0.35\columnwidth}
+\includegraphics[width=\columnwidth, align=t]{images/u-rohr.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\columnwidth}
+
+    Ansatz: Druckgleichgewicht 
+
+    $$ \boxed{ p_1 = p_2 } $$
+
+    $$ \boxed{ \rho_1 \cdot h_1 = \rho_2 \cdot h_2 } $$
+\end{minipage}
 
 \subsection{Pumpe}
 
@@ -64,29 +91,26 @@ $$ \boxed{ W = P \cdot t = F \cdot \Delta s = p \cdot A \cdot \Delta s = p \cdot
 
 $$ \boxed{ P =  \frac{W}{t} = \frac{p \cdot V}{t} = p  \cdot  \dot{V} } $$
 
+\subsection{Torricelli}
+\begin{minipage}{0.5\columnwidth}
+    \includegraphics[width=\linewidth]{images/torricelli.png}
+\end{minipage}
+\begin{minipage}[b]{0.48\columnwidth}
+    \cor{Attenzione} anche se il tubo andasse sopra 
+    al livello dell'$\rm H_2O$ l'altezza viene sempre calcolata dal livello dell'acqua
+
+    $$\boxed{v = \sqrt{2gh}} \qquad \boxed{x = 2\sqrt{h(H-h)}}$$
+    
+\end{minipage}  
+
 
 \subsection{Bewegungen}
 
 \vspace{-0.2cm}
 
-$$ \boxed{ P = F \cdot v } \qquad \qquad \boxed{ E_{\rm kin} = \frac{1}{2} \, m \cdot v^2 } $$
+$$ \boxed{ P = F \cdot v } \qquad \boxed{F = \dot{m} \cdot \Delta v}\qquad \boxed{ E_{\rm kin} = \frac{1}{2} \, m \cdot v^2 } $$
+\[\boxed{\dot{m} = \rho \dot{V}}\]
 
-
-
-\subsection{U-Rohr}
-
-\begin{minipage}[t]{0.35\columnwidth}
-\includegraphics[width=\columnwidth, align=t]{images/u-rohr.png}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.6\columnwidth}
-
-    Ansatz: Druckgleichgewicht 
-
-    $$ \boxed{ p_1 = p_2 } $$
-
-    $$ \boxed{ \rho_1 \cdot g \cdot h_1 = \rho_2 \cdot g \cdot h_2 } $$
-\end{minipage}
 
 
 \subsection{Wasser mit Dampf erhitzen}

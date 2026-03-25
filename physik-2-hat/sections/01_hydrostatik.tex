@@ -2,11 +2,11 @@
 
 \subsection{Festkörper, Flüssigkeit, Gas}
 
-\subsubsection{Festkörper}
+\subsubsection*{Festkörper \normalfont (Solidi)}
 
 \begin{itemize}
     \item Kein Fluid
-    \item Festes Volumen; feste Gestalt
+    \item Festes Volumen; feste Gestalt (Forma)
     \item Moleküle / Atome befinden sich in regelmässiger Gitter-Anordnung
     \item Inkompressibel (sehr schlecht komprimierbar)
     \item Kraft: Weiterleitung (längs ihrer Wirkungslinie)
@@ -14,11 +14,11 @@
 \end{itemize}
 
 
-\subsubsection{Ideale Flüssigkeit}
+\subsubsection*{Ideale Flüssigkeit \normalfont (Liquidi)}
 
 \begin{itemize}
     \item Fluid
-    \item Festes Volumen; keine feste Gestalt
+    \item Festes Volumen; keine feste Gestalt (Forma)
     \item Moleküle / Atome bewegen sich chaotisch aneinander vorbei
     \item Moleküle / Atome füllen den Raum aus / berühren sich
     \item Inkompressibel (schlecht komprimierbar)
@@ -28,7 +28,7 @@
 \end{itemize}
 
 
-\subsubsection{Gas}
+\subsubsection*{Gas}
 
 \begin{itemize}
     \item Fluid
@@ -43,17 +43,22 @@
 
 \subsection[Druck / Schubspannung]{Druck $\bm{p}$ / Schubspannung $\bm{\tau}$}
 
-\textbf{Druck ist eine skalare Grösse (hat keine Richtung)} 
-
-$$\boxed{ p = \frac{F_{\perp}}{A} } \qquad \qquad \boxed{ \tau = \frac{F_{\parallel}}{A} } $$
-
-\begin{tabular}{c l c}
-    $p$             & Druck                         & $[p] = \pascal = \frac{\newton}{\meter^2}$    \\
-    $\tau$          & Schubspannung (Scherkraft)    & $[\tau] = \newton$                            \\
-    $F_{\perp}$     & Kraft senkrecht zu $A$        & $[F_{\perp}] = \newton$                       \\
-    $F_{\parallel}$ & Kraft parallel zu $A$         & $[F_{\parallel}] = \newton$                   \\
-    $A$             & Fläche                        & $[A] = \meter^2$
-\end{tabular}
+\begin{minipage}{0.6\columnwidth}
+    \textbf{Druck ist eine skalare Grösse (hat keine Richtung)} 
+    
+    $$\boxed{ p = \frac{F_{\perp}}{A} } \qquad \qquad \boxed{ \tau = \frac{F_{\parallel}}{A} } $$
+    
+    \begin{tabular}{c l c}
+        $p$             & Druck                         & $[p] = \pascal = \frac{\newton}{\meter^2}$    \\
+        $\tau$          & Schubspannung (Scherkraft)    & $[\tau] = \newton$                            \\
+        $F_{\perp}$     & Kraft senkrecht zu $A$        & $[F_{\perp}] = \newton$                       \\
+        $F_{\parallel}$ & Kraft parallel zu $A$         & $[F_{\parallel}] = \newton$                   \\
+        $A$             & Fläche                        & $[A] = \meter^2$
+    \end{tabular}    
+\end{minipage}\hfill
+\begin{minipage}{0.3\columnwidth}
+    \includegraphics[width=\linewidth]{images/pascal_gesetz.png}
+\end{minipage}
 
 \medskip
 
@@ -66,12 +71,12 @@ $$ \boxed{ p_1 = p_2  \quad \Leftrightarrow  \quad \frac{F_1}{A_1} = \frac{F_2}{
 \subsubsection{Weitere Einheiten von Druck}
 
 \vspace{-0.2cm}
-$$ \bm{1 \, \bbar = 10^5 \pascal} \qquad \text{Absolutdruck: Vergleich zu Vakuum} $$
+$$ \bm{1 \, \bbar = 10^5 \pascal} \qquad \text{\color{orange}Absolutdruck: Vergleich zu Vakuum} $$
 
 \begin{tabular}{ll}
     $1 \, \hecto \pascal$   & $= 100 \, \pascal = 1 \, \milli \bbar $                                       \\
     $1 \, \mathrm{at}$      & $= 1 \, \mathrm{kp \cdot \centi \meter^{-2}} = 9.81 \cdot 10^4 \, \pascal$    \\
-    $1 \, \mathrm{at"u}$    & $= 1 \, \mathrm{at}$ (Überdruck; Vergleich zu normalem Luftdruck)             \\
+    $1 \, \mathrm{at"u}$    & $= 1 \, \mathrm{at}$ (\cor{Überdruck; Vergleich zu normalem Luftdruck})             \\
     $1 \, \mathrm{Torr}$    & $= \frac{1}{760} \, \mathrm{at}$ (1 mm-Hg-Säule)
 \end{tabular}
 
@@ -164,7 +169,11 @@ $$ \boxed{ p(h) = p_0 \cdot e^ {- \frac{\rho_0}{p_0} \cdot g \cdot h} }$$
     $\rho_0$    & Luft-Dichte auf Meereshöhe $\rho_0 = 1.2 \, \frac{\kilogram}{\meter^3}$   & $[\rho_0] = \frac{\kilogram}{\meter^3}$   \\
     $h$         & Höhe über Meer                                                            & $[h] = \meter$                            \\
     $g$         & Erdbeschleunigung $g = 9.81 \, \frac{\meter}{\second^2}$                  & $[g] = \frac{\meter}{\second^2}$    
-\end{tabular}
+\end{tabular}\vspace{1em}
+
+\textbf{Questa formula può anche essere usata da un punto d'origine non a $0 \meter$.}
+
+Usare però pressioni per $\cor{h_0}$ specifica ed $\cor{h_{\rm rel}}$
 
 
 \subsection{Statischer Auftrieb (Fluid)}
@@ -192,8 +201,9 @@ Der Auftrieb eines Körpers entspricht dem Gewicht der von ihm verdrängten Flü
     $m_{\rm Fl}$    & Masse des \textbf{verdrängten Fluids}                 & $[m_{\rm Fl}] = \kilogram$                        \\
     $F_{\rm G,Fl}$  & Gewichtskraft \textbf{verdrängtes Fluid}              & $[F_{\rm G,Fl}] = \newton$
 \end{tabular}
-\renewcommand{\arraystretch}{1}
+\renewcommand{\arraystretch}{1}\vspace{1em}
 
+In caso di gallegiamento la $m_{\rm spostata} = m_{\rm corpo}$, in ogni tipo di fluido $V_{\rm spostato} \cdot \rho_{\rm Fl} = m_{\rm corpo}$  
 
 \subsection[Oberflächenspannung]{Oberflächenspannung $\bm{\sigma}$}
 
@@ -204,7 +214,7 @@ Der Auftrieb eines Körpers entspricht dem Gewicht der von ihm verdrängten Flü
 \begin{minipage}[c]{0.65\columnwidth}
     \renewcommand{\arraystretch}{1.3}
     \begin{tabular}{c l c}
-    $\sigma$    & Oberflächenspannung   & $[\sigma] = \frac{\newton}{\meter}$   \\
+    $\sigma$    & Oberflächenspannung   & $[\sigma] = \frac{\newton}{\meter} = \frac{\joule}{\meter^2}$   \\
     $F$         & Kraft                 & $[F] = \newton$                       \\
     $l$         & Länge                 & $[l] = \meter$
     \end{tabular}
@@ -213,12 +223,12 @@ Der Auftrieb eines Körpers entspricht dem Gewicht der von ihm verdrängten Flü
 
 \medskip
 
-\textbf{Die Länge $\bm{l}$ entspricht der gesamten Berührungslänge zwischen Flüssigkeit und Festkorper / Gas}
+\textbf{La forza di tensione superficiale $\sigma$ agisce lungo la \textbf{linea di contatto} tra liquido e solido.}
 
 \smallskip
 
 \begin{tabular}{ll c|c ll}
-    Zylinder & $l = 2 \, \pi \, r$ & &
+    Zylinder & $l = 2 \, \pi \, r = \pi d$ (Circorferenza cerchio)& &
     Lamellen & $l = 2 \, b$  (beidseitig!)
 \end{tabular}
 
