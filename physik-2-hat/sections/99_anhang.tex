@@ -38,34 +38,34 @@
 \end{minipage}
 
 
-\subsection{Tubo di Pitot (Tubo di Prandtl)}
-Strumento per la misurazione della velocità di un fluido ($\rho_L$).
+\subsection{Pitot-Rohr (Prandtl-Sonde)}
+Instrument zur Messung der Geschwindigkeit eines Fluids ($\rho_L$).
 
 \begin{center}
-    % Inserisci qui l'immagine
+    % Hier das Bild einfügen
     \includegraphics[width=0.73\columnwidth]{images/pitotrohr.png}
 \end{center}
 
-\textbf{Assunzioni:}
+\textbf{Annahmen:}
 \begin{itemize}
-    \item \textbf{Bernoulli orizzontale:} Poiché i fori $A$ e $B$ sono alla stessa quota 
-    ($y_1 \approx y_2$), la differenza di pressione idrostatica dell'aria 
-    ($\rho_L g \Delta y$) è trascurabile rispetto alla pressione dinamica.
-    \item \textbf{Punto di ristagno (1):} In punta l'aria si ferma completamente $\Rightarrow v_1 = 0$.
-    \item \textbf{Pressione statica (2):} Ai fori laterali l'aria scorre indisturbata $\Rightarrow v_2 = v$.
+    \item \textbf{Horizontale Bernoulli-Gleichung:} Da die Öffnungen $A$ und $B$ auf der gleichen Höhe liegen 
+    ($y_1 \approx y_2$), ist der Unterschied im hydrostatischen Druck der Luft 
+    ($\rho_L g \Delta y$) im Vergleich zum dynamischen Druck vernachlässigbar.
+    \item \textbf{Staupunkt (1):} An der Spitze kommt die Luft vollständig zum Stillstand $\Rightarrow v_1 = 0$.
+    \item \textbf{Statischer Druck (2):} An den seitlichen Öffnungen strömt die Luft ungestört vorbei $\Rightarrow v_2 = v$.
 \end{itemize}
 
 \vspace{0.3cm}
-\textbf{Manometro a U:}
-La differenza di pressione è bilanciata dal dislivello $h$ del liquido manometrico ($\rho_{Fl}$):
+\textbf{U-Rohr-Manometer:}
+Die Druckdifferenz wird durch den Höhenunterschied $h$ der Manometerflüssigkeit ($\rho_{Fl}$) ausgeglichen:
 $$ p_1 = p_2 + \rho_{Fl} \cdot g \cdot h $$
 
-\textbf{Equazione di Bernoulli:}
-$$ p_1 + \frac{1}{2}\rho_L \cdot v_1^2 = p_2 + \frac{1}{2}\rho_L \cdot v_2^2 \qquad p_1 \text{ Sostituire con eq. manometro}$$ 
+\textbf{Bernoulli-Gleichung:}
+$$ p_1 + \frac{1}{2}\rho_L \cdot v_1^2 = p_2 + \frac{1}{2}\rho_L \cdot v_2^2 \qquad \text{($p_1$ durch Manometer-Gl. ersetzen)} $$ 
 $$ p_2 + \rho_{Fl} \cdot g \cdot h = p_2 + \frac{1}{2}\rho_L \cdot v_2^2$$
 
-
-\textbf{Soluzione finale:}
+\textbf{Endlösung:}
+% Berechnung der Geschwindigkeit v aus der Druckdifferenz
 $$ \frac{1}{2} \rho_L v^2 = \rho_{Fl} \cdot g \cdot h \implies \boxed{v = \sqrt{\frac{2 \cdot \rho_{Fl} \cdot g \cdot h}{\rho_L}}} $$
 
 \subsection{U-Rohr}
@@ -93,15 +93,16 @@ $$ \boxed{ P =  \frac{W}{t} = \frac{p \cdot V}{t} = p  \cdot  \dot{V} } $$
 
 \subsection{Torricelli}
 \begin{minipage}{0.5\columnwidth}
+    % Einbindung der Illustration zum Torricelli-Theorem
     \includegraphics[width=\linewidth]{images/torricelli.png}
 \end{minipage}
 \begin{minipage}[b]{0.48\columnwidth}
-    \cor{Attenzione} anche se il tubo andasse sopra 
-    al livello dell'$\rm H_2O$ l'altezza viene sempre calcolata dal livello dell'acqua
+    \cor{Achtung:} Auch wenn das Rohr über den Wasserspiegel ($\rm H_2O$) hinausragt, wird die Höhe immer ab dem Wasserspiegel gemessen.
 
+    % v: Ausflussgeschwindigkeit, x: Wurfweite
     $$\boxed{v = \sqrt{2gh}} \qquad \boxed{x = 2\sqrt{h(H-h)}}$$
     
-\end{minipage}  
+\end{minipage}
 
 
 \subsection{Bewegungen}
