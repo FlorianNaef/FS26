@@ -16,7 +16,7 @@
 \vspace{-0.5cm}
 
 \begin{center}
-	$$ \sum\limits _{i=0}^n q^i = q^0 + q^1 + \ldots + q^{n-1} + q^n = \frac{q^{n+1}-1}{1-q} \qquad  (q = \text{ const}) $$ 
+	$$ \sum\limits _{i=0}^n q^i = q^0 + q^1 + \ldots + q^{n-1} + q^n = \frac{q^{n+1}-1}{q-1} \qquad  (q = \text{ const}) $$ 
 
 	$ n \to \infty$ \qquad \cbl{$\vert q \vert < 1$ \textrightarrow\ Konvergenz zu $\frac{1}{1-q}$} \qquad \qquad 
 	\crd{ $\vert q \vert \geq 1$ \textrightarrow\ Divergenz}
@@ -51,7 +51,7 @@ $$ \sum\limits _{n=1}^\infty \frac{1}{n^{\alpha}} \quad (\alpha > 1) \qquad \tex
 \vspace{-0.2cm}
 
 $$ \sum\limits _{i=1}^n  (a_{i+1} - a_i) \quad \text{ \textrightarrow\ Benachbarte Differenzen }$$
-$$ s_n = (a_2 - a_1) + (a_3 - a_2) + \ldots + (a_n - a_{n+1}) + (a_{n+1} - a_n) = a_{n+1} - a_1 $$	
+$$ s_n = (a_2 - a_1) + (a_3 - a_2) + \ldots + (a_n - a_{n-1}) + (a_{n+1} - a_n) = a_{n+1} - a_1 $$	
 $$ n \to \infty  \quad s_n = -a_1 \text{ wenn } a_n \to 0 \quad \text{\cbl{Konvergenz}} $$
 
 \vspace{-0.2cm}
