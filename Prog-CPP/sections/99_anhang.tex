@@ -1,0 +1,77 @@
+\section{Anhang}
+
+\subsection{Styleguide}
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \textbf{Variablen, Konstanten}
+    \begin{itemize}[itemsep=1pt, parsep=0pt]
+        \item mit Kleinbuchstaben beginnen
+        \item erster Buchstaben von zusammengesetzten Wörtern ist gross (mixed case)
+        \item keine Underscores
+    \end{itemize}
+    Beispiele : counter, maxSpeed
+    \item \textbf{Funktionen}
+    \begin{itemize}[itemsep=1pt, parsep=0pt]
+        \item mit Kleinbuchstaben beginnen
+        \item erster Buchstaben von zusammengesetzten Wörtern ist gross (mixed case)
+        \item Namen beschreiben Tätigkeiten
+        \item keine Underscores
+    \end{itemize}
+    Beispiele : getCount(), init(), setMaxSpeed()
+    \item \textbf{Klassen, Strukturen, Enums}
+    \begin{itemize}[itemsep=1pt, parsep=0pt]
+        \item mit Grossbuchstaben beginnen
+        \item erster Buchstaben von zusammengesetzten Wörtern ist gross (mixed case)
+        \item keine Underscores
+        \item Namen beschreiben Dinge
+    \end{itemize}
+    Beispiele : MotorController, Queue, Color
+\end{itemize}
+
+\subsection{Code beispiele}
+\subsubsection{String formatting}
+Utilizza gli stream di output per costruire stringhe in memoria. È sicuro perché gestisce la memoria dinamicamente.
+
+\begin{lstlisting}
+#include <sstream>
+#include <iomanip>
+
+std::string formatTime(int h, int m) {
+    std::ostringstream buf;
+    buf << std::setfill('0') << std::setw(2) << h 
+        << ":" << std::setw(2) << m;
+    return buf.str();
+}
+\end{lstlisting}
+
+Rappresenta lo standard moderno. Combina la sintassi concisa di \texttt{printf} con la sicurezza degli stream.
+
+\begin{lstlisting}
+#include <format>
+
+std::string formatTime(int h, int m) {
+    // :02 significa 2 cifre con riempimento zero
+    return std::format("{:02}:{:02}", h, m);
+}
+\end{lstlisting}
+
+\subsubsection{Ctor un dtor}
+\lstinputlisting[language=c++]{code/ctor_dtor_anhang.cpp}
+
+\subsection{Ritorno per Riferimento e Method Chaining}
+\begin{itemize}
+    \item \textbf{Meccanismo:} Una funzione restituisce un riferimento all'oggetto stesso
+    utilizzando \texttt{return *this;}. Il tipo di ritorno deve 
+    essere una referenza (es. \texttt{Complex\&}).
+    \item \textbf{Kaskadierung (Cascading):} Permette di chiamare più metodi in 
+    sequenza sulla stessa istanza in un'unica riga: \texttt{obj.funz1().funz2();}.
+    
+    \crd{Tramite ritorno \textit{by-value} funz2 verrebbe eseguita su un oggetto \textit{tmp}}
+    \item \textbf{Efficienza:} A differenza del ritorno per valore, 
+    non viene creata alcuna copia dei dati (nessun oggetto temporaneo \textit{tmp}), 
+    risparmiando risorse 
+    \item \textbf{Persistenza:} Le modifiche effettuate nella catena agiscono 
+    direttamente sull'oggetto originale e non su una sua copia destinata alla distruzione.
+\end{itemize}
+
+\lstinputlisting[language=c++]{code/method_chaining.cpp}

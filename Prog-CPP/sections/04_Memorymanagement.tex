@@ -25,11 +25,18 @@ Dieser bleibt so lange belegt bis dieser Manuell wieder freigegeben wird.\\
 Es kann aber auch sein, falls der Speicher stark fragmentiert ist, das kein Speicher bereitgestellt werden kann. 
 Generell ist bei sehr vollem Speicher das Arbeiten erschwert.
 
-\subsubsection{Speicherlecks}
+\subsubsection{Memory leaks}
 
 Falls ein Programm unkontrolliert Speicher aufnimmt oder den ihm zur Verfügung gestellte nicht wieder freigibt, spricht man von einem Speicherleck. 
 Diese sind zu verhindern da diese zu einer Systemüberlastung und Abstürzen führen.
 
+\example{}
+\begin{minipage}{0.5\columnwidth}
+  \lstinputlisting[language=C++]{code/memory_leaks.cpp}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+  \includegraphics[width=\linewidth]{images/memory_leak.png}
+\end{minipage}
 
 \subsection{Speichermanagement funktionen}
 
@@ -38,7 +45,7 @@ Generell geben diese einen Pointer zurück, welcher auf freien Speicher zeigt.
 \textbf{Diese müssen immer auf einen Nullpointer geprüft werden, da keine Garantie vorhanden ist, ob überhaupt Speicher vorhanden ist!}
 Generell sollte mit solchen Pointer immer misstrauisch gearbeitet werden und nach Abschluss immer wieder freigegeben werden.
 
-\subsubsection{C: malloc( ) calloc( ), free( ) (Funktionen)}
+\subsubsection{C: \texttt{malloc()},  \texttt{calloc()}, \texttt{free()}}
 
 \textbf{malloc()} gibt einen Voidpointer(pointercasting nicht vergessen) zurück welche auf eine angeforderte Grösse an Bytes Speicher zeigt. 
 Der Speicher ist \textbf{nicht} initialisiert
@@ -49,9 +56,10 @@ Der Speicher ist \textbf{nicht} initialisiert
 
 Falls kein Speicher allokiert werden kann, wird ein NULL-pointer zurückgegeben.
 
-\subsubsection{C++: new, delete, new[ ], delete[ ] (Operatoren)}
+\subsubsection{C++: \texttt{new}, \texttt{delete}, \texttt{new[]}, \texttt{delete[]} (Operatoren)}
 
 Der \textbf{new}-Operator erstellt ein Pointer welcher auf die mitgegebene Grösse zeigt.
+
 \textbf{new[ ]} macht dasselbe, ausser das dieser ein Array zurückgibt.
 
 \textbf{delete} / \textbf{delete[ ]} gibt den Speicher wieder frei. 
@@ -71,23 +79,35 @@ Der Speicheraufbau bildlich dargestellt sieht ungefähr so aus:
 Je nach Architektur kann es auch sein, dass die hohen und tiefen Adressen anders herum sind.
 
 \subsection{Referenzen}
+Una referenza è un \textbf{alias} (un nome alternativo) per una variabile o una cella di memoria già esistente. Rappresentano una versione più moderna, sicura e ristretta dei puntatori.
 
-Referenzen sind die modernere / eingeschränkte Version von Pointer. 
-Wenn möglich sollte immer mit Referenzen gearbeitet werden, dies ist aber nicht immer möglich.\\
-
-Referenzen...
-\begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item wirken wie ein Alias-Name einer Variablen
-    \item werden wie normale Variablen verwendet
-    \item sind niemals uninitialisiert
-    \item haben niemals den Wert nullptr
-    \item brauchen nicht immer Speicher (Implementations abhängig)
+\subsubsection{Caratteristiche Principali}
+\begin{itemize}
+    \item \textbf{Inizializzazione obbligatoria:} Deve essere inizializzata subito: \texttt{int\& r = x;}
+    \item \textbf{Immutabilità:} Non può essere modificata per puntare a un altro oggetto dopo la definizione.
+    \item \textbf{Sicurezza:} Non possono essere mai non inizializzate e non hanno mai il valore \texttt{nullptr}.
+    \item \textbf{Efficienza:} Possono risiedere nei registri della CPU e non occupano sempre memoria fisica. L'operatore \texttt{sizeof()} restituisce la dimensione del tipo a cui la referenza punta.
+    \item \textbf{Sintassi:} Vengono utilizzate come variabili normali, senza necessità di dereferenziazione.
+    \item \textbf{Limitazione con gli Array:} Le referenze non possono essere usate per scorrere gli array tramite aritmetica (incremento/decremento). Per questo scopo, i \textbf{puntatori} rimangono indispensabili.
 \end{itemize}
 
-Generell helfen Referenzen weniger Fehler in der Programmierung zu machen und weniger Risiken zu haben. 
-Pointer werden allerdings weiter für sehr hardwarenahe Programmierung gebraucht. 
-\textbf{sizeof()} liefert die Grösse des Typs, auf der die Referenz zeigt.\\
-Beispiel:
+\subsubsection{Confronto: Value vs Reference}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Caratteristica} & \textbf{Call by Value} & \textbf{Call by Reference} \\ \midrule
+Copia dei dati          & Sì (costoso per oggetti grandi) & No (passa l'alias) \\
+Modifica originale      & No                             & Sì \\
+Sintassi                & \texttt{void f(int a)}         & \texttt{void f(int\& a)} \\ \bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Best Practices}
+L'utilizzo delle referenze riduce drasticamente i rischi di errori rispetto ai puntatori. Tuttavia, i puntatori rimangono necessari in casi specifici:
+\begin{itemize}
+    \item \textbf{Gestione degli Array:} Un array "decade" naturalmente in un puntatore al suo primo elemento (\textit{pointer decay}), rendendo i puntatori lo strumento standard per iterare o manipolare blocchi di memoria contigui.
+    \item \textbf{Programmazione Low-level:} Necessaria per l'interazione diretta con l'hardware o allocazione dinamica manuale (\texttt{new}/\texttt{delete}).
+\end{itemize}
 
 \lstinputlisting{code/referenz.cpp}
 
@@ -100,7 +120,19 @@ Eine Unterklasse braucht immer mindestens so viel speicher wie eine Oberklasse.
 Zuweisungen von Oberklasse zu Unterklasse sind in der regel möglich da alle geerbten Attribute ja vorhanden sind. 
 Umgekehrt geht das allerdings nicht, da der Speicher dafür nicht initialisiert ist.
 
-\subsection{Type Casting}
+\subsubsection{Slicing Problem}
+
+\begin{itemize}
+    \item \textbf{Definizione:} Si verifica quando un oggetto di una sottoclasse viene passato \textbf{per valore} a una funzione che si aspetta la superclasse.
+    \begin{itemize}
+        \item Viene invocato il \textit{Copy-Constructor} della superclasse.
+        \item Solo la parte "base" dell'oggetto viene copiata; le estensioni della sottoclasse vengono perse (slicing).
+    \end{itemize}
+    \item \textbf{Conseguenza:} All'interno della funzione, l'oggetto si comporta esclusivamente come un'istanza della classe base, perdendo ogni comportamento polimorfico.
+    \item \textbf{Soluzione:} Utilizzare sempre il passaggio \textbf{per referenza} (\texttt{const T\&}) o tramite puntatori. Questo preserva l'integrità dell'oggetto originale e permette il corretto funzionamento dei metodi \texttt{virtual}.
+\end{itemize}
+
+\subsection{Type Casting}\vspace{-1em}
 
 \begin{center}
     \rotatebox{90}{%            
@@ -117,7 +149,7 @@ Umgekehrt geht das allerdings nicht, da der Speicher dafür nicht initialisiert 
           \begin{tabular}[c]{@{}l@{}}1. {\color{codeGreen}signed char} a = 1;\\ {\color{codeGreen}int} b = a;\\ \\ 2. {\color{codeGreen}int} a = 1;\\ {\color{codeGreen}char} b = a; {\color{blue}// ggf. mit Warnung}\\ \\ 3. Bird b;\\ Animal a = b; {\color{blue}// Upcast: a ist ein Animal}\end{tabular} \\ \hline
         {\color{blue} static} &
           \begin{tabular}[c]{@{}l@{}}• Alles, was implizit möglich ist,\\ unterdrückt dabei etwaige Warnungen.\\ • Pointer- und Referenz-Typen auf\\ Instanzen von Ober- und\\ Unterklassen in beide Richtungen\\ umwandeln: Upcast und\\ Downcast (\textbf{ohne Typprüfung} zur\\ Laufzeit, Auswertung\\ ausschliesslich zur \textbf{Compilezeit})\end{tabular} &
-           &
+          \begin{tabular}[c]{@{}l@{}}Per convertire un tipo intero più \\ grande in uno più piccolo, il \\ compilatore semplicemente "taglia" \\ i bit in eccesso, mantenendo solo \\ quelli meno significativi (LSB).\end{tabular} &
           \begin{tabular}[c]{@{}l@{}}1. {\color{codeGreen}int} a = 1;\\ {\color{codeGreen}char} b = {\color{codeGreen}static\_cast}\textless{}{\color{codeGreen}char}\textgreater{}(a);\\ 2. Bird* b = {\color{codeGreen}new} Bird;\\ Animal* a = b; {\color{blue}// geht implizit!}\\ Bird* c = {\color{codeGreen}static\_cast}\textless{}Bird*\textgreater{}(a);\\ {\color{blue}/* Braucht einen down-Cast} , \\ {\color{codeGreen}weil nicht jedes Animal ein Bird ist!*/}\end{tabular} \\ \hline
         {\color{blue} dynamic} &
           \begin{tabular}[c]{@{}l@{}}• Pointer- und ReferenzTypen auf \\ Instanzen von\\ \textbf{polymorphen} Ober- und\\ Unterklassen in beide\\ Richtungen umwandeln:\\ Upcast und Downcast (\textbf{mit}\\ Typprüfung per RTTI zur\\ Laufzeit)\end{tabular} &

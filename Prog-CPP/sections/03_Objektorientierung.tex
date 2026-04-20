@@ -20,29 +20,30 @@ Sie kennzeichnen sich durch:
 
 Ähnliche Objekte können in \textbf{Klassen} zusammengefasst werden, um Programmieraufwand tiefer zu halten. 
 Verwendete Objekte werden als \textbf{Instanz} eingesetzt. Diese Objekte haben dieselben Attribute, allerdings andere Werte.\\
-Eine Beispielklasse:\\
+Eine Beispielklasse:
 
-\lstinputlisting{code/class_example.cpp}
+\lstinputlisting{code/class_example.cpp}\vspace{-1em}
 
-\subsubsection{Header-Datei}
-
-Reihenfolge in der Header-Datei:
+\subsubsection{Reihenfolge der Header-Datei (.h)}
 
 \begin{enumerate}[itemsep=1pt, parsep=0pt]
     \item Dateikommentar mit Lizenzvereinbarung.
-    \item \textit{\color{blue} \texttt{Includes} des verwendete System Header}
-    \item \textit{\color{blue} \texttt{Includes} der Projektbezogenen Header}
+    \item \textit{\color{blue} \texttt{Includes} des verwendete System Header \texttt{<\dots>}}
+    \item \textit{\color{blue} \texttt{Includes} der Projektbezogenen Header \texttt{"\dots"}}
     \item \textit{\color{blue} Definition von Konstanten}
     \item \textit{\color{blue} Typedef's und Definitionen von Strukturen}
     \item \textit{\color{blue} allenfalls extern-Deklaration von Global-Variablen}
     \item \textit{\color{blue} Funktionsprototypen, ink. Kommentar der Schnittstelle, bzw. Klassendeklarationen}
 \end{enumerate}
 
-Die \textit{blauen} Punkte müssen sich im Includeguard befinden(\#pragma once). 
-Pro Header-Datei sollte nur eine Oberklasse deklariert sein. 
-Kleine Unterklassen können im gleichen Header stehen.
+\begin{itemize}
+    \item Die \textit{blauen} Punkte müssen sich im Includeguard befinden(\#pragma once). 
+    \item Pro Header-Datei sollte nur eine Oberklasse deklariert sein. 
+    \item Kleine Unterklassen können im gleichen Header stehen.
+    \item Kein \texttt{using namespace \dots} in header files
+\end{itemize}
 
-\subsubsection{Reihenfolge der Implementation}
+\subsubsection{Reihenfolge der Implementation (.cpp)}
 
 \begin{enumerate}[itemsep=1pt, parsep=0pt]
     \item Dateikommentar mit Lizenzvereinbarung
@@ -52,55 +53,47 @@ Kleine Unterklassen können im gleichen Header stehen.
     \item allenfalls globale und statische Variablen
     \item Präprozessor-Direktiven
     \item Funktionsprototypen von lokalen, internen Funktionen (in nameless Namespace)
-    \item Definition von Funktionen und Klassen
+    \item Definition von Funktionen und Klassen (\crd{Kommentare nicht wiederholen})
 \end{enumerate}
 
 \subsection{UML}
 
-Die \texttt{Unified Modeling Language} ist eine normierte Sprache um Objekte grafisch darzustellen. 
-Sie geht extrem ins Detail. 
-Darum hier nur ein Ausschnitt:
+Die \texttt{Unified Modeling Language} ist eine normierte Sprache um Objekte grafisch 
+darzustellen, \textbf{programmierspracheunabhängig}.
 
 \subsubsection{UML-Klassendiagramm Notation}
 
-Besteht immer aus 3 Boxen:\\
+Besteht immer aus 3 Boxen:\vspace{1em}
 
 \noindent
-\begin{minipage}{0.5\columnwidth}
+\begin{minipage}{0.4\columnwidth}
 \begin{center}
-    \begin{tikzpicture}[
-        umlclass/.style={
-            draw,
-            rectangle split,
-            rectangle split parts=3,
-            fill=blue!10,
-            minimum width=3cm,
-            font=\small\ttfamily,
-            % QUESTA È LA RIGA FONDAMENTALE:
-            align=left 
-        }
-    ]
-        \node [umlclass] (Student) {
-            \centering \textbf{Student} % Centriamo solo il nome
+    \begin{tikzpicture}
+        \node [umlclass] (Student) { % see preamble umclass style
+            \centering \textbf{Student}
             \nodepart{second}
                 + IDNumber : int \\
-                \# name : std::string \\
+                \# name : string \\
                 - bierkonsum : float \\
-                \# investedTimeInET : long int
+                \# investedTimeInET : int
             \nodepart{third}
-                - doStuff(time : int\&) : void \\
-                + \textit{useless(void)} : retType*
+                - doStuff(time : int) \\
+                + \textit{useless()}
         };
     \end{tikzpicture}
-    % \includegraphics[width=0.8\columnwidth]{images/UML-Klassendiagramm Notation.png}    
 \end{center}
 \end{minipage}
-\begin{minipage}{0.45\columnwidth}
-
-    Zu oberst der Name, in der Mitte Attribute(Variablen) und unten Methoden.
-    Die Methoden und Attribute fangen mit einem Symbol an, welches die Sichtbarkeit definiert und haben ein bestimmtes Merkmal:
-
-\end{minipage}
+\begin{minipage}{0.57\columnwidth}
+    \begin{itemize}
+        \raggedright
+        \item Zu oberst der Name 
+        \item In der Mitte Attribute(Variablen)
+        \item Unten Methoden.
+        \item Methoden und Attribute fangen mit einem Symbol an, welches die \textbf{Sichtbarkeit} 
+                definiert und haben ein bestimmtes Merkmal:
+        \item Parole come \texttt{void} o \texttt{const} sono specifiche per linguaggio, da non includere
+    \end{itemize}
+\end{minipage}\vspace{1em}
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
     \item + : public (überall sichtbar)
@@ -117,13 +110,25 @@ Besteht immer aus 3 Boxen:\\
 \subsection{class vs struct}
 
 Eine class und struct können fast identisch verwendet werden. 
-Eine class hat standardmässig Sichtbarkeit private, Struct public(wenn nichts definiert wird).
+Eine class hat \textbf{standardmässig Sichtbarkeit private} sonst muss explizit mit \texttt{public:} gekennzeichnet, Struct public(wenn nichts definiert wird).
+
+\subsubsection{Zugriffsschutz}
+\begin{tabular}{|l|l|}
+    \hline
+    \textbf{Modificatore} & \textbf{Descrizione e Best Practice} \\ \hline
+    \texttt{public} & Accessibili dall'interno e dall'esterno della classe. \\ 
+    & $\rightarrow$ Quasi tutti i \textbf{metodi} sono pubblici. \\ 
+    & $\rightarrow$ \textbf{attributi} non dovrebbero \textit{mai} essere pubblici. \\ \hline
+    \texttt{protected} & Accessibili dall'interno della classe e dalle \textbf{classi derivate}. \\ 
+    & $\rightarrow$ Da utilizzare con parsimonia. \\ \hline
+    \texttt{private} & Accessibili \textbf{solo} all'interno della classe stessa. \\ 
+    & $\rightarrow$ Per tutti gli attributi e per metodi locali specifici. \\ \hline
+\end{tabular}
 
 \subsection{Inkludierte Dokumentation}
 
 Mann kann im H-File direkt die Dokumentation zu der Schnittstelle schreiben. 
 Das ermöglicht das einfachere Verwenden der Schnittstelle.
-Dies wird in einem Blockkommentar, nach folgendem Muster realisiert:
 
 \lstinputlisting{code/codedocumentation.cpp}
 
@@ -131,50 +136,37 @@ Es kann immer mehr geschrieben werden, man sollte sich aber auf das Nötige besc
 
 \section{Konstruktoren und Destruktoren}
 
-Konstruktoren und Destruktoren sind spezielle Methoden von Klassen. 
-Diese haben immer denselben Namen wie die Klasse und \textbf{kein} Rückgabetyp(auch nicht void).\\
-Aufrufparameter haben folgende Bedeutung:
+I costruttori (CTOR) e i distruttori (DTOR) sono metodi speciali che gestiscono il ciclo di vita di un oggetto. Entrambi hanno lo stesso nome della classe e \textbf{non} hanno alcun tipo di ritorno (nemmeno \texttt{void}).
 
-\begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item \textbf{\texttt{Keine}} : Default Konstruktor
-    \item \textbf{\texttt{const-Referenz auf eigene Klasse}} : copy Konstruktor
-    \item \textbf{Alles andere} : User-Defined
+\subsection{Konstruktoren (CTOR)}
+
+Il compito principale del CTOR è l'inizializzazione "pulita" di tutti gli attributi della classe.
+
+\begin{itemize}
+    \item \textbf{Default-Konstruktor:} Non ha parametri. Viene invocato automaticamente se l'oggetto è dichiarato senza argomenti (es. \texttt{Stack s;}). Se non definito, il compilatore ne crea uno implícito (che però non inizializza i tipi primitivi).
+    \item \textbf{Copy-Konstruktor:} Riceve una \texttt{const}-Referenz alla propria classe (\texttt{TString(const TString\& s)}). Viene usato per creare un oggetto come copia di uno esistente.
+    \item \textbf{Explicit-Konstruktor:} Marcando un CTOR a parametro singolo con \texttt{explicit}, si impediscono conversioni implicite indesiderate (es. \texttt{TString s = 5;}).
 \end{itemize}
 
-\subsection{Konstruktoren}
+Werden verschiedene Konstruktoren definiert, muss der Default zuerst aufgerufen werden, wenn dieser erhalten bleiben soll.
 
-Konstruktoren bereiten die Instanz auf ihre Funktion vor. \\
+\subsubsection{Best Practices di Inizializzazione}
+Una delle responsabilità primarie del costruttore è garantire che l'oggetto nasca in uno stato valido. Ciò implica che \textbf{tutti} gli attributi della classe debbano essere inizializzati su un valore definito.
 
-Wichtig ist, dass ein Konstruktor immer \textbf{alle} Attribute der Klasse initialisiert.
-Konstruktoren werden wie folgt aufgerufen:\\
-
-\subsubsection{User-Defined}
-
-\begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item Default $\rightarrow$ ohne Aufrufparameter
-    \item Copy $\rightarrow$ mit einer const Referenz auf eine andere Instanz
-    \item sonstige $\rightarrow$ werden anhand ihrer Aufrufparameter unterschieden, Sprechweise:\texttt{überladen}
+\begin{itemize}
+    \item \textbf{Assegnamento nel corpo (\ref{chap:ctor_dtor_example}):} Meno efficiente, i membri vengono prima creati con valori predefiniti e poi sovrascritti.
+    \item \textbf{Initialisierungsliste (\ref{chap:user_ctor}):} Il metodo preferito per motivi di efficienza; gli attributi vengono inizializzati direttamente al momento della creazione.
+    \item \textbf{Member In-Class Initialization:} (Da C++11) Permette di impostare valori di default direttamente nella dichiarazione della classe, semplificando i costruttori ed evitando dimenticanze.
 \end{itemize}
 
-Werden verschiedene Konstruktoren definiert, muss der Default zuerst aufgerufen werden, wenn dieser erhalten bleiben soll.\\
+\subsection{Gestione Memoria: Shallow vs. Deep Copy}
 
-\subsubsection{Implizit}
+Quando una classe gestisce puntatori a memoria allocata sul Heap (\texttt{new}), il comportamento di default è critico:
 
-Falls ein expliziter nicht angegeben wurde, dieser jedoch aus technischen Gründen benötigt wird:
-
-\begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item Default $\rightarrow$ macht nichts, alle Parameter bleiben uninitialisiert
-    \item Copy $\rightarrow$ dieser kopiert alle Attribute der anderen Instanz eins-zu-eins(bytewise). Problematisch, wenn die Instanz Pointer auf etwas hat.
-    \item ...
-\end{itemize}
-
-Wenn ein Objekt einen Pointer auf einen allokierten Speicher hat, muss eine spezielle Copy Methode verwendet werden. 
-Der Pointerwert / Adresse wo dieser hinzeigt, wird einfach kopiert. 
-Falls dann das erste Objekt den Speicher freigibt, wird die Speicheralokation gelöscht. 
-Sobald Objekt 2 nun den Speicher aufruft, zeigt dieser auf ungültigen Speicher $\rightarrow$ \textit{Segmentation fault}.\\
-Darum \textbf{MUSS} dem Objekt ein separater Speicherbereich gegeben werden.\\
-
-Merke: Konstruktoren werden immer dann gerufen (evtl. auch \textbf{implizit}) wenn ein neues Objekt in den Speicher gelegt wird.\\
+\begin{description}
+    \item[Shallow Copy (Default):] Il compilatore copia solo l'indirizzo del puntatore. Entrambi gli oggetti puntano alla stessa memoria. Se uno la libera, l'altro punta a memoria non valida (\textit{Double Free} o \textit{Segmentation Fault}).
+    \item[Deep Copy (Manuale):] \textbf{\color{red}È necessario} definire un Copy-Konstruktor proprio che allochi nuovo spazio sul Heap e copi i dati effettivi.
+\end{description}
 
 \subsection{Destruktor}
 
@@ -187,7 +179,7 @@ Mit anderen virtuellen Funktionen \textbf{müssen} sie virtuel definiert werden.
 Der Funktionsname beginnt mit einer Tilde($\sim$). 
 Der Destruktor wird evtl. auch Implizit aufgerufen z.b., wenn aus einer Funktion wieder herausgesprungen wird. 
 
-\subsection{Beispiel}
+\subsection{Beispiel}\label{chap:ctor_dtor_example}
 
 \lstinputlisting{code/constructor.cpp}
 
@@ -206,21 +198,21 @@ Es wird zwischen Zuweisung und Initialisierung unterschieden.
 
 \lstinputlisting{code/non_pod_init.cpp}
 
-\subsection{User defined Constructor}
+\subsection{User defined Constructor}\label{chap:user_ctor}
 
 Um eine Klasse richtig initialisieren zu können muss der Ctor korrekt definiert werden. 
-Eine sogenannte Initialisierungsliste wird verwendet:
+Eine sogenannte \textbf{Initialisierungsliste} wird verwendet:
 
 \lstinputlisting{code/userdefined_ctro.cpp}
 
 \section{Assertions}
-
 Assertions sollten Annahmen über korrekte Wertebelegung darstellen. 
+
 Sie sind kein C spezifisches Konzept und sollten \textbf{nur zu Testzwecken} eingesetzt werden. 
 Im Releasebuild sollten sie deaktiviert werden. 
 Dafür gibt es spezifische Präprozessorflags.
 Der Header \textbf{$<$assert.h$>$} bzw. \textbf{$<$cassert$>$} stellt hierfür ein Präprozessor-Makro \texttt{assert(Bedingung)} zur Verfügung, um solche Zusicherungen auszudrücken.\\
-Beispiel:\\
+\textbf{Beispiel}:
 
 \lstinputlisting{code/assertions.cpp}
 
@@ -244,10 +236,27 @@ Sie erhalten \textbf{neue Bedeutung} für eine Klasse.
 
 
 \subsection{Methodenoverloading}
+\begin{itemize}
+    \item \textbf{Definizione}: Stesso nome per funzioni con parametri diversi (tipo, numero o ordine).
+    \item \textbf{Firma}: Composta da \textit{Nome + Parametri}. Il tipo di ritorno è \textbf{escluso}.
+    \item \textbf{Regola}: Se differiscono solo per il tipo di ritorno, il compilatore genera un errore.
+    \item \textbf{Best Practice}: Usare l'overloading solo per operazioni comparabili e \textbf{non mescolarlo mai con i parametri di default.}
+\end{itemize}
 
-Methoden dürfen in Cpp gleich heissen, sie müssen aber unterschiedliche Aufrufparameter haben.
-\lstinputlisting{code/method_overloading.cpp}
+\begin{center}
+    
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Caratteristica} & \textbf{Overloading} & \textbf{Parametri Default} \\
+        \midrule
+        Memoria & Più funzioni & Singola funzione \\
+        Manutenzione & Maggiore & Minore \\
+        Flessibilità & Tipi diversi & Valori predefiniti \\
+        \bottomrule
+    \end{tabular}
+\end{center}
 
+\lstinputlisting[language=c++]{code/method_overloading.cpp}
 
 \subsection{Operator overloading}
 
@@ -294,18 +303,6 @@ Diese decken verschiedene Eingabetypen ab.
 Es wäre schlechter Stil, die Typkonvertierung dem Compiler implizit zu überlassen! 
 Ein Fall, bei dem das anderstypige Argument zuerst kommt, muss noch per Globalem Overloading gelöst werden. 
 Da der erste Aufrufparameter, beim Overloading mit Methoden, immer zuerst kommt. 
- 
-\section{Default Argumente}
-
-Default Argumente werden als Parameterwert verwendet, wenn keiner mitgegeben wird.
-Parameter werden von links nach rechts mit Werten belegt. 
-Wenn manche Aufrufparameter keinen Default wert erhalten, müssen diese weiter Links stehen, als welche mit Default wert.  
-
-\lstinputlisting{code/default_argumente.cpp}
-
-Default Argumente können überall verwendet werden bis auf Aufrufparameter von Operatoroverloading. 
-Dort sind sie \textbf{nicht} erlaubt. 
-Dort machen sie aber ohnehin keinen Sinn. 
 
 \section{Getter \& Settermethoden}
 
@@ -313,7 +310,41 @@ Getter und Settermethoden werden Typischerweise verwendet um Lese und Schreibzug
 Attribute sind \textbf{alle Parameter einer Klasse}. 
 Mit einer Get oder Set Methode kann der Zugriff auf diese kontrolliert / angepasst werden.\\
 
+\cor{\texttt{const} after the funtion name declares that the method cannot modify any Attribute} 
+
+\myul{immer fur Selector (Getter) benutzen}
+
 \lstinputlisting{code/getter_settermethoden.cpp}
+
+\subsubsection{Mutable}
+Si può permettere a determinati attributi di essere 
+modificati da metodi \texttt{const} con la keyword \texttt{mutable},
+\textbf{usare il meno possibile}
+\begin{lstlisting}
+...
+mutable int error;
+...
+\end{lstlisting}
+
+\subsubsection{Const correctness}
+\begin{itemize}
+    \item \textbf{Sola Lettura:} Un oggetto dichiarato come \texttt{const} può invocare \textit{solo} metodi dichiarati \texttt{const}.
+    \item \textbf{Sicurezza:} Se un metodo non è marcato \texttt{const}, il compilatore assume che possa modificare l'oggetto e ne impedisce l'uso su istanze costanti per evitare effetti collaterali indesiderati.
+\end{itemize}
+
+\example{}
+\begin{lstlisting}
+class Stack {
+public:
+    int pop();               // Modifica lo stato (rimuove elemento)
+    bool isEmpty() const;    // Sola lettura (osserva lo stato)
+};
+
+void check(const Stack& s) {
+    s.isEmpty();  // OK: il metodo promette di non modificare s
+    // s.pop();   // ERRORE: pop() potrebbe modificare s
+}
+\end{lstlisting}
 
 \section{Vererbung}
 
@@ -326,15 +357,34 @@ Bei der Vererbung werden immer \textbf{alle} Attribute oder Methoden weitergegeb
 In einem UML Diagramm wird vererbung wie folgt dargestellt:\\
 \noindent
 \begin{minipage}{0.6\columnwidth}
-\begin{center}
-    \includegraphics[width=\columnwidth]{images/uml.png}    
-\end{center}
-\end{minipage}
-\begin{minipage}{0.4\columnwidth}
+    \begin{tikzpicture}[>=Triangle]
+        % Nodo Superclasse
+        \node[umlclass] (super) {
+            \hfil \textbf{Superklasse} \hfil
+            \nodepart{second}
+            Attribute
+            \nodepart{third}
+            Methoden
+        };
 
-Unterklasse erbt (die Attribute und Methoden) von Superklasse. 
+        % Nodo Unterklasse posizionato a destra
+        \node[umlclass, right=1cm of super] (unter) {
+            \hfil \textbf{Unterklasse} \hfil
+            \nodepart{second}
+            Attribute
+            \nodepart{third}
+            Methoden
+        };
 
-\end{minipage}
+        % Freccia di ereditarietà (Generalizzazione)
+        \draw[inheritance] (unter) -- (super);
+
+    \end{tikzpicture}
+        % \includegraphics[width=\columnwidth]{images/uml.png}    
+\end{minipage}\hfill
+    \begin{minipage}{0.35\columnwidth}
+    Unterklasse erbt (die Attribute und Methoden) von Superklasse. 
+\end{minipage}\vspace{1em}
 
 Dies stellt eine \texttt{ist ein beziehung} dar. 
 Es ist sehr wichtig, dass die Pfeilspitze \colorbox{red!65}{\textbf{genau so!}} aussieht wie in der Darstellung da ansonsten Verwechslungsgefahr mit anderen Mechanismen entstehen könnte.
@@ -345,13 +395,30 @@ Es ist sehr wichtig, dass die Pfeilspitze \colorbox{red!65}{\textbf{genau so!}} 
 
 \subsubsection{UML++}
 
-\noindent
-\begin{minipage}{0.6\columnwidth}
-\begin{center}
-            \includegraphics[width=\columnwidth]{images/uml++.png}    
-\end{center}
-\end{minipage}
-\begin{minipage}{0.4\columnwidth}
+\begin{tikzpicture}[
+    node distance=0.6cm and 0.1cm, % Distanza verticale e orizzontale ridotta
+]
+% Livello 1
+    \node[umlclass] (c1) {\textbf{C1}\nodepart{second}\nodepart{third}};
+
+    % Livello 2
+    \node[umlclass, below left=of c1.south] (c2) {\textbf{C2}\nodepart{second}\nodepart{third}};
+    \node[umlclass, below right=of c1.south] (c3) {\textbf{C3}\nodepart{second}\nodepart{third}};
+
+    % Livello 3
+    \node[umlclass, below left=of c2.south] (c4) {\textbf{C4}\nodepart{second}\nodepart{third}};
+    \node[umlclass, below right=of c2.south] (c5) {\textbf{C5}\nodepart{second}\nodepart{third}};
+    \node[umlclass, below right=of c3.south] (c6) {\textbf{C6}\nodepart{second}\nodepart{third}};
+
+    % Connessioni
+    \draw[inheritance] (c2) -- (c1);
+    \draw[inheritance] (c3) -- (c1);
+    \draw[inheritance] (c4) -- (c2);
+    \draw[inheritance] (c5) -- (c2);
+    \draw[inheritance] (c6) -- (c3);
+\end{tikzpicture}
+\hfill
+\begin{minipage}[b]{0.3\columnwidth}
     Vererbung ist auch über mehrere Stufen Möglich:\\
     Z.b. C4 Erbt alles von C2 und C1
 \end{minipage}
@@ -365,22 +432,29 @@ Mit \textbf{protected} wird alles was public war protected.
 Mit \textbf{private} wird alles private (nicht sehr nützlich).
 
 \begin{center}
-    \includegraphics[width=0.7\columnwidth]{images/Vererbung.png}    
+    \includegraphics[width=0.8\columnwidth]{images/Vererbung.png}    
 \end{center}
 
 Wird eine Vererbung private durchgeführt, sind keine Attribute oder Methoden mehr sichtbar.
 
+Attribute soll nie \texttt{protected} sein
 \subsubsection{Constructor / Destructor chaining}
 
-Grundsätzlich initialisieren ctors nur die eigene Klasse. 
-Dh Superklassen initialisieren sich selbst. 
-Eine Subklasse initialisiert sich, indem sie zunächst einen Ctor der Superklasse aufruft und danach sich selbst \textbf{IMPLIZIT}. 
-Man kann das auch explizit machen:
+\par{Logica dei Costruttori (CTOR)}
+\begin{itemize}
+    \item \textbf{Principio di Responsabilità:} Il costruttore di una classe inizializza esplicitamente \textbf{solo i propri attributi}.
+    \item \textbf{Delegazione:} Per gli attributi della classe base, viene invocato il costruttore della classe base stessa (la base 'si occupa delle proprie faccende').
+    \item \textbf{Regola di Priorità:} Gli elementi della classe base devono essere \textbf{sempre inizializzati per primi}.
+\end{itemize}
+
 
 \lstinputlisting{code/ctor_unterklasse.cpp}
 
-Note: Da der Konstruktor aufgerufen wird kann auch ein evtl Private Attribut der Oberklasse initialisiert werden.
-Gleiches gilt mit dem Dtor, nur umgekehrte Reihenfolge (erst wird der Dtor von der subklasse aufgerufen, dann.....).
+\par{Logica dei Distruttori (DTOR)}
+\begin{itemize}
+    \item \textbf{Ordine Inverso:} I distruttori vengono eseguiti nell'ordine esattamente opposto ai costruttori.
+    \item \textbf{Ordine di Esecuzione:} Dal basso verso l'alto (Sottoclasse $\rightarrow$ Classe Base).
+\end{itemize}
 
 \subsection{Überschreiben von Methoden}
 
@@ -397,11 +471,13 @@ Dies kann als Verhalten gewünscht sein.
 \subsection{virtual, final, override und scopeoperator}
 
 \subsubsection{virtual}\label{Virtual}
-
-Mit \textbf{virtual} kann eine Methode gekennzeichnet werden, dass diese Methode von einer Unterklasse überschrieben wird.
-Somit würde das obige Beispiel nicht mehr funktionieren und es wird immer die Printfunktion der Unterklasse aufgerufen. 
-In einer Unterklasse ist virtual nicht mehr zwingend zu schreiben.
-Eine Klasse mit einer virtuellen Funktion wird als Polymorph bezeichnet.
+\begin{itemize}
+    \item \textbf{Zweck:} Kennzeichnet Methoden, die in Unterklassen überschrieben werden sollen. Dies ermöglicht \textbf{Dynamic Binding}, sodass zur Laufzeit immer die spezialisierte Methode der Unterklasse aufgerufen wird.
+    \item \textbf{Polymorphie:} Eine Klasse, die mindestens eine virtuelle Funktion besitzt, wird als \textbf{polymorph} bezeichnet.
+    \item \textbf{Vererbung:} Einmal als \texttt{virtual} deklariert, bleibt die Methode in der gesamten Vererbungskette virtuell. 
+    \item \textbf{Wichtige Syntax-Regel:} Das Schlüsselwort \texttt{virtual} darf 
+    \textbf{nur bei der Deklaration} (im H-File) verwendet werden. 
+\end{itemize}
 
 \subsubsection{Virtual beim Dtor}
 
@@ -425,31 +501,52 @@ Per Scopeoperator kann (::) eine Methode aus einer Oberklasse gezielt aufgerufen
 Mit diesem wird garantiert die Funktion welche definiert wird aufgerufen, egal ob diese aufgrund virtual überschrieben wird. 
 
 \lstinputlisting{code/virtual.cpp}
+\subsection{Classi Polimorfe e Binding}
 
-\subsubsection{RTTI / Typing / Binding}
+\begin{itemize}
+    \item \textbf{Definizione:} Una classe è polimorfa se dichiara almeno una funzione \texttt{virtual}.
+    \item \textbf{Tipi di Dato:}
+    \begin{itemize}
+        \item \textbf{Statischer Datentyp (Tipo Statico):} Il tipo definito alla dichiarazione (tipo del puntatore o della referenza).
+        \item \textbf{Dynamischer Datentyp (Tipo Dinamico):} Il tipo effettivo dell'oggetto a runtime (l'istanza reale).
+    \end{itemize}
+    \item \textbf{Static Binding (Early Binding):} Avviene durante la compilazione. È lo standard per funzioni non-virtuali e non comporta overhead.
+    \item \textbf{Dynamic Binding (Late Binding):} La scelta della funzione avviene a runtime in base al tipo dinamico. Funziona solo tramite puntatori o referenze e comporta un leggero overhead gestito tramite V-Table.
+\end{itemize}
 
-Wird kein Virtual verwendet, nennt man das \textbf{static binding}. 
-Mit virtual wird es \textbf{dynamic binding} genannt, da erst bei Laufzeit bekannt ist, um welchen Pointer es sich handelt.\\
-Um bei Laufzeit herauszufinden, um welchen Typ es sich handelt kann die \textbf{Run-time Type Information} verwendet werden. 
-Dies geschieht mit der \textbf{typeid()} Funktion aus dem Header \textbf{$<$typeinfo$>$}\\
-typeid gibt ein std::type\_info zurück. 
+\subsubsection{Best Practice e Regole}
+\begin{itemize}
+    \item \textbf{Distruttori:} Devono essere obbligatoriamente \texttt{virtual} nelle classi base per garantire la corretta deallocazione delle sottoclassi, specialmente se gestite tramite puntatori alla classe base.
+    \item \textbf{Costruttori:} Non possono mai essere dichiarati \texttt{virtual}.
+    \item \textbf{Metodi:} Dichiarare \texttt{virtual} solo se è prevista la sovrascrittura. I metodi non-virtuali non devono essere sovrascritti nelle classi derivate.
+    \item \textbf{Override:} Nelle sottoclassi, i metodi sovrascritti devono essere contrassegnati esplicitamente con la parola chiave \texttt{override}.
+\end{itemize}
+
+\subsubsection{RTTI (Run-time Type Information)}
+
+L'RTTI permette di identificare il tipo di un oggetto durante l'esecuzione. Si utilizza la funzione \texttt{typeid()} inclusa nell'header \texttt{<typeinfo>}, che restituisce un oggetto di tipo \texttt{std::type\_info}.
 
 \lstinputlisting{code/RTTI.cpp}
 
-\subsubsection{Implementation von RTTI}
+\subsubsection{Implementazione: La V-Table}
 
-Das RTTI System arbeitet meistens mit einem so genannten V-Table in dem zu allen(evtl geerbten) virtuellen Methoden ein Pointer definiert ist. 
-Die Klasse erhält zusätzlich einen V-table Pointer. 
-Zur Laufzeit kann die Instanz via V-table die korrekte Methode ermitteln.\\
+L'implementazione tecnica del polimorfismo e del RTTI si basa sulla \textbf{V-Table}:
+\begin{itemize}
+    \item Ogni classe polimorfa possiede una V-Table contenente i puntatori alle sue funzioni virtuali.
+    \item Ogni istanza della classe contiene un puntatore nascosto (\textbf{V-pointer}) che punta alla V-Table della propria classe.
+    \item A runtime, l'istanza utilizza il V-pointer per risolvere l'indirizzo della funzione corretta.
+\end{itemize}
 
-Das folgende Beispiel zeigt das die Memory-map von einem Array mit 2 Oberklassenpointer. 
-Ein Pointer zeigt auf eine Oberklasse, die anderen auf Unterklassen, welche virtuelle Methoden überschrieben haben. 
-Der V-pointer der Ober- und Unterklasse ist darum unterschiedlich / sie zeigen nicht auf denselben Vtable. 
-Die Unterklassen zeigen wiederum auf denselben Vtable.  
+Se un array di puntatori alla classe base contiene oggetti di diverse sottoclassi, ogni oggetto avrà un V-pointer che punta alla V-Table specifica della propria classe, garantendo che vengano chiamate le versioni corrette dei metodi sovrascritti.
 
-\begin{center}
-        \includegraphics[width=\columnwidth]{images/vtable.png}
-\end{center}
+\begin{minipage}{0.42\columnwidth}
+    \lstinputlisting[label=cpp]{code/vtable.cpp}
+\end{minipage}
+\begin{minipage}{0.58\columnwidth}
+    \includegraphics[width=\linewidth]{images/vtable.png}
+\end{minipage}
+
+
 
 \subsection{Abstrakte Klassen}
 
@@ -487,6 +584,8 @@ Bei der Definition einer Klasse können weitere Oberklassen mit einem Komma getr
 
 \lstinputlisting{code/Mehrfachvererbung.cpp}
 
+
+
 \subsection{Static} 
 
 Static im Zusammenhang mit Klassen bindet eine Methode oder ein Attribut an die Objektklasse und nicht an die Objektinstanz (ähnlich zu Python Klassenvariablen).
@@ -495,14 +594,15 @@ Static im Zusammenhang mit Klassen bindet eine Methode oder ein Attribut an die 
 \subsubsection{Methoden}
 
 Static Methoden müssen im Header-File deklariert und im Cpp-File definiert werden. 
-Sie dürfen nur auf Static definierte Attribute zugreifen da keine Objektinstanz vorhanden. 
+Sie dürfen nur auf Static definierte Attribute zugreifen da \textbf{keine Objektinstanz vorhanden.} 
 Hauptanwendungen sind Hilfsfunktionen wie Funktionsaufrufcounter oder Umrechnungsfunktionen. 
 Bei der Deklaration wird der Klassennamen verwendet (siehe Bsp). 
 
 \subsubsection{Attribute}
 
-Static Attribute müssen im H deklariert und im Cpp File definiert werden. 
+Static Attribute müssen im H deklariert \textbf{und im Cpp File} definiert werden. 
 Sie werden verwendet für z.B. Objektspezifische Konstanten oder im Zusammenhang mit Static Counter. 
+(\textit{class scope})
 
 \subsubsection{Bsp}
 

@@ -154,6 +154,25 @@
 \usetikzlibrary{shapes}
 \usetikzlibrary{calc}
 
+\tikzset{
+    umlclass/.style={
+        draw,
+        rectangle split,
+        rectangle split parts=3,
+        fill=violet!15,
+        minimum width=2cm,
+        font=\small\ttfamily,
+        align=left 
+    },
+    % Definizione dello stile per le frecce di ereditarietà
+    inheritance/.style={
+        -{Triangle[open, angle=60:5pt]}, % Freccia di ereditarietà UML (triangolo cavo)
+        shorten >=1pt,
+        shorten <=1pt,
+        draw=black
+    }
+}
+
 \pgfplotsset{compat=1.18}
 
 % ------------------------------------ OTHER PACKAGE SETTINGS -------------------------------------

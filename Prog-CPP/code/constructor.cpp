@@ -1,23 +1,23 @@
-#include <iostream>
+// START H FILE
 class Storage{
     public:
         Storage();
         virtual ~Storage();
         void add(int in);
         void nix(Storage inC);
+    protected:
+        ...
     private:
         int* data;
         int size;
 };//eine Klasse die Int Werte speichert, aehnlich wie ein array
 
-// ---- End h File
-
+// END H FILE
+// START Storage.cpp
 Storage::Storage(){ // Konstruktor
     data = nullptr;
     size = 0;
 }
-
-
 
 Storage::~Storage(){ // Destruktor
     delete[] data;
@@ -31,7 +31,8 @@ void Storage::nix(Storage inC){
     // todo
 }
 
-// ---- End cpp File
+// END Storage.cpp
+// START main.cpp
 
 int main(){
 
