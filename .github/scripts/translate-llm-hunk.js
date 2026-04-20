@@ -73,7 +73,7 @@ const TO_LANG = SOURCE_BRANCH === "main" ? "Italian" : "German";
 function getStructuredDiff() {
   let raw;
   try {
-    raw = execSync("git diff -U3 HEAD~1 HEAD -- '*.tex'", { encoding: "utf8" });
+    raw = execSync("git diff -U3 HEAD~1 HEAD", { encoding: "utf8" });
   } catch (e) {
     raw = e.stdout ?? "";
   }
@@ -83,6 +83,7 @@ function getStructuredDiff() {
   const fileDiffs = [];
   let currentFile = null;
   let currentHunk = null;
+  let pendingPath = null;
 
   for (const line of raw.split("\n")) {
     if (line.startsWith("diff --git ")) {
@@ -92,11 +93,17 @@ function getStructuredDiff() {
       continue;
     }
 
-    if (line.startsWith("+++ b/")) {
-      const filePath = line.slice(6);
-      if (filePath.endsWith(".tex")) {
+    if (line.startsWith("--- a/")) {
+      pendingPath = line.slice(6); // save in case +++ is /dev/null
+      continue;
+    }
+
+    if (line.startsWith("+++ ")) {
+      const filePath = line.startsWith("+++ b/") ? line.slice(6) : pendingPath; // deletion: +++ /dev/null, use --- a/ path
+      if (filePath) {
         currentFile = { filePath, hunks: [] };
       }
+      pendingPath = null;
       continue;
     }
 
@@ -138,7 +145,11 @@ function getStructuredDiff() {
 
   if (currentFile) fileDiffs.push(currentFile);
 
-  return fileDiffs.filter((f) => fs.existsSync(f.filePath));
+  return fileDiffs.map((f) => ({
+    ...f,
+    isTex: f.filePath.endsWith(".tex"),
+    isDelete: !fs.existsSync(f.filePath), // file gone from disk → deleted in this commit
+  }));
 }
 
 // ─── LaTeX line classification ────────────────────────────────────────────────
@@ -417,6 +428,32 @@ async function pushFileToTargetBranch(filePath, newContent, existingSha) {
   }
 }
 
+async function deleteFileOnTargetBranch(filePath, existingSha) {
+  const url = `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(filePath)}`;
+  const body = {
+    message: `[skip ci] Auto-sync deletion of ${filePath} (${FROM_LANG} → ${TO_LANG})`,
+    sha: existingSha,
+    branch: TARGET_BRANCH,
+  };
+
+  const res = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
+      Accept: "application/vnd.github+json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(
+      `GitHub API error deleting ${filePath}: ${res.status} ${err}`,
+    );
+  }
+}
+
 // ─── Core per-file logic ──────────────────────────────────────────────────────
 
 async function processFile(fileDiff) {
@@ -538,6 +575,28 @@ async function processFile(fileDiff) {
   console.log(`  ✓ Pushed to ${TARGET_BRANCH}`);
 }
 
+async function syncOtherFile(fileDiff) {
+  const { filePath, isDelete } = fileDiff;
+  console.log(`\nSyncing: ${filePath}${isDelete ? " [DELETE]" : ""}`);
+
+  const targetFile = await getFileFromTargetBranch(filePath);
+
+  if (isDelete) {
+    if (!targetFile) {
+      console.log(`  Already absent on ${TARGET_BRANCH}, nothing to do.`);
+      return;
+    }
+    await deleteFileOnTargetBranch(filePath, targetFile.sha);
+    console.log(`  ✓ Deleted on ${TARGET_BRANCH}`);
+    return;
+  }
+
+  // Copy/update: read straight from disk (source branch working tree)
+  const content = fs.readFileSync(filePath, "utf8");
+  await pushFileToTargetBranch(filePath, content, targetFile?.sha ?? null);
+  console.log(`  ✓ Pushed to ${TARGET_BRANCH}`);
+}
+
 // ─── Entry point ──────────────────────────────────────────────────────────────
 
 async function main() {
@@ -550,10 +609,10 @@ async function main() {
 
   const fileDiffs = getStructuredDiff();
 
-  if (fileDiffs.length === 0) {
-    console.log("No .tex file changes detected, nothing to do.");
-    return;
-  }
+  const texDiffs = fileDiffs.filter((f) => f.isTex && !f.isDelete);
+  const otherDiffs = fileDiffs.filter((f) => !f.isTex || f.isDelete);
+  // Note: tex deletions are intentionally excluded — deleting a .tex file on
+  // the source branch should NOT auto-delete the translated version.
 
   console.log(
     `Source: ${SOURCE_BRANCH} (${FROM_LANG}) → Target: ${TARGET_BRANCH} (${TO_LANG})`,
@@ -563,8 +622,12 @@ async function main() {
     `Files with changes: ${fileDiffs.map((f) => f.filePath).join(", ")}`,
   );
 
-  for (const fileDiff of fileDiffs) {
+  for (const fileDiff of texDiffs) {
     await processFile(fileDiff);
+  }
+
+  for (const fileDiff of otherDiffs) {
+    await syncOtherFile(fileDiff);
   }
 
   console.log("\nAll done.");
