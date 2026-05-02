@@ -548,9 +548,10 @@ async function processFile(fileDiff) {
 
   // Write target file to temp dir and apply patch
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "latex-translate-"));
-  const tmpFile = path.join(tmpDir, path.basename(filePath));
+  const tmpFile = path.join(tmpDir, filePath); // preserve full relative path
   const patchFile = path.join(tmpDir, "changes.patch");
 
+  fs.mkdirSync(path.dirname(tmpFile), { recursive: true }); // ensure subdirs exist
   fs.writeFileSync(tmpFile, targetFile.content, "utf8");
   fs.writeFileSync(patchFile, patch, "utf8");
 
