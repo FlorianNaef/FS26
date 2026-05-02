@@ -251,7 +251,7 @@ Return the translated JSON array now.`;
         { role: "user", content: userPrompt },
       ],
       temperature: 0,
-      max_completion_tokens: 4096,
+      //max_completion_tokens: 8096,
       response_format: { type: "text" },
     }),
   });
@@ -384,6 +384,7 @@ async function handleNewFile(filePath) {
 async function getFileFromTargetBranch(filePath) {
   const encodedPath = filePath.split("/").map(encodeURIComponent).join("/");
   const url = `https://api.github.com/repos/${REPO}/contents/${encodedPath}?ref=${TARGET_BRANCH}`;
+  console.log("Fetching file from: " + url);
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${GITHUB_TOKEN}`,
@@ -391,11 +392,15 @@ async function getFileFromTargetBranch(filePath) {
     },
   });
 
-  if (res.status === 404) return null;
-  if (!res.ok)
+  if (res.status === 404) {
+    console.log("GitHub API returned 404");
+    return null;
+  }
+  if (!res.ok) {
     throw new Error(
       `GitHub API error fetching ${filePath} from ${TARGET_BRANCH}: ${res.status}`,
     );
+  }
 
   const data = await res.json();
   const content = Buffer.from(data.content, "base64").toString("utf8");
