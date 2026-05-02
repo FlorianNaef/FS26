@@ -36,7 +36,7 @@ const AZURE_OPENAI_API_VERSION = "2024-02-01";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REPO = process.env.REPO;
 const SOURCE_BRANCH = process.env.SOURCE_BRANCH;
-const TARGET_BRANCH = SOURCE_BRANCH === "main" ? "ital" : "main";
+const TARGET_BRANCH = SOURCE_BRANCH === "main" ? "ITA" : "main";
 const FROM_LANG = SOURCE_BRANCH === "main" ? "German" : "Italian";
 const TO_LANG = SOURCE_BRANCH === "main" ? "Italian" : "German";
 
@@ -251,7 +251,7 @@ Return the translated JSON array now.`;
         { role: "user", content: userPrompt },
       ],
       temperature: 0,
-      //max_completion_tokens: 8096,
+      max_completion_tokens: 8096,
       response_format: { type: "text" },
     }),
   });
