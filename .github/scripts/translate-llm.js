@@ -3,32 +3,37 @@
 // Diffs changed lines, sends them to the model with a strict prompt,
 // gets back a JSON map of { lineNumber: translatedText }, splices into target branch.
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import fetch from 'node-fetch';
+import { execSync } from "child_process";
+import fs from "fs";
+import fetch from "node-fetch";
 
-const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;   // https://<resource>.openai.azure.com
-const AZURE_OPENAI_KEY      = process.env.AZURE_OPENAI_KEY;
+const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT; // https://<resource>.openai.azure.com
+const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_KEY;
 const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT; // your deployment name, e.g. "gpt-4o"
-const AZURE_OPENAI_API_VERSION = '2024-02-01';
+const AZURE_OPENAI_API_VERSION = "2024-02-01";
 
-const GITHUB_TOKEN  = process.env.GITHUB_TOKEN;
-const REPO          = process.env.REPO;
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const REPO = process.env.REPO;
 const SOURCE_BRANCH = process.env.SOURCE_BRANCH;
-const TARGET_BRANCH = SOURCE_BRANCH === 'main' ? 'ital' : 'main';
-const FROM_LANG     = SOURCE_BRANCH === 'main' ? 'German' : 'Italian';
-const TO_LANG       = SOURCE_BRANCH === 'main' ? 'Italian' : 'German';
+const TARGET_BRANCH = SOURCE_BRANCH === "main" ? "ital" : "main";
+const FROM_LANG = SOURCE_BRANCH === "main" ? "German" : "Italian";
+const TO_LANG = SOURCE_BRANCH === "main" ? "Italian" : "German";
 
 /**
  * @returns true if line should never be sent to the LLM — pure LaTeX structure
  */
 function isStructuralLine(line) {
   const t = line.trim();
-  if (t === '')                    return true;  // blank
-  if (t.startsWith('%'))           return true;  // comment
-  if (/^\\begin\{/.test(t))        return true;  // \begin{...}
-  if (/^\\end\{/.test(t))          return true;  // \end{...}
-  if (/^\\(documentclass|usepackage|newcommand|renewcommand|setlength|geometry|pagestyle|bibliographystyle|bibliography)\b/.test(t)) return true;
+  if (t === "") return true; // blank
+  if (t.startsWith("%")) return true; // comment
+  if (/^\\begin\{/.test(t)) return true; // \begin{...}
+  if (/^\\end\{/.test(t)) return true; // \end{...}
+  if (
+    /^\\(documentclass|usepackage|newcommand|renewcommand|setlength|geometry|pagestyle|bibliographystyle|bibliography)\b/.test(
+      t,
+    )
+  )
+    return true;
   // Lines that are *only* a LaTeX command with no surrounding prose
   if (/^\\[a-zA-Z]+(\[[^\]]*\])?(\{[^}]*\})*\s*$/.test(t)) return true;
   return false;
@@ -56,19 +61,19 @@ Rules you must follow without exception:
 7. Translate academic/technical terms accurately; do not paraphrase or simplify.`;
 
   const response = await fetch(url, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'api-key': AZURE_OPENAI_KEY,
-      'Content-Type': 'application/json',
+      "api-key": AZURE_OPENAI_KEY,
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user',   content: inputJson   },
+        { role: "system", content: systemPrompt },
+        { role: "user", content: inputJson },
       ],
       temperature: 0, // deterministic
-      max_tokens: 4096,
-      response_format: { type: 'json_object' },
+      max_completion_tokens: 4096,
+      response_format: { type: "json_object" },
     }),
   });
 
@@ -81,20 +86,26 @@ Rules you must follow without exception:
   const raw = data.choices[0].message.content.trim();
 
   // Strip markdown fences defensively, even though we asked for raw JSON
-  const cleaned = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '').trim();
+  const cleaned = raw
+    .replace(/^```json\s*/i, "")
+    .replace(/^```\s*/i, "")
+    .replace(/```\s*$/i, "")
+    .trim();
 
   let parsed;
   try {
     parsed = JSON.parse(cleaned);
   } catch (e) {
-    throw new Error(`LLM returned invalid JSON:\n${raw}\n\nParse error: ${e.message}`);
+    throw new Error(
+      `LLM returned invalid JSON:\n${raw}\n\nParse error: ${e.message}`,
+    );
   }
 
   return parsed;
 }
 
 function git(cmd) {
-  return execSync(cmd, { encoding: 'utf8' }).trim();
+  return execSync(cmd, { encoding: "utf8" }).trim();
 }
 
 /**
@@ -103,7 +114,9 @@ function git(cmd) {
 function getChangedTexFiles() {
   const output = git(`git diff --name-only HEAD~1 HEAD -- '*.tex'`);
   if (!output) return [];
-  return output.split('\n').filter(f => f.endsWith('.tex') && fs.existsSync(f));
+  return output
+    .split("\n")
+    .filter((f) => f.endsWith(".tex") && fs.existsSync(f));
 }
 
 async function getFileFromTargetBranch(filePath) {
@@ -111,15 +124,16 @@ async function getFileFromTargetBranch(filePath) {
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${GITHUB_TOKEN}`,
-      Accept: 'application/vnd.github+json',
+      Accept: "application/vnd.github+json",
     },
   });
 
   if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`GitHub API error fetching ${filePath}: ${res.status}`);
+  if (!res.ok)
+    throw new Error(`GitHub API error fetching ${filePath}: ${res.status}`);
 
   const data = await res.json();
-  const content = Buffer.from(data.content, 'base64').toString('utf8');
+  const content = Buffer.from(data.content, "base64").toString("utf8");
   return { content, sha: data.sha };
 }
 
@@ -127,51 +141,53 @@ async function pushFileToTargetBranch(filePath, newContent, existingSha) {
   const url = `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(filePath)}`;
   const body = {
     message: `[skip ci] Auto-translate ${filePath} (${FROM_LANG} to ${TO_LANG})`,
-    content: Buffer.from(newContent, 'utf8').toString('base64'),
+    content: Buffer.from(newContent, "utf8").toString("base64"),
     branch: TARGET_BRANCH,
     ...(existingSha ? { sha: existingSha } : {}),
   };
 
   const res = await fetch(url, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
       Authorization: `Bearer ${GITHUB_TOKEN}`,
-      Accept: 'application/vnd.github+json',
-      'Content-Type': 'application/json',
+      Accept: "application/vnd.github+json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
   });
 
   if (!res.ok) {
     const err = await res.text();
-    throw new Error(`GitHub API error pushing ${filePath}: ${res.status} ${err}`);
+    throw new Error(
+      `GitHub API error pushing ${filePath}: ${res.status} ${err}`,
+    );
   }
 }
 
 async function processFile(filePath) {
   console.log(`\nProcessing: ${filePath}`);
 
-  const newSource = fs.readFileSync(filePath, 'utf8');
-  const newLines  = newSource.split('\n');
+  const newSource = fs.readFileSync(filePath, "utf8");
+  const newLines = newSource.split("\n");
 
   let oldLines;
   try {
     const oldSource = git(`git show HEAD~1:${filePath}`);
-    oldLines = oldSource.split('\n');
+    oldLines = oldSource.split("\n");
   } catch {
-    console.log('  New file — treating all lines as changed.');
+    console.log("  New file — treating all lines as changed.");
     oldLines = [];
   }
 
   const changedIndices = [];
   for (let i = 0; i < Math.max(newLines.length, oldLines.length); i++) {
-    if ((newLines[i] ?? '') !== (oldLines[i] ?? '')) {
+    if ((newLines[i] ?? "") !== (oldLines[i] ?? "")) {
       changedIndices.push(i);
     }
   }
 
   if (changedIndices.length === 0) {
-    console.log('  No line changes detected, skipping.');
+    console.log("  No line changes detected, skipping.");
     return;
   }
   console.log(`  Changed lines: ${changedIndices.length}`);
@@ -181,7 +197,8 @@ async function processFile(filePath) {
   const lineMapForLLM = {};
   const skippedIndices = new Set();
   for (const i of changedIndices) {
-    if (i >= newLines.length) {  // TODO: check function if works as intended
+    if (i >= newLines.length) {
+      // TODO: check function if works as intended
       // Deleted line — handled separately below, don't send to LLM
       skippedIndices.add(i);
       continue;
@@ -194,7 +211,9 @@ async function processFile(filePath) {
   }
 
   const translatableCount = Object.keys(lineMapForLLM).length;
-  console.log(`  Sending ${translatableCount} lines to LLM (${changedIndices.length - translatableCount} structural lines skipped).`);
+  console.log(
+    `  Sending ${translatableCount} lines to LLM (${changedIndices.length - translatableCount} structural lines skipped).`,
+  );
 
   // Call the LLM
   let translatedMap = {};
@@ -205,7 +224,9 @@ async function processFile(filePath) {
   // Validate the LLM returned all expected keys
   for (const key of Object.keys(lineMapForLLM)) {
     if (translatedMap[key] === undefined) {
-      console.warn(`  Warning: LLM did not return a translation for line ${key}. Using original.`);
+      console.warn(
+        `  Warning: LLM did not return a translation for line ${key}. Using original.`,
+      );
       translatedMap[key] = lineMapForLLM[key];
     }
   }
@@ -214,22 +235,24 @@ async function processFile(filePath) {
   const targetFile = await getFileFromTargetBranch(filePath);
   let targetLines;
   if (targetFile) {
-    targetLines = targetFile.content.split('\n');
+    targetLines = targetFile.content.split("\n");
   } else {
-    console.log(`  File does not exist on ${TARGET_BRANCH} yet — will create it.`);
+    console.log(
+      `  File does not exist on ${TARGET_BRANCH} yet — will create it.`,
+    );
     targetLines = [...newLines];
   }
 
   // Ensure target is at least as long as source
   while (targetLines.length < newLines.length) {
-    targetLines.push('');
+    targetLines.push("");
   }
 
   // Splice changes into target
   for (const i of changedIndices) {
     if (i >= newLines.length) {
       // Line deleted in source — blank it out in target
-      if (i < targetLines.length) targetLines[i] = '';
+      if (i < targetLines.length) targetLines[i] = "";
     } else {
       const key = String(i);
       if (translatedMap[key] !== undefined) {
@@ -247,37 +270,45 @@ async function processFile(filePath) {
     targetLines.length = newLines.length;
   }
 
-  const newTargetContent = targetLines.join('\n');
-  await pushFileToTargetBranch(filePath, newTargetContent, targetFile?.sha ?? null);
+  const newTargetContent = targetLines.join("\n");
+  await pushFileToTargetBranch(
+    filePath,
+    newTargetContent,
+    targetFile?.sha ?? null,
+  );
   console.log(`  ✓ Pushed to ${TARGET_BRANCH}`);
 }
 
 // ─── Entry point ──────────────────────────────────────────────────────────────
 
 async function main() {
-  if (!AZURE_OPENAI_ENDPOINT)   throw new Error('AZURE_OPENAI_ENDPOINT secret is not set.');
-  if (!AZURE_OPENAI_KEY)        throw new Error('AZURE_OPENAI_KEY secret is not set.');
-  if (!AZURE_OPENAI_DEPLOYMENT) throw new Error('AZURE_OPENAI_DEPLOYMENT secret is not set.');
-  if (!GITHUB_TOKEN)            throw new Error('GITHUB_TOKEN is not available.');
+  if (!AZURE_OPENAI_ENDPOINT)
+    throw new Error("AZURE_OPENAI_ENDPOINT secret is not set.");
+  if (!AZURE_OPENAI_KEY) throw new Error("AZURE_OPENAI_KEY secret is not set.");
+  if (!AZURE_OPENAI_DEPLOYMENT)
+    throw new Error("AZURE_OPENAI_DEPLOYMENT secret is not set.");
+  if (!GITHUB_TOKEN) throw new Error("GITHUB_TOKEN is not available.");
 
   const changedFiles = getChangedTexFiles();
   if (changedFiles.length === 0) {
-    console.log('No .tex files changed, nothing to do.');
+    console.log("No .tex files changed, nothing to do.");
     return;
   }
 
-  console.log(`Source: ${SOURCE_BRANCH} (${FROM_LANG}) → Target: ${TARGET_BRANCH} (${TO_LANG})`);
+  console.log(
+    `Source: ${SOURCE_BRANCH} (${FROM_LANG}) → Target: ${TARGET_BRANCH} (${TO_LANG})`,
+  );
   console.log(`Model deployment: ${AZURE_OPENAI_DEPLOYMENT}`);
-  console.log(`Changed .tex files: ${changedFiles.join(', ')}`);
+  console.log(`Changed .tex files: ${changedFiles.join(", ")}`);
 
   for (const file of changedFiles) {
     await processFile(file);
   }
 
-  console.log('\nAll done.');
+  console.log("\nAll done.");
 }
 
-main().catch(err => {
-  console.error('Fatal error:', err);
+main().catch((err) => {
+  console.error("Fatal error:", err);
   process.exit(1);
 });

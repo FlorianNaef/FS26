@@ -251,7 +251,7 @@ Return the translated JSON array now.`;
         { role: "user", content: userPrompt },
       ],
       temperature: 0,
-      max_tokens: 4096,
+      max_completion_tokens: 4096,
       response_format: { type: "text" },
     }),
   });
