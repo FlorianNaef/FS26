@@ -382,7 +382,8 @@ async function handleNewFile(filePath) {
 // ─── GitHub API helpers ───────────────────────────────────────────────────────
 
 async function getFileFromTargetBranch(filePath) {
-  const url = `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(filePath)}?ref=${TARGET_BRANCH}`;
+  const encodedPath = filePath.split("/").map(encodeURIComponent).join("/");
+  const url = `https://api.github.com/repos/${REPO}/contents/${encodedPath}?ref=${TARGET_BRANCH}`;
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${GITHUB_TOKEN}`,
@@ -402,7 +403,8 @@ async function getFileFromTargetBranch(filePath) {
 }
 
 async function pushFileToTargetBranch(filePath, newContent, existingSha) {
-  const url = `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(filePath)}`;
+  const encodedPath = filePath.split("/").map(encodeURIComponent).join("/");
+  const url = `https://api.github.com/repos/${REPO}/contents/${encodedPath}`;
   const body = {
     message: `[skip ci] Auto-translate ${filePath} (${FROM_LANG} → ${TO_LANG})`,
     content: Buffer.from(newContent, "utf8").toString("base64"),
@@ -429,7 +431,8 @@ async function pushFileToTargetBranch(filePath, newContent, existingSha) {
 }
 
 async function deleteFileOnTargetBranch(filePath, existingSha) {
-  const url = `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(filePath)}`;
+  const encodedPath = filePath.split("/").map(encodeURIComponent).join("/");
+  const url = `https://api.github.com/repos/${REPO}/contents/${encodedPath}`;
   const body = {
     message: `[skip ci] Auto-sync deletion of ${filePath} (${FROM_LANG} → ${TO_LANG})`,
     sha: existingSha,
