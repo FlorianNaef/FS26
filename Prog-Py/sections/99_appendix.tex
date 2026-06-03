@@ -1,0 +1,77 @@
+\section{Appendix}
+\subsection{Typumwandlung: \texttt{dict()} und \texttt{list()}}
+\begin{itemize}
+    \item \textbf{Tuple zu Dict}: Die Funktion \texttt{dict()} kann eine Liste von 2-Element-Tupeln direkt in Schlüssel-Wert-Paare umwandeln.
+    \item \textbf{Duplikatentfernung}: Da Wörterbuchschlüssel eindeutig sein müssen, entfernt das Umwandeln einer Tupelliste in ein \texttt{dict} automatisch doppelte Einträge (wobei der zuletzt ausgewertete Wert für einen gegebenen Schlüssel beibehalten wird).
+    \item \textbf{Dict zu List}: Wandelt das deduplizierte Wörterbuch zurück in eine Liste von Tupeln, indem \texttt{list(dictionary.items())} verwendet wird.
+\end{itemize}
+
+\lstinputlisting[language=Python]{code/type_coversion.py}
+
+\subsection{Decorators}
+Decorators sind Funktionen, die eine andere Funktion als Argument annehmen, um ihr Verhalten zu erweitern, ohne den ursprünglichen Quellcode zu verändern. Sie werden durch das Symbol \texttt{@} gekennzeichnet.
+
+\begin{lstlisting}[language=Python]
+def require_login(func):
+    def wrapper(user):
+        if user["logged_in"]:
+            return func(user)
+        print("Access denied.")
+    return wrapper
+
+@require_login
+def view_dashboard(user):
+    print(f"Welcome {user['name']}")
+\end{lstlisting}
+
+
+\subsection{Script Execution}
+Um zu unterscheiden, ob ein Script direkt ausgeführt wird oder als Modul importiert wird, verwendet Python die Variable \texttt{\_\_name\_\_}.
+
+\begin{itemize}
+    \item Wenn direkt ausgeführt: \texttt{\_\_name\_\_ == "\_\_main\_\_"}.
+    \item Wenn importiert: \texttt{\_\_name\_\_} entspricht dem Dateinamen des Moduls.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+def main():
+    # Test code or entry point
+    pass
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\subsection{Distribuzioni Casuali in NumPy}
+
+\begin{itemize}
+    \item \textbf{np.random.rand}: Erzeugt Stichproben aus einer \textbf{Gleichverteilung} im Intervall $[0, 1)$. Jeder Wert hat die gleiche Wahrscheinlichkeit, gezogen zu werden.
+    \item \textbf{np.random.randn}: Erzeugt Stichproben aus der \textbf{Standardnormalverteilung} (Gaußverteilung) mit dem Mittelwert $\mu = 0$ und der Varianz $\sigma^2 = 1$.
+\end{itemize}
+
+\subsubsection{Transformation der Normalverteilung}
+Um die Standardnormalverteilung $\mathcal{N}(0, 1)$ zu einer benutzerdefinierten Verteilung $\mathcal{N}(\mu, \sigma^2)$ zu skalieren und zu verschieben, wird die folgende lineare Formel angewendet:
+
+\[ X = \sigma \cdot \text{np.random.randn}(\dots) + \mu \]
+
+Wobei:
+\begin{itemize}
+    \item $\sigma$ (Sigma): Standardabweichung (prüft die "Breite" der Glocke).
+    \item $\mu$ (Mu): Erwartungswert (verschiebt das Zentrum der Verteilung).
+\end{itemize}
+
+\subsection{Indexing vs Slicing: Regola Rapida}
+
+Der Unterschied hängt vom Typ des Selektors ab, der für die Achse verwendet wird:
+
+\begin{itemize}
+    \item \textbf{Ganzzahl (Indexing)}: Wenn du eine einzelne Zahl verwendest (z.B. \texttt{arr[2]}), wird die Dimension \textbf{entfernt} (rank-1).
+    \item \textbf{Bereich (Slicing)}: Wenn du die beiden Doppelpunkte verwendest (z.B. \texttt{arr[2:3]}), wird die Dimension \textbf{beibehalten} (rank-2).
+\end{itemize}
+
+\subsubsection{Esempio Pratico}
+Gegeben sei ein 2D-Array mit Shape \texttt{(3, 3)}:
+\begin{itemize}
+    \item \texttt{arr[2, :]} $\rightarrow$ Ergebnis 1D, Shape \texttt{(3,)}.
+    \item \texttt{arr[2:3, :]} $\rightarrow$ Ergebnis 2D, Shape \texttt{(1, 3)}.
+\end{itemize}
