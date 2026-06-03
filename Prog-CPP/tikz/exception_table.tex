@@ -1,0 +1,92 @@
+\begin{tikzpicture}[
+    line/.style={
+        draw=black,
+        thick
+    }
+]
+
+% --- NODI ---
+
+% Root principale (Top)
+\node [box] (exception) at (0.5, 4.0) {exception};
+
+% Livello 1: Errori principali
+\node [box] (logic) at (-6.0, 1.0) {logic\_error};
+\node [box] (runtime) at (-1.5, 1.0) {runtime\_error};
+
+% Colonna 1: Sotto-elementi di logic_error
+\node [box] (inv_arg) at (-3.8, 0.0) {invalid\_argument};
+\node [box] (dom_err) at (-3.8, -1.0) {domain\_error};
+\node [box] (len_err) at (-3.8, -2.0) {length\_error};
+\node [box] (out_rang) at (-3.8, -3.0) {out\_of\_range};
+\node [box] (fut_err) at (-3.8, -4.0) {future\_error};
+
+% Colonna 2: Sotto-elementi di runtime_error
+\node [box] (ran_err) at (0.7, 0.0) {range\_error};
+\node [box] (ovr_err) at (0.7, -1.0) {overflow\_error};
+\node [box] (und_err) at (0.7, -2.0) {underflow\_error};
+\node [box] (reg_err) at (0.7, -3.0) {regex\_error};
+\node [box] (sys_err) at (0.7, -4.0) {system\_error};
+\node [box] (dots)    at (0.7, -5.0) {...};
+
+% Colonna 3: Eccezioni di tipo bad_* (Sinistra)
+\node [box] (b_typeid) at (4.8, 1.0) {bad\_typeid};
+\node [box] (b_cast)   at (4.8, 0.0) {bad\_cast};
+\node [box] (b_opt)    at (4.8, -1.0) {bad\_optional\_access};
+\node [box] (b_weak)   at (4.8, -2.0) {bad\_weak\_ptr};
+
+% Colonna 4: Eccezioni di tipo bad_* (Destra)
+\node [box] (b_func)   at (9.2, 1.0) {bad\_function\_call};
+\node [box] (b_alloc)  at (9.2, 0.0) {bad\_alloc};
+\node [box] (b_ex)     at (9.2, -1.0) {bad\_exception};
+\node [box] (b_var)    at (9.2, -2.0) {bad\_variant\_access};
+
+
+% --- CONNESSIONI ---
+
+% Linea orizzontale principale superiore di distribuzione
+\draw [line] (-6.0, 2.3) -- (7.0, 2.3);
+
+% Freccia UML verso la radice 'exception'
+\draw [inheritance] (0.5, 2.3) -- (exception.south);
+
+% Collegamenti verticali da linea principale a logic_error e runtime_error
+\draw [line] (-6.0, 2.3) -- (logic.north);
+\draw [line] (-1.5, 2.3) -- (runtime.north);
+
+% Albero e freccia UML per logic_error (Spina dorsale a x = -6.0)
+\draw [line] (-6.0, -4.0) -- (-6.0, 0.5);
+\draw [inheritance] (-6.0, 0.5) -- (logic.south);
+% Rame laterali verso i figli di logic_error (Bordo sinistro del box a x = -5.4)
+\draw [line] (-6.0, 0.0)  -- (-5.4, 0.0);
+\draw [line] (-6.0, -1.0) -- (-5.4, -1.0);
+\draw [line] (-6.0, -2.0) -- (-5.4, -2.0);
+\draw [line] (-6.0, -3.0) -- (-5.4, -3.0);
+\draw [line] (-6.0, -4.0) -- (-5.4, -4.0);
+
+% Albero e freccia UML per runtime_error (Spina dorsale a x = -1.5)
+\draw [line] (-1.5, -5.0) -- (-1.5, 0.5);
+\draw [inheritance] (-1.5, 0.5) -- (runtime.south);
+% Rame laterali verso i figli di runtime_error (Bordo sinistro del box a x = -0.9)
+\draw [line] (-1.5, 0.0)  -- (-0.9, 0.0);
+\draw [line] (-1.5, -1.0) -- (-0.9, -1.0);
+\draw [line] (-1.5, -2.0) -- (-0.9, -2.0);
+\draw [line] (-1.5, -3.0) -- (-0.9, -3.0);
+\draw [line] (-1.5, -4.0) -- (-0.9, -4.0);
+\draw [line] (-1.5, -5.0) -- (-0.9, -5.0);
+
+% Collegamenti per la Colonna 3 (Spina dorsale a x = 2.6, bordo sinistro box a x = 3.2)
+\draw [line] (2.6, 2.3) -- (2.6, -2.0);
+\draw [line] (2.6, 1.0)  -- (3.2, 1.0);
+\draw [line] (2.6, 0.0)  -- (3.2, 0.0);
+\draw [line] (2.6, -1.0) -- (3.2, -1.0);
+\draw [line] (2.6, -2.0) -- (3.2, -2.0);
+
+% Collegamenti per la Colonna 4 (Spina dorsale a x = 7.0, bordo sinistro box a x = 7.6)
+\draw [line] (7.0, 2.3) -- (7.0, -2.0);
+\draw [line] (7.0, 1.0)  -- (7.6, 1.0);
+\draw [line] (7.0, 0.0)  -- (7.6, 0.0);
+\draw [line] (7.0, -1.0) -- (7.6, -1.0);
+\draw [line] (7.0, -2.0) -- (7.6, -2.0);
+
+\end{tikzpicture}
