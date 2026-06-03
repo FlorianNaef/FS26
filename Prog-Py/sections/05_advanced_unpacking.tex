@@ -1,0 +1,101 @@
+\section{Advanced Unpacking and Functions}
+\label{sec:functions_unpacking}
+
+\subsection{Tuple Packing and Unpacking}
+Python ermöglicht das Gruppieren und Verteilen von Objekten über Mechanismen zum Packen und Entpacken.
+
+\begin{itemize}
+    \item \textbf{Packing:} Mehrere einzelne Objekte werden zu einem einzigen Tupel gruppiert.
+    \item \textbf{Unpacking:} Elemente in einem iterierbaren Objekt werden einzelnen Variablen zugewiesen. Dafür muss die Anzahl der Variablen der Anzahl der Elemente entsprechen, sofern kein erweitertes Entpacken verwendet wird.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+# Packing
+employee = 'Peter', 'Muller' # Ergibt ('Peter', 'Muller')
+
+# Unpacking
+first, last = employee
+
+# Multiple Assignment (combined packing/unpacking)
+x, y, z = 5, 10, 15
+\end{lstlisting}
+
+\subsubsection{Extended Iterable Unpacking}
+Das Entpacken funktioniert mit jedem iterierbaren Objekt (Strings, Listen, Mengen) und unterstützt bestimmte Operatoren, um variable Längen oder unerwünschte Werte zu behandeln.
+
+\begin{itemize}
+    \item \textbf{Rest-Operator (*):} Erfasst die verbleibenden Elemente in einer Liste.
+    \item \textbf{Platzhalter (\_):} Wird konventionell verwendet, um bestimmte Werte beim Entpacken zu ignorieren.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+# Unpacking with rest
+first, last, *address, birth_date = ("Peter", "Muller", "Street", 10, "14.04.1977")
+# address wird ["Street", 10]
+
+# Ignoring values
+first, last, _, birth_date = employee_data
+
+# Entpacken in verschachtelten Strukturen
+x = [1, 2, (3, [4, 5])]
+a, b, (c, (d, e)) = x
+\end{lstlisting}
+
+\subsubsection{Iterable Expansion}
+Die Operatoren \texttt{*} und \texttt{**} ermöglichen das Entpacken iterierbarer Objekte in anderen Collection-Literalen.
+
+\begin{lstlisting}[language=Python]
+list1 = [1, 2]
+list2 = [*list1, 3, 4] # [1, 2, 3, 4]
+
+dict1 = {"A": 1, "B": 2}
+dict2 = {"C": 3, **dict1} # {'C': 3, 'A': 1, 'B': 2}
+\end{lstlisting}
+
+\subsection{Functions}
+Funktionen werden mit dem Schlüsselwort \texttt{def} definiert. Sie legen einen lokalen Gültigkeitsbereich fest und können Objekte an den Aufrufer zurückgeben.
+
+\begin{itemize}
+    \item \textbf{Parameter:} Platzhalter, die in der Funktionssignatur definiert sind.
+    \item \textbf{Argumente:} Tatsächliche Werte, die beim Aufruf übergeben werden.
+    \item \textbf{Rückgabewert:} Funktionen geben standardmäßig \texttt{None} zurück. Mehrere Werte können als Tupel zurückgegeben werden.
+\end{itemize}
+
+\subsubsection{Argument Types and Constraints}
+\begin{itemize}
+    \item \textbf{Positional vs. Keyword:} Positionsargumente müssen vor Keyword-Argumenten in einem Aufruf stehen.
+    \item \textbf{Standardparameter:} Parameter mit Standardwerten müssen auf diejenigen ohne Standardwert folgen.
+    \item \textbf{Variadische Argumente (*args, **kwargs):} \texttt{*args} sammelt zusätzliche positionsbezogene Argumente in ein 
+    \crd{\textbf{tuple}}; \texttt{**kwargs} sammelt zusätzliche Keyword-Argumente in ein Dictionary.
+\end{itemize}
+
+\subsubsection{Argument Enforcement}
+Entwickler können bestimmte Aufrufstile erzwingen, indem sie \texttt{/} und \texttt{*} verwenden.
+
+\begin{lstlisting}[language=Python]
+def constrained_func(pos_only, /, pos_or_kw, *, kw_only):
+    pass
+
+# / : Alle Argumente vor müssen positionsspezifisch sein.
+# * : Alle Argumente nach müssen keyword-only sein.
+\end{lstlisting}
+
+\subsection{Docstrings}
+Dokumentationsstrings sollten der Funktionsdefinition folgen, um ihr Verhalten zu beschreiben. Sie können über \texttt{help(function\_name)} oder das \texttt{\_\_doc\_\_}-Attribut abgerufen werden.
+
+\begin{lstlisting}[language=Python]
+def add(a, b):
+    """Gibt die Summe von a und b zurück."""
+    return a + b
+\end{lstlisting}
+
+\subsection{Lambda Functions}
+Lambdas sind anonyme Funktionen mit einem einzigen Ausdruck. Sie werden hauptsächlich als "key"-Funktionen zum Sortieren oder Filtern verwendet.
+
+\textbf{Syntax:} \texttt{lambda parameters: expression}
+
+\begin{lstlisting}[language=Python]
+# Sortieren einer Liste von Strings nach dem numerischen Teil
+articles = ['art1', 'art20', 'art3']
+sorted_list = sorted(articles, key=lambda x: int(x[3:]))
+\end{lstlisting}
