@@ -1,0 +1,23 @@
+\begin{tikzpicture}[
+    node distance=0.4cm and 0.1cm, % Distanza verticale e orizzontale ridotta
+    umlclass/.append style={minimum width=1.5cm}
+]
+% Livello 1
+    \node[umlclass] (c1) {\textbf{C1}\nodepart{second}\nodepart{third}};
+
+    % Livello 2
+    \node[umlclass, below left=of c1.south] (c2) {\textbf{C2}\nodepart{second}\nodepart{third}};
+    \node[umlclass, below right=of c1.south] (c3) {\textbf{C3}\nodepart{second}\nodepart{third}};
+
+    % Livello 3
+    \node[umlclass, below left=of c2.south] (c4) {\textbf{C4}\nodepart{second}\nodepart{third}};
+    \node[umlclass, below right=of c2.south] (c5) {\textbf{C5}\nodepart{second}\nodepart{third}};
+    \node[umlclass, below right=of c3.south] (c6) {\textbf{C6}\nodepart{second}\nodepart{third}};
+
+    % Connessioni
+    \draw[inheritance] (c2) -- (c1);
+    \draw[inheritance] (c3) -- (c1);
+    \draw[inheritance] (c4) -- (c2);
+    \draw[inheritance] (c5) -- (c2);
+    \draw[inheritance] (c6) -- (c3);
+\end{tikzpicture}

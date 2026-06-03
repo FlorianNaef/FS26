@@ -1,0 +1,111 @@
+% --- SEZIONE 3: ARCHITETTURE E COMPILAZIONE ---
+
+\section{Confronto Architetture ARM Cortex}
+\begin{description}
+    \item[Cortex-A (Application):] Calcolo generico ad alte prestazioni (Linux/Android).
+    \item[Cortex-R (Real-Time):] Bassa latenza e alta affidabilità (automotive/medico).
+    \item[Cortex-M (Microcontroller):] Ridotto consumo energetico, interrupt deterministici.
+\end{description}
+
+\renewcommand{\arraystretch}{1.5}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Core} & \textbf{Thumb} & \textbf{Thumb-2} & \textbf{HW Mult.} & \textbf{HW Div.} & \textbf{Math Sat.} & \textbf{DSP} & \textbf{FPU} & \textbf{Arch} \\
+\hline
+Cortex-M0  & \cellcolor{green!60}Mostly & \cellcolor{green!60}Subset & \cellcolor{green!60}1/32 cyc & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & ARMv6-M \\
+Cortex-M0+ & \cellcolor{green!60}Mostly & \cellcolor{green!60}Subset & \cellcolor{green!60}1/32 cyc & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & ARMv6-M \\
+Cortex-M1  & \cellcolor{green!60}Mostly & \cellcolor{green!60}Subset & \cellcolor{green!60}3/33 cyc & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & ARMv6-M \\
+Cortex-M3  & \cellcolor{green!60}Fully  & \cellcolor{green!60}Fully  & \cellcolor{green!60}1 cyc    & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{red!60}No  & \cellcolor{red!60}No & ARMv7-M \\
+Cortex-M4  & \cellcolor{green!60}Fully  & \cellcolor{green!60}Fully  & \cellcolor{green!60}1 cyc    & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{yellow!60}Optional & ARMv7E-M \\
+Cortex-M7  & \cellcolor{green!60}Fully  & \cellcolor{green!60}Fully  & \cellcolor{green!60}1 cyc    & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{yellow!60}Optional & ARMv7E-M \\
+\hline
+\end{tabular}}
+\renewcommand{\arraystretch}{1}
+
+\subsection{Evoluzione Cortex-M0 vs M0+}
+\begin{minipage}[t]{0.49\columnwidth}
+    \begin{itemize}
+        \item \textbf{M0+ Pipeline:} Ridotta a 2 stadi per maggiore efficienza.
+        \item \textbf{Accesso I/O:} Supporto per Single-Cycle GPIO.
+        \item \textbf{Debugging:} Micro Trace Buffer (MTB) opzionale per il tracciamento dei salti.
+        \item \textbf{MPU}
+    \end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\columnwidth}
+    \textbf{Pipeline}
+    \begin{itemize}
+        \item[+] Es wird in jedem Cycle ein Befehl ausgeführt
+        \item [-] Bei sprüngen muss die Pipeline 'geleert' werden
+    \end{itemize}
+\end{minipage}
+
+
+\section{Adressierungsarten ARM (Cortex-M0)}
+\begin{minipage}{0.5\columnwidth}
+    \begin{itemize}
+        \item Register direkt
+        \item Register Indirekt
+    \end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+    \begin{itemize}
+        \item Register Indirekt mit offset \texttt{[R?, \#imm]}
+        \item Register Indirekt mit index \texttt{[R?, R?]}
+    \end{itemize}
+\end{minipage}
+
+\begin{minipage}[t]{0.5\columnwidth}
+    \subsection{Register Direkt, Immediate}
+    \begin{itemize}
+        \item \textbf{Immediate:} \texttt{MOV R0, \#100} $\rightarrow$ Valore caricato direttamente.
+        \item \textbf{Register:} \texttt{MOVS R2, R1} $\rightarrow$ Copia valore tra registri.
+        \item \textbf{Limitazioni:} Gli immediati sono codificati nell'istruzione (es. 8-bit per \texttt{MOVS}).
+    \end{itemize}
+
+    \includegraphics[width=\linewidth]{images/register_direkt.png}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+    \subsection{Register Indirekt (ptr)}
+    \begin{itemize}
+        \item \textbf{Semplice:} \texttt{LDR R0, [R1]} \\
+        $\rightarrow$ $R0 = \text{valore all'indirizzo } R1$.
+        \item \textbf{Con Offset:} \texttt{LDR R0, [R1, \#4]} $\rightarrow$ $R0 = \text{valore all'indirizzo } R1 + 4$ (utile per array/struct).
+        \item \textbf{Con Index:} \texttt{LDR R0, [R1, R2]} \\
+        $\rightarrow$ $R0 = \text{valore all'indirizzo } R1 + R2$.
+    \end{itemize}    
+    \begin{center}
+        \includegraphics[width=\linewidth]{images/register_indirekt.png}
+    \end{center}
+\end{minipage}
+
+\subsection{PC-Relative \& Literal Pool}
+\begin{itemize}
+    \item \textbf{Problema:} Istruzioni da 32-bit non possono contenere costanti da 32-bit.
+    \item \textbf{Soluzione:} L'assembler salva la costante nel \textbf{Literal Pool} (zona memoria vicina).
+    \item \textbf{Accesso:} \texttt{LDR R0, =0x12345678} viene tradotto in \texttt{LDR R0, [PC, \#offset]}.
+    \item Richiedono sempre \textbf{due accessi} alla memoria
+\end{itemize}
+
+\subsection{Registerlisten \& Stack (SP-Relative)}
+\begin{itemize}
+    \item \textbf{Multiple:} \texttt{LDM R7!, \{R0-R3, R5\}} $\rightarrow$ Carica più registri partendo da indirizzo in $R7$.
+    \item \textbf{Stack:} \texttt{PUSH \{R0-R2\}}, \texttt{POP \{R0-R2\}}.
+    \item \textbf{Regola d'oro:} Il registro con numero più basso (\texttt{R0}) va sempre all'indirizzo di memoria più basso. L'ordine nelle graffe non conta per l'hardware.
+\end{itemize}
+
+\subsection{Stack Framing}
+Lo Stack Frame è lo spazio riservato nella RAM per le variabili locali di una funzione.
+
+\begin{minipage}{0.5\columnwidth}
+    \begin{itemize}
+        \item \textbf{Allocazione:} \texttt{SUB SP, SP, \#X} riserva $X$ byte (lo stack cresce verso indirizzi bassi).
+        \item \textbf{Frame Pointer ($R7$):} Si usa \texttt{MOV R7, SP} per avere un riferimento fisso all'inizio del frame.
+        \item \textbf{Accesso:} Le variabili vengono scritte/lette usando offset rispetto a $R7$, es: \texttt{STR R0, [R7, \#4]}.
+        \item \textbf{Deallocazione:} Prima del ritorno (\texttt{BX LR}), si deve pulire lo stack con \texttt{ADD SP, SP, \#X}.
+    \end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+    \includegraphics[width=\linewidth]{images/stack_framing.png}
+\end{minipage}
+

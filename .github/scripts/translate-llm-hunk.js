@@ -148,7 +148,7 @@ function getStructuredDiff() {
   return fileDiffs.map((f) => ({
     ...f,
     isTex: f.filePath.endsWith(".tex"),
-    isDelete: !fs.existsSync(f.filePath), // file gone from disk → deleted in this commit
+    isDelete: !fs.existsSync(f.filePath), // file gone from disk - deleted in this commit
   }));
 }
 
@@ -251,7 +251,7 @@ Return the translated JSON array now.`;
         { role: "user", content: userPrompt },
       ],
       temperature: 0,
-      max_completion_tokens: 8096,
+      max_completion_tokens: 16384,
       response_format: { type: "text" },
     }),
   });
@@ -365,10 +365,12 @@ function buildPatch(filePath, hunks) {
  */
 async function handleNewFile(filePath) {
   console.log(`New file — translating entire content.`);
-  const sourceLines = fs
-    .readFileSync(filePath, "utf8")
-    .split("\n")
-    .filter((line, i, arr) => !(i === arr.length - 1 && line === ""));
+  const sourceLines = fs.readFileSync(filePath, "utf8").split("\n");
+
+  if (sourceLines.length > 500) {
+    console.log(`Skipping new file translation because it is too long`);
+    return sourceLines.join("\n");
+  }
 
   const translated = await llmTranslateHunk({
     contextBefore: [],
@@ -411,7 +413,7 @@ async function pushFileToTargetBranch(filePath, newContent, existingSha) {
   const encodedPath = filePath.split("/").map(encodeURIComponent).join("/");
   const url = `https://api.github.com/repos/${REPO}/contents/${encodedPath}`;
   const body = {
-    message: `[skip ci] Auto-translate ${filePath} (${FROM_LANG} → ${TO_LANG})`,
+    message: `[skip ci] Auto-translate ${filePath} (${FROM_LANG} - ${TO_LANG})`,
     content: Buffer.from(newContent, "utf8").toString("base64"),
     branch: TARGET_BRANCH,
     ...(existingSha ? { sha: existingSha } : {}),
@@ -439,7 +441,7 @@ async function deleteFileOnTargetBranch(filePath, existingSha) {
   const encodedPath = filePath.split("/").map(encodeURIComponent).join("/");
   const url = `https://api.github.com/repos/${REPO}/contents/${encodedPath}`;
   const body = {
-    message: `[skip ci] Auto-sync deletion of ${filePath} (${FROM_LANG} → ${TO_LANG})`,
+    message: `[skip ci] Auto-sync deletion of ${filePath} (${FROM_LANG} - ${TO_LANG})`,
     sha: existingSha,
     branch: TARGET_BRANCH,
   };
@@ -515,6 +517,13 @@ async function processFile(fileDiff) {
       `  Hunk ${h + 1}: +${addedLines.length} added, -${removedCount} removed`,
     );
 
+    // Skip file if too many changes happened, limit: 16384 (max-completion-tokens) / 30 (approximate tokens per line(return json)) = 500
+    if (addedLines.length > 500) {
+      console.log(`  Hunk ${h + 1}: skipping because it has too many changes`);
+      translatedHunks.push(hunk);
+      continue;
+    }
+
     let translatedAdded;
     if (addedLines.length > 0) {
       translatedAdded = await llmTranslateHunk({
@@ -556,26 +565,38 @@ async function processFile(fileDiff) {
   fs.writeFileSync(patchFile, patch, "utf8");
 
   try {
+    // First do a dry-run check
     execFileSync(
       "git",
       [
         "apply",
-        "--unidiff-zero", // allow context-free (@@ -N,0 @@) patches
-        "--inaccurate-eof", // tolerate missing trailing newline
-        "--whitespace=nowarn", // suppress whitespace warnings
+        "--check",
+        "--unidiff-zero",
+        "--inaccurate-eof",
+        "--whitespace=nowarn",
         patchFile,
       ],
-      {
-        cwd: tmpDir,
-        encoding: "utf8",
-      },
+      { cwd: tmpDir, encoding: "utf8" },
     );
-  } catch (e) {
-    console.error("  git apply failed. Patch:\n", patch);
-    console.error("  stderr:", e.stderr);
+  } catch (_checkErr) {
+    // Dry-run failed
+    console.log(`Dry run failed for ${filePath}, skipping.`);
     fs.rmSync(tmpDir, { recursive: true, force: true });
-    throw new Error(`git apply failed for ${filePath}: ${e.message}`);
+    return;
   }
+
+  // Dry-run passed
+  execFileSync(
+    "git",
+    [
+      "apply",
+      "--unidiff-zero",
+      "--inaccurate-eof",
+      "--whitespace=nowarn",
+      patchFile,
+    ],
+    { cwd: tmpDir, encoding: "utf8" },
+  );
 
   const finalContent = fs.readFileSync(tmpFile, "utf8");
   fs.rmSync(tmpDir, { recursive: true, force: true });
@@ -624,7 +645,7 @@ async function main() {
   // the source branch should NOT auto-delete the translated version.
 
   console.log(
-    `Source: ${SOURCE_BRANCH} (${FROM_LANG}) → Target: ${TARGET_BRANCH} (${TO_LANG})`,
+    `Source: ${SOURCE_BRANCH} (${FROM_LANG}) - Target: ${TARGET_BRANCH} (${TO_LANG})`,
   );
   console.log(`Model: ${AZURE_OPENAI_DEPLOYMENT}`);
   console.log(

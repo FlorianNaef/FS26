@@ -32,7 +32,7 @@ Diese sind zu verhindern da diese zu einer Systemüberlastung und Abstürzen fü
 
 \example{}
 \begin{minipage}{0.5\columnwidth}
-  \lstinputlisting[language=C++]{code/memory_leaks.cpp}
+  \lstinputlisting[language=C++]{code/04_Memorymanagement/memory_leaks.cpp}
 \end{minipage}
 \begin{minipage}{0.5\columnwidth}
   \includegraphics[width=\linewidth]{images/memory_leak.png}
@@ -52,7 +52,7 @@ Der Speicher ist \textbf{nicht} initialisiert
 \textbf{calloc()} macht dasselbe, initialisiert aber den Speicher auf 0.\\
 \textbf{free()} gibt den Speicherbereich wieder frei.
 
-\lstinputlisting{code/mem_mngmt_c.c}
+\lstinputlisting{code/04_Memorymanagement/mem_mngmt_c.c}
 
 Falls kein Speicher allokiert werden kann, wird ein NULL-pointer zurückgegeben.
 
@@ -66,7 +66,7 @@ Der \textbf{new}-Operator erstellt ein Pointer welcher auf die mitgegebene Grös
 Dieser kann auch auf den Nullpointer ausgeführt werden. 
 Dieser ist \texttt{Delete} egal.
 
-\lstinputlisting{code/mem_mngmt_cpp.cpp}
+\lstinputlisting{code/04_Memorymanagement/mem_mngmt_cpp.cpp}
 
 \subsection{Speicheraufbau}
 
@@ -109,7 +109,7 @@ L'utilizzo delle referenze riduce drasticamente i rischi di errori rispetto ai p
     \item \textbf{Programmazione Low-level:} Necessaria per l'interazione diretta con l'hardware o allocazione dinamica manuale (\texttt{new}/\texttt{delete}).
 \end{itemize}
 
-\lstinputlisting{code/referenz.cpp}
+\lstinputlisting{code/04_Memorymanagement/referenz.cpp}
 
 \subsection{Speicherplatzbedarf von Objekten}
 
@@ -172,94 +172,178 @@ Die C Syntax für Casting sollte nicht mehr verwendet werden da meistens nicht o
 
 \subsection{Templates}
 
-Templates erlauben es Typen-unabhängigen Code zu schreiben. 
-Eine Funktion wird mit einem \textbf{Platzhalter-typ} geschrieben. 
-Bei der Verwendung wird ein oder mehrere zu verwendende Typen mitgegeben (es ist auch möglich Konstanten mitzugeben). 
-Es sind Klassen und Funktionstemplates möglich. 
-Templates werden immer zur \textbf{Compilezeit} ausgewertet. 
-Templates brauchen eine Deklaration, Definition und Instanziierungsparameter. 
-Sie werden ausschliesslich in einem H-File deklariert.\\
-Achtung! Templates werden für jeden \textbf{unterschiedlichen} Typen der Instanziiert wird angelegt. 
-Das kann zu hohem Speicherbedarf führen.
+\begin{itemize}
+\item \textbf{Indipendenza dal tipo:} Consentono di scrivere codice generico utilizzando dei \textbf{placeholder} (segnaposti) al posto di tipi specifici.
+\item \textbf{Sicurezza dei tipi (Type Safety):} A differenza del C 
+(\lstinline|void*|), i template garantiscono un controllo dei tipi tramite \textit{early binding} in fase di compilazione.
+\item \textbf{Parametri di istanziazione:} Oltre ai tipi, è possibile 
+passare anche delle \textbf{costanti} come parametri del template 
+\item \textbf{Versatilità:} Possono essere applicati sia a \textbf{classi} che a 
+\textbf{funzioni}.
+\item \textbf{Valutazione a tempo di compilazione:} Il compilatore genera il codice 
+effettivo durante la fase di \textbf{compile-time}.
+\item \textbf{Struttura e File:} Richiedono dichiarazione, definizione e parametri; 
+solitamente vengono \crd{definiti interamente negli \textbf{header file} (.h / .hpp).}
+\item \textbf{Generazione del codice:} Il compilatore crea una copia separata della 
+funzione o classe per ogni \textbf{diverso tipo} utilizzato.
+\item \textbf{Zero Dead Code:} Se un template non viene mai utilizzato nel codice, 
+non viene generata alcuna istruzione nel binario finale
+\item \textbf{Footprint di memoria e Code Bloat:} L'istanziazione per molteplici tipi, 
+oppure l'uso eccessivo della keyword \lstinline|inline| per definizioni lunghe, 
+può causare \textit{code bloat}.
+\end{itemize}
 
 \subsubsection{Implementation}
 
-Eine Funktion / Klasse kann als Template definiert werden indem \verb|template<typename1 T1, typename2 T2, ...>| (mit\texttt{$<>$}) vor die Funktion / Klasse geschrieben wird. 
-Die Typendefinitionen sind dann durch das T zu ersetzten. 
+Die Typendefinitionen sind dann durch das T zu ersetzen. 
 
-\lstinputlisting{code/templatesswap.cpp}
+\lstinputlisting{code/04_Memorymanagement/templatesswap.cpp}\vspace{-1.5em}
+
+\begin{center}
+  \cor{As the dimension of the paramters is unknow ALWAYS use references}
+\end{center}
 
 \subsubsection{Syntax}
 
-\lstinputlisting{code/templatesyntax.cpp}
+\lstinputlisting{code/04_Memorymanagement/templatesyntax.cpp}\vspace{-0.5em}
 
 \subsubsection{Instanziierung}
 
-\textbf{Klassentemplates} (\verb|<>| sind nicht fakultativ):\\
-\verb|Templatenamename<type1, type2, ...>Instanzname|\\
+L'istanziazione è il processo con cui il compilatore genera codice macchina concreto\smallbreak
 
-\textbf{Funktionstemplates} (\verb|<>| sind nicht fakultativ):\\
-\verb|Templatenamename<type1, type2, ...>(param1, ...);|\\
+\begin{itemize}
+    \item \textbf{Implicita:} compilatore deduce il tipo dai parametri passati 
+    \textbf{Nota bene:} il tipo di ritorno non viene mai considerato per la deduzione
+    \item \textbf{Esplicita:} Il tipo viene specificato manualmente tra parentesi angolari 
+\end{itemize}\smallbreak
 
-Falls bei der Instanziierung des Funktionstemplates der Typ bereits klar ist, können diese weggelassen werden.\\
+\textbf{Klassentemplates} (\verb|<>| obbligatori):\\
+tipo sempre specificato per permettere al compilatore di determinare l'ingombro in memoria.\\
+\lstinline[language=C++]|Stack<int, 10> s1; // Istanzia uno Stack di 10 interi|
 
-\section{Exceptions}
+\textbf{Funktionstemplates} (\verb|<>| opzionali se deducibili):\\
+Se il tipo è chiaro dai parametri, le parentesi angolari possono essere omesse.\\
+\lstinline[language=C++]|int i = minimum(iF, size); // Deduzione implicita del tipo int|
+\lstinline[language=C++]|int i = minimum<int>(iF, size); // Qualificazione esplicita|
 
-Exceptions werden zur Behandlung von Fehlern verwendet. 
-Eine Exception ist eine Instanz eines beliebigen Datentyps, welche Fehlerinformation transportiert. 
-Eine Exception wird bei Fehlerauftritt \texttt{geworfen} (throw), und zur Behandlung \texttt{gefangen} (catch).
+\subsubsection{Overloading}
 
+I template di funzione possono essere sovraccaricati (overloaded) con altri template o con funzioni "normali". In caso di chiamate omonime, il compilatore valuta le funzioni compatibili, istanzia quelle dei template, le aggiunge alle funzioni normali disponibili e infine seleziona la variante che offre il \textit{match} migliore con i tipi dei parametri passati.
 
-\lstinputlisting{code/exceptionGenerellSyntax.cpp}
-
-Diese Syntax ist so in der Praxis wenig aufzufinden da das Fehler werfen meist in einer Unterfunktion gemacht wird. 
-Eine geworfene Exception wird dann mit code um die Instanziierung gehandhabt. 
-Dies erlaubt es Fehler von Unterfunktionen je nach Situation anders zu handhaben:
-
-\lstinputlisting{code/throwCatchV2.cpp}
-
-Cout:
-
-\begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item Entering foo()
-    \item Not optimal but ok, Division by zero!
-    \item Continue Programm
-    \item Entering foo()
-    \item Critical error: Division by zero!
-    \item Program terminating
+\subsubsection{Kompilierung und Code-Organisation}
+\begin{itemize}
+    \item \textbf{Header-Only:}  il compilatore deve 'vedere' la definizione per ogni 
+    traduzione. Lo svantaggio principale è l'\textbf{aumento dei tempi di compilazione} 
+    \item \textbf{Explicit Instantiation (.cpp):} Per ridurre i tempi di compilazione, 
+    è possibile spostare la definizione in un file \verb|.cpp| e forzare l'istanziazione 
+    per tipi specifici (es. \lstinline|template class Stack<int>;|). 
 \end{itemize}
 
-\subsection{Mehrere Catch Blöcke}
+\section{Exceptions (Ausnahmen)}
+\begin{itemize}
+    \item \textbf{Error (Fehler):} Errore di implementazione. Dovrebbe essere rimosso durante il testing/verifica.
+    \item \textbf{Exception (Ausnahme):} Condizione anormale che può verificarsi a runtime (es. file non trovato, timeout di rete).
+\end{itemize}
 
-Unterschiedliche Exceptions können mit mehreren seriellen Catch Blöcken erreicht werden. 
-Wenn der letzte Catch block mit \texttt{...} aufgerufen wird, werden alle Typen Exceptions gehandelt. 
 
-\lstinputlisting{code/catchcatcher.cpp}
+\subsection{Meccanismo: Throw e Catch}
+Un'eccezione è un oggetto lanciato con la keyword \texttt{throw} e intercettato da un blocco \texttt{catch}.
 
-\subsection{Fehlender catch block}
+\begin{itemize}
+    \item \textbf{Throw by value:} Le eccezioni dovrebbero sempre essere lanciate per valore.
+    \item \textbf{Catch by const reference:} Per evitare copie inutili e il problema dello \textit{slicing} degli oggetti, intercettare sempre per riferimento costante.
+    \item \textbf{Stack Unwinding:} lanciata un'eccezione, il programma distrugge 
+    automaticamente tutti gli oggetti (chiama i distruttori) e salta 
+    \textbf{al primo handler compatibile}.
+\end{itemize}
 
-Falls kein Passender catch Block gefunden werden kann wird die Funktion std::terminate() aufgerufen. 
-Diese ruft den registrierten \textbf{std::terminate\_handler} (Funktionspointer). 
-Defaultmässig ist \textbf{std::abort()} hinterlegt welche das Programm beendet ohne Destruktoren zu rufen (crash).
-Falls dieses Verhalten angepasst werden soll, kann man das mit \texttt{set\_terminate(std::terminate\_handler f)}.
+\lstinputlisting[language=C++]{code/04_Memorymanagement/exceptionGenerellSyntax.cpp}\vspace{-1em}
 
-\subsection{leerer Catch block}
+\subsection{Propagazione (Exception Propagation)}
+Se un'eccezione non viene gestita localmente, può essere passata "verso l'alto" (es. fino al livello applicativo) dove può essere presa una decisione sensata (Grundsatz: gestire solo ciò che si può decidere).
+\begin{itemize}
+    \item All'interno di un blocco \texttt{catch}, l'istruzione \texttt{throw;} (senza argomenti) ri-lancia l'eccezione corrente alla funzione chiamante.
+\end{itemize}
 
-\colorbox{red!50}{\textit{straight to hell}}
+\subsection{Gerarchia e Ordine dei Catch}
+In C++, le eccezioni sono organizzate gerarchicamente sotto la classe base \texttt{std::exception} (definita in \texttt{<exception>}).
+
+\begin{itemize}
+    \item \textbf{logic\_error: \crd{DA NON USARE}} Errori prevenibili in fase di sviluppo
+    \item \textbf{runtime\_error:} Errori non prevedibili dovuti a eventi esterni\\
+    (es. \texttt{overflow\_error}, \texttt{system\_error}, \crd{includere \texttt{stdexcept}}).
+\end{itemize}
+
+\medbreak
+
+\textbf{\color{orange}Regola cruciale:} Gli handler devono essere ordinati dal più specifico al più 
+generico nel codice. \texttt{std::exception} o il catch-all \texttt{...} deve essere l'ultimo.
+
+\begin{lstlisting}{language=C++}
+catch(...) {/* Catch everything */}
+\end{lstlisting}
+
+\resizebox{\columnwidth}{!}{
+\input{tikz/exception_table.tex}
+}
+
+\example{}
+\lstinputlisting[language=C++]{code/04_Memorymanagement/catchcatcher.cpp}\vspace{-1em}
+
+\subsection{Eccezioni non gestite}
+Se non viene trovato alcun handler nel \textit{Call Stack}:
+
+
+\begin{enumerate}
+    \item Viene chiamata la funzione \texttt{std::terminate}.
+    \item \texttt{std::terminate} richiama un \texttt{terminate\_ handler} (di default \texttt{std::abort}).
+    \item Il programma termina bruscamente (no esecuzione dei distruttori)
+\end{enumerate}\smallbreak
+
+È possibile personalizzare questo comportamento tramite \texttt{std::set\_terminate()}.
 
 \subsection{noexcept}
+\begin{itemize}
+    \item \textbf{noexcept:} Introdotto con C++11, indica che una funzione garantisce di non lanciare eccezioni. È utile per l'ottimizzazione del compilatore.
+    \item \textbf{Operatore noexcept(expr):} Restituisce \texttt{true} se l'espressione è specificata come \texttt{noexcept}.
+\end{itemize}
 
-Um zu signalisieren, ob eine Funktion eine Exception auslösen kann oder nicht, kann der specifier \texttt{\textbf{noexept}} verwendet werden. 
-Dafür ist aber \textbf{der Entwickler zuständig}. 
-Der Compiler kann \textbf{nicht} prüfen, ob die Funktion tatsächlich eine Exception wirft oder nicht. 
+\lstinputlisting[language=C++]{code/04_Memorymanagement/noexcept.cpp}\vspace{-1em}
 
-\subsection{$<$stdexcept$>$}
+\subsection{C++ e Low-Level Exceptions}
+A differenza di Java o C\#, il linguaggio C++ \textbf{non} effettua il \textit{mapping}
+automatico delle eccezioni di basso livello (come la divisione per zero) in eccezioni 
+del linguaggio.
+\smallskip
 
-\textbf{stdexcept} ist dazu da um einen einfachen Austausch von Fehlerinformationen vorzunehmen. 
-Dafür sind diverse standardisierte Fehlertypen als Klassen definiert. Z.b.:\\
-\begin{tabular}{ccc} \textbf{std::logic\_error} & \textbf{std::out\_of\_range} & \textbf{std::overflow\_error} \end{tabular}
-Für Details siehe :\\
-\url{https://en.cppreference.com/w/cpp/header/stdexcept}
-\section{std:vector}
+Handling con \texttt{catch(...) \{ \}} 
+
+\section{STD Library}
+\subsection{array}
+\begin{itemize}
+\item \textbf{Definizione:} \texttt{std::array<T, size>} è un contenitore a dimensione 
+fissa implementato come classe template.
+\item \textbf{Dimensione:} \texttt{std::array} conosce la propria dimensione tramite la 
+funzione membro \texttt{.size()}.
+\item \textbf{Accesso ai dati:} classica notazione a parentesi quadre \texttt{[]}.
+\item \textbf{Sicurezza:} \texttt{.at()} è accesso sicuro con controllo dei limiti, eccezione \lstinline|std::out_of_range| in caso di accesso non valido.
+\item Nei parametri delle funzioni passabili come \textbf{\color{red}referenza, sempre da fare} (perchè sono una classe)
+\end{itemize}
+
+\example{}
+\lstinputlisting[language=C++]{code/04_Memorymanagement/standart_array.cpp}\vspace{-1em}
+
+\subsubsection{Matrix}
+\begin{itemize}
+\item \textbf{Struttura:} Dimensione esterna: righe, interna: colonne.
+\item \cor{Richiede una doppia coppia di parentesi graffe per l'inizializzazione} 
+(perchè \texttt{std:array} è una classe)
+\item \textbf{Accesso:} doppia index notation: \texttt{matrix[riga][colonna]}.
+\end{itemize}
+
+\example{}
+\lstinputlisting[language=C++]{code/04_Memorymanagement/standart_matrix.cpp}
+
+\subsection{vector}
 std:vector ist ein Klassentemplate welches die Kapazität selbständig bei Bedarf erweitert.
-\lstinputlisting{code/vector.cpp}
+\lstinputlisting{code/04_Memorymanagement/vector.cpp}

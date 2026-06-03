@@ -1,0 +1,13 @@
+    \begin{tikzpicture}
+        \node [umlclass] (Student) { % see preamble umclass style
+            \centering \textbf{Student}
+            \nodepart{second}
+                + IDNumber : int \\
+                \# name : string \\
+                - bierkonsum : float \\
+                \# investedTimeInET : int
+            \nodepart{third}
+                - doStuff(time : int) \\
+                + \textit{useless()}
+        };
+    \end{tikzpicture}

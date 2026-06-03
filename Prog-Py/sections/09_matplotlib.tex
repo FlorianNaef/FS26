@@ -1,0 +1,78 @@
+\section{Data Visualization}
+Data visualization is crucial because summary statistics can be misleading and the choice of plot directly impacts the drawn conclusions. Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.
+
+\subsection{Matplotlib APIs}
+There are essentially two approaches to creating plots: the non-object-oriented approach via the functional interface (\texttt{pyplot}) and the object-oriented (OOP) approach. The OOP approach is recommended as it offers greater control and customization.
+
+\begin{lstlisting}[language=Python]
+import matplotlib.pyplot as plt
+import numpy as np
+
+t = np.linspace(0, 1, 100)
+s1 = np.sin(2 * np.pi * t)
+
+# Object-Oriented API (Recommended)
+fig, ax = plt.subplots(layout="constrained")
+ax.plot(t, s1, linestyle='-', marker='.', color="blue", label='Simulation')
+ax.set_xlabel('Time (s)')
+ax.set_ylabel('Amplitude (V)')
+ax.grid(which="both")
+ax.legend()
+plt.show()
+\end{lstlisting}
+
+\subsection{Common Methods and Formatting Arguments}
+When customizing plots, several key arguments are frequently used across different Matplotlib methods:
+
+\begin{itemize}
+    \item \textbf{Figure and Layout (\texttt{plt.subplots}, \texttt{plt.figure}):}
+    \begin{itemize}
+        \item \texttt{figsize=(width, height)}: Defines the dimensions of the figure in inches.
+        \item \texttt{layout="constrained"}: Automatically adjusts subplots to fit within the figure area, preventing overlapping elements.
+        \item \texttt{sharex, sharey}: Forces subplots to share the same X or Y axis scale (useful for direct comparisons).
+    \end{itemize}
+    
+    \item \textbf{Plot Styling (\texttt{ax.plot}, \texttt{ax.scatter}):}
+    \begin{itemize}
+        \item \texttt{color} or \texttt{c}: Sets the color of the plot elements.
+        \item \texttt{linestyle} or \texttt{ls}: Defines the line style (\texttt{'-'} solid, \texttt{'---'} dashed, \texttt{'-.'} dash-dot, \texttt{':'} dotted).
+        \item \texttt{linewidth} or \texttt{lw}: Sets the stroke width of the line.
+        \item \texttt{marker}: Adds specific symbols to data points.
+        \item \texttt{alpha}: Controls transparency ($0.0$ is fully transparent, $1.0$ is fully opaque).
+        \item \texttt{label}: Assigns a string identifier to the plot trace, which is then used by \texttt{ax.legend()}.
+    \end{itemize}
+    
+    \item \textbf{Text and Labels (\texttt{ax.set\_title}, \texttt{ax.set\_xlabel}, \texttt{ax.text}):}
+    \begin{itemize}
+        \item \texttt{fontsize}: Specifies the size of the text elements.
+        \item \texttt{ha}, \texttt{va}: Horizontal and vertical alignment for text annotations (e.g., \texttt{'center'}, \texttt{'left'}, \texttt{'top'}, \texttt{'bottom'}).
+        \item \texttt{loc}: Position argument, commonly used to place legends (e.g., \texttt{ax.legend(loc='upper right')}).
+    \end{itemize}
+\end{itemize}
+
+\subsection{Common Plot Types}
+Depending on the data, different plot types are more effective:
+\begin{itemize}
+    \item \textbf{Line Plots}: Useful for continuous signals. Logarithmic axes can be applied using \texttt{loglog()}, \texttt{semilogx()}, or \texttt{semilogy()}.
+    \item \textbf{Step Plots}: Created with \texttt{step()}, plotting data with a horizontal baseline connected by vertical lines.
+    \item \textbf{Histograms}: Visualizes numerical data distribution using \texttt{hist()}.
+    \item \textbf{Scatter Plots}: Displays measurement data as points on X and Y axes using \texttt{scatter()}. Size and color can represent third and fourth dimensions.
+    \item \textbf{3D and Contour Plots}: \texttt{contour()} or \texttt{contourf()} for 2D cross-sections of a 3D surface, and \texttt{plot\_surface()} for 3D renderings.
+\end{itemize}
+
+\subsection{Subplots and Layouts}
+When managing multiple plots, \texttt{plt.subplots()} creates a figure and an array of axes objects.
+
+\begin{lstlisting}[language=Python]
+# Creating a 2x2 grid of subplots sharing X and Y axes
+fig, axes = plt.subplots(nrows=2, ncols=2, sharex=True, sharey=True)
+axes[0, 0].plot(t, s1)
+axes[0, 0].set_title("First Plot")
+\end{lstlisting}
+
+\subsection{Library Comparison}
+\begin{itemize}
+    \item \textbf{Matplotlib}: Full control and customization, highly customizable but static.
+    \item \textbf{Seaborn}: Built on top of Matplotlib, provides high-level statistical plots with clean default styles and integrates perfectly with Pandas.
+    \item \textbf{Plotly}: Web-based plots that allow zooming, hovering, and dynamic updates.
+\end{itemize}

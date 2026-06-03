@@ -1,0 +1,101 @@
+\section{Advanced Unpacking and Functions}
+\label{sec:functions_unpacking}
+
+\subsection{Tuple Packing and Unpacking}
+Python allows for the grouping and distribution of objects through packing and unpacking mechanisms.
+
+\begin{itemize}
+    \item \textbf{Packing:} Multiple individual objects are grouped into a single tuple.
+    \item \textbf{Unpacking:} Items within an iterable are assigned to individual variables. This requires the number of variables to match the number of elements unless extended unpacking is used.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+# Packing
+employee = 'Peter', 'Muller' # Results in ('Peter', 'Muller')
+
+# Unpacking
+first, last = employee
+
+# Multiple Assignment (combined packing/unpacking)
+x, y, z = 5, 10, 15
+\end{lstlisting}
+
+\subsubsection{Extended Iterable Unpacking}
+Unpacking works with any iterable (strings, lists, sets) and supports specific operators to handle variable lengths or unwanted values.
+
+\begin{itemize}
+    \item \textbf{Rest Operator (*):} Captures remaining elements into a list.
+    \item \textbf{Placeholder (\_):} Used by convention to ignore specific values during unpacking.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+# Unpacking with rest
+first, last, *address, birth_date = ("Peter", "Muller", "Street", 10, "14.04.1977")
+# address becomes ["Street", 10]
+
+# Ignoring values
+first, last, _, birth_date = employee_data
+
+# Unpacking in nested structures
+x = [1, 2, (3, [4, 5])]
+a, b, (c, (d, e)) = x
+\end{lstlisting}
+
+\subsubsection{Iterable Expansion}
+The \texttt{*} and \texttt{**} operators allow unpacking iterables within other collection literals.
+
+\begin{lstlisting}[language=Python]
+list1 = [1, 2]
+list2 = [*list1, 3, 4] # [1, 2, 3, 4]
+
+dict1 = {"A": 1, "B": 2}
+dict2 = {"C": 3, **dict1} # {'C': 3, 'A': 1, 'B': 2}
+\end{lstlisting}
+
+\subsection{Functions}
+Functions are defined using the \texttt{def} keyword. They establish a local scope and can return objects to the caller.
+
+\begin{itemize}
+    \item \textbf{Parameters:} Placeholders defined in the function signature.
+    \item \textbf{Arguments:} Actual values passed during the call.
+    \item \textbf{Return Value:} Functions return \texttt{None} by default. Multiple values can be returned as a tuple.
+\end{itemize}
+
+\subsubsection{Argument Types and Constraints}
+\begin{itemize}
+    \item \textbf{Positional vs. Keyword:} Positional arguments must precede keyword arguments in a call.
+    \item \textbf{Default Parameters:} Parameters with default values must follow those without.
+    \item \textbf{Variadic Arguments (*args, **kwargs):} \texttt{*args} collects extra positional arguments into a 
+    \crd{\textbf{tuple}}; \texttt{**kwargs} collects extra keyword arguments into a dictionary.
+\end{itemize}
+
+\subsubsection{Argument Enforcement}
+Developers can force specific call styles using \texttt{/} and \texttt{*}.
+
+\begin{lstlisting}[language=Python]
+def constrained_func(pos_only, /, pos_or_kw, *, kw_only):
+    pass
+
+# / : All arguments before must be positional-only.
+# * : All arguments after must be keyword-only.
+\end{lstlisting}
+
+\subsection{Docstrings}
+Documentation strings should follow the function definition to describe its behavior. They can be retrieved via \texttt{help(function\_name)} or the \texttt{\_\_doc\_\_} attribute.
+
+\begin{lstlisting}[language=Python]
+def add(a, b):
+    """Return the sum of a and b."""
+    return a + b
+\end{lstlisting}
+
+\subsection{Lambda Functions}
+Lambdas are anonymous, single-expression functions. They are primarily used as "key" functions for sorting or filtering.
+
+\textbf{Syntax:} \texttt{lambda parameters: expression}
+
+\begin{lstlisting}[language=Python]
+# Sorting a list of strings by the numeric part
+articles = ['art1', 'art20', 'art3']
+sorted_list = sorted(articles, key=lambda x: int(x[3:]))
+\end{lstlisting}

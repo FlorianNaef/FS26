@@ -1,0 +1,23 @@
+    \begin{tikzpicture}[>=Triangle]
+        % Nodo Superclasse
+        \node[umlclass] (super) {
+            \hfil \textbf{Superklasse} \hfil
+            \nodepart{second}
+            Attribute
+            \nodepart{third}
+            Methoden
+        };
+
+        % Nodo Unterklasse posizionato a destra
+        \node[umlclass, right=1cm of super] (unter) {
+            \hfil \textbf{Unterklasse} \hfil
+            \nodepart{second}
+            Attribute
+            \nodepart{third}
+            Methoden
+        };
+
+        % Freccia di ereditarietà (Generalizzazione)
+        \draw[inheritance] (unter) -- (super);
+
+    \end{tikzpicture} 

@@ -1,0 +1,154 @@
+\section{Built in methods}
+\subsection{Lists}
+
+\textbf{Methods \texttt{sort()} and \texttt{sorted()}}
+\begin{itemize}
+    \item \texttt{sort()}: Modifies the list in-place. Allows a \texttt{reverse=True} parameter for descending order.
+    \item \texttt{sorted()}: Returns a new sorted list and can be applied to all iterable objects.
+    \item \textbf{The \texttt{key} Argument}: Allows specifying a custom sorting function. It accepts built-in functions (e.g., \texttt{str}) or anonymous \textit{lambda} functions for inline sorting criteria.
+    \item \textbf{Algorithm Stability and Multiple Priorities}: Python utilizes 
+    \textit{Timsort}, a stable sorting algorithm. Stability ensures that when two 
+    elements share the same sorting key, they retain their original relative order. 
+    To sort by multiple criteria, you can 'stack' consecutive sorts: you must apply 
+    the \textit{least} priority sort first, and the \textit{main} priority filter last.
+    Alternatively, you can use a single lambda function that returns a tuple 
+    representing the hierarchy of priorities.
+\end{itemize}
+
+\lstinputlisting[language=Python]{code/sort_stacking.py}
+
+\textbf{Indirect Sorting (Sorting Indices)}
+In many algorithms, it is highly efficient to sort an array of indices rather than moving the actual data elements around. By leveraging a lambda function, we can sort a standard sequence of indices based on the values they point to in the original list.
+
+\lstinputlisting[language=Python]{code/indirect_sorting.py}
+
+\textbf{List Slicing}
+Slicing extracts sub-sequences using the \texttt{x[start:end:step]} syntax. Besides extraction, slicing is extremely powerful for dynamically modifying lists: it allows replacing an entire area of elements or inserting multiple elements at a specific index simultaneously without overwriting existing data.
+
+\begin{lstlisting}[language=Python]
+data = ['a', 'b', 'c']
+# Inserting multiple elements without replacing (at index 3)
+data[3:3] = ['#', '$']   # Result: ['a', 'b', 'c', '#', '$']
+
+# Replacing an entire area with new elements
+data[1:3] = ['D', 'E']   # Result: ['a', 'D', 'E', '#', '$']
+\end{lstlisting}
+
+\subsection{Shallow and Deep Copy}
+Variable assignment merely binds a name to an object; it does not create a copy.
+
+
+
+\begin{itemize}
+    \item \textbf{Shallow Copy}: Functions like \texttt{list()}, \texttt{dict()}, or \texttt{.copy()} create a new object only at the top level. Subordinate nested objects are only referenced, meaning modifications to mutable nested objects will affect both the original and the copy.
+    \item \textbf{Deep Copy}: Creates a true, recursive copy of the object and all its subordinates.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+import copy
+list1 = [[1, 2], [3, 4]]
+list_shallow = list1.copy()
+list_deep = copy.deepcopy(list1)
+\end{lstlisting}
+
+\subsection{Strings}
+
+\textbf{Most Used Methods}
+\begin{itemize}
+    \item \textbf{Splitting and Cleaning}: \texttt{split(sep)} splits by a separator. \texttt{splitlines()} splits at line breaks. \texttt{strip()}, \texttt{lstrip()} remove leading/trailing characters.
+    \item \textbf{Searching and Replacing}: \texttt{find(sub)}. \texttt{count(sub)}. \texttt{replace(old, new)}.
+    \item \textbf{Casing}: \texttt{lower()}. \texttt{upper()}. \texttt{capitalize()}. \texttt{title()}.
+    \item \textbf{Testing}: \texttt{isdigit()}. \texttt{isalpha()}. \texttt{isalnum()}. \texttt{islower()}. \texttt{isupper()}.
+\end{itemize}
+
+\textbf{\texttt{join()} and Generators}
+The \texttt{join()} method combines all string elements of an iterable into a single string, using the calling string as a separator. It is highly efficient when combined with generator expressions.
+
+\begin{lstlisting}[language=Python]
+z = [(10, "Matthias"), (20, "Annabelle")]
+# Joining elements using a generator expression
+ranking = "\n".join(f"{name} ({points} Points)" for points, name in z)
+\end{lstlisting}
+
+\textbf{F-Strings Formatting}
+Formatting logic follows the syntax: \texttt{\{<f\_expression> ["="] [!<conversion>] [:<format\_spec>]\}}. Self-documenting expressions can be created by adding an equal sign \texttt{=} after the variable name.
+
+\vspace{1em}
+
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Example} & \textbf{Output} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Presentation Type (\texttt{<type>})}} \\
+\hline
+\texttt{b} & Binary Integer & \texttt{f'\{10:b\}'} & \texttt{'1010'} \\
+\hline
+\texttt{c} & Single Character & \texttt{f'\{65:c\}'} & \texttt{'A'} \\
+\hline
+\texttt{d} & Decimal Integer & \texttt{f'\{75:d\}'} & \texttt{'75'} \\
+\hline
+\texttt{e} or \texttt{E} & Exponential Form & \texttt{f'\{0.001:e\}'} & \texttt{'1.000000e-03'} \\
+\hline
+\texttt{f} or \texttt{F} & Float & \texttt{f'\{157:f\}'} & \texttt{'157.000000'} \\
+\hline
+\texttt{g} or \texttt{G} & Float or Exponential (based on size) & \texttt{f'\{15723823:G\}'} & \texttt{'1.57238E+07'} \\
+\hline
+\texttt{o} & Octal Integer & \texttt{f'\{16:o\}'} & \texttt{'20'} \\
+\hline
+\texttt{s} & String & \texttt{f'\{"Hallo":s\}'} & \texttt{'Hallo'} \\
+\hline
+\texttt{x} or \texttt{X} & Hexadecimal Integer & \texttt{f'\{10:X\}'} & \texttt{'A'} \\
+\hline
+\texttt{\%} & Percentage & \texttt{f'\{1:\%\}'} & \texttt{'100.000000\%'} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Alignment (\texttt{<align>})}} \\
+\hline
+\texttt{<} & Left-aligned & \texttt{f'\{12:<5\}'} & \texttt{'12   '} \\
+\hline
+\texttt{>} & Right-aligned & \texttt{f'\{12:>5\}'} & \texttt{'   12'} \\
+\hline
+\texttt{\^{}} & Centered & \texttt{f'\{12:\^{}5\}'} & \texttt{' 12  '} \\
+\hline
+\texttt{=} & Sign forced to the far left & \texttt{f'\{-12:=5\}'} & \texttt{'-  12'} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Fill Character (\texttt{<fill>})}} \\
+\hline
+\texttt{char} & Any character (used with align) & \texttt{f'\{12:\_>5\}'} & \texttt{'\_\_\_12'} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Sign (\texttt{<sign>})}} \\
+\hline
+\texttt{+} & Forces sign for positive/negative & \texttt{f'\{123:+\}'} & \texttt{'+123'} \\
+\hline
+\texttt{-} & Sign only for negative numbers & \texttt{f'\{-123:-\}'} & \texttt{'-123'} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Grouping (\texttt{<group>})}} \\
+\hline
+\texttt{,} or \texttt{\_} & Thousands separator & \texttt{f'\{1000:,\}'} & \texttt{'1,000'} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Width and Precision (\texttt{<width>.<precision>})}} \\
+\hline
+\texttt{width} & Minimum output width & \texttt{f'\{12:5\}'} & \texttt{'   12'} \\
+\hline
+\texttt{.precision} & Decimal places (for floats) & \texttt{f'\{3.14159:.2f\}'} & \texttt{'3.14'} \\
+\hline
+\end{tabular}}\vspace{1em}
+
+With \# is possible to show the alternative output format (0xA10, 0b01101)
+
+\subsection{Dictionaries}
+\textbf{Most Used Methods}
+\begin{itemize}
+    \item \texttt{get(key, default)}: Returns the value for a key, or a default value (like \texttt{None}) if the key does not exist.
+    \item \texttt{keys()}, \texttt{values()}, \texttt{items()}: Return views of the dictionary's keys, values, and key-value pairs, respectively.
+    \item \texttt{setdefault(key, default)}: Returns the value of a key; if absent, it inserts the key with the specified default value.
+    \item \texttt{pop(key)} and \texttt{popitem()}: Remove a specific key-value pair or the last added pair.
+    \item \texttt{clear()}: Removes all key-value pairs.
+\end{itemize}
+
+\subsection{File Handling}
+Files are handled using the \texttt{open()} function, which accepts a filename and a mode (e.g., \texttt{'r'} for reading, \texttt{'w'} for writing, \texttt{'a'} for appending). Specifying \texttt{encoding='utf-8'} is strongly recommended to prevent cross-platform character interpretation issues. 
+
+The \texttt{with} statement provides a Pythonic context manager that ensures the file is automatically closed upon exiting the block. The \texttt{pathlib} module allows for robust, object-oriented path manipulations using the \texttt{/} operator, ensuring seamless execution across Unix/macOS environments.
+
+\lstinputlisting[language=Python]{code/file_handling.py}

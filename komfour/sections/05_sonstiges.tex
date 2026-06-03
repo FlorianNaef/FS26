@@ -1,0 +1,70 @@
+\section{Sonstiges}
+\subsection{Beispiel gitternetz}\label{chap:bsp_gitternetz}
+
+La funzione mappa il piano $z$ nel piano $w = w_1 + j w_2$. Utilizzando la decomposizione $z = z_1 + j z_2$, la trasformazione è definita da:
+\[ w = (z_1 + j z_2)^2 = (z_1^2 - z_2^2) + j(2 z_1 z_2) \]
+Da cui le coordinate cartesiane nel piano $w$:
+\[
+\begin{cases}
+    w_1 = z_1^2 - z_2^2 \\
+    w_2 = 2 z_1 z_2
+\end{cases}
+\]
+
+Ora, usando come argomento per $f$ le formule delle rette cartesiane, analizziamo la trasformazione
+
+\begin{minipage}[t]{0.48\linewidth}
+    \textbf{Verticali ($z = c_1 + js$):}
+    Fissando la parte reale $z_1 = c_1$:
+    \[ \begin{cases} w_1 = c_1^2 - s^2 \\ w_2 = 2c_1s \rightarrow s = \frac{w_2}{2c_1} \end{cases} \]
+    Sostituendo $s$ in $w_1$:
+    \[ \colorbox{blue!10}{$w_1 = c_1^2 - \frac{w_2^2}{4c_1^2}$} \]
+    Rappresenta \textbf{parabole} con asse $w_1$ aperte a sinistra.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+    \textbf{Orizzontali ($z = r + jc_2$):}
+    Fissando la parte immaginaria $z_2 = c_2$:
+    \[ \begin{cases} w_1 = r^2 - c_2^2 \\ w_2 = 2rc_2 \rightarrow r = \frac{w_2}{2c_2} \end{cases} \]
+    Sostituendo $r$ in $w_1$:
+    \[ \colorbox{green!10}{$w_1 = \frac{w_2^2}{4c_2^2} - c_2^2$} \]
+    Rappresenta \textbf{parabole} con asse $w_1$ aperte a destra.
+\end{minipage}
+
+\vspace{1.5em}
+
+\subsubsection{Procedimento inverso}
+\paragraph{Esempio: Griglia quadrata}
+\[f(z) = z^2 \quad \rightarrow \quad f(z) = (z_1 + z_2 \jimg)^2 = z_1^2 + \jimg 2 z_1
+z_2 - z_2^2\]
+\[w_1 = \RE(w) = z_1^2 - z_2^2 \qquad w_2 = \IM(w) = 2z_1z_2\]
+Ora sappiamo che in una griglia quadrata $w_1 / w_2$ sono costanti ($x,y$) quindi:\vspace{1em}
+
+\begin{minipage}{0.45\columnwidth}
+    \[z_1^2 - z_2^2 = c_1\]
+    \begin{center}
+        Iperbole orizzontale
+    \end{center}
+\end{minipage}\hfill
+\begin{minipage}{0.45\columnwidth}
+    \[c_2 = 2z_+z_2 \rightarrow z_2 = \frac{c_2}{2 z_1}\]
+    \begin{center}
+        Iperbole $x^-1$
+    \end{center}
+\end{minipage}
+
+\subsection{Cambio indici}\vspace{-1em}
+\[ n = (\text{passo} \cdot m) + \text{offset} \]
+
+dove $m = 0, 1, 2, \dots$ è il nuovo indice di sottomatice (\textbf{m parte da 0!}). 
+
+\begin{ctabular}{@{}lccccl@{}}
+\toprule
+\textbf{Target (n)} & \textbf{Passo} & \textbf{Offset} & \textbf{Formula} & \textbf{Esempio Sequenza} \\ \midrule
+Dispari             & 2              & 1               & $n = 2m + 1$     & $1, 3, 5, 7, \dots$       \\
+Pari                & 2              & 2               & $n = 2m + 2$     & $2, 4, 6, 8, \dots$       \\
+Ogni 4 (da 1)       & 4              & 1               & $n = 4m + 1$     & $1, 5, 9, 13, \dots$      \\
+Ogni 4 (da 3)       & 4              & 3               & $n = 4m + 3$     & $3, 7, 11, 15, \dots$     \\ \bottomrule
+\end{ctabular}
+
+\newpage

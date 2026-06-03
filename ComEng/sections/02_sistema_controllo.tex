@@ -1,0 +1,109 @@
+% --- SEZIONE 1: COMPONENTI DI SISTEMA E CONTROLLO ---
+
+\section{Componenti del Sistema (SCS)}
+Il \textbf{System Control Space (SCS)} gestisce le funzionalità core del processore, inclusa la configurazione del NVIC e del registro di controllo di sistema.
+
+\subsection{Meccanismi di Fault e Eccezioni}
+\begin{itemize}
+    \item \textbf{HardFaults:} Sempre attivati; gestiscono errori di Bus, Usage e Memory Management. Permettono una reazione rapida agli errori critici.
+    \item \textbf{Wake-up Interrupt:} Consente la disattivazione gerarchica dei componenti
+     per ridurre il consumo energetico (modalità Sleep/Stop).
+    \item \textbf{Memory Protection Unit (MPU):} Genera eccezioni in caso di accessi non autorizzati alla memoria.
+    \item \textbf{Debug Unit:} Fornisce fino a 4 breakpoint hardware per il debugging del codice.
+\end{itemize}
+
+\subsection{System Tick Timer (SysTick)}
+Un contatore a \textbf{24-bit} che fornisce una base dei tempi costante per il sistema operativo o i cicli di programma.
+
+\section{Stack e Gestione Memoria}
+Lo \textbf{Stack} è una memoria temporanea utilizzata per variabili locali e salvataggio contestuale durante le eccezioni.
+\begin{itemize}
+    \item \textbf{Direzione:} Cresce verso indirizzi di memoria inferiori.
+    \item \textbf{Stack Pointer (SP):} Punta sempre al "top of stack". È vietato leggere o scrivere al di sotto di SP.
+    \item \textbf{Allineamento:} Normalmente allocato in step di 8 byte.
+    \item \textbf{Velocità:} circa due volte più rapido del RAM/ROM pointer poiché (SP) è già disponibile.
+\end{itemize}
+
+\section{Gestione degli Interrupt (NVIC)}
+
+\begin{itemize}
+    \item Il \textbf{Nested Vector Interrupt Controller} gestisce la prioritizzazione e il passaggio tra il programma di background e le \textbf{Interrupt Service Routine (ISR)}.
+    \item \crd{L'LSB in ogni vettore indica la modalità di salto (1: thumb, 0: ARM) nei Cortex-M sempre 1} (Anche indirizzi in \texttt{LR} con \texttt{B..})
+    \item Solitamente la VT (vector table) viene salvata in memoria fra il boot code e la seconda istruzione. 
+    \item Tramite VTOR (Vector Table Offset Register) è possibile cambiare la posizione della tabella in memoria.
+    \item \textbf{Stati dell'Interrupt:} \textit{Pending} (richiesto dalla periferica, azzerato automaticamente dall'hardware all'ingresso della ISR), \textit{Active} (in esecuzione in Handler Mode), \textit{Inactive}.
+\end{itemize}
+
+\subsection{NVIC Special Features}
+\begin{itemize}
+    \item \textbf{Tail-Chaining:} IRQ a bassa priorità è pendente al termine 
+    di ISR attiva, la CPU salta l'Unstacking e lo Stacking. Fa solo un nuovo Vector Fetch 
+    (da 15 $\rightarrow$ transizione di soli \textbf{6 cicli}).
+    \item \textbf{Late Arrival:} IRQ ad alta priorità si attiva durante lo stacking 
+    di un IRQ a bassa priorità, la CPU completa stacking ma esegue direttamente Vector Fetch dell'IRQ più urgente.
+    \item \textbf{Pop-Preemption:} IRQ arriva durante l'Unstacking (Pop) finale, l'hardware abbandona il Pop e devia subito alla nuova ISR in soli \textbf{6 cicli}.
+\end{itemize}
+
+\begin{minipage}[t]{0.51\columnwidth}
+    \subsection{Registri di Mascheramento}
+    \begin{itemize}
+        \item \textbf{PRIMASK:} 1 bit. Disabilita tutti gli interrupt programmabili (tranne HardFault e NMI).
+        \item \textbf{FAULTMASK:} 1 bit. Disabilita interrupt e tutte le eccezioni (tranne NMI).
+        \item \textbf{BASEPRI:} Disabilita interrupt con priorità numerica maggiore o uguale (urgenza inferiore) a un valore impostato.
+    \end{itemize}
+    
+    \subsection{Latenza e Stacking}
+    \begin{itemize}
+        \item \textbf{Interrupt Latency:} Tempo fisso d'ingresso nella ISR senza overhead software. \textbf{Cortex-M0+:} 15--16 cicli di clock. \textbf{Cortex-M3/M4:} 12 cicli.
+        \item Le funzioni ISR sono di tipo \texttt{void ISR\_Handler(void)}: non accettano parametri e non restituiscono valori.
+    \end{itemize}
+    \includegraphics[width=\linewidth]{images/NVIC_sequence.png}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\columnwidth}
+    \subsection{Preemption vs Subpriority}
+    \begin{itemize}
+        \item \textbf{Cortex-M0+:} Supporta solo 2 bit di priorità utilizzabili solo come Preemption.
+        \item \textbf{Cortex-M3/M4:} Tramite il \textit{Priority Grouping}, gli 8 bit di priorità si dividono in:
+        \begin{itemize}
+            \item \textbf{Preemption bits:} Decidono se un interrupt può interrompere fisicamente una ISR in esecuzione (\textit{nesting}).
+            \item \textbf{Subpriority bits:} Criterio di spareggio temporale se due IRQ arrivano insieme
+        \end{itemize}
+    \end{itemize}
+    \includegraphics[width=\linewidth]{images/NVIC_table.png}
+\end{minipage}
+
+\subsection{Soluzioni alternative \& Segnali IRQ}
+\begin{minipage}{0.55\columnwidth}
+    \includegraphics[width=\linewidth]{images/pooling_interrupts.png}
+\end{minipage}
+\begin{minipage}{0.45\columnwidth}
+    \begin{enumerate}
+        \item \textbf{Software Clearing}
+        \item \textbf{Software Clearing mit Reset}
+        \item \textbf{ISR Reentry (Pulsed IRQ durante ISR)}
+        \item \textbf{Repulsed IRQ}
+        \item \textbf{Pulsed IRQ (Level stay active)}
+    \end{enumerate}
+\end{minipage}
+
+% Prima riga di immagini
+\begin{minipage}[b]{0.5\linewidth}
+    \includegraphics[width=0.8\linewidth]{images/software_clearing.png}
+\end{minipage}
+\begin{minipage}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{images/software_clearing_reset.png}
+\end{minipage}
+
+% Seconda riga di immagini
+\begin{minipage}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{images/isr_reentry.png}
+\end{minipage}
+\begin{minipage}[b]{0.5\linewidth}
+    \includegraphics[width=0.9\linewidth]{images/repulsed_irq.png}
+\end{minipage}
+
+% Terza riga (ultima immagine centrata o a sinistra)
+\begin{minipage}[t]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{images/pulsed_irq.png}
+\end{minipage}

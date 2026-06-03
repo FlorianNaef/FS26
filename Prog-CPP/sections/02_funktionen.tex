@@ -6,7 +6,7 @@
     \item \textbf{Ordine}: I parametri di default devono trovarsi \textbf{\cor{sempre alla fine (a destra)}} della lista parametri.
 \end{itemize}
 
-\lstinputlisting[language=c++]{code/default_argumente.cpp}
+\lstinputlisting[language=c++]{code/02_funktionen/default_argumente.cpp}
 
 Default Argumente können überall verwendet werden bis auf Aufrufparameter von Operatoroverloading. 
 Dort sind sie \textbf{nicht} erlaubt. 
@@ -23,10 +23,4 @@ Dort machen sie aber ohnehin keinen Sinn.
     \item \textbf{Ottimizzazione}: Richiede flag attivi (es. \texttt{-O3}).
 \end{itemize}
 
-\begin{lstlisting}
-// Definizione nell'Header (.h)
-inline int quadrato(int x) { return x * x; }
-
-// Compilazione con ottimizzazione
-clang++ -O3 main.cpp
-\end{lstlisting}
+\lstinputlisting[language=C++]{code/02_funktionen/02_funktionen_snippet_1.cpp}

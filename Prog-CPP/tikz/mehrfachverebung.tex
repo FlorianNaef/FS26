@@ -1,0 +1,20 @@
+    \begin{tikzpicture}[
+    node distance=0.4cm and 0.2cm,
+]
+
+    % Nodi
+    \node[umlclass] (c1) {\textbf{C1}\nodepart{second}\nodepart{third}};
+    
+    \node[umlclass, below left=of c1] (c2) {\textbf{C2}\nodepart{second}print()\nodepart{third}};
+    \node[umlclass, below right=of c1] (c3) {\textbf{C3}\nodepart{second}print()\nodepart{third}};
+    
+    % C4 posizionato centralmente sotto C2 e C3
+    \node[umlclass, below=2cm of c1] (c4) {\textbf{C4}\nodepart{second}\nodepart{third}};
+
+    % Connessioni
+    \draw[inheritance] (c2) -- (c1);
+    \draw[inheritance] (c3) -- (c1);
+    \draw[inheritance] (c4) -- (c2);
+    \draw[inheritance] (c4) -- (c3);
+
+\end{tikzpicture} 

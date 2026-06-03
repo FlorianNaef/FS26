@@ -1,0 +1,77 @@
+\section{Appendix}
+\subsection{Type Conversion: \texttt{dict()} and \texttt{list()}}
+\begin{itemize}
+    \item \textbf{Tuple to Dict}: The \texttt{dict()} function can convert a list of 2-item tuples directly into key-value pairs.
+    \item \textbf{Deduplication}: Since dictionary keys must be unique, converting a list of tuples to a \texttt{dict} automatically removes duplicate entries (keeping the last evaluated value for a given key).
+    \item \textbf{Dict to List}: Converts the deduplicated dictionary back into a list of tuples using \texttt{list(dictionary.items())}.
+\end{itemize}
+
+\lstinputlisting[language=Python]{code/type_coversion.py}
+
+\subsection{Decorators}
+Decorators are functions that take another function as an argument to extend its behavior without modifying the original source code. They are denoted by the \texttt{@} symbol.
+
+\begin{lstlisting}[language=Python]
+def require_login(func):
+    def wrapper(user):
+        if user["logged_in"]:
+            return func(user)
+        print("Access denied.")
+    return wrapper
+
+@require_login
+def view_dashboard(user):
+    print(f"Welcome {user['name']}")
+\end{lstlisting}
+
+
+\subsection{Script Execution}
+To distinguish between a script being run directly and a script being imported as a module, Python uses the \texttt{\_\_name\_\_} variable.
+
+\begin{itemize}
+    \item When run directly: \texttt{\_\_name\_\_ == "\_\_main\_\_"}.
+    \item When imported: \texttt{\_\_name\_\_} equals the module's filename.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+def main():
+    # Test code or entry point
+    pass
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\subsection{Distribuzioni Casuali in NumPy}
+
+\begin{itemize}
+    \item \textbf{np.random.rand}: Genera campioni da una distribuzione \textbf{uniforme} nell'intervallo $[0, 1)$. Ogni valore ha la stessa probabilità di essere estratto.
+    \item \textbf{np.random.randn}: Genera campioni dalla distribuzione \textbf{normal standard} (Gaussiana) con media $\mu = 0$ e varianza $\sigma^2 = 1$.
+\end{itemize}
+
+\subsubsection{Trasformazione della Distribuzione Normale}
+Per scalare e traslare la distribuzione normale standard $\mathcal{N}(0, 1)$ verso una distribuzione personalizzata $\mathcal{N}(\mu, \sigma^2)$, si applica la seguente formula lineare:
+
+\[ X = \sigma \cdot \text{np.random.randn}(\dots) + \mu \]
+
+Dove:
+\begin{itemize}
+    \item $\sigma$ (Sigma): Deviazione standard (controlla la "larghezza" della campana).
+    \item $\mu$ (Mu): Media (sposta il centro della distribuzione).
+\end{itemize}
+
+\subsection{Indexing vs Slicing: Regola Rapida}
+
+La differenza dipende dal tipo di selettore utilizzato per l'asse:
+
+\begin{itemize}
+    \item \textbf{Intero (Indexing)}: Se usi un numero secco (es. \texttt{arr[2]}), la dimensione viene \textbf{rimossa} (rank-1).
+    \item \textbf{Range (Slicing)}: Se usi i due punti (es. \texttt{arr[2:3]}), la dimensione viene \textbf{mantenuta} (rank-2).
+\end{itemize}
+
+\subsubsection{Esempio Pratico}
+Dato un array 2D di shape \texttt{(3, 3)}:
+\begin{itemize}
+    \item \texttt{arr[2, :]} $\rightarrow$ Risultato 1D, shape \texttt{(3,)}.
+    \item \texttt{arr[2:3, :]} $\rightarrow$ Risultato 2D, shape \texttt{(1, 3)}.
+\end{itemize}

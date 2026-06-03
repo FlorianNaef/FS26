@@ -1,0 +1,56 @@
+\section[Hex - Dez]{Hex $\to$ Dez}
+\begin{ctabular}{l|cccccc}
+    \textbf{Hex} & A & B & C & D & E & F \\
+    \textbf{Dec} & 10 & 11 & 12 & 13 & 14 & 15 \\
+    \textbf{Bin} & 1010 & 1011 & 1100 & 1101 & 1110 & 1111
+\end{ctabular}\vspace{-1em}
+
+\section{Instruction Set Architecture (ISA)}
+\label{subsec:isa_differences}
+
+L'evoluzione delle architetture ARM ha portato alla coesistenza di diversi set di istruzioni.
+
+\begin{itemize}
+    \item \textbf{ARM (32-bit) (Obsoleto):} 32 bit, massime prestazioni ma occupano maggior spazio in memoria.
+    \item \textbf{Thumb (16-bit):} sottoinsieme 16 bit,
+    Ideale per ridurre il footprint della memoria (circa 30\% di risparmio)
+    \item \textbf{Thumb-2 (16/32-bit):} lunghezza variabile (16 e 32 bit). Permette di ottenere una densità di codice simile a Thumb 
+    con prestazioni analoghe al set ARM a 32 bit.
+\end{itemize}
+
+\section{Logica della ALU e Program Status Register}
+\label{sec:alu_logic}
+
+L'Unità Aritmetico-Logica (ALU) opera esclusivamente su stringhe binarie di bit, 
+ignorando la semantica del segno (interpretazione \textit{signed} vs \textit{unsigned}).
+
+\subsection{Meccanismo delle Flag (APSR)}
+\label{subsec:apsr_flags}
+
+\begin{itemize}
+    \item \textbf{N (Negative):} Riflette il bit più significativo (MSB) del risultato. Se $MSB=1$, la flag è impostata a 1.
+    \item \textbf{Z (Zero):} Impostata a 1 se tutti i bit del risultato sono pari a zero.
+    \item \textbf{C (Carry):} Indica un riporto oltre il bit più significativo. 
+\begin{itemize}
+    \item Fondamentale per operazioni \textit{unsigned}. \crd{Invertito per la sottrazione!}
+    \item \textbf{Meccanismo \crd{sottrazione}:} $(A + \text{NOT}(B) + 1)$. \quad Zweierkompl.
+    \begin{itemize}
+        \item $C = 1 \implies A \ge B$ (Nessun prestito / Not-Borrow).
+        \item $C = 0 \implies A < B$ (Prestito avvenuto / Borrow).
+    \end{itemize}
+\end{itemize}
+    \item \textbf{V (oVerflow):} Indica un errore di segno nel calcolo in complemento 
+    a due, Fondamentale per operazioni \textit{signed}.
+    \begin{itemize}
+        \item $(+) + (+) = (-)$ Impossibile
+        \item $(-) + (-) = (+)$ Impossibile
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Interpretazione del Segno e Salti Condizionati}
+\label{subsec:sign_interpretation}
+
+Poiché la ALU aggiorna simultaneamente sia la flag $C$ che la flag $V$,
+la distinzione tra variabile \texttt{int} e \texttt{uint} non risiede nell'hardware, 
+ma nel software.
+
