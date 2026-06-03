@@ -1,0 +1,154 @@
+\section{Built in methods}
+\subsection{Lists}
+
+\textbf{Methoden \texttt{sort()} und \texttt{sorted()}}
+\begin{itemize}
+    \item \texttt{sort()}: Modifiziert die Liste an Ort und Stelle. Ermöglicht einen \texttt{reverse=True}-Parameter für absteigende Reihenfolge.
+    \item \texttt{sorted()}: Gibt eine neue sortierte Liste zurück und kann auf alle iterierbaren Objekte angewendet werden.
+    \item \textbf{Das \texttt{key}}-Argument}: Ermöglicht das Festlegen einer benutzerdefinierten Sortierfunktion. Es akzeptiert eingebaute Funktionen (z.B. \texttt{str}) oder anonyme \textit{lambda}-Funktionen für inline Sortierkriterien.
+    \item \textbf{Algorithmusstabilität und mehrere Prioritäten}: Python nutzt 
+    \textit{Timsort}, einen stabilen Sortieralgorithmus. Stabilität bedeutet, dass, wenn zwei 
+    Elemente denselben Sortierschlüssel haben, sie ihre ursprüngliche relative Reihenfolge beibehalten. 
+    Um nach mehreren Kriterien zu sortieren, können Sie 'aufeinanderfolgende Sortierungen stapeln': Sie müssen 
+    die \textit{geringste} Prioritäts-Sortierung zuerst anwenden und den \textit{Haupt}-Prioritätsfilter zuletzt.
+    Alternativ können Sie eine einzelne Lambda-Funktion verwenden, die ein Tupel 
+    zurückgibt, das die Hierarchie der Prioritäten darstellt.
+\end{itemize}
+
+\lstinputlisting[language=Python]{code/sort_stacking.py}
+
+\textbf{Indirektes Sortieren (Sortierindizes)}
+In vielen Algorithmen ist es sehr effizient, ein Array von Indizes zu sortieren, statt die eigentlichen Datenelemente hin- und herzubewegen. Indem wir eine Lambda-Funktion verwenden, können wir eine Standardsequenz von Indizes sortieren, basierend auf den Werten, auf die sie in der ursprünglichen Liste zeigen.
+
+\lstinputlisting[language=Python]{code/indirect_sorting.py}
+
+\textbf{List Slicing}
+Beim Slicing werden Teilsequenzen mit der Syntax \texttt{x[start:end:step]} extrahiert. Neben der Extraktion ist Slicing äußerst leistungsfähig, um Listen dynamisch zu verändern: Es ermöglicht, einen gesamten Bereich von Elementen zu ersetzen oder mehrere Elemente an einem bestimmten Index gleichzeitig einzufügen, ohne vorhandene Daten zu überschreiben.
+
+\begin{lstlisting}[language=Python]
+data = ['a', 'b', 'c']
+# Mehrere Elemente einfügen, ohne zu ersetzen (bei Index 3)
+data[3:3] = ['#', '$']   # Ergebnis: ['a', 'b', 'c', '#', '$']
+
+# Einen gesamten Bereich durch neue Elemente ersetzen
+data[1:3] = ['D', 'E']   # Ergebnis: ['a', 'D', 'E', '#', '$']
+\end{lstlisting}
+
+\subsection{Shallow and Deep Copy}
+Die Zuweisung einer Variable bindet lediglich einen Namen an ein Objekt; sie erstellt keine Kopie.
+
+
+
+\begin{itemize}
+    \item \textbf{Shallow Copy}: Funktionen wie \texttt{list()}, \texttt{dict()} oder \texttt{.copy()} erstellen ein neues Objekt nur auf der obersten Ebene. Untergeordnete verschachtelte Objekte werden lediglich referenziert, d.h. Änderungen an veränderbaren verschachtelten Objekten wirken sich sowohl auf das Original als auch auf die Kopie aus.
+    \item \textbf{Deep Copy}: Erstellt eine echte, rekursive Kopie des Objekts und all seiner Unterobjekte.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+import copy
+list1 = [[1, 2], [3, 4]]
+list_shallow = list1.copy()
+list_deep = copy.deepcopy(list1)
+\end{lstlisting}
+
+\subsection{Strings}
+
+\textbf{Most Used Methods}
+\begin{itemize}
+    \item \textbf{Aufteilen und Bereinigen}: \texttt{split(sep}} teilt anhand eines Trennzeichens. \texttt{splitlines()} teilt an Zeilenumbrüchen. \texttt{strip()}, \texttt{lstrip()} entfernen führende/trailing Zeichen.
+    \item \textbf{Suchen und Ersetzen}: \texttt{find(sub)}. \texttt{count(sub)}. \texttt{replace(old, new)}.
+    \item \textbf{Schreibweise}: \texttt{lower()}. \texttt{upper()}. \texttt{capitalize()}. \texttt{title()}.
+    \item \textbf{Testen}: \texttt{isdigit()}. \texttt{isalpha()}. \texttt{isalnum()}. \texttt{islower()}. \texttt{isupper()}.
+\end{itemize}
+
+\textbf{\texttt{join()} und Generatoren}
+Die Methode \texttt{join()} kombiniert alle String-Elemente eines iterierbaren Objekts zu einem einzigen String und verwendet den aufrufenden String als Trennzeichen. Sie ist besonders effizient, wenn sie mit Generator-Ausdrücken kombiniert wird.
+
+\begin{lstlisting}[language=Python]
+z = [(10, "Matthias"), (20, "Annabelle")]
+# Elemente mithilfe eines Generator-Ausdrucks verbinden
+ranking = "\n".join(f"{name} ({points} Points)" for points, name in z)
+\end{lstlisting}
+
+\textbf{F-Strings Formatting}
+Die Formatierungslogik folgt der Syntax: \texttt{\{<f\_expression> ["="] [!<conversion>] [:<format\_spec>]\}}. Selbstdokumentierende Ausdrücke können erstellt werden, indem man ein Gleichheitszeichen \texttt{=} nach dem Variablennamen hinzufügt.
+
+\vspace{1em}
+
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Beschreibung} & \textbf{Beispiel} & \textbf{Ausgabe} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Darstellungstyp (\texttt{<type>})}} \\
+\hline
+\texttt{b} & Binäre Ganzzahl & \texttt{f'\{10:b\}'} & \texttt{'1010'} \\
+\hline
+\texttt{c} & Einzelzeichen & \texttt{f'\{65:c\}'} & \texttt{'A'} \\
+\hline
+\texttt{d} & Dezimale Ganzzahl & \texttt{f'\{75:d\}'} & \texttt{'75'} \\
+\hline
+\texttt{e} oder \texttt{E} & Exponentielle Darstellung & \texttt{f'\{0.001:e\}'} & \texttt{'1.000000e-03'} \\
+\hline
+\texttt{f} oder \texttt{F} & Gleitkommazahl & \texttt{f'\{157:f\}'} & \texttt{'157.000000'} \\
+\hline
+\texttt{g} oder \texttt{G} & Gleitkommazahl oder Exponential (abhängig von der Größe) & \texttt{f'\{15723823:G\}'} & \texttt{'1.57238E+07'} \\
+\hline
+\texttt{o} & Oktale Ganzzahl & \texttt{f'\{16:o\}'} & \texttt{'20'} \\
+\hline
+\texttt{s} & Zeichenkette & \texttt{f'\{"Hallo":s\}'} & \texttt{'Hallo'} \\
+\hline
+\texttt{x} oder \texttt{X} & Hexadezimale Ganzzahl & \texttt{f'\{10:X\}'} & \texttt{'A'} \\
+\hline
+\texttt{\%} & Prozent & \texttt{f'\{1:\%\}'} & \texttt{'100.000000\%'} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Ausrichtung (\texttt{<align>})}} \\
+\hline
+\texttt{<} & Links ausgerichtet & \texttt{f'\{12:<5\}'} & \texttt{'12   '} \\
+\hline
+\texttt{>} & Rechts ausgerichtet & \texttt{f'\{12:>5\}'} & \texttt{'   12'} \\
+\hline
+\texttt{\^{}} & Zentriert & \texttt{f'\{12:\^{}5\}'} & \texttt{' 12  '} \\
+\hline
+\texttt{=} & Vorzeichen wird ganz links erzwungen & \texttt{f'\{-12:=5\}'} & \texttt{'-  12'} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Füllzeichen (\texttt{<fill>})}} \\
+\hline
+\texttt{char} & Beliebiges Zeichen (verwendet mit align) & \texttt{f'\{12:\_>5\}'} & \texttt{'\_\_\_12'} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Vorzeichen (\texttt{<sign>})}} \\
+\hline
+\texttt{+} & Erzwingt Vorzeichen für positive/negative & \texttt{f'\{123:+\}'} & \texttt{'+123'} \\
+\hline
+\texttt{-} & Vorzeichen nur für negative Zahlen & \texttt{f'\{-123:-\}'} & \texttt{'-123'} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Gruppierung (\texttt{<group>})}} \\
+\hline
+\texttt{,} oder \texttt{\_} & Tausendertrennzeichen & \texttt{f'\{1000:,\}'} & \texttt{'1,000'} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Breite und Genauigkeit (\texttt{<width>.<precision>})}} \\
+\hline
+\texttt{width} & Minimale Ausgabebreite & \texttt{f'\{12:5\}'} & \texttt{'   12'} \\
+\hline
+\texttt{.precision} & Dezimalstellen (für Gleitkommazahlen) & \texttt{f'\{3.14159:.2f\}'} & \texttt{'3.14'} \\
+\hline
+\end{tabular}}\vspace{1em}
+
+Mit \# ist es möglich, das alternative Ausgabeformat anzuzeigen (0xA10, 0b01101)
+
+\subsection{Dictionaries}
+\textbf{Most Used Methods}
+\begin{itemize}
+    \item \texttt{get(key, default)}: Gibt den Wert für einen Schlüssel zurück oder einen Standardwert (wie \texttt{None}), falls der Schlüssel nicht existiert.
+    \item \texttt{keys()}, \texttt{values()}, \texttt{items()}: Geben jeweils Ansichten der Schlüssel, Werte und Schlüssel-Wert-Paare des Dictionaries zurück.
+    \item \texttt{setdefault(key, default)}: Gibt den Wert eines Schlüssels zurück; falls er fehlt, fügt es den Schlüssel mit dem angegebenen Standardwert ein.
+    \item \texttt{pop(key)} und \texttt{popitem()}: Entfernt ein bestimmtes Schlüssel-Wert-Paar oder das zuletzt hinzugefügte Paar.
+    \item \texttt{clear()}: Entfernt alle Schlüssel-Wert-Paare.
+\end{itemize}
+
+\subsection{File Handling}
+Dateien werden mithilfe der Funktion \texttt{open()} behandelt, die einen Dateinamen und einen Modus akzeptiert (z.B. \texttt{'r'} zum Lesen, \texttt{'w'} zum Schreiben, \texttt{'a'} zum Anhängen). Das Festlegen von \texttt{encoding='utf-8'} wird dringend empfohlen, um Probleme bei der Zeichenauslegung zwischen Plattformen zu vermeiden. 
+
+Die \texttt{with}-Anweisung stellt einen Python-typischen Kontextmanager bereit, der sicherstellt, dass die Datei beim Verlassen des Blocks automatisch geschlossen wird. Das Modul \texttt{pathlib} ermöglicht robuste, objektorientierte Pfadmanipulationen mithilfe des \texttt{/}-Operators und stellt so eine nahtlose Ausführung in Umgebungen unter Unix/macOS sicher.
+
+\lstinputlisting[language=Python]{code/file_handling.py}
