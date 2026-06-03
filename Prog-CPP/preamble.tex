@@ -124,7 +124,6 @@
 \definecolor{stringcolour}{HTML}{9e22bd}
 \definecolor{numbercolour}{HTML}{808080}
 
-
 % ----------------------------------- LIST AND TABULAR SETTINGS -----------------------------------
 \setlist[enumerate]{%
     labelindent=0pt,                                % no indentation for labels
@@ -153,6 +152,8 @@
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes}
 \usetikzlibrary{calc}
+\usetikzlibrary{trees}
+\usetikzlibrary{shadows}
 
 \tikzset{
     umlclass/.style={
@@ -160,16 +161,26 @@
         rectangle split,
         rectangle split parts=3,
         fill=violet!15,
-        minimum width=2cm,
+        minimum width=1cm,
         font=\small\ttfamily,
         align=left 
     },
-    % Definizione dello stile per le frecce di ereditarietà
+    % Inheritance arrow UML 
     inheritance/.style={
-        -{Triangle[open, angle=60:5pt]}, % Freccia di ereditarietà UML (triangolo cavo)
+        -{Triangle[open, angle=60:5pt]}, 
         shorten >=1pt,
         shorten <=1pt,
         draw=black
+    },
+    box/.style={
+        rectangle,
+        fill=subsectioncolor,
+        text=black,
+        font=\sffamily\bfseries\large,
+        minimum width=3.2cm,
+        minimum height=0.75cm,
+        align=center,
+        inner sep=0pt
     }
 }
 

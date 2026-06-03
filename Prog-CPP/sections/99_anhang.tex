@@ -32,31 +32,14 @@
 \subsubsection{String formatting}
 Utilizza gli stream di output per costruire stringhe in memoria. È sicuro perché gestisce la memoria dinamicamente.
 
-\begin{lstlisting}
-#include <sstream>
-#include <iomanip>
-
-std::string formatTime(int h, int m) {
-    std::ostringstream buf;
-    buf << std::setfill('0') << std::setw(2) << h 
-        << ":" << std::setw(2) << m;
-    return buf.str();
-}
-\end{lstlisting}
+\lstinputlisting[language=C++]{code/99_anhang/99_anhang_snippet_1.cpp}
 
 Rappresenta lo standard moderno. Combina la sintassi concisa di \texttt{printf} con la sicurezza degli stream.
 
-\begin{lstlisting}
-#include <format>
-
-std::string formatTime(int h, int m) {
-    // :02 significa 2 cifre con riempimento zero
-    return std::format("{:02}:{:02}", h, m);
-}
-\end{lstlisting}
+\lstinputlisting[language=C++]{code/99_anhang/99_anhang_snippet_2.cpp}
 
 \subsubsection{Ctor un dtor}
-\lstinputlisting[language=c++]{code/ctor_dtor_anhang.cpp}
+\lstinputlisting[language=c++]{code/99_anhang/ctor_dtor_anhang.cpp}
 
 \subsection{Ritorno per Riferimento e Method Chaining}
 \begin{itemize}
@@ -74,4 +57,51 @@ std::string formatTime(int h, int m) {
     direttamente sull'oggetto originale e non su una sua copia destinata alla distruzione.
 \end{itemize}
 
-\lstinputlisting[language=c++]{code/method_chaining.cpp}
+\lstinputlisting[language=c++]{code/99_anhang/method_chaining.cpp}
+
+\subsection{Vergleich von Gleitkommazahlen (double)}
+Beim Vergleich von \texttt{double}-Werten sollte aufgrund von Rundungsfehlern \textbf{niemals 
+der Operator \texttt{==} direkt verwendet werden}. 
+
+Stattdessen wird geprüft, ob die absolute Differenz zwischen zwei Werten kleiner als eine definierte Toleranz 
+(Epsilon) ist.\smallskip
+
+\lstinputlisting[language=C++]{code/99_anhang/99_anhang_snippet_3.cpp}
+
+
+\subsection{Parametri Template Non-Tipo (Static Allocation)}
+
+I template accettano valori costanti (es. \texttt{std::size\_t N}) valutati a 
+\textbf{compile-time}. Questo è l'unico modo per definire la dimensione di array statici 
+(\texttt{T data[N]}) mantenendo la flessibilità del codice.
+
+In C++, il compilatore deve conoscere l'ingombro esatto di un oggetto nello \textbf{Stack}
+per generare istruzioni macchina con \textit{offset} fissi. Se \texttt{N} fosse una
+variabile, il compilatore non saprebbe quanto spazio riservare automaticamente e 
+l'allocazione fallirebbe.
+
+\subsubsection{Allocazione Statica vs Dinamica}
+Senza la risoluzione a tempo di compilazione, il compilatore non potrebbe riservare lo spazio nello \textbf{Stack}, obbligando all'uso della memoria \textbf{Heap} (più lenta).
+
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Caratteristica} & \textbf{Via Template (Statico)} & \textbf{Via Costruttore (Dinamico)} \\ \hline
+\textbf{Vincolo Size}   & Costante a compile-time & Variabile a run-time \\ \hline
+\textbf{Memoria}        & Stack (Veloce, fissa)   & Heap (Flessibile, lenta) \\ \hline
+\textbf{Gestione}       & Automatica (No memory leaks) & Manuale (\texttt{new}/\texttt{delete}) \\ \hline
+\textbf{Effetto Tipo}   & \texttt{Class<10>} $\neq$ \texttt{Class<20>} & Il tipo rimane identico \\ \hline
+\end{tabular}}
+
+\subsubsection{Esempio e Default}
+È possibile impostare un valore di default per rendere il parametro opzionale.
+
+\lstinputlisting[language=C++]{code/99_anhang/99_anhang_snippet_4.cpp}
+
+\subsection{Inline Functions e Templates}
+
+\begin{itemize}
+    \item \textbf{Inlining Implicito:} Tutte le funzioni (template e non) definite direttamente all'interno della dichiarazione di una classe (\textit{in-class}) sono considerate \texttt{inline} automaticamente dal compilatore.
+    \item \textbf{Inlining Esplicito:} Le funzioni template definite al di fuori della classe (\textit{out-of-class}), anche se collocate nello stesso file header, \textbf{non} sono \texttt{inline} di default. Per renderle tali, la keyword \texttt{inline} deve essere inserita tra il tag \texttt{template} e il tipo di ritorno.
+    \item \textbf{Vantaggi e Limiti:} L'inlining elimina l'overhead della chiamata a funzione (\textit{zero overhead}), ma è sconsigliato per funzioni ricorsive o molto complesse.
+\end{itemize}

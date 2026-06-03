@@ -102,11 +102,13 @@ Summandenfunktion $f(x)$ mit $x \in [1 ; \infty)$ \qquad $f(n) = a_n = $ Summand
 
 \renewcommand{\arraystretch}{2.3}
 \begin{tabular}{ll}
-    $\lim\limits_{x \to \infty} (1 + \frac{a}{x})^x = \e^a$ ($a$ = const)           & $\lim\limits_{x \to \infty} \sqrt[n]{a} = 1$                                  \\
+    $\lim\limits_{x \to 0} \frac{\sin x}{x} = 1$                                    & $\lim\limits_{x \to 0} \frac{\e^x - 1}{x} = 1$                                \\
+    $\lim\limits_{x \to \infty} (1 + \frac{a}{x})^x = \e^a$ ($a$ = const)           & $\lim\limits_{x \to \infty} \sqrt[n]{a} = 1 \quad (\alpha > 0)$                                  \\
     $\lim\limits_{n \to \infty} \sqrt[n]{n} = 1$                                    & $\lim\limits_{n \to \infty} \sqrt[n]{n^{\alpha}} = 1$ ($\alpha$ = const)      \\
-    $\lim\limits_{n \to \infty} \sqrt[n]{\vert p(n) \vert} = 1$ ($p(n) \neq 0)$     & $\lim\limits_{n \to \infty} \sqrt[n]{\vert r(n) \vert} = 1$ $(r(n) \neq 0)$   \\ 
+    $\lim\limits_{n \to \infty} \sqrt[n]{\vert \cvt{p(n)} \vert} = 1$ ($\cvt{p(n)} \neq 0)$     & $\lim\limits_{n \to \infty} \sqrt[n]{\vert \cbl{r(n)} \vert} = 1$ $(\cbl{r(n)} \neq 0)$   \\ 
     $\lim\limits_{n \to \infty} \frac{K^n}{n!} = 0$ ($K$ = const)                   & $\lim\limits_{n \to \infty} \sqrt[n]{n!} = + \infty$                          \\
-    $\lim\limits_{n \to \infty} \sqrt[n]{\frac{K^n}{n!}} = 0$ ($K$ = const $> 0$)   & $\lim\limits_{n \to \infty} \frac{n}{\sqrt[n]{n!}} = \e$
+    $\lim\limits_{n \to \infty} \sqrt[n]{\frac{K^n}{n!}} = 0$ ($K$ = const $> 0$)   & $\lim\limits_{n \to \infty} \frac{n}{\sqrt[n]{n!}} = \e$\\
+    $\cvt{p(n)}$: Polynomfunktion $\neq 0$                                                & $\cbl{r(n)}$: Rational funktion $\neq 0$
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
@@ -148,6 +150,3 @@ $c_n$ = Summe der Indizes = $n$
 \vspace{-0.6cm}
 
 $$ = (a_0 + a_1 + a_2 + \ldots)(b_0 + b_1 + b_2 + \ldots) \quad (n \to \infty) = a b \quad \textbf{(wenn absolut konvergent)} $$
-
-\columnbreak
-

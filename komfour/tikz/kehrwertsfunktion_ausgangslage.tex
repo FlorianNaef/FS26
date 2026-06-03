@@ -22,11 +22,14 @@
             ylabel={$z_2$}
         ]
         
-        \addplot[violet, thick, domain=0:1.5] {0.75*x};
+        \addplot[violet, dashed, thick, domain=0:1.5] {0.75*x};
         \draw[violet] (0.8, 0) arc[start angle=0, end angle=27, radius=0.8cm];
         \node[violet] at (1.4, 0.3) {$\varphi = \arg(z)$};
         
         \node[violet] at (1, 1.1) {$|z|$};
+
+        \node[circle, fill=violet, inner sep=1.2pt, label={above right:$z$}] at (axis cs:1.5, 1.125) {};
+
 
         \end{axis}
     \end{tikzpicture}

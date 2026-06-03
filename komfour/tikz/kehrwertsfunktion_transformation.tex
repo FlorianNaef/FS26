@@ -22,11 +22,13 @@
             ylabel={$w_2$}
         ]
         
-        \addplot[orange, thick, domain=0:0.45] {-0.75*x};
+        \addplot[orange, thick,dashed, domain=0:0.45] {-0.75*x};
         \draw[orange] (0.4, 0) arc[start angle=0, end angle=-28, radius=0.4cm];
         \node[orange] at (1, 0.3) {$\varphi = -\arg(z)$};
         
         \node[orange] at (0.5, -0.7) {$|w| = \frac{1}{|z|}$};
+
+        \node[circle, fill=orange, inner sep=1.2pt, label={right:$w$}] at (axis cs:0.45, -0.3375) {};
 
         \end{axis}
     \end{tikzpicture}

@@ -1,0 +1,25 @@
+\begin{tikzpicture}[>=Stealth, scale=1.2]
+    % Assi
+    \draw[->, thick] (0,0) -- (5,0) node[below] {$V$};
+    \draw[->, thick] (0,0) -- (0,4) node[left] {$p$};
+    
+    % Curve Isoterma definita tramite funzione P = 3.5 / V
+    \draw[ultra thick, teal, domain=1.0:4.2, samples=100, variable=\v] plot ({\v}, {3.5/\v});
+    
+    % Coordinate specifiche sulla curva per i punti A e B
+    \coordinate (A) at (1.25, 2.8);
+    \coordinate (B) at (3.5, 1.0);
+    
+    % Freccia direzionale sovrapposta alla curva
+    \draw[ultra thick, teal, ->, domain=1.25:2.5, samples=50, variable=\v] plot ({\v}, {3.5/\v});
+    
+    % Linee tratteggiate verso gli assi
+    \draw[dashed, gray] (A) -- (1.25, 0) node[below, black] {$V_1$};
+    \draw[dashed, gray] (B) -- (3.5, 0) node[below, black] {$V_2$};
+    \draw[dashed, gray] (A) -- (0, 2.8) node[left, black] {$p_1$};
+    \draw[dashed, gray] (B) -- (0, 1.0) node[left, black] {$p_2$};
+    
+    % Nodi/Punti
+    \fill[black] (A) circle (2pt);
+    \fill[black] (B) circle (2pt);
+\end{tikzpicture}

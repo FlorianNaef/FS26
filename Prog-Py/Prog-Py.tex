@@ -20,9 +20,9 @@
 \def\semester{FS2026}             % semester
 \def\author{Mirko Ratti}                % author(s)
 % \def\contributors{Contributors}     % contributor(s) (optional -> comment out if none)
-\def\repo{https://github.com/P4ntomime/TeXFoSaTemplate} % repository link
+\def\repo{https://github.com/mirkoratti/FS2026} % repository link
 \def\version{1.0.\today}            % version
-\def\pagelimit{3}                   % page limit -> causes pages after limit to be red
+\def\pagelimit{20}                   % page limit -> causes pages after limit to be red
 \def\titleoption{ultra compact}     % options: ultra compact, compact, normal
 \def\enableToC{false}                % enable/disable table of contents
 
@@ -36,5 +36,15 @@
         \input{sections/01_variables.tex}
         \input{sections/02_conditions.tex}
         \input{sections/03_iterations.tex}
+        \input{sections/04_built_in_methods.tex}
+        \input{sections/05_advanced_unpacking.tex}
+        \input{sections/06_object_oriented.tex}
+        \input{sections/07_inheritance.tex}
+        \input{sections/08_Numpy.tex}
+        \input{sections/09_matplotlib.tex}
+        \newpage
+        \input{sections/99_appendix.tex}
     \end{layout}
+
+    \includepdf[nup=2x1, pages=-]{Prog-ZF-py.pdf}
 \end{document}

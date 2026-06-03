@@ -22,7 +22,7 @@ $$ \text{DGL (explizit):} \quad y'' = \underbrace{2 \, y' - x^2 \, y + \frac{1}{
     \smallskip
                     & $y(x_0) = y_0$ \quad $y'(x_0) = y_1$  \quad $\ldots$ \quad  $y^{(n-1)} = y_{n-1}$ \\
     Linearität      & DGL ist \textbf{linear in $\bm{y}$}, wenn alle $y$-Terme linear vorkommen         \\
-                    & ($x$-Terme ändern Linearität von $y$ nicht)
+                    & $\xcancel{(\dots)^n \text{ or } \sqrt[n]{\dots}}$ \qquad ($x$-Terme ändern Linearität von $y$ nicht) 
 \end{tabular}
 
 \medskip
@@ -35,28 +35,44 @@ $$ \text{DGL (explizit):} \quad y'' = \underbrace{2 \, y' - x^2 \, y + \frac{1}{
 \end{tabular}
 
 
-\subsection{Picard-Lindelöf}
+\subsection{Picard-Lindelöf (Eindeutigkeit der Lösung)}
 
-Schema zur Beruteilung der \textbf{Lösbarkeit} einer DGL
-
-\smallskip
-
-\begin{tabular}{ll}
-    (1) & $f(x, y, y', \, ... \, y^{(n-1)} )$ lokal bei $x_0 ; y_0$ stetig \\
-    (2) & alle partielle Ableitungen bilden: $f_y = \frac{\partial f}{\partial y}$ ; $f_y' = \frac{\partial f}{\partial y'}$ ; ... 
-\end{tabular}
+Schema zur Beurteilung der \textbf{Lösbarkeit} einer DGL an einem Punkt $(x_0, y_0)$:
 
 \medskip
+\textbf{Schritt 1: Stetigkeit (Existenz)}
+\begin{itemize}
+    \item[(1)] $f(x, y, y', \, ... \, y^{(n-1)} )$ lokal bei $x_0 ; y_0$ stetig.
+    \item[] Stetigkeit rimane con operazioni elementari: $+, -, \cdot, :, \text{subst (\crd{Att}. }\mathbb{D}) (\sqrt{f}, \ln(f))$\\
+    \cor{Lineare oder elementare Funktionen sind fast immer stetig.}
+\end{itemize}
 
-\textbf{Wenn} (1) erfüllt und alle (2) lokal bei $x_0 ; y_0$ beschränkt, \textbf{dann} ist DGL lokal eindeutig lösbar 
-(inkl. Anfangsbedingungen)
+\textbf{Schritt 2: Beschränktheit (Eindeutigkeit)}
+\begin{itemize}
+    \item[(2)] Alle partiellen Ableitungen bilden: $f_y = \frac{\partial f}{\partial y}$ ; $f_{y'} = \frac{\partial f}{\partial y'}$ ; ...
+    \begin{itemize}
+        \item Ist das Ergebnis \textbf{konstant} \textrightarrow\ automatisch lokal beschränkt.
+        \item Ist es eine \textbf{Formel} \textrightarrow\ $x_0, y_0$ einsetzen. 
+        Das Ergebnis muss $\in \mathbb{R}$
+    \end{itemize}
+\end{itemize}
 
-\smallskip
+\medskip
+\textbf{Fazit:}
+\begin{itemize}
+    \item \textbf{Wenn} (1) erfüllt \textbf{und} (2) lokal bei $x_0 ; y_0$ beschränkt: \\
+    \textrightarrow\ Die DGL ist \textbf{lokal eindeutig lösbar} (inkl. Anfangsbedingungen).
+    \item \textbf{Wenn} (1) erfüllt, \textbf{aber} (2) \myul{nicht} erfüllt (z.B. $\frac{1}{0}$ in der Ableitung): \\
+    \textrightarrow\ Eindeutigkeit ist nicht garantiert. \textbf{Singularitäts-Test durchführen!}
+\end{itemize}
 
-\textbf{Wenn} (1) erfüllt aber (2) \myul{nicht} erfüllt, dann ist alles möglich \\
-\textbf{ \textrightarrow\ Singularitäts-Test durchführen:} \\	
-Polstellen $f_y$ nach $y$ auflösen, in DGL einsetzen und konrollieren, ob DGL erfüllt ist
-
+\medskip
+\subsubsection{Singularitäts-Test (Ablauf bei Polstelle in $f_y$):}
+\begin{enumerate}
+    \item \textbf{Polstelle finden:} Nenner der partiellen Ableitung $= 0$ setzen.
+    \item \textbf{Auflösen:} Diese Gleichung nach $y$ auflösen (das liefert die singuläre Kandidaten-Lösung).
+    \item \textbf{Verifizieren:} Diese Funktion $y$ in die \textit{ursprüngliche} DGL einsetzen und kontrollieren, ob die Gleichung erfüllt ist.
+\end{enumerate}
 
 \subsection{ABC-Analyse}
 
@@ -87,8 +103,7 @@ $$ y' = f(x \, ; \, y) = ( \text{Faktor in } x) * ( \text{Faktor in } y) = \tild
     (3) & $\int \limits_{y_0}^{y} \frac{\diff \tilde{y}}{g(y)} =$ gelöstes Integral                                                     \\
     (4) & Integral links lösen = gelöstes Integral rechts                                                                               \\
     (5) & Gleichung auflösen nach $y$ \textrightarrow\ Formel in $x$                                                                    \\
-    (6) & Singularitätstest um weitere Lösungen zu finden                                                                               \\
-        & $g(y) = 0 \,$ \textrightarrow\ $y = \ldots$ in DGL einsetzen und verifizieren 
+    (6) & Singularitätstest um weitere Lösungen zu finden (vedi \ref{chap:sing_erg})                                                                              \\
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
@@ -97,22 +112,26 @@ $$ y' = f(x \, ; \, y) = ( \text{Faktor in } x) * ( \text{Faktor in } y) = \tild
 
 \vspace{-0.2cm}
 
-$$ y' = f(x \, ; \, y) = f( \underbrace{ax + by +c}_{\substack{z}}) \qquad y(x_0) = y_0 $$
-separiert: \quad $z' = a + b \, f(z)$ \qquad $z(x_0) = z_0 = a  \,x_0 + b \, y_0 + c$ 
+$$ y' = f(x \, ; \, y) = f( \underbrace{ax + by +c}_{\substack{z}}) \qquad \qquad y(x_0) = y_0 $$\vspace{-1em}
+
+Separiert DGL: \quad $\boxed{z' = a + b \cdot f(z)}$ \qquad \qquad $z(x_0) = z_0 = a  \,x_0 + b \, y_0 + c$ 
 
 \smallskip
+\begin{itemize}
+    \item weiter in Abschnitt \ref{Trennung der Variablen (separiert)} 
+    mit $\tilde{f}(x) = 1$ (Non ci sono piu fattori dipendenti da $x$)
+    \item Substitution $y = z$
+\end{itemize}
 
-\textrightarrow\ weiter in Abschnitt \ref{Trennung der Variablen (separiert)} mit $\tilde{f}(x) = 1$ und Substitution $y = z$
+\subsubsection{Gleichgradigkeit}\vspace{-0.2cm}
 
+$$ y' = f(x \, ; \, y) = f \underbrace{\left(\frac{y}{x}\right)}_z \qquad \qquad y(x_0) = y_0 ; (x ; x_0 \neq 0) $$\vspace{-0.5em}
 
-\subsubsection{Gleichgradigkeit}
+Separiert DGL: \quad $\boxed{z' = \frac{1}{x} (f(z) - z)}$ \qquad \qquad $z(x_0) = z_0 = \frac{y_0}{x_0}$ 
 
-\vspace{-0.2cm}
-
-$$ y' = f(x \, ; \, y) = f \Big( \underbrace{\frac{y}{x}}_{\substack{z}} \Big) \qquad y(x_0) = y_0 ; (x ; x_0 \neq 0) $$ 
-
-separiert: \quad $z' = \frac{1}{x} (f(z) - z)$ \qquad $z(x_0) = z_0 = \frac{y_0}{x_0}$ \\
-\textrightarrow\ weiter in Abschnitt \ref{Trennung der Variablen (separiert)} mit $\tilde{f}(x) = \frac{1}{x}$ und Substitution $y = z$ 
+\begin{itemize}
+    \item weiter in Abschnitt \ref{Trennung der Variablen (separiert)} mit $\tilde{f}(x) = \frac{1}{x}$, Substitution $y = z$ 
+\end{itemize}
 
 \medskip
 
@@ -124,16 +143,14 @@ Variablen $x$ und $y$ vertauschen wenn:
 
 \begin{itemize}
     \item $f(\frac{y}{x})$ verkehrt herum, also $f(\frac{x}{y})$
-    \item Ableitung (Steigung) $y'$ steht im Kehrwert $\frac{1}{y'}$
+    \item Ableitung (Steigung) $y'$ steht im Kehrwert $\frac{1}{y'} \, \longrightarrow \, \tilde{x}' = \frac{1}{\tilde{y}'}$
 \end{itemize}
 
 
-\subsection[Lineare DGL n=1]{Lineare DGL $\bm{n=1}$}
-
-\vspace{-0.2cm}
+\subsection[Lineare DGL n=1]{Lineare DGL $\bm{n=1}$}\vspace{-0.3cm}
 
 $$ 1 \, y' +  f(x) \, y = g(x) \qquad g(x) \text{ ist Störterm} \qquad \text{Anfangswert: } y(x_0) = y_0 $$
-$$ \text{\textbf{Lösungsmenge:}} \quad \mathbb{L} = \mathbb{L}_H + y_p \quad (\bm{y_p} \text{ \textbf{ist stationärer Anteil}}) $$
+$$ \text{\textbf{Lösungsmenge:}} \quad \boxed{\mathbb{L} = \mathbb{L}_H + y_p} \quad (\bm{y_p} \text{ \textbf{ist stationärer Anteil}}) $$
 
 \textbf{Gesamte Rechnung inkl. homogenem Teil ohne Integrations-Grenzen durchführen!}
 
@@ -142,29 +159,40 @@ $$ \text{\textbf{Lösungsmenge:}} \quad \mathbb{L} = \mathbb{L}_H + y_p \quad (\
 
 \vspace{-0.2cm}
 
-$$ 1 \, y' +  \cgn{f(x)} \, y = \cbl{g(x)} \quad \text{ \textlrarrow\ } \quad y' = -f(x) \, y $$ 
-$$ y = \underbrace{y_0}_{\substack{k}} \, \e^{- \int \limits_{x_0}^{x} \cgn{f(\tilde{x})} \, d\tilde{x}} \qquad 
-(y_0 \in \mathbb{R}) \text{ \textrightarrow\ } \mathbb{L}_H $$ 
+\[1 \, y' +  \cgn{f(x)} \, y = \cbl{g(x)} \quad \text{ \textlrarrow\ } \quad y' = -f(x) \, y  \]
+\[y = y_0 \cdot \e^{- \int \limits_{x_0}^{x} \cgn{f(\tilde{x})} \, d\tilde{x}} \qquad 
+(y_0 \in \mathbb{R}) \text{ \textrightarrow\ } \mathbb{L}_H\]
 
 
-\subsubsection{Partikulär / Inhomogen \textrightarrow\ Störterm $\bm{g(x) \neq 0}$}
+\subsubsection{Partikulär / Inhomogen \textrightarrow\ Störterm $\bm{g(x) \neq 0}$}\vspace{-0.2cm}
 
-\vspace{-0.2cm}
-
-$$ y_p = k(x) \cdot  \e^{- \int \cgn{f(x)} \, \diff x} \quad \text{mit} \quad k(x) = \int \cbl{g(x)} \cdot \e^{\, \int \cgn{f(x)} \, \diff x} \, \diff x $$
+\[y_p = k(x) \cdot  \e^{- \int \cgn{f(x)} \, \diff x} \quad \text{mit} \quad k(x) 
+= \int \cbl{g(x)} \cdot \e^{\, \int \cgn{f(x)} \, \diff x} \, \diff x\]
 
 
 \subsection{Kurvenmengen}
 
-\begin{tabular}{lll}
-    A   & $y = c \cdot x$ \quad Parameter $(c \in \mathbb{R}$)                  \\  \smallskip
+\begin{minipage}{0.7\columnwidth}
+    \begin{tabular}{lll}
+        A   & $y = c \cdot x$ \quad Parameter $(c \in \mathbb{R}$)                  \\  \smallskip
     	& Geraden durch (0;0), $c$ = Steigung                                   \\
-    B   & $\frac{x^2}{a} + \frac{y^2}{b} = 1$ \quad Parameter ($a; \, b > 0$)   \\  \smallskip
+        B   & $\frac{x^2}{a} + \frac{y^2}{b} = 1$ \quad Parameter ($a; \, b > 0$)   \\  \smallskip
         & Ellipsen zentriert in (0;0), Halbachsen $\sqrt{a} \, ; \, \sqrt{b}$   \\  
-    C   & $x^2 + y^2 = c^2$ \\
+        C   & $x^2 + y^2 = c^2$ \\ 
         & Kreise zentriert in (0;0), Radius $\sqrt{c}$
-\end{tabular}
-
+    \end{tabular}
+\end{minipage}
+\begin{minipage}{0.3\columnwidth}
+    \textbf{Risoluzione:}
+    \begin{enumerate}
+        \item Equaz. con parametro var. $c$
+        \item Risolvere per $c$
+        \item Ableitung equazione pto.1
+        \item Sostiture $c$
+        \item Risovlere DGL
+    \end{enumerate}
+\end{minipage}
+    
 \medskip
 
 \begin{tabular}{llll}
@@ -185,7 +213,7 @@ Schneiden Originalkurven \myul{immer} senkrecht
         & \textrightarrow\ Originalkurven sind nun als DGL ausgedrückt          \\  
     (2) & DGL $y'$ in neue DGL \cbl{$\tilde{y}'$} transformieren                \\
         & \textrightarrow\ $\mathbb{L}$ der neuen DGL sind senkrechte Kurven    \\
-        & $y' = f(x \, ; \, y)$ \quad \textrightarrow\ \quad \cbl{$\tilde{y}' = - \frac{1}{f(x \, ; \, y)}$} \qquad \textrightarrow\ DGL \cbl{$\tilde{y}'$} lösen!
+        & $y' = f(x \, ; \, y)$ \quad \textrightarrow\ \quad \cbl{$\tilde{y}' = - \dfrac{1}{f(x \, ; \, \tilde{y})}$} \qquad \textrightarrow\ DGL \cbl{$\tilde{y}'$} lösen!
 \end{tabular}
 
 
@@ -224,18 +252,20 @@ $$ \text{ \textbf{Lösungsmenge:}} \quad \mathbb{L} = \mathbb{L}_H + y_p $$
 
 \vspace{-0.3cm}
 
-$$ \text{char. Gleichung:} \quad \underbrace{1 \, \lambda^2 + a_1 \, \lambda + a_0}_{\substack{\text{char. Polynom}}} = 0 \qquad
-\lambda_{1,2} = - \frac{a_1}{2} \pm \sqrt{\Bigg( \frac{a_1}{2} \Bigg)^2 - a_0} $$
+$$ \text{\colorbox{yellow!50}{char. Gleichung:}} \quad \underbrace{1 \, \lambda^2 + a_1 \, \lambda + a_0}_{\text{char. Polynom}} = 0 \qquad
+\lambda_{1,2} = - \frac{a_1}{2} \pm \sqrt{\vphantom{\left(\frac{a_1}{2}\right)^2} 
+\smash[b]{\underbrace{\left(\frac{a_1}{2}\right)^2 - a_0}_D}} \vphantom{\underbrace{\left(\frac{a_1}{2}\right)^2 - a_0}_D} $$
 
-
-\begin{tabular}{ll}
-    $D > 0$ & $\lambda_{1,2} \in \mathbb{R}$ ; $\lambda_1 \neq \lambda_2$ \qquad (starke Dämpfung)                                                                      \\ \medskip
-            & $\mathbb{L}_H = A \, \e^{\lambda_1 \, x} + B \, \e^{\lambda_2 \, x}$ \quad ($A, B \in \mathbb{R}$)                                                        \\ 
-    $D < 0$ & $\lambda_{1,2} \notin \mathbb{R}$ ; $\lambda_{1,2} = - \frac{a_1}{2} \pm j \underbrace{\sqrt{\vert D \vert}}_{\substack{\alpha}}$ \qquad (Schwingfall)    \\ \medskip
-            & $\mathbb{L}_H = A \, \e^{- \frac{a_1}{2} x} \cdot \cos(\alpha \, x) + B \, \e^{- \frac{a_1}{2} x} \cdot \sin(\alpha \, x)$ \quad ($A, B \in \mathbb{R}$)  \\
-    $D = 0$ & $\lambda_1 = \lambda_2 = - \frac{a_1}{2} \in \mathbb{R}$ \qquad (Aperiodischer Grenzfall)                                                                 \\
-            & $\mathbb{L}_H = A \; \e^{\lambda_1 \, x} + B \; x \; \e^{\lambda_1 \, x}$ \quad ($A, B \in \mathbb{R}$)\\
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lll}
+    $D > 0$ & $\lambda_{1,2} \in \mathbb{R}$ ; $\lambda_1 \neq \lambda_2$ & (starke Dämpfung)                                                                      \\ \medskip
+            & $\mathbb{L}_H = A \, \e^{\lambda_1 \, x} + B \, \e^{\lambda_2 \, x}$ & ($A, B \in \mathbb{R}$)                                                        \\ 
+    $D < 0$ & $\lambda_{1,2} \notin \mathbb{R}$ ; $\lambda_{1,2} = - \frac{a_1}{2} \pm j \cdot \underbrace{\sqrt{\vert D \vert}}_{\substack{\alpha}}$ & (Schwingfall)    \\ \medskip
+            & $\mathbb{L}_H = A \, \e^{- \frac{a_1}{2} x} \cdot \cos(\alpha \, x) + B \, \e^{- \frac{a_1}{2} x} \cdot \sin(\alpha \, x)$ & ($A, B \in \mathbb{R}$)  \\
+    $D = 0$ & $\lambda_1 = \lambda_2 = - \frac{a_1}{2} \in \mathbb{R}$ & (Aperiodischer Grenzfall)                                                                 \\
+            & $\mathbb{L}_H = A \; \e^{\lambda_1 \, x} + B \; x \; \e^{\lambda_1 \, x}$ & ($A, B \in \mathbb{R}$)\\
 \end{tabular}
+\setlength{\tabcolsep}{6pt}
 
 \medskip
 
@@ -246,6 +276,7 @@ $$ \text{char. Gleichung:} \quad \underbrace{1 \, \lambda^2 + a_1 \, \lambda + a
 
 
 \subsubsection{Partikulär / Inhomogen \textrightarrow\ Störterm $\bm{f(x) \neq 0}$ \textrightarrow\ \ref{Ansatz rechte Seite}}
+\label{chap:inhomogen_n2}
 
 $$ \text{ \textbf{Faltungsintegral = Grundlösung} } \quad 
 y_p (x) = \int \limits_{x_0}^{x} \underbrace{g(x + x_0 - t)}_{\substack{(1)}} \cdot \underbrace{f(t)}_{\substack{(2)}} \, \diff t $$
@@ -271,8 +302,8 @@ Vorteile: & Störung direkt verwendet \\
     \medskip
     $\cgn{p_n(x)}$  & Polynom vom Grad $n$ \quad (z.B. $a x^2 + b x + c$ für $n = 2$)                   \\  
     $\cbl{q_n(x)}$  & Lösungs-Polynom vom gleichen Grad $n$ \quad (z.B. $a x^2 + b x + c$ für $n = 2$)  \\  \medskip
-                    & \textrightarrow\ Koeffizienten bestimmen durch einsetzen in DGL                   \\  \medskip
-    $r_n$, $s_n$    & Amplituden \textrightarrow\ $y_p$ in DGL einsetzen                                \\  
+                    & Koeffizienten bestimmen durch einsetzen in DGL ($y_p'' \rightarrow y'', y_p' \rightarrow y', \dots$)                   \\  \medskip
+    $r_n$, $s_n$    & Amplituden \textrightarrow\ $y_p$ in DGL einsetzen (come $y$)                              \\  
     $a_1$, $a_0$    & Koeffizienten $\in \mathbb{R}$
 \end{tabular}
 
@@ -303,7 +334,7 @@ $$ y'' + a_1 \, y' + a_0 \, y = \e^{b x} \cgn{p_n(x)} $$
         & \textrightarrow\ $y_p = e^{b x} \cbl{q_n(x)}$             \\
     b)  & wenn $b$ \textbf{einfache} Lösung der char. Gleichung ist \\  \medskip
         & \textrightarrow\ $y_p = \e^{b x} x \, \cbl{q_n(x)}$       \\
-    c)  & wenn $b$ \textbf{doppelte} Lösung der char. Gleichung ist \\
+    c)  & wenn $b$ \textbf{doppelte} Lösung der char. Gleichung ist ($D=0, \, \lambda_1 = \lambda_2$) \\
         & \textrightarrow\ $y_p = \e^{b  x} x^2 \, \cbl{q_n(x)}$
 \end{tabular}
 
@@ -314,13 +345,14 @@ $$ y'' + a_1 \, y' + a_0 \, y = \e^{b x} \cgn{p_n(x)} $$
 
 $$ y'' + a_1 \, y' + a_0 \, y = \e^{cx} \big( \cgn{p_n(x)} \, \cos(bx) + \cbl{q_n(x)} \, \sin(bx) \big) $$ 
 
-
 \begin{tabular}{ll}
-    a)  & wenn $c + \jimg b$ keine Lösung der char. Gleichung ist                                       \\  \medskip
+    a)  & wenn $c + \jimg b$ \textbf{keine} Lösung der \colorbox{yellow!50}{char. Gleichung} ist                                       \\  \medskip
         & \textrightarrow\ $y_p = \e^{c x} \big( r_n(x) \, \cos(bx) + s_n(x) \, \sin(bx) \big)$         \\
-    b)  & wenn $c + \jimg b$ Lösung der char. Gleichung ist                                             \\
+    b)  & wenn $c + \jimg b$ Lösung der \colorbox{yellow!50}{char. Gleichung} ist                                             \\
         & \textrightarrow\ $y_p = \e^{c x} \, x \, \big( r_n(x) \, \cos(bx) + s_n(x) \, \sin(bx) \big)$
-\end{tabular}
+\end{tabular}\medskip
+
+(Verificare se $c$ e $b$ sono ugualli alla sol. della gleichung)
 
 
 \subsection[Lineare DGL Ordnung n in N]{Lineare DGL Ordnung $\bm{n \in}\mathbb{N}$ }
@@ -341,12 +373,9 @@ $$ \text{ \textbf{Lösungsmenge:}} \quad \mathbb{L} = \mathbb{L}_H + y_p $$
 
 \vspace{-0.2cm}
 
-$$ \text{char. Gleichung:} \quad \underbrace{1 \, \lambda^n + a_{n-1} \, \lambda^{n-1} + \ldots + a_2 \, \lambda^2 + a_1 \, \lambda + a_0}
-_{\substack{\text{char. Polynom}}} = 0 $$ 
+$$ \text{char. Gleichung:} \quad 1 \, \lambda^n + a_{n-1} \, \lambda^{n-1} + \ldots + a_2 \, \lambda^2 + a_1 \, \lambda + a_0 = 0 $$ 
 
-\textrightarrow\ $\lambda$ finden und gemäss folgender Tabelle Baustein finden:
-
-\medskip
+\textit{$r, k$: numero di ripetizioni $\lambda$}
 
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{ll}
@@ -380,11 +409,7 @@ $$ \text{ \textbf{Faltungsintegral = Grundlösung}} \quad
 
 \medskip
 
-\begin{tabular}{ll}
-    Vorteile:   & Störung direkt verwendet                              \\
-                & $y_p$ hat neutralen Anfang                            \\
-                & Anfangsbedingungen für y nur mit $\mathbb{H}$ lösbar 
-\end{tabular}
+Vorteile: wie \ref{chap:inhomogen_n2}
 
 
 \subsection[Ansatz rechte Seite]{Ansatz rechte Seite (Störung $\bm{f(x)\neq 0}$)}

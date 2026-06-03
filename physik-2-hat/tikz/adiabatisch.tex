@@ -1,0 +1,27 @@
+\begin{tikzpicture}[>=Stealth, scale=1.2]
+    % Assi
+    \draw[->, thick] (0,0) -- (5,0) node[below] {$V$};
+    \draw[->, thick] (0,0) -- (0,4) node[left] {$p$};
+    
+    % Curva Adiabatica (P = 4.5 / V^1.4)
+    \draw[ultra thick, orange, domain=1.1:4.0, samples=100, variable=\v] plot ({\v}, {4.5/(\v^1.4)});
+    
+    % Coordinate specifiche sulla curva
+    % V1 = 1.3  -> P1 = 3.1
+    % V2 = 3.3  -> P2 = 0.8
+    \coordinate (A) at (1.3, 3.1);
+    \coordinate (B) at (3.3, 0.85);
+    
+    % Freccia direzionale sulla curva
+    \draw[ultra thick, orange, ->, domain=1.3:2.2, samples=50, variable=\v] plot ({\v}, {4.5/(\v^1.4)});
+    
+    % Linee tratteggiate verso gli assi
+    \draw[dashed, gray] (A) -- (1.3, 0) node[below, black] {$V_1$};
+    \draw[dashed, gray] (B) -- (3.3, 0) node[below, black] {$V_2$};
+    \draw[dashed, gray] (A) -- (0, 3.1) node[left, black] {$p_1$};
+    \draw[dashed, gray] (B) -- (0, 0.85) node[left, black] {$p_2$};
+    
+    % Nodi/Punti
+    \fill[black] (A) circle (2pt);
+    \fill[black] (B) circle (2pt);
+\end{tikzpicture}

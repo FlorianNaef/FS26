@@ -1,6 +1,6 @@
 \section{Sonstiges}	
 
-\begin{minipage}[t]{0.5\columnwidth}
+\begin{minipage}[t]{0.49\columnwidth}
     \subsection{Mittelwerte einer Funktion}{510}	
 
     Funktion aufgeteilt in $n$ äquidistante Intervalle \textrightarrow\ $\Delta x = \dfrac{b-a}{n}$
@@ -10,14 +10,51 @@
         Linearer Mittelwert:                & $\dfrac{1}{b-a} \int \limits_{a}^{b} f(x) \, \diff x$                 \\
         Quadr. Mittelwert (Effektivwert):   & $\sqrt{\frac{1}{b-a} \int \limits_{a}^{b} | f(x) |^2 \, \diff x}$
     \end{tabular}
+    \subsection{Abstand usprung-gerade}
+    \renewcommand{\arraystretch}{1.9}
+    \begin{ctabular}{ll}
+        Dove: & $Ax + Bx = C$\\
+        Abstand d: & $d = \dfrac{\abs{C}}{\sqrt{A^2+B^2}}$
+    \end{ctabular}
+    \subsection{Proprietà iperboliche}
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Proprietà} & \textbf{Identità Iperbolica} \\ \hline
+        Identità Fondamentale & $\cosh^2(x) - \sinh^2(x) = 1$ \\ \hline
+        % Relazione Secondaria & $1 - \tanh^2(x) = \text{sech}^2(x)$ \\ \hline
+        Parità (Seno) & $\sinh(-x) = -\sinh(x)$ \\ \hline
+        Parità (Coseno) & $\cosh(-x) = \cosh(x)$ \\ \hline
+        % Addizione (Seno) & $\sinh(x \pm y) = \sinh(x)\cosh(y) \pm \cosh(x)\sinh(y)$ \\ \hline
+        % Addizione (Coseno) & $\cosh(x \pm y) = \cosh(x)\cosh(y) \pm \sinh(x)\sinh(y)$ \\ \hline
+        Duplicazione (Seno) & $\sinh(2x) = 2\sinh(x)\cosh(x)$ \\ \hline
+        Duplicazione (Coseno) & $\cosh(2x) = \cosh^2(x) + \sinh^2(x)$ \\ \hline
+    \end{tabular}
     \renewcommand{\arraystretch}{1}
+
 \end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\columnwidth}
+\hfill\vline\hfill
+\begin{minipage}[t]{0.49\columnwidth}
     \subsection{Integral-Umrechnung}	
 
     \vspace{-0.2cm}
 
-    $$ \int f(x) \, \diff x \quad \Rightarrow \quad  \diff x = \dot{x} \, \diff t \quad \Rightarrow \quad \int y(t) \, \dot{x}(t) \, \diff t $$
-\end{minipage}
+    \[ \int f(x) \, \diff x \quad \Rightarrow \quad  \diff x = \dot{x} \, \diff t \quad \Rightarrow \quad \int y(t) \, \dot{x}(t) \, \diff t \]
+    
+    % Regola generale della catena
+    \subsection{Kettenregel auf trigo funktionen} 
+    La kettenregel può essere applicata per derivare funzioni trigonometriche elevate.
+    
+    \example{}\vspace{-1em}
+    
+    \[\frac{d}{dx} [\cos^n(x)] = n \cdot \cos^{n-1}(x) \cdot (-\sin(x))\]
+    \vspace{-1em}
+    % Esempio pratico dal tuo compito:
+    \[\frac{d}{dx} \cos^2(x) = 2 \cdot \cos(x) \cdot (-\sin(x)) = -2\sin(x)\cos(x)\]
 
+    \subsection{Andere trigo formeln}
+    \[\tan(2x) = \frac{2\tan(x)}{1-\tan^2(x)}\]
+
+    \subsection{Volumen}
+    Le formule del volume compiono sempre una rotazione completa, con i limiti dell'$\int$
+    decidiamo che sezione della curva considerare
+\end{minipage}
