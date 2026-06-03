@@ -1,0 +1,43 @@
+% ========================================= TEMPLATE INFO ========================================
+%
+% Author:       P4ntomime
+% Version:      1.0.1
+% Last updated: 2026-01-24
+% Brief:        A LaTeX template for summaries. See README.md for more information.
+% 
+% ================================================================================================
+\documentclass[8pt, a4paper, twoside]{extarticle}
+% Font size:    8pt
+% Paper size:   A4
+% style:        twoside (needed, so odd and even pages have different margins)
+% orientation:  portrait. (use 'landscape' for landscape orientation)
+
+
+% ========================================= DOCUMENT INFO =========================================
+\def\title{ComEng - Ergänzung}      % Titel
+\def\shorttitle{ComEng}             % Kurztitel (angezeigt als PDF-Titel)
+\def\dozent{Prof. Lars Kamm}        % Dozent
+\def\semester{FS 2026}              % Semester
+\def\author{Mirko Ratti}            % Autor(en)
+% \def\contributors{Contributors}   % contributor(s) (optional -> comment out if none)
+\def\repo{https://github.com/mirkoratti/FS2026} % Repository-Link
+\def\version{1.0.\today}            % Version
+\def\pagelimit{3}                   % Seitenlimit -> führt dazu, dass Seiten nach dem Limit rot werden
+\def\titleoption{normal}            % Optionen: ultra kompakt, kompakt, normal
+\def\enableToC{true}                % Aktivieren/Deaktivieren des Inhaltsverzeichnisses
+
+% ================================= PACKAGES, SETUP AND COMMANDS ==================================
+\input{preamble.tex}
+
+
+% =========================================== DOCUMENT ============================================
+\begin{document}
+    \begin{layout}
+        \input{sections/01_fondamenti.tex}
+        \input{sections/02_sistema_controllo.tex}
+        \input{sections/03_memoria_stack.tex}
+        \input{sections/04_architetture_indirizzamento.tex}
+        \input{sections/05_compilazione_io.tex}
+        \input{sections/06_esempi.tex}
+    \end{layout}
+\end{document}
