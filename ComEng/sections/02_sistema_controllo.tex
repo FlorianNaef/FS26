@@ -1,0 +1,109 @@
+% --- SEZIONE 1: COMPONENTI DI SISTEMA E CONTROLLO ---
+
+\section{Componenti del Sistema (SCS)}
+Der \textbf{System Control Space (SCS)} verwaltet die Kernfunktionen des Prozessors, einschließlich der Konfiguration des NVIC und des System Control Registers.
+
+\subsection{Meccanismi di Fault e Eccezioni}
+\begin{itemize}
+    \item \textbf{HardFaults:} Immer aktiviert; behandeln Bus-, Usage- und Memory-Management-Fehler. Ermöglichen eine schnelle Reaktion auf kritische Fehler.
+    \item \textbf{Wake-up Interrupt:} Ermöglicht die hierarchische Deaktivierung von Komponenten
+     um den Energieverbrauch zu reduzieren (Sleep/Stop-Modus).
+    \item \textbf{Memory Protection Unit (MPU):} Erzeugt Ausnahmen bei nicht autorisierten Speicherzugriffen.
+    \item \textbf{Debug Unit:} Stellt bis zu 4 Hardware-Breakpoints für das Debugging des Codes bereit.
+\end{itemize}
+
+\subsection{System Tick Timer (SysTick)}
+Ein \textbf{24-bit}-Zähler, der eine konstante Zeitbasis für das Betriebssystem oder die Programmläufe bereitstellt.
+
+\section{Stack e Gestione Memoria}
+Der \textbf{Stack} ist ein temporärer Speicher, der für lokale Variablen und das Kontext-Speichern während Ausnahmen verwendet wird.
+\begin{itemize}
+    \item \textbf{Richtung:} Wächst zu niedrigeren Speicheradressen hin.
+    \item \textbf{Stack Pointer (SP):} Zeigt stets auf den "top of stack". Es ist verboten, unterhalb von SP zu lesen oder zu schreiben.
+    \item \textbf{Ausrichtung:} Normalerweise in Schritten von 8 Byte zugewiesen.
+    \item \textbf{Geschwindigkeit:} Etwa doppelt so schnell wie der RAM/ROM-Pointer, da (SP) bereits verfügbar ist.
+\end{itemize}
+
+\section{Gestione degli Interrupt (NVIC)}
+
+\begin{itemize}
+    \item Der \textbf{Nested Vector Interrupt Controller} verwaltet die Priorisierung und den Wechsel zwischen dem Hintergrundprogramm und den \textbf{Interrupt Service Routine (ISR)}.
+    \item \crd{Das LSB in jedem Vektor gibt die Sprungmodus an (1: thumb, 0: ARM) in den Cortex-M ist immer 1} (Auch Adressen in \texttt{LR} mit \texttt{B..})
+    \item Üblicherweise wird die VT (vector table) im Speicher zwischen dem Boot-Code und der zweiten Instruktion gesichert. 
+    \item Über VTOR (Vector Table Offset Register) ist es möglich, die Position der Tabelle im Speicher zu ändern.
+    \item \textbf{Interrupt-Zustände:} \textit{Pending} (von der Peripherie angefordert, automatisch vom Hardware beim Eintritt in die ISR zurückgesetzt), \textit{Active} (in Ausführung im Handler Mode), \textit{Inactive}.
+\end{itemize}
+
+\subsection{NVIC Special Features}
+\begin{itemize}
+    \item \textbf{Tail-Chaining:} IRQ mit niedriger Priorität ist am Ende der ISR noch pending,
+    wenn eine aktive ISR beendet wird, springt die CPU über das Unstacking und das Stacking hinweg. Sie führt nur einen neuen Vector Fetch durch
+    (von 15 $\rightarrow$ Übergang von nur \textbf{6 Zyklen}).
+    \item \textbf{Late Arrival:} IRQ mit hoher Priorität wird während des Stacking eines IRQ mit niedriger Priorität aktiviert,
+    die CPU vervollständigt das Stacking, führt aber direkt den Vector Fetch des dringendsten IRQ aus.
+    \item \textbf{Pop-Preemption:} IRQ trifft während des finalen Unstacking (Pop) ein, die Hardware verlässt den Pop und weicht sofort auf die neue ISR aus, in nur \textbf{6 Zyklen}.
+\end{itemize}
+
+\begin{minipage}[t]{0.51\columnwidth}
+    \subsection{Registri di Mascheramento}
+    \begin{itemize}
+        \item \textbf{PRIMASK:} 1 Bit. Deaktiviert alle programmierbaren Interrupts (außer HardFault und NMI).
+        \item \textbf{FAULTMASK:} 1 Bit. Deaktiviert Interrupts und alle Ausnahmen (außer NMI).
+        \item \textbf{BASEPRI:} Deaktiviert Interrupts mit numerischer Priorität größer oder gleich (geringerer Dringlichkeit) zu einem eingestellten Wert.
+    \end{itemize}
+    
+    \subsection{Latenza e Stacking}
+    \begin{itemize}
+        \item \textbf{Interrupt Latency:} Feste Zeit bis zum Eintritt in die ISR ohne Software-Overhead. \textbf{Cortex-M0+:} 15--16 Taktzyklen. \textbf{Cortex-M3/M4:} 12 Zyklen.
+        \item Die ISR-Funktionen sind vom Typ \texttt{void ISR\_Handler(void)}: Sie akzeptieren keine Parameter und geben keine Werte zurück.
+    \end{itemize}
+    \includegraphics[width=\linewidth]{images/NVIC_sequence.png}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\columnwidth}
+    \subsection{Preemption vs Subpriority}
+    \begin{itemize}
+        \item \textbf{Cortex-M0+:} Unterstützt nur 2 Prioritätsbits, die nur als Preemption nutzbar sind.
+        \item \textbf{Cortex-M3/M4:} Über das \textit{Priority Grouping} werden die 8 Prioritätsbits aufgeteilt in:
+        \begin{itemize}
+            \item \textbf{Preemption bits:} Entscheiden, ob ein Interrupt eine physisch laufende ISR unterbrechen kann (\textit{nesting}).
+            \item \textbf{Subpriority bits:} Kriterium für die zeitliche Auflösung, wenn zwei IRQs gleichzeitig eintreffen
+        \end{itemize}
+    \end{itemize}
+    \includegraphics[width=\linewidth]{images/NVIC_table.png}
+\end{minipage}
+
+\subsection{Soluzioni alternative \& Segnali IRQ}
+\begin{minipage}{0.55\columnwidth}
+    \includegraphics[width=\linewidth]{images/pooling_interrupts.png}
+\end{minipage}
+\begin{minipage}{0.45\columnwidth}
+    \begin{enumerate}
+        \item \textbf{Software Clearing}
+        \item \textbf{Software Clearing mit Reset}
+        \item \textbf{ISR Reentry (gepulster IRQ während ISR)}
+        \item \textbf{Repulsed IRQ}
+        \item \textbf{Pulsed IRQ (Level bleibt aktiv)}
+    \end{enumerate}
+\end{minipage}
+
+% Prima riga di immagini
+\begin{minipage}[b]{0.5\linewidth}
+    \includegraphics[width=0.8\linewidth]{images/software_clearing.png}
+\end{minipage}
+\begin{minipage}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{images/software_clearing_reset.png}
+\end{minipage}
+
+% Seconda riga di immagini
+\begin{minipage}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{images/isr_reentry.png}
+\end{minipage}
+\begin{minipage}[b]{0.5\linewidth}
+    \includegraphics[width=0.9\linewidth]{images/repulsed_irq.png}
+\end{minipage}
+
+% Terza riga (ultima immagine centrata o a sinistra)
+\begin{minipage}[t]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{images/pulsed_irq.png}
+\end{minipage}
