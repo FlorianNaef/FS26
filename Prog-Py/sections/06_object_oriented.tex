@@ -1,0 +1,171 @@
+\section{Object-Oriented Programming (OOP)}
+\label{sec:oop}
+
+Der grundlegende Grundsatz der OOP ist die Kapselung von Daten (Attributen) und Logik (Methoden) in Objekten. Diese Struktur stellt die Datenintegrität sicher, indem sie die direkte externe Manipulation einschränkt.
+
+\subsection{Class Definition and Instantiation}
+Eine Klasse dient als formale Blaupause. Gemäß PEP 8 folgen Klassennamen der Konvention \texttt{CapWords}. Objekte sind konkrete Instanzen, die aus diesen Blaupausen erzeugt werden.
+
+\begin{lstlisting}[language=Python]
+class Cat:
+    """Formale Struktur einer Katze."""
+    pass
+
+# Instantiation
+garfield = Cat()
+\end{lstlisting}
+
+\subsection{Attributes and State Integrity}
+Attribute speichern Daten innerhalb eines Objekts. Python unterscheidet zwischen Klassen- und Instanzvariablen anhand ihres Geltungsbereichs und ihrer Definition.
+
+\subsubsection{Class vs. Instance Variables}
+\begin{itemize}
+    \item \textbf{Klassenvariablen:} Direkt innerhalb des Klassentextes definiert. Sie werden über alle Instanzen hinweg geteilt.
+    \item \textbf{Instanzvariablen:} Mit \texttt{self} definiert. Sie sind eindeutig für jede Instanz.
+\end{itemize}\vspace{1em}
+
+\textbf{\color{red}Wichtige Warnung:} Ändere niemals eine Klassenvariable über eine Instanz 
+(z.B. \texttt{instance.class\_var = value}). Dadurch wird ein neues Instanzattribut 
+erzeugt, das die Klassenvariable für dieses spezifische Objekt überdeckt.
+
+Aktualisiere Klassenvariablen immer über den Klassennamen: \texttt{ClassName.class\_var = value}.
+
+\subsubsection{Initialization and Dynamic Attributes}
+Es wird dringend empfohlen, \textbf{alle} Instanzvariablen innerhalb der \texttt{\_\_init\_\_}-Methode zu definieren.
+\begin{itemize}
+    \item \textbf{Vermeide 'On-the-fly'-Attribute:} Das macht die Struktur des Objekts unvorhersehbar und erschwert das Debugging.
+    \item \textbf{Definierter Zustand:} Sicherstellen, dass alle Attribute im Konstruktor initialisiert werden
+\end{itemize}
+
+\subsection{Method Attributes and self}
+Methoden sind Funktionen, die innerhalb einer Klasse definiert sind. Der erste Parameter ist immer \texttt{self}, was die Instanz darstellt, die die Methode aufruft. Python bindet die Instanz automatisch während des Aufrufs an diesen Parameter.
+
+\begin{lstlisting}[language=Python]
+    account1.deposit(100)
+    # Wird im Hintergrund ausgeführt
+    Class_name.deposit(self=account1, amount=100) 
+\end{lstlisting}
+
+\subsection{Data Abstraction and Encapsulation}
+Kapselung verbirgt Implementierungsdetails und legt nur die notwendigen Informationen über definierte Schnittstellen offen. Python verwendet Namenskonventionen, um die beabsichtigte Sichtbarkeit von Attributen zu signalisieren:
+
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lll}
+\hline
+\textbf{Kategorie} & \textbf{Konvention} & \textbf{Beschreibung} \\ \hline
+Öffentlich & \texttt{name} & Von überall aus zugänglich. \\
+Geschützt & \texttt{\_name} & Unerwünscht, extern darauf zuzugreifen; für Vererbung verwendet. \\
+Privat & \texttt{\_\_name} & Versteckt durch Name Mangling; nicht direkt zugreifbar. \\ \hline
+\end{tabular}}\vspace{1em}
+
+Eine private Variable ist \texttt{my\_object.\_MyClass\_\_private\_var}
+
+\subsection{Properties}
+Das Property-Objekt wird mit der Signatur erstellt: \\
+\texttt{var = property(fget=None, fset=None, fdel=None, doc=None)}
+
+\lstinputlisting[language=Python]{code/setter_and_getters.py}
+
+\subsubsection{Decorators}
+
+Das Gleiche könnte auch mit Decorators erreicht werden:
+
+\lstinputlisting[language=Python]{code/setter_and_getters_decorators.py}
+
+\section{Magic Methods and Custom Behavior}
+
+\subsection{Object Representation}
+Magic Methods (oder dunder methods) ermöglichen es benutzerdefinierten Klassen, mit eingebauten Python-Funktionen und Operatoren zu interagieren.
+\begin{itemize}
+    \item \texttt{\_\_str\_\_(self)}: Gibt eine benutzerfreundliche Zeichenkettenrepräsentation zurück (wird von \texttt{print()} verwendet).
+    \item \texttt{\_\_repr\_\_(self)}: Gibt eine eindeutige Zeichenkettenrepräsentation zurück, die idealerweise zum Debuggen oder zum erneuten Erstellen des Objekts verwendet wird.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+
+    def __str__(self):
+        return f"'{self.title}' by {self.author}"
+
+    def __repr__(self):
+        return f"Book(title='{self.title}', author='{self.author}')"
+\end{lstlisting}
+
+\subsection{Emulating Container Types}
+Klassen können sich wie Sequenzen (Listen) oder Abbildungen (Dictionaries) verhalten, indem sie bestimmte Methoden implementieren:
+\begin{itemize}
+    \item \texttt{\_\_len\_\_(self)}: Gibt die Anzahl der Elemente zurück.
+    \item \texttt{\_\_getitem\_\_(self, key)}: Definiert das Verhalten für Indizierung (\texttt{obj[key]}).
+    \item \texttt{\_\_setitem\_\_(self, key, value)}: Definiert das Verhalten für die Zuweisung von Elementen (\texttt{obj[key] = value}).
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+class Inventory:
+    def __init__(self):
+        self._items = {}
+
+    def __setitem__(self, key, value):
+        self._items[key] = value
+
+    def __getitem__(self, key):
+        return self._items.get(key, "Item not found")
+
+    def __len__(self):
+        return len(self._items)
+\end{lstlisting}
+
+\subsection{Context Managers}
+Context Manager stellen sicher, dass Ressourcen (wie Dateien oder Netzwerkverbindungen) mithilfe der \texttt{with}-Anweisung korrekt verwaltet werden. Dafür müssen zwei Methoden implementiert werden:
+\begin{itemize}
+    \item \texttt{\_\_enter\_\_(self)}: Wird am Anfang des \texttt{with}-Blocks ausgeführt. Gibt die Ressource zurück.
+    \item \texttt{\_\_exit\_\_(self, exc\_type, exc\_val, tb)}: Wird am Ende ausgeführt, auch wenn eine Ausnahme auftritt.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+class FileManager:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+
+    def __exit__(self, exc_type, exc_val, traceback):
+        self.file.close()
+
+with FileManager("data.txt", "w") as f:
+    f.write("Structured data")
+\end{lstlisting}
+
+\subsection{Reflected Arithmetic Methods (The 'r' Prefix)}
+Python unterscheidet zwischen einer Operation, bei der sich ein Objekt auf der linken Seite (LHS) befindet, und einer Operation, bei der es sich auf der rechten Seite (RHS) befindet. Das ist entscheidend für die Interoperabilität mit eingebauten Typen (wie \texttt{int} oder \texttt{float}).
+
+\begin{itemize}
+    \item \textbf{\texttt{\_\_add\_\_(self, other)}}: Wird für \texttt{self + other} aufgerufen.
+    \item \textbf{\texttt{\_\_radd\_\_(self, other)}}: Wird für \texttt{other + self} nur dann aufgerufen, wenn das LHS-Objekt \texttt{\_\_add\_\_} für den spezifischen Typ von \texttt{self} nicht definiert.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+class Price:
+    def __init__(self, amount):
+        self.amount = amount
+
+    def __add__(self, other):
+        # Handhabt: Price(10) + 5
+        val = other.amount if isinstance(other, Price) else other
+        return Price(self.amount + val)
+
+    def __radd__(self, other):
+        # Handhabt: 5 + Price(10)
+        # Verwendet __add__, da Addition kommutativ ist
+        return self.__add__(other)
+\end{lstlisting}
+
+\subsection{The \texttt{NotImplemented} Singleton}
+In Python ist \texttt{NotImplemented} ein spezielles Objekt (ein Singleton), das von binären Methoden (wie \texttt{\_\_add\_\_}, \texttt{\_\_sub\_\_}, \texttt{\_\_eq\_\_}, usw.) zurückgegeben wird, um anzuzeigen, dass die Operation für den Datentyp des anderen Operanden nicht implementiert ist.
+
+\textbf{Wichtig:} Es darf nicht mit \texttt{NotImplementedError} verwechselt werden, das eine Ausnahme ist. \texttt{NotImplemented} ist ein Rückgabewert, der Python signalisiert, eine alternative Strategie auszuprobieren.
