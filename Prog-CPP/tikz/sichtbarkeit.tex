@@ -1,0 +1,41 @@
+\begin{tikzpicture}[
+    font=\sffamily,
+    header/.style={fill=sectioncolor, text=white, minimum width=4.5cm, minimum height=0.8cm, font=\Large\bfseries},
+    row1/.style={fill=gray!20, minimum width=4.5cm, minimum height=3.2cm},
+    row2/.style={fill=gray!7, minimum width=4.5cm, minimum height=3.2cm},
+    arrow/.style={-{Stealth}, sectioncolor, thick}
+]
+
+    % Headers
+    \node[header] (h1) {Vererbung};
+    \node[header, right=2pt of h1] (h2) {In Basisklasse};
+    \node[header, right=2pt of h2] (h3) {In abgeleiteter Klasse};
+
+    % Zyklus für 3 Zeilen (public, protected, private)
+    \foreach \r/\label/\style in {1/{\Large \textbf{public (normaler Fall)}}/row1, 2/{\Large \textbf{protected}}/row2, 3/{\Large \textbf{private}}/row1} {
+        
+        % Hintergrundzellen
+        \node[\style, below=2pt of h1, yshift=-(\r-1)*3.24cm] (r\r c1) {\label};
+        \node[\style, below=2pt of h2, yshift=-(\r-1)*3.24cm] (r\r c2) {};
+        \node[\style, below=2pt of h3, yshift=-(\r-1)*3.24cm] (r\r c3) {};
+        
+        \foreach \y/\txt in {0.9/public, 0/protected, -0.9/private} {
+            \node[box] (b\r\txt) at ([yshift=\y cm]r\r c2) {\txt};
+            \node[box] (d\r\txt) at ([yshift=\y cm]r\r c3) {\txt};
+        }
+    }
+
+    % Pfeile (Spezifisches logid)
+    % Zeile 1: Public
+    \draw[arrow] (b1public.east) -- (d1public.west);
+    \draw[arrow] (b1protected.east) -- (d1protected.west);
+
+    % Zeile 2: Protected
+    \draw[arrow] (b2public.east) -- (d2protected.west);
+    \draw[arrow] (b2protected.east) -- (d2protected.west);
+
+    % Zeile 3: Private
+    \draw[arrow] (b3public.east) -- (d3private.west);
+    \draw[arrow] (b3protected.east) -- (d3private.west);
+
+\end{tikzpicture}
