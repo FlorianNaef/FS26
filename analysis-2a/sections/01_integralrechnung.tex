@@ -22,32 +22,42 @@
 
     \vspace{-0.5cm}
 
-    $$ \int \limits_{a}^{b} \alpha f(x) \, \diff x = \alpha \int \limits_{a}^{b} f(x) \, \diff x $$
+    \[ \int \limits_{a}^{b} \alpha f(x) \, \diff x = \alpha \int \limits_{a}^{b} f(x) \, \diff x \]
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.58\columnwidth}
     \subsubsection{Elementartransformation}
 
-    $$ \int f(\alpha \, x + \beta) \, \diff x = \frac{1}{\alpha} \, F(\alpha \, x + \beta) + C$$
+    \[ \int f(\alpha \, x + \beta) \, \diff x = \frac{1}{\alpha} \, F(\alpha \, x + \beta) + C\]
 \end{minipage}
 
 
 \subsubsection{Partielle Integration (Produktregel)}
+\vspace{-1em}
 
-\vspace{-0.5cm}
+\[\int_{a}^{b} f'\cdot g \, \diff x = \left[ f\cdot g \right]_{a}^{b} - \int_{a}^{b} f\cdot g' \, \diff x
+\quad \text{oder} \quad
+\int_{a}^{b} f\cdot g' \, \diff x = \left[ f\cdot g \right]_{a}^{b} - \int_{a}^{b} f' \cdot g \, \diff x
+\]
 
-$$ \int f' \cdot g \, \diff x =  f \cdot g - \int f \cdot g' \, \diff x \qquad \qquad
-\int f \cdot g' \, \diff x = f \cdot g - \int f' \cdot g \, \diff x $$
+Partielle Integration darf mehrfach angewendet werden. \\
+\textbf{PI sollte wenn möglich vermieden werden! Produkte in Summen umschreiben!}\vspace{1em}
 
-\textrightarrow\ Partielle Integration darf mehrfach angewendet werden. \\
-\textbf{PI sollte wenn möglich vermieden werden! Produkte in Summen umschreiben!}
+\textbf{LIATE} - Priorität für $g$ (funzione da derivare):
+% \begin{enumerate}
+%     \item \textbf{L}ogarithmische Funktionen (z.B. $\ln(x)$)
+%     \item \textbf{I}nverse trigonometrische Funkt. (z.B. $\arctan(x)$)
+%     \item \textbf{A}lgebraische Funktionen / Polynome (z.B. $x^2$)
+%     \item \textbf{T}rigonometrische Funktionen (z.B. $\sin(x)$)
+%     \item \textbf{E}xponentielle Funktionen (z.B. $e^x$)
+% \end{enumerate}
 
 
 \subsubsection{Substitution}
 
 \vspace{-0.2cm}
 
-$$ \int f(x) \, dx = \int f(g(t)) \cdot g'(t) \, \diff t \qquad \text{ \textrightarrow\ siehe Beispiel} $$
+\[ \int f(x) \, dx = \int f(g(t)) \cdot g'(t) \, \diff t \qquad \text{ \textrightarrow\ siehe Beispiel} \]
 
 \textbf{\crd{Integrationsgrenzen anpassen!} (ev. mit Umkehrfunktion)} 
 
@@ -65,24 +75,11 @@ $\int \limits_{\crd{0}}^{\crd{\pi}} a \, \sqrt{a} \cdot \cos(a) \frac{\diff a}{2
 = \frac{1}{2} \int \limits_{\crd{0}}^{\crd{\pi}} a \cdot \cos(a) \, \diff a = ... $
 
 
-
 \subsubsection{Universalsubstitution (Weierstrass) / Rationalisierung}
 
-Rationale Terme aus $\sin(x)$ und $\cos(x)$ substituieren: (verknüpft durch +  -  *  : ) 
+Rationale Terme aus $\sin(x)$ und $\cos(x)$ substituieren: (verknüpft durch +  -  *  : )\vspace{1em}
 
-\smallskip
-
-\begin{minipage}[c]{0.55\columnwidth}
-    % \renewcommand{\arraystretch}{2}
-    % \begin{tabular}{| c | c | c | c |}
-    %     \hline
-    %     $\sin(x)$               & $\cos(x)$                 & $\diff x$                     &   $t = \tan \Big( \frac{x}{2} \Big)$  \\
-    %     \hline
-    %     $\frac{2 t}{1 + t^2}$   & $\frac{1 - t^2}{1 + t^2}$ & $\frac{2}{1 + t^2} \diff t$   &                                       \\
-    %     \hline
-    % \end{tabular}
-    % \renewcommand{\arraystretch}{1}
-
+\begin{minipage}{0.55\columnwidth}
     \begin{tabular}{ c cc cc}
             \toprule
             $\sin(x)$               & & $\cos(x)$                 & & $\diff x$                     \\
@@ -90,15 +87,13 @@ Rationale Terme aus $\sin(x)$ und $\cos(x)$ substituieren: (verknüpft durch +  
             $\frac{2 t}{1 + t^2}$   & & $\frac{1 - t^2}{1 + t^2}$ & & $\frac{2}{1 + t^2} \diff t$   \\
             \bottomrule
     \end{tabular}
-
-    \smallskip
-
-    \textrightarrow\ $t = \tan \Big( \frac{x}{2} \Big)$
 \end{minipage}
-\hfill
-\begin{minipage}[c]{0.42\columnwidth}
-    \crd{Definitionsbereich: \\
-         $-\pi < x < \pi$, da sonst $t \notin \mathbb{R}$}
+\begin{minipage}{0.35\columnwidth}
+    \[\boxed{t = \tan \Big( \frac{x}{2} \Big)}\]
+    \begin{center}
+        \crd{Definitionsbereich: \\
+        $-\pi < x < \pi$, da sonst $t \in \mathbb{R}$}
+    \end{center}
 \end{minipage}
 
 
@@ -110,7 +105,8 @@ Rationale Terme aus $\sin(x)$ und $\cos(x)$ substituieren: (verknüpft durch +  
 \begin{tabular}{ll}
     Allg. Potenzregel   & $\int f'(x) \cdot f(x)^{\alpha} \, \diff x = \frac{f(x)^{\alpha + 1}}{\alpha + 1} + C \quad   (\alpha \neq -1)$   \\
     Allg. Log-Regel     & $\int f'(x) \cdot \frac{1}{f(x)} \, \diff x = \int \frac{f'(x)}{f(x)} \, \diff x = \ln(\vert f(x) \vert ) + C$    \\
-    Allg. Exp-Regel     & $\int f'(x) \cdot \e^{f(x)} \, \diff x = \e^{f(x)} + C$
+    Allg. Exp-Regel     & $\int f'(x) \cdot \e^{f(x)} \, \diff x = \e^{f(x)} + C$\\
+    Allg. Wurzel-Regel  & $\int \frac{f'(x)}{\sqrt{f(x)}} \diff x = 2\sqrt{f(x)} + C$
 \end{tabular}				
 \renewcommand{\arraystretch}{1}
 
@@ -155,20 +151,19 @@ Rationale Terme aus $\sin(x)$ und $\cos(x)$ substituieren: (verknüpft durch +  
 \vspace{-0.2cm}
 
 \begin{minipage}[c]{0.48\columnwidth}
-    $$ \int \limits_{a}^{\infty} \frac{1}{x^{\alpha}} \, \diff x = 
+    \[ \int \limits_{a}^{\infty} \frac{1}{x^{\alpha}} \, \diff x = 
     \begin{cases}			
-        \infty      & \crd{\text{Div}} \quad \alpha \in (0; 1]         \\
+        \infty      & \crd{\text{Div}} \quad 0 < \alpha \leq 1         \\
         \mathbb{R}  & \cbl{\text{Konv}} \quad \alpha > 1
-    \end{cases}$$  
+    \end{cases}\]  
 \end{minipage}
 \hfill
 \begin{minipage}[c]{0.48\columnwidth}
-    $$ \int \limits_{0^+}^{b > 0} \frac{1}{x^{\beta}} \, \diff x = 
+    \[ \int \limits_{0^+}^{b > 0} \frac{1}{x^{\beta}} \, \diff x = 
     \begin{cases}		
         \mathbb{R}  & \cbl{\text{Konv}} \quad 0 \leq \beta < 1  \\
-        \infty      & \crd{\text{Div}} \qquad \beta > 1         \\
-        \infty      & \crd{\text{Div}} \qquad \beta = 1
-    \end{cases} $$ 
+        \infty      & \crd{\text{Div}} \qquad \beta \geq 1         \\
+    \end{cases} \] 
 \end{minipage}
 
 
@@ -178,17 +173,17 @@ Rationale Terme aus $\sin(x)$ und $\cos(x)$ substituieren: (verknüpft durch +  
 
 $\crd{\vert} f(x) \crd{\vert} \leq g(x)$ \qquad $g(x)$ = Majorante \qquad $D_f = D_g$ zw. Grenzen von Integral
 
-$$ \text{Wenn } \int \limits_{...}^{...} g(x) \, \diff x \text{ \cbl{konv.} \textrightarrow\ } 
+\[ \text{Wenn } \int \limits_{...}^{...} g(x) \, \diff x \text{ \cbl{konv.} \textrightarrow\ } 
 \int \limits_{...}^{...} \vert f(x) \vert \, \diff x \text{ \cbl{ konv.} \textrightarrow\ } 
-\int \limits_{...}^{...} f(x) \, \diff x  \text{ \cbl{ konv.}} $$
+\int \limits_{...}^{...} f(x) \, \diff x  \text{ \cbl{ konv.}} \]
 
 
 \subsubsection{Minorantenprinzip ("Kleiner-Gleich-Term")}
 
 $0 \leq f(x)$ \quad $0 \leq g(x) \leq f(x)$ \quad $g(x)$ = Minorante \quad $D_f = D_g$ zw. Grenzen von Integral
 
-$$ \text{Wenn } \int \limits_{...}^{...} g(x) \, \diff x \text{ \crd{div.} \textrightarrow\ } 
-\int \limits_{...}^{...} f(x) \, \diff x \text{ \crd{ div.}} $$
+\[ \text{Wenn } \int \limits_{...}^{...} g(x) \, \diff x \text{ \crd{div.} \textrightarrow\ } 
+\int \limits_{...}^{...} f(x) \, \diff x \text{ \crd{ div.}} \]
 
 
 \subsection{Integraltabelle}{495}
@@ -201,31 +196,65 @@ $$ \text{Wenn } \int \limits_{...}^{...} g(x) \, \diff x \text{ \crd{div.} \text
         \hline
         $0$                                                 & $c \; (c \in \mathbb{R})$     & $c \cdot x$                           \\ 
         $c$                                                 & $c \cdot x$                   & $c \frac{x^2}{2}$                     \\
-        $a \cdot x^{a-1} $                                  & $x^a \; (a \in \mathbb{R}\diagdown \lbrace -1 \rbrace)$ &  $\frac{x^{a+1}}{a+1} $ \\
+        $a \cdot x^{a-1} $                                  & $x^a \; (a \neq -1)$          &  $\frac{x^{a+1}}{a+1} $               \\
         $- \frac{1}{x^2} $                                  & $\frac{1}{x}$                 & $\ln(\vert x \vert)$                  \\ 
         \hline
         $\e^x$                                              & $\e^x$                        & $\e^x$                                \\ 
         $a \, \e^{ax}$                                      & $\e^{ax}$                     & $\frac{1}{a} \e^{ax}$                 \\ 
         $a^x \, \ln(\vert a \vert)$                         & $a^x$                         & $\frac{a^x}{\ln(\vert a \vert)}$      \\
         \hline
-        $\frac{1}{x}$                                       & $\ln(\vert x \vert)$ &        $x \, ( \ln(\vert x \vert) - 1) $       \\
+        $\frac{1}{x}$                                       & $\ln(\vert x \vert)$          & $x \, ( \ln(\vert x \vert) - 1) $     \\
         \hline
         $\cos(x)$                                           & $\sin(x)$                     & $- \cos(x)$                           \\
         $- \sin(x)$                                         & $\cos(x)$                     & $\sin(x)$                             \\
-        $1 + \tan^2(x)$                                     & $\tan(x)$                     & $- \ln(\vert \cos(x) \vert)$          \\
+        $\frac{1}{\cos^2(x)} \quad \text{or} \quad 1 + \tan^2(x)$ & $\tan(x)$               & $- \ln(\vert \cos(x) \vert)$          \\
+        $-\frac{1}{\sin^2(x)} \quad \text{or} \quad - (1 + \cot^2(x))$ & $\cot(x)$          & $\ln(\vert \sin(x) \vert)$            \\
         \hline
         $\cosh(x)$                                          & $\sinh(x)$                    & $\cosh(x)$                            \\
         $\sinh(x)$                                          & $\cosh(x)$                    & $\sinh(x)$                            \\
-        $1 - \tanh^2(x)$                                    & $\tanh(x)$                    & $\ln(\cosh(x))$                       \\
+        $\frac{1}{\cosh^2(x)} \quad \text{or} \quad 1 - \tanh^2(x)$ & $\tanh(x)$            & $\ln(\cosh(x))$                       \\
+        $-\frac{1}{\sinh^2(x)} \quad \text{or} \quad 1 - \coth^2(x)$ & $\coth(x)$           & $\ln(\vert \sinh(x) \vert)$           \\
         \hline
         $\frac{1}{\sqrt{1 - x^2}}$                          & $\arcsin(x)$                  & $x \cdot \arcsin(x) + \sqrt{1- x^2 }$ \\
         $- \frac{1}{\sqrt{1 - x^2}}$                        & $\arccos(x)$                  & $x \cdot \arccos(x) - \sqrt{1- x^2 }$ \\
         $\frac{1}{1 + x^2}$                                 & $\arctan(x)$                  & $x \cdot \arctan(x) - \frac{1}{2} \ln(1 + x^2) $ \\
         \hline
         $\frac{1}{\sqrt{x^2 + 1}}$                          & $\mathrm{arsinh}(x)$          & $x \cdot \mathrm{arsinh}(x) - \sqrt{x^2 +1 } $ \\
-        $\frac{1}{\sqrt{x^2 - 1}}$                          & $\mathrm{arcosh}(x)$          & $x \cdot \mathrm{arcosh}(x) - \sqrt{x^2 - 1} $ \\	
-        $\frac{1}{1- x^2}$                                  & $\mathrm{artanh}(x)$          & $x \cdot \mathrm{artanh}(x) - \frac{1}{2} \ln(1-x^2) $ \\
+        $\frac{1}{1- x^2}$                                  & $\mathrm{artanh}(x)$          & $x \cdot \mathrm{artanh}(x) + \frac{1}{2} \ln(1-x^2) $ \\
         \hline
     \end{tabular}
     \renewcommand{\arraystretch}{1}
 \end{center}
+
+\textbf{\color{orange}Dividere la costante $+C_{1,2, \dots}$ in base al $\mathbb{D}$ della funzione originale $\left(\int f\diff x\right)$.}\\
+$n$ Lücke \quad \textrightarrow \quad $n+1$ bereiche \quad \textrightarrow \quad $+C_{1,\ \dots,\ n+1}$
+
+\subsection{Trigo Umformungen für die Integralrechnung}%\vspace{-1em}
+
+
+\renewcommand{\arraystretch}{2}
+\begin{center}
+    \resizebox{0.99\columnwidth}{!}{%
+    \begin{tabular}{|l|l|}
+        \hline
+        % Prima sezione: Formule su riga singola (usando multicolumn)
+        $\sin \alpha \sin \beta = \frac{1}{2}[\cos(\alpha - \beta) - \cos(\alpha + \beta)]$ &
+        $\cos \alpha \cos \beta = \frac{1}{2}[\cos(\alpha - \beta) + \cos(\alpha + \beta)],$ \\
+        $\sin \alpha \cos \beta = \frac{1}{2}[\sin(\alpha - \beta) + \sin(\alpha + \beta)],$& 
+        $1 + \tan^2(x) = \frac{1}{\cos^2(x)}$\\ 
+        \multicolumn{2}{|l|}{$\sin \alpha \sin \beta \sin \gamma = \frac{1}{4} [\sin(\alpha + \beta - \gamma) + \sin(\beta + \gamma - \alpha) + \sin(\gamma + \alpha - \beta) - \sin(\alpha + \beta + \gamma)]$} \\ 
+        \multicolumn{2}{|l|}{$\sin \alpha \cos \beta \cos \gamma = \frac{1}{4} [\sin(\alpha + \beta - \gamma) - \sin(\beta + \gamma - \alpha) + \sin(\gamma + \alpha - \beta) + \sin(\alpha + \beta + \gamma)]$} \\ 
+        
+        \hline
+        % Seconda sezione: Potenze (due colonne)
+        $\sin^2 \alpha = \frac{1}{2}(1 - \cos 2\alpha)$ & $\cos^2 \alpha = \frac{1}{2}(1 + \cos 2\alpha)$ \\
+        $\sin^3 \alpha = \frac{1}{4}(3 \sin \alpha - \sin 3\alpha)$ & $\cos^3 \alpha = \frac{1}{4}(\cos 3\alpha + 3 \cos \alpha)$ \\
+        $\sin^4 \alpha = \frac{1}{8}(\cos 4\alpha - 4 \cos 2\alpha + 3)$ & $\cos^4 \alpha = \frac{1}{8}(\cos 4\alpha + 4 \cos 2\alpha + 3).$ \\
+        
+        \hline
+        % Terza sezione: Metà angolo (due colonne)
+        $\sin \frac{\alpha}{2} = \sqrt{\frac{1}{2}(1 - \cos \alpha)} \quad \crd{\alpha \in [0, 2\pi]}$ & $\tan \frac{\alpha}{2} = \sqrt{\frac{1 - \cos \alpha}{1 + \cos \alpha}} = \frac{1 - \cos \alpha}{\sin \alpha} = \frac{\sin \alpha}{1 + \cos \alpha} \quad  \crd{\alpha \in [0, \pi)}$ \\
+        $\cos \frac{\alpha}{2} = \sqrt{\frac{1}{2}(1 + \cos \alpha)} \quad \crd{\alpha \in [-\pi, \pi]} $& $\cot \frac{\alpha}{2} = \sqrt{\frac{1 + \cos \alpha}{1 - \cos \alpha}} = \frac{1 + \cos \alpha}{\sin \alpha} = \frac{\sin \alpha}{1 - \cos \alpha} \quad \crd{\alpha \in (0, \pi]}$ \\ \hline
+    \end{tabular}}
+\end{center}
+\renewcommand{\arraystretch}{1}

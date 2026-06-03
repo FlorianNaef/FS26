@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - main
-      - ital
+      - ITA
     paths:
-      - '**.tex'
+      - "**.tex"
 
 jobs:
   translate:
@@ -20,13 +20,13 @@ jobs:
       - name: Checkout source branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2        # need parent commit for diffing
+          fetch-depth: 2 # need parent commit for diffing
           ref: ${{ github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install dependencies
         run: npm install node-fetch@3
@@ -34,10 +34,10 @@ jobs:
 
       - name: Run LLM translation script
         env:
-          AZURE_OPENAI_ENDPOINT:    ${{ secrets.AZURE_OPENAI_ENDPOINT }}
-          AZURE_OPENAI_KEY:         ${{ secrets.AZURE_OPENAI_KEY }}
-          AZURE_OPENAI_DEPLOYMENT:  ${{ secrets.AZURE_OPENAI_DEPLOYMENT }}
-          GITHUB_TOKEN:             ${{ secrets.GITHUB_TOKEN }}
-          SOURCE_BRANCH:            ${{ github.ref_name }}
-          REPO:                     ${{ github.repository }}
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          AZURE_OPENAI_KEY: ${{ secrets.AZURE_OPENAI_KEY }}
+          AZURE_OPENAI_DEPLOYMENT: ${{ secrets.AZURE_OPENAI_DEPLOYMENT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_BRANCH: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
         run: node .github/scripts/translate-llm-hunk.js

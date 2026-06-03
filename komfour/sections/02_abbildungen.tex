@@ -6,7 +6,8 @@ $$ f: \: \mathbb{D}_f \subseteqq \mathbb{C}  \: \rightarrow \: \mathbb{W}_f \sub
 
 \begin{itemize}[itemsep=0.2cm]
     \item Winkeltreue für komplex differenzierbare Funktion mit $f'(z) \neq 0$ \\
-        \textrightarrow\ Drehstreckung mit Drehwinkel $\arg[f'(z)]$ und Streckfaktor $\vert f'(z) \vert$
+        \textrightarrow\ Drehstreckung mit Drehwinkel $\arg[f'(z)]$ und Streckfaktor $\vert f'(z) \vert$\\
+        \textrightarrow\ Winkelterue singifica che l'angolo di incidenza tra rette viene mantenuto
     \item Die Ableitung $f'(z)$ beschreibt, was lokal im Punkt $z$ passiert \\
         \textrightarrow\ Streckfaktor und Drehwinkel im Punkt $z$ \\
         Beispiel: $f'(z) = \frac{1}{2}\jimg$ \quad \textrightarrow\ Steckung um $\frac{1}{2}$ und Drehwinkel $\frac{\pi}{2}$
@@ -22,8 +23,13 @@ Parametergleichung einer Bildgeraden kann \textbf{immer} ermittelt werden!
 
 \begin{tabular}{ll}
     waagerechte Gerade: & $z = z(r) = r + \jimg c_2$ \quad mit $r \in \mathbb{R}$ \\
-    senkrechte Gerade:  & $z = z(r) = c_1 + \jimg s$ \quad mit $r \in \mathbb{R}$
-\end{tabular}
+    senkrechte Gerade:  & $z = z(s) = c_1 + \jimg s$ \quad mit $r \in \mathbb{R}$
+\end{tabular}\vspace{1em}
+
+\begin{itemize}
+    \item $c_1$ è lo Stützvektor sull'asse reale, $j$ è la direzione verticale.
+    \item $j c_2$ è lo Stützvektor sull'asse immaginario, $1$ è la direzione orizzontale.
+\end{itemize}
 
 \smallskip
 
@@ -32,28 +38,13 @@ Parametergleichung einer Bildgeraden kann \textbf{immer} ermittelt werden!
 
 
 \subsubsection{Koordinatengleichung von Bildkurven}
+\begin{enumerate}
+    \item Separare parte Reale ed Immaginaria ($w_1 = \RE(w), w_2 = \IM(w)$)
+    \item Sistema di equazioni e rimuovere parametri $r, s$
+\end{enumerate}
 
-Kann nur bei \textbf{einfachen} Parametergleichungen ermittelt werden! \\
-\textbf{Vorgehen:} In GlSys Parameter $r$ eliminieren 
 
-
-\example{Koordinatengleichung von $\bm{w = (r^2 - c^2) + \jimg 2rc}$}
-
-\begin{minipage}{0.35\linewidth}
-    \begin{tabular}{| l |}
-        $w_1 = r^2 - c^2$ \\
-        $w_2 = 2rc$
-    \end{tabular}
-\end{minipage}
-\hfill
-\begin{minipage}{0.3\linewidth}
-    $r = \frac{w_2}{2c}$ \\
-    \textrightarrow\ einsetzen in $w_1$
-\end{minipage}
-\hfill
-\begin{minipage}{0.25\linewidth}
-    $w_1 = \frac{w_2^2}{(2c)^2} - c^2$
-\end{minipage}
+\example{Kapitel \ref{chap:bsp_gitternetz}}
 
 \columnbreak
 
@@ -67,6 +58,7 @@ $$ f: \: z \mapsto w = f(z) = az + b \quad \text{mit } a, \, b \in \mathbb{C} \t
 \begin{itemize}[itemsep=0.1cm]
     \item für $a = 1$ eine Translation um den Ortsvektor $\vec{b}$
     \item für $a \neq 1$ eine Drehstreckung mit Zentrum $\frac{b}{1-a}$, dem Drehwinkel $\arg(a)$ und dem Streckfaktor $\vert a \vert$
+    \item Si può anche pensare come $a$: Streckung und drehung attorno ad $O$, $b$ verschiebung
 \end{itemize}
 
 \vspace{-0.1cm}
@@ -141,29 +133,32 @@ $$ f: \: z \mapsto w = f(z) = az + b \quad \text{mit } a, \, b \in \mathbb{C} \t
 \end{itemize}
 
 
-\subsection{Kreisspiegelung}
+\subsection{Kreisspiegelung}\vspace{-1em}
+\[f: \: z \mapsto w = \frac{1}{\overline{z}} \]
 
-\vspace{-0.2cm}
+\begin{minipage}{0.64\columnwidth}    
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{llllll}
+        Abstand: & $\vert w \vert = \frac{1}{\vert z \vert }$ & &  
+        Winkel: & $\arg(w) = \arg(z)$
+    \end{tabular}
+    \setlength{\tabcolsep}{6pt}
+    
+    \subsubsection*{Eigenschaften der Kreisspiegelung}
+    
+    \begin{itemize}
+        \item bijektiv auf $\mathbb{C} \: \cap \: \lbrace \infty \rbrace$
+        \item winkeltreu (bis auf das Vorzeichen)
+        \item Geraden / Kreise gehen in Geraden / Kreise über
+        \item Einheitskreis ist ein \textbf{Fixpunktkreis}
+        \item Rand eines Kreises geht in den Rand des Bildkreises über
+    \end{itemize}
+\end{minipage}
+\begin{minipage}{0.36\columnwidth}
+    \input{tikz/kreisspiegelung.tex}
+\end{minipage}
 
-$$ f: \: z \mapsto w = \frac{1}{\overline{z}} $$
-
-\begin{tabular}{llllll}
-    Abstand: & $\vert w \vert = \frac{1}{\vert z \vert }$ & &  Winkel: & $\arg(w) = \arg(z)$
-\end{tabular}
-
-
-\subsubsection{Eigenschaften der Kreisspiegelung}
-
-\begin{itemize}
-    \item bijektiv auf $\mathbb{C} \: \cap \: \lbrace \infty \rbrace$
-    \item winkeltreu (bis auf das Vorzeichen)
-    \item Geraden / Kreise gehen in Geraden / Kreise über
-    \item Einheitskreis ist ein \textbf{Fixpunktkreis}
-    \item Rand eines Kreises geht in den Rand des Bildkreises über
-\end{itemize}
-        
-
-\subsubsection{Vorgehen Bildkurve / Bildfläche zeichnen}
+\subsubsection*{Vorgehen Bildkurve / Bildfläche zeichnen}
 
 \begin{minipage}[t]{0.55\linewidth}
     \includegraphics[width=\linewidth, align=t]{images/kreisspiegelung.png}
@@ -182,8 +177,18 @@ $$ f: \: z \mapsto w = \frac{1}{\overline{z}} $$
 
     \medskip
 
-    \textbf{Hinweis:} Bei Bedarf Originalkurve in Kreise und Geraden zerlegen!
+    \textbf{\color{red}Hinweis:} Bei Bedarf Originalkurve in Kreise und Geraden zerlegen\vspace{1em}!
+    
+    \textbf{Ortogonalità e Test Point}
+    \begin{itemize}
+        \item \textbf{Fixkreise (Cerchi fissi):} Un cerchio che interseca il cerchio unitario ortogonalmente ($90^\circ$) viene mappato su se stesso.
+    \end{itemize}
 \end{minipage}
+
+\begin{itemize}
+    \item \textbf{Test Point:} Per determinare l'area da colorare, usare un test point.
+    \item \textbf{Segno di Im:} Con $1/z$ (reciproco), la parte immaginaria cambia segno; con $1/\bar{z}$ (inversione), il segno rimane invariato.
+\end{itemize}
 
 \columnbreak
 

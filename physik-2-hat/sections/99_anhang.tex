@@ -1,18 +1,28 @@
+1 pascal = $10^5$ bar = $7.50062 \cdot 10^{-2}$ torr
+
 \section{Molmassen wichtiger Atome}
+\begin{minipage}{0.5\columnwidth}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{c | c | c }
+        \textbf{Symbol} & \textbf{Molekül}  & \textbf{Molmasse}                 \\
+        \hline
+        H               & Wasserstoff       & $1.008 \, \frac{\gram}{\mole}$    \\
+        C               & Kohlenstoff       & $12.011 \, \frac{\gram}{\mole}$   \\
+        N               & Stickstoff        & $14.007 \, \frac{\gram}{\mole}$   \\
+        O               & Sauerstoff        & $15.999 \, \frac{\gram}{\mole}$   \\
+        Al              & Aluminium         & $26.982 \, \frac{\gram}{\mole}$   \\
+        Si              & Silicium          & $28.982 \, \frac{\gram}{\mole}$   \\
+    \end{tabular}\smallbreak
+\end{minipage}\hfill
+\begin{minipage}[b]{0.49\columnwidth}
+    \begin{itemize}
+        \item Area sfera: $4\pi r^2$
+        \item Volume sfera: $\frac{4}{3} \pi r^2$
+    \end{itemize}
+\end{minipage}
 
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{c | c | c }
-    \textbf{Symbol} & \textbf{Molekül}  & \textbf{Molmasse}                 \\
-    \hline
-    H               & Wasserstoff       & $1.008 \, \frac{\gram}{\mole}$    \\
-    C               & Kohlenstoff       & $12.011 \, \frac{\gram}{\mole}$   \\
-    N               & Stickstoff        & $14.007 \, \frac{\gram}{\mole}$   \\
-    O               & Sauerstoff        & $15.999 \, \frac{\gram}{\mole}$   \\
-    Al              & Aluminium         & $26.982 \, \frac{\gram}{\mole}$   \\
-    Si              & Silicium          & $28.982 \, \frac{\gram}{\mole}$   \\
-\end{tabular}
-\renewcommand{\arraystretch}{1.3}
-
+Elementi come $H_2$ sono e volte la molmassse di $H$
+\renewcommand{\arraystretch}{1}
 
 \section{Ansätze zu Aufgaben}
 
@@ -38,34 +48,34 @@
 \end{minipage}
 
 
-\subsection{Pitot-Rohr (Prandtl-Sonde)}
-Instrument zur Messung der Geschwindigkeit eines Fluids ($\rho_L$).
+\subsection{Tubo di Pitot (Tubo di Prandtl)}
+Strumento per la misurazione della velocità di un fluido ($\rho_L$).
 
 \begin{center}
-    % Hier das Bild einfügen
+    % Inserisci qui l'immagine
     \includegraphics[width=0.73\columnwidth]{images/pitotrohr.png}
 \end{center}
 
-\textbf{Annahmen:}
+\textbf{Assunzioni:}
 \begin{itemize}
-    \item \textbf{Horizontale Bernoulli-Gleichung:} Da die Öffnungen $A$ und $B$ auf der gleichen Höhe liegen 
-    ($y_1 \approx y_2$), ist der Unterschied im hydrostatischen Druck der Luft 
-    ($\rho_L g \Delta y$) im Vergleich zum dynamischen Druck vernachlässigbar.
-    \item \textbf{Staupunkt (1):} An der Spitze kommt die Luft vollständig zum Stillstand $\Rightarrow v_1 = 0$.
-    \item \textbf{Statischer Druck (2):} An den seitlichen Öffnungen strömt die Luft ungestört vorbei $\Rightarrow v_2 = v$.
+    \item \textbf{Bernoulli orizzontale:} Poiché i fori $A$ e $B$ sono alla stessa quota 
+    ($y_1 \approx y_2$), la differenza di pressione idrostatica dell'aria 
+    ($\rho_L g \Delta y$) è trascurabile rispetto alla pressione dinamica.
+    \item \textbf{Punto di ristagno (1):} In punta l'aria si ferma completamente $\Rightarrow v_1 = 0$.
+    \item \textbf{Pressione statica (2):} Ai fori laterali l'aria scorre indisturbata $\Rightarrow v_2 = v$.
 \end{itemize}
 
 \vspace{0.3cm}
-\textbf{U-Rohr-Manometer:}
-Die Druckdifferenz wird durch den Höhenunterschied $h$ der Manometerflüssigkeit ($\rho_{Fl}$) ausgeglichen:
+\textbf{Manometro a U:}
+La differenza di pressione è bilanciata dal dislivello $h$ del liquido manometrico ($\rho_{Fl}$):
 $$ p_1 = p_2 + \rho_{Fl} \cdot g \cdot h $$
 
-\textbf{Bernoulli-Gleichung:}
-$$ p_1 + \frac{1}{2}\rho_L \cdot v_1^2 = p_2 + \frac{1}{2}\rho_L \cdot v_2^2 \qquad \text{($p_1$ durch Manometer-Gl. ersetzen)} $$ 
+\textbf{Equazione di Bernoulli:}
+$$ p_1 + \frac{1}{2}\rho_L \cdot v_1^2 = p_2 + \frac{1}{2}\rho_L \cdot v_2^2 \qquad p_1 \text{ Sostituire con eq. manometro}$$ 
 $$ p_2 + \rho_{Fl} \cdot g \cdot h = p_2 + \frac{1}{2}\rho_L \cdot v_2^2$$
 
-\textbf{Endlösung:}
-% Berechnung der Geschwindigkeit v aus der Druckdifferenz
+
+\textbf{Soluzione finale:}
 $$ \frac{1}{2} \rho_L v^2 = \rho_{Fl} \cdot g \cdot h \implies \boxed{v = \sqrt{\frac{2 \cdot \rho_{Fl} \cdot g \cdot h}{\rho_L}}} $$
 
 \subsection{U-Rohr}
@@ -93,25 +103,22 @@ $$ \boxed{ P =  \frac{W}{t} = \frac{p \cdot V}{t} = p  \cdot  \dot{V} } $$
 
 \subsection{Torricelli}
 \begin{minipage}{0.5\columnwidth}
-    % Einbindung der Illustration zum Torricelli-Theorem
-    \includegraphics[width=\linewidth]{images/torricelli.png}
+    \includegraphics[width=0.8\linewidth]{images/torricelli.png}
 \end{minipage}
 \begin{minipage}[b]{0.48\columnwidth}
-    \cor{Achtung:} Auch wenn das Rohr über den Wasserspiegel ($\rm H_2O$) hinausragt, wird die Höhe immer ab dem Wasserspiegel gemessen.
+    \cor{Attenzione} anche se il tubo andasse sopra 
+    al livello dell'$\rm H_2O$ l'altezza viene sempre calcolata dal livello dell'acqua
 
-    % v: Ausflussgeschwindigkeit, x: Wurfweite
-    $$\boxed{v = \sqrt{2gh}} \qquad \boxed{x = 2\sqrt{h(H-h)}}$$
-    
-\end{minipage}
+    \[\boxed{v = \sqrt{2gh}} \qquad \boxed{x = 2\sqrt{h(H-h)}}\]  
+\end{minipage}  
 
 
 \subsection{Bewegungen}
 
 \vspace{-0.2cm}
 
-$$ \boxed{ P = F \cdot v } \qquad \boxed{F = \dot{m} \cdot \Delta v}\qquad \boxed{ E_{\rm kin} = \frac{1}{2} \, m \cdot v^2 } $$
+\[\boxed{ P = F \cdot v } \qquad \boxed{F = \dot{m} \cdot \Delta v}\qquad \boxed{ E_{\rm kin} = \frac{1}{2} \, m \cdot v^2 } \]
 \[\boxed{\dot{m} = \rho \dot{V}}\]
-
 
 
 \subsection{Wasser mit Dampf erhitzen}
@@ -137,10 +144,71 @@ Gesucht ist die Mischtemperatur $T_M$
 $$ \Delta Q_{\rm ab} = \Delta Q_{\rm zu} $$
 $$ m_W \cdot c_W \cdot (T_W - T_M) = m_E \cdot c_E \cdot (T_0 - T_E) + q_f \cdot m_E + m_E \cdot c_W \cdot (T_M - T_0) $$
 
-\subsection{Terminologien Thermodynamik}
 
-\subsubsection{Systeme}
-\includegraphics[width=\linewidth]{images/thermoSysteme.png}
-\includegraphics[width=\linewidth]{images/thermoSystemeBsp.png}
+\subsection[Concetto di temperatura Critica nelle bombole]
+{Concetto di Temperatura Critica ($T_k$) nelle Bombole}
 
+\begin{itemize}
+    \item \textbf{Se $T_{amb} < T_k$ (es. $CO_2$ a $20^\circ C$):} 
+    All'interno della bombola coesistono fase liquida e gassosa. La pressione indicata dal manometro è la \textit{pressione di vapore saturo} ($p_s$), che dipende solo dalla temperatura.
+    \item \textbf{Comportamento:} Aprendo brevemente la valvola, la pressione rimane costante perché una parte del liquido evapora immediatamente per ripristinare l'equilibrio.
+    \medskip
+    \item \textbf{Se $T_{amb} > T_k$:} 
+    La sostanza è esclusivamente allo stato gassoso (gas supercritico). Non può esistere liquido indipendentemente dalla pressione applicata.
+    \item \textbf{Comportamento:} Aprendo la valvola, la pressione cala immediatamente poiché diminuisce la densità del gas senza che ci sia liquido a compensare la perdita di massa.
+\end{itemize}\smallbreak
 
+\subsection{Zeitliche Dynamik des Phasenübergangs }
+Die durch Wärmeleitung abgeführte Wärmestromdichte $j_Q$ (aus Abschnitt 9.6.1) entspricht der pro Zeit- und Flächeneinheit freigesetzten latenten Wärme beim Erstarren:
+\begin{equation*}
+j_Q = -\lambda_Q \cdot \frac{dT}{dx} \quad \Longrightarrow \quad j_Q = q_f \cdot \rho \cdot \frac{dx}{dt}
+\end{equation*}
+
+Daraus ergibt sich die allgemeine Wachstumsgeschwindigkeit der Schichtdicke $x$ in Abhängigkeit vom aktuellen Kehrwert der Dicke:
+\begin{equation*}
+\frac{dx}{dt} = \frac{\lambda_Q \cdot \Delta T}{q_f \cdot \rho \cdot x}
+\end{equation*}
+
+\subsubsection{Integration für veränderliche Schichtdicken}
+Da die Wachstumsgeschwindigkeit mit zunehmender Dicke $x$ kontinuierlich abnimmt, muss zur Bestimmung der Gesamtzeit $t$ für ein Wachstum von Dicke $x_1$ auf $x_2$ integriert werden:
+\begin{equation*}
+x \cdot dx = \left( \frac{\lambda_Q \cdot \Delta T}{q_f \cdot \rho} \right) \cdot dt
+\end{equation*}
+
+Durch Integration auf beiden Seiten erhält man:
+\begin{equation*}
+\int_{x_1}^{x_2} x \cdot dx = \frac{\lambda_Q \cdot \Delta T}{q_f \cdot \rho} \int_{0}^{t} dt \quad \Longrightarrow \quad \frac{1}{2}\left(x_2^2 - x_1^2\right) = \frac{\lambda_Q \cdot \Delta T}{q_f \cdot \rho} \cdot t
+\end{equation*}
+
+Daraus resultiert die Gesamtdauer $t$ für den Prozess:
+\begin{equation*}
+t = \frac{q_f \cdot \rho \cdot \left(x_2^2 - x_1^2\right)}{2 \cdot \lambda_Q \cdot \Delta T}
+\end{equation*}
+
+\section{Sistemi Termodinamici}
+Un sistema termodinamico è un sistema fisico limitato spazialmente per il quale è possibile stabilire un bilancio energetico (e di massa, se aperto).
+
+I sistemi si distinguono in base alla possibilità di scambiare materia o energia con l'ambiente circostante:
+
+\begin{ctabular}{@{}lll@{}}
+\toprule
+\textbf{Sistema} & \textbf{Scambio di Materia} & \textbf{Scambio di Energia} \\ \midrule
+\textbf{Aperto} & Consentito & Consentito (Lavoro e Calore) \\
+\textbf{Chiuso} & Non consentito & Consentito (Lavoro e Calore) \\
+\textbf{Isolato} & Non consentito & Non consentito \\ \bottomrule
+\end{ctabular}
+
+\subsection{Sotto-categorie e Casi Specifici}
+\begin{itemize}
+    \item \textbf{Sistema Adiabatico:} Non permette lo scambio di calore ($Q = 0$), ma permette lo scambio di lavoro ($W$). Esempio: compressione rapida.
+    \item \textbf{Sistema Arbeitsdicht (Ermetico al lavoro):} Non permette lo scambio di lavoro meccanico.
+    \item \textbf{Sistema Energiedicht (Ermetico all'energia):} Non permette alcuno scambio di energia (né calore né lavoro).
+\end{itemize}
+
+\includegraphics[width=\columnwidth]{images/thermodinamishce_systeme.png}
+
+\section{Grandezze Termodinamiche}
+\begin{itemize}
+    \item \textbf{Grandezze di Stato:} Dipendono solo dallo stato attuale del sistema e non dal percorso seguito per raggiungerlo (es. Temperatura $T$, Pressione $p$, Volume $V$).
+    \item \textbf{Grandezze di Processo:} Descrivono il modo in cui il sistema passa da uno stato all'altro (es. Calore $Q$, Lavoro $W$). Il loro valore dipende dalla velocità o dalla modalità del processo.
+\end{itemize}

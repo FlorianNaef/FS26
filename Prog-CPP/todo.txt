@@ -1,1 +1,0 @@
-Diagrammi non come immagini ma come veri diagrammi Tikz 

@@ -8,6 +8,7 @@
 
 
 \usepackage{multicol}               % provides multicols environment
+\usepackage{multirow}
 \usepackage{geometry}               % set page layout
 
 
@@ -91,8 +92,8 @@
         %   showframe,
           }
 
-\setlength{\columnsep}{1.5mm}       % distance between columns
-\setlength{\columnseprule}{0.1pt}   % thickness of column separation line
+\setlength{\columnsep}{3mm}       % distance between columns
+\setlength{\columnseprule}{0.2pt}   % thickness of column separation line
 \setlength{\parindent}{0pt}         % no paragraph indentation
 
 \setcounter{tocdepth}{2}            % only display sections and subsections in toc
@@ -102,8 +103,8 @@
 
 
 % --------------------------------------- COLOR DEFINITIONS ---------------------------------------
-\definecolor{sectioncolor}{HTML}{b4b3b2}
-\definecolor{subsectioncolor}{HTML}{dcdbdb}
+\definecolor{sectioncolor}{HTML}{FF3E96}
+\definecolor{subsectioncolor}{HTML}{FF82AB}
 \definecolor{sectextcol}{HTML}{000000}
 \definecolor{subsectextcol}{HTML}{000000}
 
@@ -240,6 +241,7 @@
                       text depth=0pt,               % text depth:       0pt (needed so text stays vertically centered)
                       minimum height=5mm,           % minimum height:   5mm
                       inner sep=2pt,                % inner padding:    2pt
+                      rounded corners = 2pt,
                       align=left]                   % text alignment:   left
                       {\thesection\ #1};}}
 
@@ -255,6 +257,7 @@
                       text depth=0pt,               % text depth:       0pt (needed so text stays vertically centered)
                       minimum height=5mm,           % minimum height:   5mm
                       inner sep=2pt,                % inner padding:    2pt
+                      rounded corners = 2pt,
                       align=left]                   % text alignment:   left
                       {#1};}}
 
@@ -275,6 +278,7 @@
                       text width=\columnwidth-4pt,  % text width:       columnwidth - 2x padding 
                       text depth=0pt,               % text depth:       0pt (needed so text stays vertically centered)
                       minimum height=5mm,           % minimum height:   5mm 
+                      rounded corners = 2pt,
                       inner sep=2pt,                % inner padding:    2pt 
                       align=left]                   % text alignment:   left
                       {\thesubsection\ #1};}}
@@ -288,6 +292,7 @@
                       text=subsectextcol,           % text color:       subsectextcol 
                       text width=\columnwidth-4pt,  % text width:       columnwidth - 2x padding 
                       minimum height=5mm,           % minimum height:   5mm 
+                      rounded corners = 2pt,
                       inner sep=2pt,                % inner padding:    2pt 
                       align=left]                   % text alignment:   left
                       {#1};}}
@@ -614,18 +619,9 @@
                         \raggedright%
                         \normalfont\Huge\bfseries\title{}\\[1mm]
                         \normalfont\Large\semester\ --\ \dozent{}\\
-                        \large Autoren:\ \author{}\\
-                        % Contributors block
-                            \ifdefined\contributors
-                                \normalsize\large Mitwirkende:\ \contributors{}\\[1mm]
-                            \else
-                                \myul{\url{\repo}}
-                            \fi
-                        % Contributors block end
+                        \large Autoren:\ \author{}\\[1mm]
+                        \myul{\url{\repo}}
                     \end{minipage}\par
-                    \ifdefined\contributors
-                        \small\myul{\url{\repo}}
-                    \fi
                         \section*{\contentsname}
                         \group_begin:
                         \setlength{\columnsep}{5mm}
@@ -641,27 +637,19 @@
                     \begin{multicols*}{2}
                     \raggedcolumns%
                     \begin{minipage}[t]{0.2\columnwidth} % MathFML-like formatting
-                    \raisebox{-.3\columnwidth}{\qrcode[level=L, 
+                        \vspace{-0.225\columnwidth}
+                        \qrcode[level=L, 
                                 version=0,
-                                height=0.9\columnwidth]{\repo}}\hfill
+                                height=0.9\columnwidth]{\repo}\hfill
                         \normalfont\footnotesize\rotatebox[origin=tr]{90}{V \version{}}
                     \end{minipage}\hfill
                     \begin{minipage}[t]{0.79\columnwidth}
                         \raggedright%
                         \normalfont\Huge\bfseries\title{}\\[1mm]
                         \normalfont\Large\semester\ --\ \dozent{}\\
-                        \large Autoren:\ \author{}\\
-                        % Contributors block
-                            \ifdefined\contributors
-                                \normalsize\large Mitwirkende:\ \contributors{}\\[1mm]
-                            \else
-                                \myul{\url{\repo}}
-                            \fi
-                        % Contributors block end
+                        \large Autoren:\ \author{}\\[1mm]
+                        \normalsize\myul{\url{\repo}}
                     \end{minipage}\par
-                    \ifdefined\contributors
-                        \small\myul{\url{\repo}}
-                    \fi
                 }
             }
             {compact}
@@ -678,18 +666,9 @@
                         \raggedright%
                         \normalfont\Huge\bfseries\title{}\\[1mm]
                         \normalfont\Large\semester\ --\ \dozent{}\\
-                        \large Autoren:\ \author{}\\
-                        % Contributors block
-                            \ifdefined\contributors
-                                \normalsize\large Mitwirkende:\ \contributors{}\\[1mm]
-                            \else
-                                \myul{\url{\repo}}
-                            \fi
-                        % Contributors block end
+                        \large Autoren:\ \author{}\\[1mm]
+                        \myul{\url{\repo}}
                     \end{minipage}\par
-                    \ifdefined\contributors
-                        \small\myul{\url{\repo}}
-                    \fi
                     \section*{\contentsname}
                     \group_begin:
                     \setlength{\columnsep}{5mm}
@@ -706,27 +685,22 @@
                     \begin{multicols*}{2}
                     \raggedcolumns%
                     \begin{minipage}[t]{0.2\columnwidth} % MathFML-like formatting
-                        \raisebox{-.3\columnwidth}{\qrcode[level=L, 
+                        \vspace{-0.225\columnwidth}
+                        \qrcode[level=L, 
                                 version=0,
-                                height=0.9\columnwidth]{\repo}}\hfill
-                        \normalfont\footnotesize\rotatebox[origin=tr]{90}{V \version{}}
+                                height=0.9\columnwidth]{\repo}\hfill
+                        \raisebox{0.05\columnwidth}{% Regola questo valore per l'altezza desiderata
+                        \rotatebox[origin=c]{90}{\normalfont\footnotesize V \version{}}
+                    }
                     \end{minipage}\hfill
                     \begin{minipage}[t]{0.79\columnwidth}
                         \raggedright%
                         \normalfont\Huge\bfseries\title{}\\[1mm]
                         \normalfont\Large\semester\ --\ \dozent{}\\
-                        \large Autoren:\ \author{}\\
-                        % Contributors block
-                            \ifdefined\contributors
-                                \normalsize\large Mitwirkende:\ \contributors{}\\[1mm]
-                            \else
-                                \myul{\url{\repo}}
-                            \fi
-                        % Contributors block end
-                    \end{minipage}\par
-                    \ifdefined\contributors
-                        \small\myul{\url{\repo}}
-                    \fi
+                        \large Autoren:\ \author{}\\[1mm]
+                    \end{minipage}\smallbreak
+                    
+                    \normalsize\myul{\url{\repo}}
                 }
             }
             {normal}
@@ -737,15 +711,9 @@
                     \normalfont\huge\semester\ --\ \dozent{}\\
                     \Large Autoren:\\
                     \Large\author{}\\[2mm]
-                    % Contributors block
-                        \ifdefined\contributors
-                            \Large Mitwirkende:\\
-                            \Large\contributors{}\\[2mm]
-                        \fi
-                    % Contributors block end
                     \large Version:\\
                     \large\version{}\\
-                    \normalfont\myul{\url{\repo}}\\[2mm]
+                    \normalsize\myul{\url{\repo}}\\[2mm]
                     \qrcode[level=L, 
                             version=0,
                             height=2cm]{\repo}
@@ -779,7 +747,7 @@
             \vspace{-0.225\columnwidth}
             \qrcode[level=L, 
                     version=0,
-                    height=0.9\columnwidth]{\repo}\\[1.5mm]
+                    height=0.9\columnwidth]{\repo}\\[1mm]
             \normalfont\footnotesize V \version{}
             \smallskip
         \end{minipage}\hfill
@@ -788,14 +756,7 @@
             \normalfont\Huge\bfseries\title{}\\
             \normalfont\Large\semester\ --\ \dozent{}\\
             \large Autoren:\ \author{}\\
-            % Contributors block
-                \ifdefined\contributors
-                    \normalsize\large Mitwirkende:\ \contributors{}\\[0.5mm]
-                    \footnotesize\myul{\url{\repo}}
-                \else
-                    \normalsize\myul{\url{\repo}}
-                \fi
-            % Contributors block end
+            \normalsize\myul{\url{\repo}}
         \end{minipage}\par % \par needed or else there is an underfull hbox warning
         \str_if_eq:eeT {\str_lowercase:f\enableToC}{true}
         {

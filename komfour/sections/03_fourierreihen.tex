@@ -3,11 +3,13 @@
 Darstellung einer \textbf{periodischen} Funktion $f(t)$ mit Periodendauer $T > 0$ durch eine Linearkombination von Sinus- und Kosinusfunktionen,
 deren Frequenzen ganzzahlige Vielfache der Kreisfrequenz (Winkelgeschwindigkeit) $\omega_f = \frac{2 \pi}{T} = 2 \pi v$ sind. 
 
+\crd{\textbf{T periodish}: Endlich anzahl sprungstelle, $g- \in \infty$ und $g+ \in \infty$}
+
 \smallskip
 
 \textbf{Hinweis:} In \cbl{blau} ist jeweils die komplexe Fourier-Theorie abgebildet.
-$$ \FR[f(t)] = \frac{a_0}{2} + \sum\limits _{n=1}^\infty \big[ a_n \cdot \cos(n \, \omega_f \, t) + b_n \cdot \sin(n \, \omega_f \, t) \big] $$
-$$ \cbl{\FR[f(t)] = \sum\limits _{k = -\infty}^\infty \: \big( c_k \cdot \e^{\jimg \, k \, \omega_f \, t} \big)} $$
+\[\FR[f(t)] = \frac{a_0}{2} + \sum\limits _{n=1}^\infty \big[ a_n \cdot \cos(n \, \omega_f \, t) + b_n \cdot \sin(n \, \omega_f \, t) \big] \]
+\[\cbl{\FR[f(t)] = \sum\limits _{k = -\infty}^\infty \: \big( c_k \cdot \e^{\jimg \, k \, \omega_f \, t} \big)} \]
 
 
 \subsection{Orthagonalitätsbeziehungen Basisfunktionen}
@@ -35,13 +37,12 @@ $$ \cbl{\FR[f(t)] = \sum\limits _{k = -\infty}^\infty \: \big( c_k \cdot \e^{\ji
 
 \subsection{Berechnung der Fourier-Koeffizienten}
 
-\textbf{$\bm{\frac{a_0}{2}}$ entspricht dem Mittelwert (Gleichstromanteil) der Funktion $\bm{f(t)}$ auf dem \\
-Intervall [0 ; T)}
-
-\smallskip
+\textbf{$\bm{\frac{a_0}{2}}$ entspricht dem Mittelwert MWS (Gleichstromanteil) der Funktion
+$\bm{f(t)}$\\auf dem Intervall [0 ; T)}
 
 \renewcommand{\arraystretch}{2.5}
 \begin{tabular}{l c l}
+    % $a_0 = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \, \diff t$\\
     $a_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \cos(n \, \omega_f \, t) \, \diff t$                           & $(n = 0, \, 1, \, 2, \, \ldots)$                                                                  \\
     $b_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \sin(n \, \omega_f \, t) \, \diff t$                           & $(n = 1, \, 2, \, 3, \, \ldots)$                                                                  \\	
     \cbl{$c_n = \overline{c_{-n}} = \frac{1}{T} \int \limits_0^T f(t) \cdot \e^{- \jimg \, n \, \omega_f \, t} \, \diff t$} & $\cbl{(n = 0, \, 1, \, 2, \, \ldots)}$    & \textrightarrow\ Für $n = 0: \, c_0 = \frac{a_0}{2}$
@@ -50,9 +51,13 @@ Intervall [0 ; T)}
 
 \smallskip
 
-\crd{ \textrightarrow\ Trigo-Produkte in Integralen in SUMMEN umwandeln!!}
-
-
+\begin{itemize}
+    \item \crd{Trigo-Produkte in Integralen in SUMMEN umwandeln!!}
+    \item \cor{Attenzione ad edge-cases con $n$ nei denominatori! (calcolare $n$ specifico
+    separatemente con formula base)}
+    \item \textbf{Integrazione a tratti:} dividere l'intervallo [0,T] in sotto-intervalli se 
+    l'espressione analitica di $f(t)$ cambia nel periodo.
+\end{itemize}
 \subsubsection{Umrechnung der Fourierkoeffizienten}
 
 \renewcommand{\arraystretch}{1.4}
@@ -89,29 +94,33 @@ Intervall [0 ; T)}
 \end{minipage}
 
 \smallskip
-
-\begin{tabular}{lll}
-    $f(t)$ gerade   & $b_n = 0$                 & $a_n = \frac{4}{T} \cdot \int \limits_{0}^{\frac{T}{2}} f(t) \cdot \cos(n \, \omega_f \, t) \, \diff t$   \\    \medskip
-                    & \cbl{$\IM(c_k) = 0$}      & \cbl{$c_n = \frac{a_n}{2}$ (reell)}                                                                       \\
-    $f(t)$ ungerade & $a_n = 0$                 & $b_n = \frac{4}{T} \cdot \int \limits_{0}^{\frac{T}{2}} f(t) \cdot \sin(n \, \omega_f \, t) \, \diff t$   \\	
-                    & \cbl{$\RE(c_k) = 0$}      & \cbl{$c_n = \jimg \frac{b_n}{2}$ (imaginär)}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{l|l|l}
+\textbf{Proprietà} & \multicolumn{2}{l}{\textbf{Coefficienti di Fourier}} \\ \hline
+\multirow{2}{*}{$f(t)$ gerade}   & $\displaystyle a_n = \frac{4}{T} \int_{0}^{\frac{T}{2}} f(t) \cos(n \omega_f t) dt$ & $b_n = 0$ \\
+                                 & \color{blue}{$\text{Im}(c_k) = 0$} & \color{blue}{$c_n = \frac{a_n}{2}$ (reell)} \\ \hline
+\multirow{2}{*}{$f(t)$ ungerade} & $\displaystyle a_n = 0$ & $\displaystyle b_n = \frac{4}{T} \int_{0}^{\frac{T}{2}} f(t) \sin(n \omega_f t) dt$ \\
+                                 & \color{blue}{$\text{Re}(c_k) = 0$} & \color{blue}{$c_n = j \frac{b_n}{2}$ (imaginär)} \\ \hline
 \end{tabular}
-    
+\renewcommand{\arraystretch}{1}
 
 \subsubsection{Linearität}
+\begin{center}
+    \crd{$f(t) \text{ und } g(t)$ müssen das gleiche Periode $T$ haben.}
+\end{center}
 
-$f(x)$ mit Koeffizienten $a_n^{(f)} , \, b_n^{(f)}$ \qquad $g(x)$ mit Koeffizienten $a_n^{(g)} , \, b_n^{(g)}$ \\
-\textrightarrow\ $h(t) = r \cdot f(t) + s \cdot g(t)$ mit festem $s, \, r \in \mathbb{R}$
+$h(t) = r \cdot f(t) + s \cdot g(t)$ mit festem $s, \, r \in \mathbb{R}$
 
-$$ a_n^{(h)} = r \cdot a_n^{(f)} + s \cdot a_n^{(g)} \qquad \qquad b_n^{(h)} = r \cdot b_n^{(f)} + s \cdot b_n^{(g)} $$
+$g(x)$ o $f(x)$ potrebbero anche essere numeri costanti ($a_0 \in \mathbb{R}, \, a_n = b_n = 0$)
 
+$$ a_n^{(h)} = r \cdot a_n^{(f)} + s \cdot a_n^{(g)} \qquad b_n^{(h)} = r \cdot b_n^{(f)} + s \cdot b_n^{(g)} \qquad \cbl{c_k^{(h)} = r \cdot c_k^{(f)} + s \cdot c_k^{(g)}}$$
 
 \subsubsection{Zeitstreckung / -stauchung / -spiegelung ("Ähnlichkeit")}
 
-$g(t) = f(r \cdot t)$ mit $0 \neq r \in \mathbb{R}$ \qquad \cor{$\omega_g = \frac{2 \pi}{T_g}$ in Basisfunktionen!}
+$g(t) = f(r \cdot t)$ mit $0 \neq r \in \mathbb{R}$ \qquad \crd{$\omega_g = \frac{2 \pi}{T_g} = \abs{r} \cdot \omega_f$ in Basisfunktionen! ($\sin / \cos$)}
 
-$$ a_n^{(g)} = a_n^{(f)} \qquad \qquad b_n^{(g)} = \sgn(r) \cdot b_n^{(f)} $$
-
+\[ a_n^{(g)} = a_n^{(f)} \qquad \qquad b_n^{(g)} = \sgn(r) \cdot b_n^{(f)} 
+\qquad \qquad \cbl{c_k^{(g)} = c_{k\cdot \sgn(r)}^{(f)}}\]
 
 \subsubsection{Zeitverschiebung}
 $g(t) = f(t + t_0)$
@@ -134,7 +143,7 @@ $g(t) = f(t + t_0)$
 Abstand zwischen zwei Funktionen zeigt, wie gut die Approximation der Funktion ist \\
 \textrightarrow\ $f$ und $g$ sind $T$-periodisch und stückweise stetig mit Limes
 
-$$ \Vert f - g \Vert = \sqrt{\frac{2}{T} \int \limits_0^T  [f(t) - g(t)]^2 \, \diff t } $$ 
+$$ \left\| f - g \right\| = \sqrt{\frac{2}{T} \int \limits_0^T  [f(t) - g(t)]^2 \, \diff t } $$ 
 
 \textrightarrow\ Fourier-Reihe approximiert eine Funktion am Besten!
 
@@ -152,7 +161,7 @@ $$ \frac{a_0^2}{2} + \sum \limits_{n=1}^\infty \big( a_n^2 + b_n^2 \big) \leq  \
 \subsubsection{Satz von Parseval}
 
 unendlich-dimensionaler Satz von Pythagoras \textrightarrow\ Summe der Quadrate ist beschränkt
-$$ \frac{a_0^2}{2} + \sum \limits_{n=1}^\infty \big( a_n^2 + b_n^2 \big) = \frac{2}{T} \int \limits_0^T [f(t)]^2 \, \diff t = \Vert f \Vert ^2 $$
+$$ \frac{a_0^2}{2} + \sum \limits_{n=1}^\infty \big( a_n^2 + b_n^2 \big) = \frac{2}{T} \int \limits_0^T [f(t)]^2 \, \diff t = \left\| f \right\|^2 $$
 $$ \cbl{ \sum \limits_{k= -\infty}^\infty \vert c_k \vert ^2 = \frac{1}{T} \int \limits_0^T \big[ f(t) \big]^2 \, \diff t } $$
 
 
@@ -162,13 +171,14 @@ Jede Funktion $f$ kann durch eine abbrechende Fourierreihe bezüglich ihres Abst
 Die Fläche zwischen Approximation und Funktion geht gegen 0 \quad $\Vert s_m(t) - f(t) \Vert \searrow 0$ \\
 \textrightarrow\ Das heisst nicht, dass man überall absolute Übereinstimmung hat!
 
-$$ \lim \limits_{m \to 0} \Vert \sum\limits _{n=1}^m \big[ a_n \cdot \cos(n \, \omega_f \, t) + b_n \cdot \sin(n \, \omega_f \, t) \big] - f(t) \Vert = 0 $$
-$$ \cbl{\lim \limits_{m \to 0} \Vert \sum\limits _{k= -m}^m \: \big( c_k \, \e^{ \jimg \, k \, \omega_f \, t} \big) - f(t) \Vert = 0} $$
+$$ \lim \limits_{m \to \infty} \left\|\sum\limits _{n=1}^m \big[ a_n \cdot \cos(n \, 
+\omega_f \, t) + b_n \cdot \sin(n \, \omega_f \, t) \big] - f(t) \right\| = 0 $$
+$$ \cbl{\lim \limits_{m \to 0} \left\| \sum\limits _{k= -m}^m \: \big( c_k \, \e^{ \jimg \, k \, \omega_f \, t} \big) - f(t) \right\| = 0} $$
 
 
 \subsubsection{Konvergenz der Fourierkoeffizienten}
 
-Die Fourierkoeffizienten bilden Nullfolgen 
+Die Fourierkoeffizienten bilden Nullfolgen (Conseguenza: convergenza)
 
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{l}
