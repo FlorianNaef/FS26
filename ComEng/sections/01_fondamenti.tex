@@ -1,0 +1,56 @@
+\section[Hex - Dez]{Hex $\to$ Dez}
+\begin{ctabular}{l|cccccc}
+    \textbf{Hex} & A & B & C & D & E & F \\
+    \textbf{Dec} & 10 & 11 & 12 & 13 & 14 & 15 \\
+    \textbf{Bin} & 1010 & 1011 & 1100 & 1101 & 1110 & 1111
+\end{ctabular}\vspace{-1em}
+
+\section{Instruction Set Architecture (ISA)}
+\label{subsec:isa_differences}
+
+Die Weiterentwicklung der ARM-Architekturen hat zur Koexistenz verschiedener Befehlssätze geführt.
+
+\begin{itemize}
+    \item \textbf{ARM (32-bit) (Veraltet):} 32 Bit, maximale Leistung, aber sie belegen mehr Speicherplatz.
+    \item \textbf{Thumb (16-bit):} Untermenge 16 Bit,
+    Ideal, um den Speicher-Footprint zu reduzieren (ca. 30\% Einsparung)
+    \item \textbf{Thumb-2 (16/32-bit):} variable Länge (16 und 32 Bit). Ermöglicht eine Code-Dichte ähnlich zu Thumb 
+    mit vergleichbarer Leistung wie der 32-Bit-ARM-Befehlssatz.
+\end{itemize}
+
+\section{Logik der ALU und Program Status Register}
+\label{sec:alu_logic}
+
+Die Arithmetisch-Logische Einheit (ALU) arbeitet ausschließlich auf binären Bitfolgen, 
+ohne die Semantik des Vorzeichens zu berücksichtigen (Interpretation \textit{signed} vs \textit{unsigned}).
+
+\subsection{Flag-Mechanismus (APSR)}
+\label{subsec:apsr_flags}
+
+\begin{itemize}
+    \item \textbf{N (Negative):} Spiegelt das höchstwertige Bit (MSB) des Ergebnisses wider. Wenn $MSB=1$, wird das Flag auf 1 gesetzt.
+    \item \textbf{Z (Zero):} Auf 1 gesetzt, wenn alle Bits des Ergebnisses gleich 0 sind.
+    \item \textbf{C (Carry):} Zeigt einen Übertrag über das höchstwertige Bit hinaus an. 
+\begin{itemize}
+    \item Entscheidend für Operationen \textit{unsigned}. \crd{Für die Subtraktion invertiert!}
+    \item \textbf{Subtraktions-Mechanismus:} $(A + \text{NOT}(B) + 1)$. \quad Zweierkomplement.
+\begin{itemize}
+        \item $C = 1 \implies A \ge B$ (Kein Borrow / Not-Borrow).
+        \item $C = 0 \implies A < B$ (Borrow erfolgt / Borrow).
+    \end{itemize}
+\end{itemize}
+    \item \textbf{V (oVerflow):} Zeigt einen Vorzeichenfehler in der Rechnung im Zweierkomplement an 
+    und ist entscheidend für Operationen \textit{signed}.
+\begin{itemize}
+        \item $(+) + (+) = (-)$ Unmöglich
+        \item $(-) + (-) = (+)$ Unmöglich
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Interpretation des Vorzeichens und bedingte Sprünge}
+\label{subsec:sign_interpretation}
+
+Da die ALU gleichzeitig sowohl das Flag $C$ als auch das Flag $V$ aktualisiert,
+liegt die Unterscheidung zwischen der Variable \texttt{int} und \texttt{uint} nicht in der Hardware, 
+sondern in der Software.
+
