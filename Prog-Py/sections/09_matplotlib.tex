@@ -1,0 +1,78 @@
+\section{Data Visualization}
+Datenvisualisierung ist entscheidend, weil Kennzahlen der Zusammenfassung irreführend sein können und die Wahl des Diagramms die gezogenen Schlussfolgerungen direkt beeinflusst. Matplotlib ist eine umfassende Bibliothek zur Erstellung statischer, animierter und interaktiver Visualisierungen in Python.
+
+\subsection{Matplotlib APIs}
+Es gibt im Wesentlichen zwei Ansätze zur Erstellung von Diagrammen: den nicht-objektorientierten Ansatz über die funktionale Schnittstelle (\texttt{pyplot}) und den objektorientierten (OOP) Ansatz. Der OOP-Ansatz wird empfohlen, da er mehr Kontrolle und Anpassungsmöglichkeiten bietet.
+
+\begin{lstlisting}[language=Python]
+import matplotlib.pyplot as plt
+import numpy as np
+
+t = np.linspace(0, 1, 100)
+s1 = np.sin(2 * np.pi * t)
+
+# Object-Oriented API (Recommended)
+fig, ax = plt.subplots(layout="constrained")
+ax.plot(t, s1, linestyle='-', marker='.', color="blue", label='Simulation')
+ax.set_xlabel('Time (s)')
+ax.set_ylabel('Amplitude (V)')
+ax.grid(which="both")
+ax.legend()
+plt.show()
+\end{lstlisting}
+
+\subsection{Common Methods and Formatting Arguments}
+Beim Anpassen von Diagrammen werden mehrere zentrale Argumente häufig über verschiedene Matplotlib-Methoden hinweg verwendet:
+
+\begin{itemize}
+    \item \textbf{Figure and Layout (\texttt{plt.subplots}, \texttt{plt.figure}):}
+    \begin{itemize}
+        \item \texttt{figsize=(width, height)}: Legt die Abmessungen der Figure in Zoll fest.
+        \item \texttt{layout="constrained"}: Passt Subplots automatisch so an, dass sie in den Bereich der Figure passen, und verhindert überlappende Elemente.
+        \item \texttt{sharex, sharey}: Erzwingt, dass Subplots dieselbe Skalierung der X- oder Y-Achse teilen (nützlich für direkte Vergleiche).
+    \end{itemize}
+    
+    \item \textbf{Plot Styling (\texttt{ax.plot}, \texttt{ax.scatter}):}
+    \begin{itemize}
+        \item \texttt{color} oder \texttt{c}: Legt die Farbe der Diagrammelemente fest.
+        \item \texttt{linestyle} oder \texttt{ls}: Definiert den Linienstil (\texttt{'-'} durchgezogen, \texttt{'---'} gestrichelt, \texttt{'-.'} strichpunktiert, \texttt{':'} gepunktet).
+        \item \texttt{linewidth} oder \texttt{lw}: Legt die Strichstärke der Linie fest.
+        \item \texttt{marker}: Fügt den Datenpunkten spezifische Symbole hinzu.
+        \item \texttt{alpha}: Steuert die Transparenz ($0.0$ ist vollständig transparent, $1.0$ ist vollständig deckend).
+        \item \texttt{label}: Weist dem Plot-Trace eine Zeichenkette als Bezeichner zu, die anschließend von \texttt{ax.legend()} verwendet wird.
+    \end{itemize}
+    
+    \item \textbf{Text and Labels (\texttt{ax.set\_title}, \texttt{ax.set\_xlabel}, \texttt{ax.text}):}
+    \begin{itemize}
+        \item \texttt{fontsize}: Gibt die Größe der Textelemente an.
+        \item \texttt{ha}, \texttt{va}: Horizontale und vertikale Ausrichtung für Textannotationen (z.B. \texttt{'center'}, \texttt{'left'}, \texttt{'top'}, \texttt{'bottom'}).
+        \item \texttt{loc}: Positionsargument, das üblicherweise zur Platzierung von Legenden verwendet wird (z.B. \texttt{ax.legend(loc='upper right')}).
+    \end{itemize}
+\end{itemize}
+
+\subsection{Common Plot Types}
+Je nach Daten sind unterschiedliche Diagrammtypen effektiver:
+\begin{itemize}
+    \item \textbf{Line Plots}: Nützlich für kontinuierliche Signale. Logarithmische Achsen können mit \texttt{loglog()}, \texttt{semilogx()} oder \texttt{semilogy()} angewendet werden.
+    \item \textbf{Step Plots}: Werden mit \texttt{step()} erstellt und zeichnen Daten mit einer horizontalen Basislinie, die durch vertikale Linien verbunden ist.
+    \item \textbf{Histograms}: Visualisieren die numerische Verteilung von Daten mit \texttt{hist()}.
+    \item \textbf{Scatter Plots}: Stellen Messdaten als Punkte auf den X- und Y-Achsen mit \texttt{scatter()} dar. Größe und Farbe können dritte und vierte Dimensionen repräsentieren.
+    \item \textbf{3D and Contour Plots}: \texttt{contour()} oder \texttt{contourf()} für 2D-Querschnitte einer 3D-Oberfläche und \texttt{plot\_surface()} für 3D-Renderings.
+\end{itemize}
+
+\subsection{Subplots and Layouts}
+Beim Verwalten mehrerer Diagramme erstellt \texttt{plt.subplots()} eine Figure und ein Array von Achsenobjekten.
+
+\begin{lstlisting}[language=Python]
+# Erstellen eines 2x2-Rasters von Subplots mit gemeinsamen X- und Y-Achsen
+fig, axes = plt.subplots(nrows=2, ncols=2, sharex=True, sharey=True)
+axes[0, 0].plot(t, s1)
+axes[0, 0].set_title("First Plot")
+\end{lstlisting}
+
+\subsection{Library Comparison}
+\begin{itemize}
+    \item \textbf{Matplotlib}: Vollständige Kontrolle und Anpassung, sehr anpassbar, aber statisch.
+    \item \textbf{Seaborn}: Auf Matplotlib aufbauend, bietet High-Level-statistische Diagramme mit klaren Standardstilen und integriert sich perfekt mit Pandas.
+    \item \textbf{Plotly}: Webbasierte Diagramme, die Zoomen, Hovering und dynamische Aktualisierungen ermöglichen.
+\end{itemize}
