@@ -181,12 +181,10 @@ function isStructuralLine(line) {
  * Translates the added lines of a single hunk.
  *
  * @param {Object}   params
- * @param {string[]} params.contextBefore  - context lines before the hunk (for the prompt only)
  * @param {string[]} params.addedLines     - lines to translate
- * @param {string[]} params.contextAfter   - context lines after the hunk (for the prompt only)
  * @returns {Promise<string[]>} translated lines, same length and order as addedLines
  */
-async function llmTranslateHunk({ contextBefore, addedLines, contextAfter }) {
+async function llmTranslateHunk(addedLines, isFirstTry) {
   if (addedLines.length === 0) return [];
 
   const url = `${AZURE_OPENAI_ENDPOINT}/openai/deployments/${AZURE_OPENAI_DEPLOYMENT}/chat/completions?api-version=${AZURE_OPENAI_API_VERSION}`;
@@ -198,13 +196,6 @@ async function llmTranslateHunk({ contextBefore, addedLines, contextAfter }) {
   }));
 
   const inputJson = JSON.stringify(inputEntries, null, 2);
-
-  const contextBeforeStr = contextBefore.length
-    ? contextBefore.map((l) => `  ${l}`).join("\n")
-    : "(start of file or hunk)";
-  const contextAfterStr = contextAfter.length
-    ? contextAfter.map((l) => `  ${l}`).join("\n")
-    : "(end of file or hunk)";
 
   const systemPrompt = `\
 You are a precise academic translator specialising in LaTeX documents.
@@ -226,17 +217,8 @@ Rules you must follow without exception:
 7. Do not merge, split, or reorder lines under any circumstance.`;
 
   const userPrompt = `\
-The following lines appear in this LaTeX context (shown for reference only — do NOT translate these):
-
-[Lines before for context]:
-${contextBeforeStr}
-
 [Lines to process]:
 ${inputJson}
-
-[Lines after for context]:
-${contextAfterStr}
-
 Return the translated JSON array now.`;
 
   const response = await fetch(url, {
@@ -251,7 +233,7 @@ Return the translated JSON array now.`;
         { role: "user", content: userPrompt },
       ],
       temperature: 0,
-      max_completion_tokens: 16384,
+      max_completion_tokens: 8096,
       response_format: { type: "text" },
     }),
   });
@@ -281,9 +263,11 @@ Return the translated JSON array now.`;
         maybeWrapped.result ??
         Object.values(maybeWrapped)[0]);
   } catch (e) {
-    throw new Error(
-      `LLM returned invalid JSON:\n${raw}\n\nParse error: ${e.message}`,
-    );
+    if (isFirstTry) {
+      return llmTranslateHunk(addedLines, false);
+    }
+    console.log("Failed second translation attempt. Returning lines unchanged");
+    return addedLines;
   }
 
   if (!Array.isArray(parsed) || parsed.length !== addedLines.length) {
@@ -367,16 +351,12 @@ async function handleNewFile(filePath) {
   console.log(`New file — translating entire content.`);
   const sourceLines = fs.readFileSync(filePath, "utf8").split("\n");
 
-  if (sourceLines.length > 500) {
+  if (sourceLines.length > 250) {
     console.log(`Skipping new file translation because it is too long`);
     return sourceLines.join("\n");
   }
 
-  const translated = await llmTranslateHunk({
-    contextBefore: [],
-    addedLines: sourceLines,
-    contextAfter: [],
-  });
+  const translated = await llmTranslateHunk(sourceLines, true);
 
   return translated.join("\n");
 }
@@ -502,12 +482,6 @@ async function processFile(fileDiff) {
 
     const lastNonContext = hunk.lines.length - 1 - lastNonContextRev;
 
-    const contextBefore = hunk.lines
-      .slice(0, firstNonContext)
-      .map((l) => l.text);
-    const contextAfter = hunk.lines
-      .slice(lastNonContext + 1)
-      .map((l) => l.text);
     const addedLines = hunk.lines
       .filter((l) => l.type === "added")
       .map((l) => l.text);
@@ -517,8 +491,8 @@ async function processFile(fileDiff) {
       `  Hunk ${h + 1}: +${addedLines.length} added, -${removedCount} removed`,
     );
 
-    // Skip file if too many changes happened, limit: 16384 (max-completion-tokens) / 30 (approximate tokens per line(return json)) = 500
-    if (addedLines.length > 500) {
+    // Skip file if too many changes happened, limit: 8096 (max-completion-tokens) / 30 (approximate tokens per line(return json)) = 250
+    if (addedLines.length > 250) {
       console.log(`  Hunk ${h + 1}: skipping because it has too many changes`);
       translatedHunks.push(hunk);
       continue;
@@ -526,11 +500,7 @@ async function processFile(fileDiff) {
 
     let translatedAdded;
     if (addedLines.length > 0) {
-      translatedAdded = await llmTranslateHunk({
-        contextBefore,
-        addedLines,
-        contextAfter,
-      });
+      translatedAdded = await llmTranslateHunk(addedLines, true);
     } else {
       translatedAdded = [];
     }
