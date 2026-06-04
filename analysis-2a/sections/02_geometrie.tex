@@ -16,7 +16,7 @@
     \subsubsection*{Explizit (2D)}
 
     \begin{itemize}
-        \item Eliminazione parametro $t$ (kann Schwierig sein)
+        \item Elimination Parameter $t$ (kann Schwierig sein)
         \item \textbf{Eindeutige} Funktionsgleichung $y = f(x)$
         \item Umkehrfunktion: $x = f^{-1}(y)$
     \end{itemize}
@@ -40,7 +40,7 @@
     \begin{itemize}
         \item Darstellung als Vektor: $\begin{pmatrix} x(t) \\ y(t) \\ \dots \end{pmatrix}$
         \item $\vec{c}$ ableitbar nach $t$ (keine Knicke)
-        \item $\vec{c}$ ist regulär, wenn ableitbar und $\vec{c'} \neq \vec{0}$ (mai $v=0$)
+        \item $\vec{c}$ ist regulär, wenn ableitbar und $\vec{c'} \neq \vec{0}$ (nie $v=0$)
     \end{itemize}
 \end{minipage}
 \hfill
@@ -62,7 +62,7 @@
     \subsubsection*{Tangentialvektor}
 
     \begin{itemize}
-        \item Vettore di velocità istantanea
+        \item Momentane Geschwindigkeit
         \item Darstellung als Vektor: $\frac{\diff}{\diff t}\vec{c} =  \begin{pmatrix} \dot{x}(t) \\ \dot{y}(t) \\ \dots \end{pmatrix}$
         \item Punkt steht für Ableitung nach der Zeit
     \end{itemize}
@@ -115,15 +115,14 @@ r(\varphi) \, \sin(\varphi) \end{pmatrix} \qquad
 \end{ctabular}
 \renewcommand{\arraystretch}{1}
 
-\subsubsection{Dominio di $\varphi$}
+\subsubsection{Definitionsbereich $\varphi$}
 \begin{enumerate}
-    \item \textbf{Esistenza Algebrica}: Denominatori $\neq 0$ e argomenti delle radici $\ge 0$.
-    \item \textbf{Positività del Raggio}: Poiché $r$ è una distanza, imponi $r(\varphi) \ge 0$.
-    \[ f(\varphi) \ge 0 \qquad \text{(Nominatore e Denominatore con lo stesso segno)}\]
-    \item \textbf{Vincolo Arcotangente}: Se $\varphi = \arctan(y/x)$, allora:
-    \[ \varphi \in \left( -\frac{\pi}{2}, \frac{\pi}{2} \right)\]
-    \item \textbf{Dominio Finale}: Intersezione di tutti i vincoli sopra indicati.
-    \[ \mathcal{D}_{\varphi} = \{ \text{Punti 1} \cap \text{Punti 2} \cap \text{Punti 3} \} \]
+    \item \textbf{Algebraische Existenz}: Nenner $\neq 0$ und Wurzelargumente $\ge 0$.
+    \item \textbf{Positivität des Radius}: Da $r$ eine Distanz ist, setze $r(\varphi) \ge 0$.
+    \[ f(\varphi) \ge 0 \qquad \text{(Zähler und Nenner mit demselben Vorzeichen)}\]
+    \item \textbf{Bedingung Arkustangens}: Wenn $\varphi = \arctan(y/x)$, dann: \quad $\varphi \in \left( -\frac{\pi}{2}, \frac{\pi}{2} \right)$
+    \item \textbf{Finaler Bereich}: Schnittmenge aller obigen Bedingungen.
+    \[ \mathcal{D}_{\varphi} = \{ \text{Punkt 1} \cap \text{Punkt 2} \cap \text{Punkt 3} \} \]
 \end{enumerate}
 
 \columnbreak
@@ -179,7 +178,7 @@ r(\varphi) \, \sin(\varphi) \end{pmatrix} \qquad
         $e$             & Extrentrizität                & $e = \sqrt{a^2 - b^2}$                                        \\
         $\varepsilon$   & num. Exzentrizität            & $\varepsilon = \frac{e}{a} \quad $\colorbox{yellow}{$(0 \leq \varepsilon < 1)$}    \\
         $p$             & Halbparameter                 & $p =\frac{b^2}{a}$                                            \\
-                        & (leggibile direttamente da asse $y$) & \\
+                        & (direkt lesbar von $y$-Achse) & \\
         $\varphi$       & Polarwinkel bei $F_2$         & $0 \leq \varphi < 2 \pi$ 	                                    \\
         $F_1, \, F_2$   & Brennpunkte                                                                                   \\
         $r_1, \, r_2$   & Polabstände zu $F_{1,2}$
@@ -217,9 +216,8 @@ r(\varphi) \, \sin(\varphi) \end{pmatrix} \qquad
     \bottomrule
 \end{ctabular}
 
-Come si può notare (asse $y$ tratteggiato), la rappresentazione polare ha l'origine
-posta nel fuoco $F_2$ .Per riportare la curva nel sistema cartesiano (centrato in O),
-è necessaria una \textbf{traslazione di $e$ lungo l'asse $x$} \textrightarrow $(\frac{x-e}{a})^2 + \dots$.
+Wie man sieht (gestrichelte $y$-Achse), hat die Polarform den Ursprung im Brennpunkt $F_2$. 
+Um die Kurve ins kartesische System (zentriert in O) zu bringen, ist eine \textbf{Verschiebung um $e$ entlang der $x$-Achse} nötig \textrightarrow $(\frac{x-e}{a})^2 + \dots$.
 
 \subsection{Kardioide (Kurve 2. Ordnung)}{100}	
 
@@ -289,8 +287,7 @@ posta nel fuoco $F_2$ .Per riportare la curva nel sistema cartesiano (centrato i
     \bottomrule
 \end{ctabular}
 
-Per riportare la curva nel sistema cartesiano (centrato in O),
-è necessaria una \textbf{traslazione di $\frac{1}{2}p$ entgegen l'asse $x$} \textrightarrow $\dots \cdot (x+\frac{p}{2})$.
+Um die Kurve ins kartesische System (zentriert in O) zu bringen, braucht es eine \textbf{Verschiebung um $\frac{1}{2}p$ entgegen der $x$-Achse} \textrightarrow $\dots \cdot (x+\frac{p}{2})$.
 
 \subsection{Hyperbel (Kurve 2. Ordnung)}{207}	
 
@@ -330,8 +327,7 @@ Per riportare la curva nel sistema cartesiano (centrato in O),
     \bottomrule
 \end{ctabular}
 
-Per riportare la curva nel sistema cartesiano (centrato in O),
-è necessaria una \textbf{traslazione di $e$ entgegen l'asse $x$} \textrightarrow $(\frac{x+e}{a})^2-\dots$.
+Um die Kurve ins kartesische System (zentriert in O) zu bringen, braucht es eine \textbf{Verschiebung um $e$ entgegen der $x$-Achse} \textrightarrow $(\frac{x+e}{a})^2-\dots$.
 
 \subsection{Krümmung}
 
@@ -384,8 +380,8 @@ Per riportare la curva nel sistema cartesiano (centrato in O),
     \renewcommand{\arraystretch}{1}
 \end{minipage}		
 
-È anche possibile analizzare lo Scheitel \textit{(vertice)} di una curva analizzando 
-la forma (z.B un iperbole ha $s = (\pm a,0)$)
+Es ist auch möglich, den Scheitel einer Kurve durch Analyse der Form zu finden
+(z.B. eine Hyperbel hat $s = (\pm a,0)$).
 
 \subsection{Krümmungskreis (Approximation 2. Ordnung)}	
 
@@ -432,18 +428,15 @@ la forma (z.B un iperbole ha $s = (\pm a,0)$)
 \end{ctabular}
 \renewcommand{\arraystretch}{1}
 
-\subsection{Kurven Ordnung}
-Due curve $f(x)$ e $g(x)$ hanno un contatto di \textbf{ordine $n$} in un punto $x_0$ se tutte le loro derivate fino all'ordine $n$ coincidono in quel punto, ma la derivata $(n+1)$-esima è diversa.
+\subsection{Kurvenordnung}
+Zwei Kurven $f(x)$ und $g(x)$ haben einen Kontakt der \textbf{Ordnung $n$} in einem Punkt $x_0$, wenn alle ihre Ableitungen bis zur Ordnung $n$ dort übereinstimmen, aber die $(n+1)$-te Ableitung verschieden ist.
 
 \begin{equation*}
-    f^{(k)}(x_0) = g^{(k)}(x_0) \quad \text{per ogni } k = 0, 1, \dots, n
-\end{equation*}
-\begin{equation*}
-    f^{(n+1)}(x_0) \neq g^{(n+1)}(x_0)
+    f^{(k)}(x_0) = g^{(k)}(x_0) \quad \text{für alle } k = 0, 1, \dots, n \qquad f^{(n+1)}(x_0) \neq g^{(n+1)}(x_0)
 \end{equation*}
 
-\subsubsection{Metodi di calcolo veloci}
+\subsubsection{Schnelle Berechnungsmethoden}
 \begin{itemize}
-    \item \textbf{Molteplicità delle radici:} Se l'equazione $f(x) - g(x) = 0$ ha una soluzione in $x_0$ con molteplicità $k$, allora l'ordine di contatto è $n = k - 1$.
-    \item \textbf{Sviluppo di Taylor:} Se $g(x)$ è il polinomio di Taylor di grado $n$ della funzione $f(x)$ centrato in $x_0$, allora il contatto tra la funzione e il polinomio è (almeno) di ordine $n$.
+    \item \textbf{Vielfachheit der Nullstellen:} Hat die Gleichung $f(x) - g(x) = 0$ in $x_0$ eine Lösung mit Vielfachheit $k$, so ist die Kontaktordnung $n = k - 1$.
+    \item \textbf{Taylor-Entwicklung:} Ist $g(x)$ das Taylor-Polynom vom Grad $n$ der Funktion $f(x)$ um $x_0$, so ist der Kontakt zwischen Funktion und Polynom (mindestens) von der Ordnung $n$.
 \end{itemize}

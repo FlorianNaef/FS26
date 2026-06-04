@@ -43,7 +43,7 @@
 Partielle Integration darf mehrfach angewendet werden. \\
 \textbf{PI sollte wenn möglich vermieden werden! Produkte in Summen umschreiben!}\vspace{1em}
 
-\textbf{LIATE} - Priorität für $g$ (funzione da derivare):
+\textbf{LIATE} - Priorität für $g$ (abzuleitende Funktion):
 % \begin{enumerate}
 %     \item \textbf{L}ogarithmische Funktionen (z.B. $\ln(x)$)
 %     \item \textbf{I}nverse trigonometrische Funkt. (z.B. $\arctan(x)$)
@@ -226,7 +226,7 @@ $0 \leq f(x)$ \quad $0 \leq g(x) \leq f(x)$ \quad $g(x)$ = Minorante \quad $D_f 
     \renewcommand{\arraystretch}{1}
 \end{center}
 
-\textbf{\color{orange}Dividere la costante $+C_{1,2, \dots}$ in base al $\mathbb{D}$ della funzione originale $\left(\int f\diff x\right)$.}\\
+\textbf{\color{orange}Konstante $+C_{1,2, \dots}$ aufteilen gemäss $\mathbb{D}$ der Originalfunktion $\left(\int f\diff x\right)$.}\\
 $n$ Lücke \quad \textrightarrow \quad $n+1$ bereiche \quad \textrightarrow \quad $+C_{1,\ \dots,\ n+1}$
 
 \subsection{Trigo Umformungen für die Integralrechnung}%\vspace{-1em}
@@ -237,7 +237,7 @@ $n$ Lücke \quad \textrightarrow \quad $n+1$ bereiche \quad \textrightarrow \qua
     \resizebox{0.99\columnwidth}{!}{%
     \begin{tabular}{|l|l|}
         \hline
-        % Prima sezione: Formule su riga singola (usando multicolumn)
+        % Erster Teil: Einzeilige Formeln (mit multicolumn)
         $\sin \alpha \sin \beta = \frac{1}{2}[\cos(\alpha - \beta) - \cos(\alpha + \beta)]$ &
         $\cos \alpha \cos \beta = \frac{1}{2}[\cos(\alpha - \beta) + \cos(\alpha + \beta)],$ \\
         $\sin \alpha \cos \beta = \frac{1}{2}[\sin(\alpha - \beta) + \sin(\alpha + \beta)],$& 
@@ -246,13 +246,13 @@ $n$ Lücke \quad \textrightarrow \quad $n+1$ bereiche \quad \textrightarrow \qua
         \multicolumn{2}{|l|}{$\sin \alpha \cos \beta \cos \gamma = \frac{1}{4} [\sin(\alpha + \beta - \gamma) - \sin(\beta + \gamma - \alpha) + \sin(\gamma + \alpha - \beta) + \sin(\alpha + \beta + \gamma)]$} \\ 
         
         \hline
-        % Seconda sezione: Potenze (due colonne)
+        % Zweiter Teil: Potenzen (zwei Spalten)
         $\sin^2 \alpha = \frac{1}{2}(1 - \cos 2\alpha)$ & $\cos^2 \alpha = \frac{1}{2}(1 + \cos 2\alpha)$ \\
         $\sin^3 \alpha = \frac{1}{4}(3 \sin \alpha - \sin 3\alpha)$ & $\cos^3 \alpha = \frac{1}{4}(\cos 3\alpha + 3 \cos \alpha)$ \\
         $\sin^4 \alpha = \frac{1}{8}(\cos 4\alpha - 4 \cos 2\alpha + 3)$ & $\cos^4 \alpha = \frac{1}{8}(\cos 4\alpha + 4 \cos 2\alpha + 3).$ \\
         
         \hline
-        % Terza sezione: Metà angolo (due colonne)
+        % Dritter Teil: Halber Winkel (zwei Spalten)
         $\sin \frac{\alpha}{2} = \sqrt{\frac{1}{2}(1 - \cos \alpha)} \quad \crd{\alpha \in [0, 2\pi]}$ & $\tan \frac{\alpha}{2} = \sqrt{\frac{1 - \cos \alpha}{1 + \cos \alpha}} = \frac{1 - \cos \alpha}{\sin \alpha} = \frac{\sin \alpha}{1 + \cos \alpha} \quad  \crd{\alpha \in [0, \pi)}$ \\
         $\cos \frac{\alpha}{2} = \sqrt{\frac{1}{2}(1 + \cos \alpha)} \quad \crd{\alpha \in [-\pi, \pi]} $& $\cot \frac{\alpha}{2} = \sqrt{\frac{1 + \cos \alpha}{1 - \cos \alpha}} = \frac{1 + \cos \alpha}{\sin \alpha} = \frac{\sin \alpha}{1 - \cos \alpha} \quad \crd{\alpha \in (0, \pi]}$ \\ \hline
     \end{tabular}}
