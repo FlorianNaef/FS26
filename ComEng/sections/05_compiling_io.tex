@@ -1,0 +1,27 @@
+\section{Der Kompilierungsprozess}
+Il codice sorgente viene convertito in dati binari attraverso diverse fasi:
+
+\begin{enumerate}
+    \item \textbf{Preprocessore:} Elabora inclusioni e macro.
+    (\texttt{\#define}, \texttt{\#if}, \dots)
+    \item \textbf{Compilatore:} Converte il linguaggio di alto livello in assembly.
+    \item \textbf{Assemblatore:} Converte l'assembly in codice macchina rilocabile.
+    \item \textbf{Linker/Bindatore:} Collega i file oggetto e le librerie.
+    \item \textbf{Loader:} Converte gli indirizzi rilocabili in indirizzi assoluti e li carica in memoria.
+\end{enumerate}
+
+\subsection{Compiler-Analyse}
+\begin{itemize}
+    \item \textbf{Analisi lessicale:} Rimozione degli spazi bianchi e raggruppamento dei token.
+    \item \textbf{Analisi sintattica/semantica:} Verifica della struttura e dei tipi di dati.
+    \item \textbf{Ottimizzazione:} Miglioramento del codice in termini di velocità o spazio di memoria.
+    \item \textbf{Generazione:} Generazione del codice di destinazione.
+\end{itemize}
+
+\section{I/O-Schnittstellen}
+I dispositivi periferici vengono mappati in memoria tramite registri specifici (\textit{Memory Mapped I/O}):
+\begin{itemize}
+    \item \textbf{Registri dati:} Contengono i dati da elaborare.
+    \item \textbf{Registri di controllo:} Configurazione del dispositivo periferico.
+    \item \textbf{Registri di stato:} Mostrano lo stato attuale dell'I/O (ad es. Busy, Ready).
+\end{itemize}
