@@ -1,5 +1,4 @@
-\section{Appendix}
-\subsection{Type Conversion: \texttt{dict()} and \texttt{list()}}
+\section{Anhang}\subsection{Type Conversion: \texttt{dict()} and \texttt{list()}}
 \begin{itemize}
     \item \textbf{Tuple to Dict}: The \texttt{dict()} function can convert a list of 2-item tuples directly into key-value pairs.
     \item \textbf{Deduplication}: Since dictionary keys must be unique, converting a list of tuples to a \texttt{dict} automatically removes duplicate entries (keeping the last evaluated value for a given key).
@@ -25,8 +24,7 @@ def view_dashboard(user):
 \end{lstlisting}
 
 
-\subsection{Script Execution}
-To distinguish between a script being run directly and a script being imported as a module, Python uses the \texttt{\_\_name\_\_} variable.
+\subsection{Skriptausführung}To distinguish between a script being run directly and a script being imported as a module, Python uses the \texttt{\_\_name\_\_} variable.
 
 \begin{itemize}
     \item When run directly: \texttt{\_\_name\_\_ == "\_\_main\_\_"}.
@@ -42,8 +40,7 @@ if __name__ == "__main__":
     main()
 \end{lstlisting}
 
-\subsection{Distribuzioni Casuali in NumPy}
-
+\subsection{Zufallsverteilungen in NumPy}
 \begin{itemize}
     \item \textbf{np.random.rand}: Genera campioni da una distribuzione \textbf{uniforme} nell'intervallo $[0, 1)$. Ogni valore ha la stessa probabilità di essere estratto.
     \item \textbf{np.random.randn}: Genera campioni dalla distribuzione \textbf{normal standard} (Gaussiana) con media $\mu = 0$ e varianza $\sigma^2 = 1$.
@@ -60,8 +57,7 @@ Dove:
     \item $\mu$ (Mu): Media (sposta il centro della distribuzione).
 \end{itemize}
 
-\subsection{Indexing vs Slicing: Regola Rapida}
-
+\subsection{Indexing vs. Slicing: Faustregel}
 La differenza dipende dal tipo di selettore utilizzato per l'asse:
 
 \begin{itemize}
@@ -69,8 +65,7 @@ La differenza dipende dal tipo di selettore utilizzato per l'asse:
     \item \textbf{Range (Slicing)}: Se usi i due punti (es. \texttt{arr[2:3]}), la dimensione viene \textbf{mantenuta} (rank-2).
 \end{itemize}
 
-\subsubsection{Esempio Pratico}
-Dato un array 2D di shape \texttt{(3, 3)}:
+\subsubsection{Praxisbeispiel}Dato un array 2D di shape \texttt{(3, 3)}:
 \begin{itemize}
     \item \texttt{arr[2, :]} $\rightarrow$ Risultato 1D, shape \texttt{(3,)}.
     \item \texttt{arr[2:3, :]} $\rightarrow$ Risultato 2D, shape \texttt{(1, 3)}.
