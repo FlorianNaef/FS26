@@ -1,102 +1,81 @@
 \section{Anhang}
-\subsection{Approfondimento taylor Reihe}
+\subsection{Vertiefung Taylor-Reihe}
 
-Questo approccio permette di sviluppare serie di Taylor per funzioni razionali evitando
-il laborioso calcolo di  utilizzando la serie 
-geometrica.
-
+Dieser Ansatz erlaubt Taylor-Reihen für rationale Funktionen ohne aufwendige Ableitungen via geom. Reihe.
 \begin{itemize}
-    \item \textbf{1. Partialbruchzerlegung (PBZ):} Si scompone la funzione frazionaria complessa
+    \item \textbf{1. Partialbruchzerlegung (PBZ):} Komplexe Bruchfunktion wird in Brüche zerlegt.
     \begin{equation*}
         f(x) = \frac{P(x)}{Q(x)} \xrightarrow{PBZ} \frac{A}{ax+b} + \frac{B}{cx+d}
     \end{equation*}
 
-    \item \textbf{2. Geometrische Reihe:} 
-    si riconducono i termini alla forma chiusa della serie geometrica:
+    \item \textbf{2. Geometrische Reihe:} Terme auf geschlossene Form der geom. Reihe bringen:
     \begin{equation*}
         \frac{1}{1-\cor{q}} = \sum_{n=0}^{\infty} \cor{q}^n
     \end{equation*}
 
-    \item \textbf{3. Normalizzazione del Denominatore:} Si manipolano i fratti 
-    raccogliendo le costanti a denominatore per ottenere esattamente un $1$ iniziale, forma standard $\frac{1}{1-q}$.
+    \item \textbf{3. Nenner-Normierung:} Konstanten ausklammern, um exakt eine $1$ am Anfang zu erhalten, Standardform $\frac{1}{1-q}$.
     \begin{equation*}
         \frac{A}{a+bx} = \frac{A}{a} \cdot \frac{1}{1 - \left(-\frac{b}{a}x\right)} \quad \implies \quad \cor{q} = -\frac{b}{a}x
     \end{equation*}
 
-    \item \textbf{4. Linearità e Vorfaktor:} Le costanti e segni vengono spostati nelle 
-    sommatorie. Si uniscono le serie in un'unica sommatoria raccogliendo $x^n$.
+    \item \textbf{4. Linearität und Vorfaktor:} Konstanten und Vorzeichen in die Summe ziehen. Reihen durch $x^n$ in einer Summe vereinen.
 
-    \item \textbf{5. Konvergenzradius ($\rho$):} La serie geometrica converge solo se 
-    $|q| < 1$. 
-    
-    Se la $f$ è composta da più serie, si calcola la condizione di convergenza 
-    per ognuna. Il raggio di convergenza totale è l'intersezione delle condizioni 
-    (\textbf{minimo} raggi)
+    \item \textbf{5. Konvergenzradius ($\rho$):} Geom. Reihe konvergiert nur für $|q| < 1$. Bei $f$ aus mehreren Reihen jede Bedingung prüfen. Der totale Konvergenzradius ist die Schnittmenge (\textbf{Minimum} der Radien).
 \end{itemize}
 
-\subsection{Cambio di indice nelle sommatorie}
+\subsection{Indexverschiebung in Summen}
 
-Per traslare l'indice di una sommatoria di una quantità costante $s$, si applica la seguente trasformazione generale:
+Um den Summenindex um eine Konstante $s$ zu verschieben, gilt folgende allgemeine Transformation:
 
 \begin{equation*}
 \sum_{n=n_0}^{N} a_n \quad \xrightarrow{k = n + s} \quad \sum_{k=n_0+s}^{N+s} a_{k-s}
 \end{equation*}
 
-I passaggi logici sono tre:
+Die logischen Schritte sind drei:
 \begin{enumerate}
-    \item \textbf{Nuova variabile}: Si definisce $k = n + s$.
-    \item \textbf{Nuovi limiti}: inferiore diventa $k_{start} = n_0 + s$ e superiore $k_{end} = N + s$.
-    \item \textbf{Sostituzione}: $n$ in funzione di $k$ ($n = k - s$) e sostituire all'interno dell'argomento.
+    \item \textbf{Neue Variable}: Man definiert $k = n + s$.
+    \item \textbf{Neue Grenzen}: unten wird $k_{start} = n_0 + s$ und oben $k_{end} = N + s$.
+    \item \textbf{Substitution}: $n$ durch $k$ ausdrücken ($n = k - s$) und im Argument ersetzen.
 \end{enumerate}
 
 \begin{equation*}
 \sum_{n=0}^{\infty} \frac{x^{n+1}}{(n+1)^2} \quad \xrightarrow{k = n + 1} \quad \sum_{k=1}^{\infty} \frac{x^k}{k^2}
 \end{equation*}
-In questo caso, avendo $n = k - 1$, il termine $(n+1)$ diventa semplicemente $k$.
+Da in diesem Fall $n = k - 1$ gilt, wird der Term $(n+1)$ einfach zu $k$.
+\subsection{Kontaktordnung $n$}
 
-\subsection{Ordine di contatto $n$}
-
-Per determinare l'ordine di contatto $n$ in un punto $x_0$ tra due funzioni $f(x)$ e $g(x)$, è possibile sviluppare entrambe in \textbf{serie di Taylor} (o serie di potenze) e confrontare i rispettivi coefficienti $a_k$.
-
-Due funzioni hanno un contatto di ordine $n$ se:
-
-i primi $n+1$ coefficienti delle loro serie sono identici.
-
-\textbf{Nota bene:} 
+Um die Kontaktordnung $n$ bei $x_0$ zwischen $f(x)$ und $g(x)$ zu finden, kann man beide in eine \textbf{Taylor-Reihe} entwickeln und die Koeffizienten $a_k$ vergleichen.
+Zwei Funktionen haben einen Kontakt der Ordnung $n$, wenn: die ersten $n+1$ Koeffizienten identisch sind.
+\textbf{Achtung:} 
 \begin{itemize}
-    \item I coefficienti nulli (\(a_k = 0\)) sono fondamentali e vanno conteggiati nel confronto.
-    \item Il primo coefficiente differente determina dove il contatto si "rompe".
+    \item Nullkoeffizienten ($a_k = 0$) sind wichtig und müssen beim Vergleich mitgezählt werden.
+    \item Der erste abweichende Koeffizient bestimmt, wo der Kontakt "bricht".
 \end{itemize}
 
-\subsection{Singularitätstest ergänzung}\label{chap:sing_erg}
-si dividono spesso i membri dell'equazione per termini contenenti la variabile dipendente. 
-Questo processo esclude implicitamente le soluzioni che annullano tali termini.
-
-\subsubsection{Procedimento Generale}
+\subsection{Singularitätstest Ergänzung}\label{chap:sing_erg}
+Oft wird die Gleichung durch Terme mit der abhängigen Variable dividiert. Dies schliesst implizit Lösungen aus, die diese nullsetzen.
+\subsubsection{Allgemeiner Ablauf}
 
 \begin{enumerate}
-    \item \textbf{Identificazione dei punti critici:} 
-    Individua ogni termine $g(y)$ o $f(z)$ che è stato posto a denominatore durante i passaggi algebrici.
-    
-    \item \textbf{Ricerca dei candidati:}
-    Imponi il termine uguale a zero per trovare potenziali soluzioni 
-    costanti o funzioni particolari: $g(y) = 0 \implies y = c $
+    \item \textbf{Kritische Punkte:} 
+    Finde jeden Term $g(y)$ oder $f(z)$, der bei der Rechnung in den Nenner gesetzt wurde.
+    \item \textbf{Kandidatensuche:}
+    Setze den Term gleich null, um mögliche konstante oder spezielle Lösungen zu finden: $g(y) = 0 \implies y = c $
     
     \item \textbf{DGL (Einsetzen):}
-    Sostituisci la funzione candidata $y$ e la sua derivata $y'$ nella DGL iniziale
+    Setze Funktion $y$ und Ableitung $y'$ in originale DGL ein.
     
-    \item \textbf{Valutazione del risultato:}
+    \item \textbf{Auswertung des Resultats:}
     \begin{itemize}
-        \item \textbf{Soluzione:} identità sempre vera (es. $0 = 0$), \cgn{la funzione è una soluzione valida.} 
-        \item \textbf{Test Fallito:} un'uguaglianza dipendente da $x$ (es. $-x^2 = 0$) la funzione \underline{non} è una soluzione della DGL.
-    \end{itemize}
+        \item \textbf{Lösung:} Identität immer wahr (z.B. $0 = 0$), \cgn{die Funktion ist eine gültige Lösung.} 
+    
+        \item \textbf{Test fehlgeschlagen:} $x$-abhängige Gleichung (z.B. $-x^2 = 0$), die Funktion ist \underline{keine} DGL-Lösung.
+\end{itemize}
 \end{enumerate}
 
-\subsection{Neutralità del Faltungsintegral}
-Se si calcola la soluzione particolare $y_p(x)$ tramite il \textbf{Faltungsintegral} con estremo inferiore uguale a $0$.
-per definizione geometrica e analitica si ha sempre:
+\subsection{Neutralität des Faltungsintegrals}
+Berechnet man die partikuläre Lösung $y_p(x)$ via \textbf{Faltungsintegral} mit unterer Grenze $0$, gilt geometrisch und analytisch immer:
 \[ y_p(0) = 0 \quad \text{e} \quad y_p'(0) = 0 \]
 
-Se le anfangsbedingungen hanno $\mathbf{x_0 = 0}$, $y_p$ è totalmente \textbf{neutra} nel calcolo delle costanti $A$ e $B$.
-
-\cor{Si possono quindi ricavare $A$ e $B$ imponendo le condizioni \textbf{solo} sulla parte omogenea}
+Sind die Anfangsbedingungen $\mathbf{x_0 = 0}$, ist $y_p$ bei der Berechnung der Konstanten $A$ und $B$ komplett \textbf{neutral}.
+\cor{Man kann also $A$ und $B$ finden, indem man die Bedingungen \textbf{nur} auf den homogenen Teil anwendet}

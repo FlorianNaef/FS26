@@ -16,13 +16,13 @@ $$ \sum\limits _{n=0}^\infty a_n (x - x_0)^n = f(x) \qquad \quad a_n = \frac{f^{
 
 \renewcommand{\arraystretch}{3}
 \begin{tabular}{ll}
-    $\displaystyle \sum\limits _{n=0}^\infty 1 \: x^n = \frac{1}{1-x} $                                           & \cbl{Konvergenz} wenn $(\vert x \vert < 1)$ \quad Geom. Reihe G.R.            \\
+    $\displaystyle \sum\limits _{n=0}^\infty 1 \: x^n = \frac{1}{1-x} $                                            & \cbl{Konvergenz} wenn $(\vert x \vert < 1)$ \quad Geom. Reihe G.R.            \\
     $\displaystyle \sum\limits _{n=0}^\infty \frac{1}{n!} x^n = \mathrm{e}^x $                                    & \cbl{Konvergenz} wenn  $(\vert x \vert < \infty \: ; \: x \in \mathbb{R})$    \\
     $\displaystyle \sum\limits _{n=0}^\infty \frac{(-1)^{n}}{n+1} x^{n+1} = \ln(1+x)$                             & \cbl{Konvergenz} wenn $(-1 < x \leq 1)$                                       \\
     $\displaystyle \sum\limits _{n=0}^\infty \frac{1}{n+1} x^{n+1} = - \ln(1-x)$                                  & \cbl{Konvergenz} wenn $(\vert x \vert < 1)$                                   \\
     $\displaystyle 2\cdot \sum\limits _{n=0}^\infty \frac{x^{2n+1}} {2n+1} = \ln \left(\frac{1+x}{1-x}\right)$   & \cbl{Konvergenz} wenn $(\vert x \vert < 1)$                                   \\
     $\displaystyle \sum\limits _{n=0}^\infty \frac{(-1)^{n}}{(2n+1)!} x^{2n+1} = \sin(x)$                         & \cbl{Konvergenz} wenn $(\vert x \vert < \infty)$                              \\
-    $\displaystyle \sum\limits _{n=0}^\infty \frac{(-1)^{n}}{(2n)!} x^{2n} = \cos(x)$                             & \cbl{Konvergenz} wenn $(\vert x \vert < \infty)$                              \\
+    $\displaystyle \sum\limits _{n=0}^\infty \frac{(-1)^{n}}{(2n)!} x^{2n} = \cos(x)$                              & \cbl{Konvergenz} wenn $(\vert x \vert < \infty)$                              \\
     $\displaystyle \sum\limits _{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!} = \sinh(x)$                                 & \cbl{Konvergenz} wenn $(\vert x \vert < \infty)$                              \\
     $\displaystyle \sum\limits _{n=0}^\infty \frac{x^{2n}}{(2n)!} = \cosh(x)$                                     & \cbl{Konvergenz} wenn $(\vert x \vert < \infty)$                              \\
     $\displaystyle \sum\limits _{n=0}^\infty \frac{(-1)^{n} \, x^{2n+1}}{2n+1} = \arctan(x)$                      & \cbl{Konvergenz} wenn $(\vert x \vert < 1)$
@@ -80,19 +80,15 @@ $$ \sum\limits _{n=0}^\infty \Bigl( \underbrace{-\frac{8}{3}(x+1) }_{\substack{q
 
 \subsubsection{Rand des Konvergenzbereichs}
 
-Es ist eine Spezialanalyse nötig, um zu sehen, ob auch Randstellen konvergieren!
-
-\smallskip
+Es ist eine Spezialanalyse nötig, um zu sehen, ob auch Randstellen konvergieren! \smallskip
 
 Randstelle konkret in Reihe einsetzen und mit einer der folgenden Methoden auf Konvergenz untersuchen: \\
 Leibniz, Majorante, Minorante, Integral, ...
 
 \subsubsection{Taylor Reihe}
-Normalmente, un polinomio di Taylor è un approssimazione che funziona bene vicino al centro.
-Se $x \rightarrow \infty$ allora l'Errore cresce.
+Normalerweise ist ein Taylor-Polynom nahe dem Zentrum eine gute Näherung. Wenn $x \rightarrow \infty$, wächst der Fehler.
 
-Tuttavia se $r = \infty$, significa che se $n \rightarrow \infty$ quell'errore viene schiacciato a zero per
-qualsiasi $x$ (coonvergenza totale) 
+Ist $r = \infty$, so wird dieser Fehler für $n \rightarrow \infty$ bei jedem $x$ auf null gedrückt (totale Konvergenz). 
 
 \subsection{Ableiten einer Reihe}
 
@@ -101,7 +97,7 @@ qualsiasi $x$ (coonvergenza totale)
 \[\sum\limits _{n=0}^\infty a_n \, x^n = f(x) \quad  \underrightarrow{\text{ableiten}} \quad 
 \sum\limits _{\crd{n=1}}^\infty a_n \, n \, x^{n-1} = f'(x)  \qquad \vert x \vert < r\]
 
-$n$ potrebbe rimanere 0 ma il primo termine è 0 ($a_0 \cdot 0 \cdot x^{-1} + \dots$)
+$n$ kann 0 bleiben, aber der erste Term ist 0 ($a_0 \cdot 0 \cdot x^{-1} + \dots$)
 
 \subsubsection{Höhere Ableitungen}
 
@@ -129,4 +125,3 @@ Für Konstante C: Entwicklungsstelle $x_0$ auf beiden Seiten einsetzen und für 
 $$ \sum\limits _{n=0}^\infty a_n x^n = f(x) \qquad x = r \text{(Rand rechts)} \quad \sum\limits _{n=0}^\infty a_n r^n \text{(Zahlenreihe)} $$
 $$ \text{Wenn Zahlenreihe \cbl{konvergiert \textbf{am rand}}, dann } \sum\limits _{n=0}^\infty a_n r^n = f(r) = \lim\limits_{x \to r^-} f(x) $$
 \textrightarrow\ analog mit linkem Rand $(x = -r)$ und rechtsseitiges Limit
-

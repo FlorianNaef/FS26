@@ -10,11 +10,11 @@ $$ \text{DGL (explizit):} \quad y'' = \underbrace{2 \, y' - x^2 \, y + \frac{1}{
 \begin{tabular}{ll}
     DGL             & Gleichlung, welche mind. eine Ableitung der gesuchten                             \\
     \smallskip
-                    & Funktion $y$ enthält                                                              \\
+                    & Funktion $y$ enthält                                                               \\
     \smallskip
     Ordnung $n$     & \textbf{höchste} in DGL vorkommende Ableitung von $y$                             \\
     \smallskip
-    Variable $x$    & Modellvariable in einem Intervall                                                 \\
+    Variable $x$    & Modellvariable in einem Intervall                                                  \\
     \smallskip
     r.h.s.          & right hand side \quad $f(x, y', y'', \, \ldots \, y^{(n-1)} )$                    \\
     \smallskip
@@ -43,7 +43,7 @@ Schema zur Beurteilung der \textbf{Lösbarkeit} einer DGL an einem Punkt $(x_0, 
 \textbf{Schritt 1: Stetigkeit (Existenz)}
 \begin{itemize}
     \item[(1)] $f(x, y, y', \, ... \, y^{(n-1)} )$ lokal bei $x_0 ; y_0$ stetig.
-    \item[] Stetigkeit rimane con operazioni elementari: $+, -, \cdot, :, \text{subst (\crd{Att}. }\mathbb{D}) (\sqrt{f}, \ln(f))$\\
+    \item[] Stetigkeit bleibt bei elementaren Operat. erhalten: $+, -, \cdot, :, \text{subst (\crd{Acht}. }\mathbb{D}) (\sqrt{f}, \ln(f))$\\
     \cor{Lineare oder elementare Funktionen sind fast immer stetig.}
 \end{itemize}
 
@@ -98,12 +98,12 @@ $$ y' = f(x \, ; \, y) = ( \text{Faktor in } x) * ( \text{Faktor in } y) = \tild
 
 \renewcommand{\arraystretch}{1.7}
 \begin{tabular}{ll}
-    (1) & $\frac{y'}{g(y)} = \tilde{f}(x)$ mit $g(y) \neq 0$                                                                            \\
+    (1) & $\frac{y'}{g(y)} = \tilde{f}(x)$ mit $g(y) \neq 0$                                                                             \\
     (2) & $\int \limits_{x_0}^{x} \frac{y'}{g(y)} \, \diff \tilde{x} = \int \limits_{x_0}^{x} \tilde{f}(\tilde{x}) \, \diff \tilde{x}$   \\
-    (3) & $\int \limits_{y_0}^{y} \frac{\diff \tilde{y}}{g(y)} =$ gelöstes Integral                                                     \\
-    (4) & Integral links lösen = gelöstes Integral rechts                                                                               \\
-    (5) & Gleichung auflösen nach $y$ \textrightarrow\ Formel in $x$                                                                    \\
-    (6) & Singularitätstest um weitere Lösungen zu finden (vedi \ref{chap:sing_erg})                                                                              \\
+    (3) & $\int \limits_{y_0}^{y} \frac{\diff \tilde{y}}{g(y)} =$ gelöstes Integral                                                      \\
+    (4) & Integral links lösen = gelöstes Integral rechts                                                                                \\
+    (5) & Gleichung auflösen nach $y$ \textrightarrow\ Formel in $x$                                                                     \\
+    (6) & Singularitätstest um weitere Lösungen zu finden (siehe \ref{chap:sing_erg})                                                                              \\
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
@@ -119,7 +119,7 @@ Separiert DGL: \quad $\boxed{z' = a + b \cdot f(z)}$ \qquad \qquad $z(x_0) = z_0
 \smallskip
 \begin{itemize}
     \item weiter in Abschnitt \ref{Trennung der Variablen (separiert)} 
-    mit $\tilde{f}(x) = 1$ (Non ci sono piu fattori dipendenti da $x$)
+    mit $\tilde{f}(x) = 1$ (Es gibt keine $x$-abhängigen Faktoren mehr)
     \item Substitution $y = z$
 \end{itemize}
 
@@ -183,13 +183,13 @@ $$ \text{\textbf{Lösungsmenge:}} \quad \boxed{\mathbb{L} = \mathbb{L}_H + y_p} 
     \end{tabular}
 \end{minipage}
 \begin{minipage}{0.3\columnwidth}
-    \textbf{Risoluzione:}
+    \textbf{Auflösung:}
     \begin{enumerate}
-        \item Equaz. con parametro var. $c$
-        \item Risolvere per $c$
-        \item Ableitung equazione pto.1
-        \item Sostiture $c$
-        \item Risovlere DGL
+        \item Gleichung mit Parameter $c$
+        \item Auflösen nach $c$
+        \item Ableitung von Gl. aus 1
+        \item $c$ substituieren
+        \item DGL auflösen
     \end{enumerate}
 \end{minipage}
     
@@ -197,7 +197,7 @@ $$ \text{\textbf{Lösungsmenge:}} \quad \boxed{\mathbb{L} = \mathbb{L}_H + y_p} 
 
 \begin{tabular}{llll}
     polar:  & $\frac{p}{1- \varepsilon \, \cos(\varphi)}$   & $\varphi \in \mathbb{D}_{\varphi}$    & $0 \leq \varepsilon < 1$ Ellipse \\
-            &                                               & $\varepsilon = 1$ Parabel             & $\varepsilon > 1$ Hyperbel
+            &                                                & $\varepsilon = 1$ Parabel             & $\varepsilon > 1$ Hyperbel
 \end{tabular}
 
 
@@ -208,7 +208,7 @@ Schneiden Originalkurven \myul{immer} senkrecht
 \smallskip
 
 \begin{tabular}{ll}
-    (1) & Originalkurve = $\mathbb{L}$ von DGL                                  \\
+    (1) & Originalkurve = $\mathbb{L}$ von DGL                                   \\
         & Originalkurve Ableiten; Parameter-Elimination                         \\  \medskip
         & \textrightarrow\ Originalkurven sind nun als DGL ausgedrückt          \\  
     (2) & DGL $y'$ in neue DGL \cbl{$\tilde{y}'$} transformieren                \\
@@ -262,7 +262,7 @@ $$ \text{\colorbox{yellow!50}{char. Gleichung:}} \quad \underbrace{1 \, \lambda^
             & $\mathbb{L}_H = A \, \e^{\lambda_1 \, x} + B \, \e^{\lambda_2 \, x}$ & ($A, B \in \mathbb{R}$)                                                        \\ 
     $D < 0$ & $\lambda_{1,2} \notin \mathbb{R}$ ; $\lambda_{1,2} = - \frac{a_1}{2} \pm j \cdot \underbrace{\sqrt{\vert D \vert}}_{\substack{\alpha}}$ & (Schwingfall)    \\ \medskip
             & $\mathbb{L}_H = A \, \e^{- \frac{a_1}{2} x} \cdot \cos(\alpha \, x) + B \, \e^{- \frac{a_1}{2} x} \cdot \sin(\alpha \, x)$ & ($A, B \in \mathbb{R}$)  \\
-    $D = 0$ & $\lambda_1 = \lambda_2 = - \frac{a_1}{2} \in \mathbb{R}$ & (Aperiodischer Grenzfall)                                                                 \\
+    $D = 0$ & $\lambda_1 = \lambda_2 = - \frac{a_1}{2} \in \mathbb{R}$ & (Aperiodischer Grenzfall)                                                                  \\
             & $\mathbb{L}_H = A \; \e^{\lambda_1 \, x} + B \; x \; \e^{\lambda_1 \, x}$ & ($A, B \in \mathbb{R}$)\\
 \end{tabular}
 \setlength{\tabcolsep}{6pt}
@@ -303,7 +303,7 @@ Vorteile: & Störung direkt verwendet \\
     $\cgn{p_n(x)}$  & Polynom vom Grad $n$ \quad (z.B. $a x^2 + b x + c$ für $n = 2$)                   \\  
     $\cbl{q_n(x)}$  & Lösungs-Polynom vom gleichen Grad $n$ \quad (z.B. $a x^2 + b x + c$ für $n = 2$)  \\  \medskip
                     & Koeffizienten bestimmen durch einsetzen in DGL ($y_p'' \rightarrow y'', y_p' \rightarrow y', \dots$)                   \\  \medskip
-    $r_n$, $s_n$    & Amplituden \textrightarrow\ $y_p$ in DGL einsetzen (come $y$)                              \\  
+    $r_n$, $s_n$    & Amplituden \textrightarrow\ $y_p$ in DGL einsetzen (wie $y$)                              \\  
     $a_1$, $a_0$    & Koeffizienten $\in \mathbb{R}$
 \end{tabular}
 
@@ -352,7 +352,7 @@ $$ y'' + a_1 \, y' + a_0 \, y = \e^{cx} \big( \cgn{p_n(x)} \, \cos(bx) + \cbl{q_
         & \textrightarrow\ $y_p = \e^{c x} \, x \, \big( r_n(x) \, \cos(bx) + s_n(x) \, \sin(bx) \big)$
 \end{tabular}\medskip
 
-(Verificare se $c$ e $b$ sono ugualli alla sol. della gleichung)
+(Prüfen ob $c$ und $b$ Lösung der Gleichung entsprechen)
 
 
 \subsection[Lineare DGL Ordnung n in N]{Lineare DGL Ordnung $\bm{n \in}\mathbb{N}$ }
@@ -375,14 +375,14 @@ $$ \text{ \textbf{Lösungsmenge:}} \quad \mathbb{L} = \mathbb{L}_H + y_p $$
 
 $$ \text{char. Gleichung:} \quad 1 \, \lambda^n + a_{n-1} \, \lambda^{n-1} + \ldots + a_2 \, \lambda^2 + a_1 \, \lambda + a_0 = 0 $$ 
 
-\textit{$r, k$: numero di ripetizioni $\lambda$}
+\textit{$r, k$: Anzahl Wiederholungen $\lambda$}
 
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{ll}
-    a)  & \textbf{reelle $\bm{r}$-fache} Lösung $\lambda_1 \in \mathbb{R}$                                                                              \\  \medskip
+    a)  & \textbf{reelle $\bm{r}$-fache} Lösung $\lambda_1 \in \mathbb{R}$                                                                               \\  \medskip
         & \textrightarrow\ $y_1 = \e^{\lambda_1 x}$, \quad $y_2 = x \, \e^{\lambda_1 x}$, \quad $\ldots$ \quad $y_r = x^{r-1} \, \e^{\lambda_1 x}$      \\
-    b)  & \textbf{komplexe $\bm{k}$-fache} Lösung $\lambda_2 \in \mathbb{C}$ (komplex-konjugiert)                                                       \\
-        & mit $\lambda_2 = \alpha + \jimg \beta $ und $\beta \neq 0$                                                                                    \\
+    b)  & \textbf{komplexe $\bm{k}$-fache} Lösung $\lambda_2 \in \mathbb{C}$ (komplex-konjugiert)                                                        \\
+        & mit $\lambda_2 = \alpha + \jimg \beta $ und $\beta \neq 0$                                                                                     \\
         & \textrightarrow\ $y_1 = \cvt{A_1} \cdot \e^{\alpha x} \cos(\beta x) + \cvt{A_2} \e^{\alpha x} \sin(\beta x)$                                  \\
         & \textrightarrow\ $y_{n} = \cvt{A_{2n-1}} \e^{\alpha x} x^{n-1} \, \cos(\beta x) + \cvt{A_{2n}} \e^{\alpha x} x^{n-1} \, \sin(\beta x)$
 \end{tabular}
@@ -468,8 +468,7 @@ $$
     \text{\RomanNumeralCaps{2}}\\
     \text{}
 \end{matrix}	
-\left|
-\begin{matrix}
+\left| \begin{matrix}
     \dot{x} = ax & + & by & + & e \\
     \dot{y} = cx & + & dy & + &\underbrace{f}_{\text{störf.}} 
 \end{matrix}
