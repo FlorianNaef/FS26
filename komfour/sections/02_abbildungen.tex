@@ -7,7 +7,7 @@ $$ f: \: \mathbb{D}_f \subseteqq \mathbb{C}  \: \rightarrow \: \mathbb{W}_f \sub
 \begin{itemize}[itemsep=0.2cm]
     \item Winkeltreue für komplex differenzierbare Funktion mit $f'(z) \neq 0$ \\
         \textrightarrow\ Drehstreckung mit Drehwinkel $\arg[f'(z)]$ und Streckfaktor $\vert f'(z) \vert$\\
-        \textrightarrow\ Winkelterue singifica che l'angolo di incidenza tra rette viene mantenuto
+        \textrightarrow\ Winkeltreue bedeutet, dass der Schnittwinkel zwischen Geraden erhalten bleibt
     \item Die Ableitung $f'(z)$ beschreibt, was lokal im Punkt $z$ passiert \\
         \textrightarrow\ Streckfaktor und Drehwinkel im Punkt $z$ \\
         Beispiel: $f'(z) = \frac{1}{2}\jimg$ \quad \textrightarrow\ Steckung um $\frac{1}{2}$ und Drehwinkel $\frac{\pi}{2}$
@@ -17,9 +17,7 @@ $$ f: \: \mathbb{D}_f \subseteqq \mathbb{C}  \: \rightarrow \: \mathbb{W}_f \sub
 
 \subsubsection{Parametergleichung von Bildkurven}
 
-Parametergleichung einer Bildgeraden kann \textbf{immer} ermittelt werden!
-
-\smallskip
+Parametergleichung einer Bildgeraden kann \textbf{immer} ermittelt werden! \smallskip
 
 \begin{tabular}{ll}
     waagerechte Gerade: & $z = z(r) = r + \jimg c_2$ \quad mit $r \in \mathbb{R}$ \\
@@ -27,8 +25,8 @@ Parametergleichung einer Bildgeraden kann \textbf{immer} ermittelt werden!
 \end{tabular}\vspace{1em}
 
 \begin{itemize}
-    \item $c_1$ è lo Stützvektor sull'asse reale, $j$ è la direzione verticale.
-    \item $j c_2$ è lo Stützvektor sull'asse immaginario, $1$ è la direzione orizzontale.
+    \item $c_1$ ist der Stützvektor auf der reellen Achse, $j$ die vertikale Richtung.
+    \item $j c_2$ ist der Stützvektor auf der imaginären Achse, $1$ die horizontale Richtung.
 \end{itemize}
 
 \smallskip
@@ -39,8 +37,8 @@ Parametergleichung einer Bildgeraden kann \textbf{immer} ermittelt werden!
 
 \subsubsection{Koordinatengleichung von Bildkurven}
 \begin{enumerate}
-    \item Separare parte Reale ed Immaginaria ($w_1 = \RE(w), w_2 = \IM(w)$)
-    \item Sistema di equazioni e rimuovere parametri $r, s$
+    \item Real- und Imaginärteil trennen ($w_1 = \RE(w), w_2 = \IM(w)$)
+    \item Gleichungssystem lösen und Parameter $r, s$ entfernen
 \end{enumerate}
 
 
@@ -58,7 +56,7 @@ $$ f: \: z \mapsto w = f(z) = az + b \quad \text{mit } a, \, b \in \mathbb{C} \t
 \begin{itemize}[itemsep=0.1cm]
     \item für $a = 1$ eine Translation um den Ortsvektor $\vec{b}$
     \item für $a \neq 1$ eine Drehstreckung mit Zentrum $\frac{b}{1-a}$, dem Drehwinkel $\arg(a)$ und dem Streckfaktor $\vert a \vert$
-    \item Si può anche pensare come $a$: Streckung und drehung attorno ad $O$, $b$ verschiebung
+    \item Man kann $a$ auch als Streckung und Drehung um $O$ sehen, $b$ als Verschiebung
 \end{itemize}
 
 \vspace{-0.1cm}
@@ -105,6 +103,7 @@ $$ f: \: z \mapsto w = f(z) = az + b \quad \text{mit } a, \, b \in \mathbb{C} \t
 \begin{itemize}
     \item rechte Hälfte der $z$-Ebene wird schon auf ganze $w$-Ebene abgebildet
     \item Doppelwertig, wenn linke Hälfte auch noch abgebildet wird
+  
     \item bijektiv, bei 2-blättriger Riemann'scher Fläche
     \item Quadratfunktion überall winkeltreu ausser im Ursprung, weil dort $f'(z) = 2 z = 0$
     \item Wurzelfunktion überall winkeltreu ausser im Ursprung, weil $f'(z) = \frac{1}{2 \sqrt{z}}$ nicht definiert
@@ -150,6 +149,7 @@ $$ f: \: z \mapsto w = f(z) = az + b \quad \text{mit } a, \, b \in \mathbb{C} \t
         \item bijektiv auf $\mathbb{C} \: \cap \: \lbrace \infty \rbrace$
         \item winkeltreu (bis auf das Vorzeichen)
         \item Geraden / Kreise gehen in Geraden / Kreise über
+        
         \item Einheitskreis ist ein \textbf{Fixpunktkreis}
         \item Rand eines Kreises geht in den Rand des Bildkreises über
     \end{itemize}
@@ -178,16 +178,15 @@ $$ f: \: z \mapsto w = f(z) = az + b \quad \text{mit } a, \, b \in \mathbb{C} \t
     \medskip
 
     \textbf{\color{red}Hinweis:} Bei Bedarf Originalkurve in Kreise und Geraden zerlegen\vspace{1em}!
-    
-    \textbf{Ortogonalità e Test Point}
+    \textbf{Orthogonalität und Testpunkt}
     \begin{itemize}
-        \item \textbf{Fixkreise (Cerchi fissi):} Un cerchio che interseca il cerchio unitario ortogonalmente ($90^\circ$) viene mappato su se stesso.
+        \item \textbf{Fixkreise:} Ein Kreis, der den Einheitskreis orthogonal ($90^\circ$) schneidet, wird auf sich selbst abgebildet.
     \end{itemize}
 \end{minipage}
 
 \begin{itemize}
-    \item \textbf{Test Point:} Per determinare l'area da colorare, usare un test point.
-    \item \textbf{Segno di Im:} Con $1/z$ (reciproco), la parte immaginaria cambia segno; con $1/\bar{z}$ (inversione), il segno rimane invariato.
+    \item \textbf{Testpunkt:} Um die zu färbende Fläche zu bestimmen, einen Testpunkt verwenden.
+    \item \textbf{Vorzeichen von Im:} Bei $1/z$ (Kehrwert) wechselt das Vorzeichen des Imaginärteils; bei $1/\bar{z}$ (Inversion) bleibt es gleich.
 \end{itemize}
 
 \columnbreak
@@ -229,7 +228,6 @@ $$ \e^z = \e^{z_1} \cdot \e^{\jimg z_2} = \e^{z_1} \cjs(z_2) \qquad \qquad
 \Ln(z) = \ln(\vert z \vert) + \jimg \arg(z) $$
 
 \textrightarrow\ Der Nullpunkt (Ursprung) wird \textbf{nicht} abgebildet!
-
 \begin{center}
     \includegraphics[width=0.85\linewidth]{images/exponentialfunktion.PNG}
 \end{center}
@@ -288,6 +286,6 @@ $a, \, b, \, c, \, d \in \mathbb{C}, \; c \neq0$ \& $ad - bc\neq 0$ \textrightar
         \textbf{Achtung:} Es sind nur 3 Parameter! \textrightarrow\ ein Parameter kann gekürtzt werden
 \end{itemize}
 
-Tipp: bei j im Nenner mit j erweitern: \frac{-3}{5j} = \frac{-3j}{5j^2} = \frac{3}{5}j
+$\text{Tipp: bei j im Nenner mit j erweitern:} \frac{-3}{5j} = \frac{-3j}{5j^2} = \frac{3}{5}j$
 
 % Ende Code Fabian

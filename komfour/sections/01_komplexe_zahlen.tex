@@ -39,7 +39,7 @@ $$ \RE(z) = z_1 = \vert z \vert \cdot \cos(\varphi) \qquad \qquad \IM(z) = z_2 =
 \subsubsection{Wichtige Zusammenhänge}\vspace{-0.5cm}
 
 \[\jimg^2 = -1 \qquad \frac{1}{\jimg} = -\jimg \qquad \e^{\jimg \, \pi} = -1 \qquad
-\e^{\jimg \frac{\pi}{2}} = \jimg \qquad \jimg^{\jimg} = \e^{- \frac{\pi}{2} + 2k \pi} \qquad | \cjs(\varphi)| = 1 \]
+\e^{\jimg \frac{\pi}{2}} = \jimg \qquad \jimg^{\jimg} = \e^{- \frac{\pi}{2} + 2k \pi} \qquad |\cjs(\varphi)| = 1 \]
 
 \[e^{\jimg \varphi} = \cjs(\varphi) \qquad \cjs(\alpha) \cdot \cjs(\beta) = \cjs(\alpha + \beta) \qquad \cjs(\alpha) : \cjs(\beta) = \cjs(\alpha - \beta)\]
 
@@ -61,8 +61,8 @@ $$z_1 \perp z_2 \Leftrightarrow \RE\left(\frac{z_1}{z_2}\right) = 0 \Leftrightar
 
     \renewcommand{\arraystretch}{1.5}
     \begin{tabular}{l c l}
-        $\overline{a + b} = \overline{a} + \overline{b}$            & & $\overline{a - b} = \overline{a} - \overline{b}$          \\ 
-        $\overline{a \cdot b} = \overline{a} \cdot \overline{b}$    & & $\overline{a \div b} = \overline{a} \div \overline{b}$
+        $\overline{a + b} = \overline{a} + \overline{b}$ & & $\overline{a - b} = \overline{a} - \overline{b}$ \\ 
+        $\overline{a \cdot b} = \overline{a} \cdot \overline{b}$ & & $\overline{a \div b} = \overline{a} \div \overline{b}$
     \end{tabular}
     \renewcommand{\arraystretch}{1}
 
@@ -86,8 +86,8 @@ Gleiches Vorgehen wie in $\mathbb{R}$ (\textbf{kartesisch})
 
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}{ll}
-    Addition:       & $(a_1 + \jimg a_2) + (b_1 + \jimg b_2) = (a_1 + b_1) + \jimg (a_2 + b_2)$ \\
-    Subtraktion:    & $(a_1 + \jimg a_2) - (b_1 + \jimg b_2) = (a_1 - b_1) + \jimg (a_2 - b_2)$ 
+    Addition: & $(a_1 + \jimg a_2) + (b_1 + \jimg b_2) = (a_1 + b_1) + \jimg (a_2 + b_2)$ \\
+    Subtraktion: & $(a_1 + \jimg a_2) - (b_1 + \jimg b_2) = (a_1 - b_1) + \jimg (a_2 - b_2)$ 
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
@@ -96,31 +96,26 @@ Gleiches Vorgehen wie in $\mathbb{R}$ (\textbf{kartesisch})
 
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}{ll}
-    kartesisch:     & $(a_1 + \jimg a_2) \cdot (b_1 + \jimg b_2) = (a_1 b_1 - a_2 b_2) + \jimg (a_1 b_2 + a_2 b_1)$ \\
-    \textbf{polar:} & $a \cdot b = \vert a \vert \vert b \vert \, e^{\jimg (\varphi_1 + \varphi_2)}$                \\
+    kartesisch: & $(a_1 + \jimg a_2) \cdot (b_1 + \jimg b_2) = (a_1 b_1 - a_2 b_2) + \jimg (a_1 b_2 + a_2 b_1)$ \\
+    \textbf{polar:} & $a \cdot b = \vert a \vert \vert b \vert \, e^{\jimg (\varphi_1 + \varphi_2)}$ \\
                     & \textrightarrow\ Beträge multiplizieren und Argumente (Winkel) addieren
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
-La moltiplicazione equivale ad una rotazione di angolo $\arg(b)$ e una streckung di $\vert b \vert$.
+Multiplikation -> einer Drehung um den Winkel $\arg(b)$ und einer Streckung um $\vert b \vert$.
 
 \subsubsection{Division}
 
 \renewcommand{\arraystretch}{1.6}
 \begin{tabular}{ll}
-    kartesisch:     & $\frac{(a_1 + \jimg a_2)}{(b_1 + \jimg b_2)} = 
+    kartesisch: & $\frac{(a_1 + \jimg a_2)}{(b_1 + \jimg b_2)} = 
                     \frac{(a_1 + \jimg a_2) \cbl{(b_1 - \jimg b_2)}}{(b_1 + \jimg b_2) 
                     \cbl{(b_1 - \jimg b_2)}} = \frac{\text{ausmultiplizieren}}{b_1^2 + b_2^2}$ 
                     \qquad {\small$\color{blue}\blacksquare$: Konjugiert komplexe}\\
-    \textbf{polar:} & $\frac{a}{b} = \frac{\vert a \vert}{\vert b \vert} \, \e^{\jimg (\varphi_1 - \varphi_2)}$                                                                                                    \\
+    \textbf{polar:} & $\frac{a}{b} = \frac{\vert a \vert}{\vert b \vert} \, \e^{\jimg (\varphi_1 - \varphi_2)}$ \\
                     & \textrightarrow\ Beträge dividieren und Argumente (Winkel) subrahieren
 \end{tabular}
 \renewcommand{\arraystretch}{1}
-
-\smallskip
-
-\textbf{Hinweis:} Es gilt: $\Big| \frac{a}{b} \Big| = \frac{\vert a \vert}{\vert b \vert}$ 
-
 
 \subsubsection{Potenzieren (De Moivre)}
 
@@ -140,34 +135,35 @@ werden:\vspace{-1em}
 \end{center}
 
 % \includegraphics[width=\columnwidth]{images/mehrfachwinkel_2.PNG}
-\subsubsection{Estrazione di radice $n$-esima (Radicazione)}
+\subsubsection{Ziehen der $n$-ten Wurzel (Radizieren)}
 
 \begin{itemize}
-    \item \textbf{Proprietà:} Le distributive delle radici \textbf{non si estendono} generalmente al campo complesso ($\sqrt{ab} \neq \sqrt{a}\sqrt{b}$ in $\mathbb{C}$).
-    \item \textbf{Molteplicità:} Ogni numero complesso $a \neq 0$ ammette esattamente $n$ radici $n$-esime distinte in $\mathbb{C}$.
-    \item \textbf{Geometria:} Le soluzioni si dispongono nel piano come i vertici di un \textbf{$n$-agono regolare} centrato nell'origine e inscritto in una circonferenza di raggio $R = \sqrt[n]{|a|}$.
+    \item \textbf{Eigenschaft:} Die Distributivgesetze der Wurzeln \textbf{gelten generell nicht} im komplexen Bereich ($\sqrt{ab} \neq \sqrt{a}\sqrt{b}$ in $\mathbb{C}$).
+    \item \textbf{Vielfachheit:} Jede komplexe Zahl $a \neq 0$ besitzt exakt $n$ verschiedene $n$-te Wurzeln in $\mathbb{C}$.
+    \item \textbf{Geometrie:} Die Lösungen bilden in der Ebene die Ecken eines regulären \textbf{$n$-Ecks}, zentriert im Ursprung auf einem Kreis mit Radius $R = \sqrt[n]{|a|}$.
 \end{itemize}\vspace{-0.8em}
 
 \[z^n = a \implies z_k = \sqrt[n]{|a|} \left( \cos \frac{\varphi + 2k\pi}{n} + \jimg \sin \frac{\varphi + 2k\pi}{n} \right), \quad k \in \{0, 1, \dots, n-1\}\]\vspace{-0.5em}
 % \[z^n = a  \qquad \vert z \vert = \sqrt[n]{\vert a \vert} \qquad \qquad \arg(z_1) = \frac{\arg(a)}{n} \qquad \arg(z_n) = \frac{\arg(a)}{n}+k\cdot \frac{2\pi}{n}\]
 
-\example{Determinazione delle radici quarte di $-16$ ($z^4 = -16$)}
+\example{Bestimmung der vierten Wurzeln von $-16$ ($z^4 = -16$)}
 
 \begin{minipage}{0.58\columnwidth}
     \begin{enumerate}
-        \item \textbf{Modulo ($|z_k|$):}
+        \item \textbf{Betrag ($|z_k|$):}
         \begin{align*}
             \lvert z \rvert^4 \cdot \cjs(4 \varphi) &= 16 \cdot \cjs(\pi)\\
             z = \sqrt[4]{\lvert 16 \rvert} &= 2
         \end{align*}
-        \item \textbf{Argomento principale ($z_0$):}
+        \item \textbf{Hauptargument ($z_0$):}
     
-        Si divide l'argomento $\arg(a) = \pi$ per l'indice $n=4$:
+        Man teilt das Argument $\arg(a) = \pi$ durch den Index $n=4$:
         \begin{equation*}
             \alpha_0 = \frac{\arg(a)}{n} = \frac{\pi}{4} = 45^\circ
         \end{equation*}
-        \item \textbf{Argomenti successivi:}
-        Si applica un incremento angolare costante $\Delta\varphi = \frac{2\pi}{n} = \frac{\pi}{2}$:
+        \item \textbf{Folgeargumente:}
+ 
+       Es gilt ein konstantes Winkelinkrement $\Delta\varphi = \frac{2\pi}{n} = \frac{\pi}{2}$:
         \begin{align*}
             \alpha_1 &= \frac{\pi}{4} + \frac{\pi}{2} = \frac{3\pi}{4} \\
             \alpha_2 &= \frac{3\pi}{4} + \frac{\pi}{2} = \frac{5\pi}{4} \\
@@ -187,8 +183,8 @@ werden:\vspace{-1em}
     \end{align*}
 \end{minipage}
 
-% Versione ottimizzata del formalismo di Steiner
-Posto $a = r \mathrm{e}^{\jimg \varphi}$, l'insieme delle radici $n$-esime è definito come:
+% Optimierte Version des Steiner-Formalismus
+Mit $a = r \mathrm{e}^{\jimg \varphi}$ ist die Menge der $n$-ten Wurzeln definiert als:
 \begin{equation*}
     \mathcal{S} = \left\{ \sqrt[n]{r} \cdot \mathrm{e}^{\jimg \left( \frac{\varphi}{n} + \frac{2k\pi}{n} \right)} \;\middle|\; k \in \mathbb{Z}, \, 0 \le k < n \right\}
 \end{equation*}
@@ -197,7 +193,6 @@ Posto $a = r \mathrm{e}^{\jimg \varphi}$, l'insieme delle radici $n$-esime è de
 Durch Multiplikation mit der $n$-ten Einheitswurzel erreicht man eine reine Drehung um $\frac{360}{n}$ Grad im \textbf{Gegenuhrzeigersinn}. \\	
 \textbf{Achtung!} Die erste Lösung von $\sqrt[n]{1}$ ist immer die reelle Zahl 1\\
 \textrightarrow\ nächste Lösung verwenden!
-
 \begin{center}
     \includegraphics[width=0.9\columnwidth]{images/einheitswurzel.PNG}
 \end{center}
@@ -214,9 +209,7 @@ Durch Multiplikation mit der $n$-ten Einheitswurzel erreicht man eine reine Dreh
 
 \para{Exponentialgesetze}
 
-Die Exponentialgesetze bleiben in $\mathbb{C}$ für \myul{ganzzahlige} Exponenten erhalten!
-
-\smallskip
+Die Exponentialgesetze bleiben in $\mathbb{C}$ für \myul{ganzzahlige} Exponenten erhalten! \smallskip
 
 \begin{tabular}{l c l c l}
     $\e^a \cdot \e^b = \e^{a+b}$    & & $\e^a : \e^b = \e^{a-b}$    & & $a, \; b \in \mathbb{C}$    \\
@@ -264,9 +257,7 @@ Kreisscheibe um den Ursprung mit Radius $\sum\limits _{k=0}^n \bigl| \frac{a_k}{
 
 \smallskip
 
-Für Gleichungen vom Grad $\geq$ 5 existieren \textbf{keine} nur aus den 4 Grundoperationen und Wurzeln zusammengesezten Lösungsformeln.	
-
-
+Für Gleichungen vom Grad $\geq$ 5 existieren \textbf{keine} nur aus den 4 Grundoperationen und Wurzeln zusammengesezten Lösungsformeln.
 \subsubsection{Polynome mit Koeffizienten $\bm{\in \mathbb{C}}$}
 
 \crd{Wichtige Eigenschaften von komplexen \textbf{und} reellen Polynomen:}
@@ -274,11 +265,10 @@ Für Gleichungen vom Grad $\geq$ 5 existieren \textbf{keine} nur aus den 4 Grund
 \smallskip
 
 \begin{enumerate}[itemsep=0.2cm]
-    \item Le soluzioni complesse possono essere totalmente asimmetriche e non presentarsi in coppia
+    \item Komplexe Lösungen können völlig asymmetrisch sein und nicht als Paar auftreten
     \item Jedes komplexe Polynom vom Grad $\geq 1$ hat in $\mathbb{C}$ mindestens eine Nullstelle
     \item Ein komplexes Polynom vom Grad $n$ zerfällt in $\mathbb{C}$ in lauter Linearfaktoren. \\
-        Die Faktoren müssen \textbf{nicht} verschieden sein.
-        Die Zerlegung ist bis auf die Reihenfolge eindeutig. \\
+        Die Faktoren müssen \textbf{nicht} verschieden sein. Die Zerlegung ist bis auf die Reihenfolge eindeutig. \\
         Beispiel: $a_n z^n + a_{n-1}z^{n-1} + \ldots + a_0 \quad \underrightarrow{\text{umformen}} \quad a_n \cdot (z - z_1) \cdot (z - z_2) \cdot \ldots \cdot (z - z_n)$
     \item Vielfachheit: Ein komplexes Polynom vom Grad $n$ hat in $\mathbb{C}$ \textbf{genau} $n$ (verschiedene) Nullstellen, wenn diese mit ihrer 
         Vielfachheit gezählt werden
@@ -286,12 +276,12 @@ Für Gleichungen vom Grad $\geq$ 5 existieren \textbf{keine} nur aus den 4 Grund
 
 \medskip
 
-\para{Determinazione del Vorfaktor $a_n$}
+\para{Bestimmung des Vorfaktors $a_n$}
 
-Per determinare il coefficiente principale \textbf{$a_n$}:
+Um den Hauptkoeffizienten \textbf{$a_n$} zu bestimmen:
 \begin{enumerate}
-    \item \textbf{Dall'equazione:} È il coefficiente del termine con la potenza più alta ($z^n$).
-    \item \textbf{Per sostituzione:} Se conosci le radici $z_i$ e un punto $P(z_0) = y_0$, allora:
+    \item \textbf{Aus der Gleichung:} Es ist der Koeffizient des Terms mit der höchsten Potenz ($z^n$).
+    \item \textbf{Durch Einsetzen:} Kennt man die Wurzeln $z_i$ und einen Punkt $P(z_0) = y_0$, dann:
     \[ a_n = \frac{y_0}{\prod_{i=1}^{n} (z_0 - z_i)} \]
 \end{enumerate}
 
@@ -362,7 +352,8 @@ A \cdot \big[ \cos(\omega t + \varphi) + \jimg \sin(\omega t + \varphi) \big] \r
 
 \begin{tabular}{lll@{}}
     Komplexe Amplitude $z_i(0)$ & $z_i(0) = A \cdot \e^{\jimg \varphi_i}$                                                                                       & (zeitunabhängig)  \\
-    'Schwingung' / 'Rotation'   & $z(t) = A \cdot \e^{\jimg (\omega t + \varphi)} = \underbrace{A \cdot \e^{\jimg \varphi}}_{z_i(0)} \cdot \e^{\jimg \omega t}$ & (zeitabhängig)
+    'Schwingung' / 'Rotation' 
+    & $z(t) = A \cdot \e^{\jimg (\omega t + \varphi)} = \underbrace{A \cdot \e^{\jimg \varphi}}_{z_i(0)} \cdot \e^{\jimg \omega t}$ & (zeitabhängig)
 \end{tabular}
 
 
@@ -370,9 +361,8 @@ A \cdot \big[ \cos(\omega t + \varphi) + \jimg \sin(\omega t + \varphi) \big] \r
 \begin{itemize}
     \item Überlagerung gleichfrequenter Schwingungen entspricht grafischer Addition der
     beiden 'Zeiger' zu jedem Zeitpunkt.
-    \item La somma va eseguita solamente usando $\sin \text{o} \cos$, scegliere uno dei
-    2 e trasformare l'altro usando prorietà trigonometriche (\ref{chap:trigo-beziehungen})
-    \item Per trovare $A$: exp $\rightarrow$ kartesische, eseguire $\sum$, risultato da kartesiche $\rightarrow$ exp
+    \item Die Summe nur mit $\sin \text{oder} \cos$ berechnen, eines wählen und das andere mit Trigo-Eigenschaften umformen (\ref{chap:trigo-beziehungen})
+    \item Um $A$ zu finden: exp $\rightarrow$ kartesisch, $\sum$ berechnen, Resultat von kartesisch $\rightarrow$ exp
 \end{itemize}
 
 

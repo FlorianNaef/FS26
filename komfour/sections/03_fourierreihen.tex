@@ -1,9 +1,8 @@
 \section{Fourierreihen periodischer Funktionen}
 
 Darstellung einer \textbf{periodischen} Funktion $f(t)$ mit Periodendauer $T > 0$ durch eine Linearkombination von Sinus- und Kosinusfunktionen,
-deren Frequenzen ganzzahlige Vielfache der Kreisfrequenz (Winkelgeschwindigkeit) $\omega_f = \frac{2 \pi}{T} = 2 \pi v$ sind. 
-
-\crd{\textbf{T periodish}: Endlich anzahl sprungstelle, $g- \in \infty$ und $g+ \in \infty$}
+deren Frequenzen ganzzahlige Vielfache der Kreisfrequenz (Winkelgeschwindigkeit) $\omega_f = \frac{2 \pi}{T} = 2 \pi v$ sind.
+\crd{\textbf{T-periodisch}: Endliche Anzahl Sprungstellen, $g- \in \infty$ und $g+ \in \infty$}
 
 \smallskip
 
@@ -18,6 +17,7 @@ deren Frequenzen ganzzahlige Vielfache der Kreisfrequenz (Winkelgeschwindigkeit)
     $\int \limits_{0}^{T} \cos(m \, \omega_f \, t) \cdot \cos(n \, \omega_f \, t) \, \diff t = 
     \begin{cases}
         T,              & m = n = 0 \\
+     
         \frac{T}{2},    & m = n > 0 \\
         0,              & m \neq n
     \end{cases}$ 
@@ -43,8 +43,8 @@ $\bm{f(t)}$\\auf dem Intervall [0 ; T)}
 \renewcommand{\arraystretch}{2.5}
 \begin{tabular}{l c l}
     % $a_0 = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \, \diff t$\\
-    $a_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \cos(n \, \omega_f \, t) \, \diff t$                           & $(n = 0, \, 1, \, 2, \, \ldots)$                                                                  \\
-    $b_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \sin(n \, \omega_f \, t) \, \diff t$                           & $(n = 1, \, 2, \, 3, \, \ldots)$                                                                  \\	
+    $a_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \cos(n \, \omega_f \, t) \, \diff t$                           & $(n = 0, \, 1, \, 2, \, \ldots)$                                                                   \\
+    $b_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \sin(n \, \omega_f \, t) \, \diff t$                           & $(n = 1, \, 2, \, 3, \, \ldots)$                                                                   \\	
     \cbl{$c_n = \overline{c_{-n}} = \frac{1}{T} \int \limits_0^T f(t) \cdot \e^{- \jimg \, n \, \omega_f \, t} \, \diff t$} & $\cbl{(n = 0, \, 1, \, 2, \, \ldots)}$    & \textrightarrow\ Für $n = 0: \, c_0 = \frac{a_0}{2}$
 \end{tabular}
 \renewcommand{\arraystretch}{1}
@@ -53,17 +53,15 @@ $\bm{f(t)}$\\auf dem Intervall [0 ; T)}
 
 \begin{itemize}
     \item \crd{Trigo-Produkte in Integralen in SUMMEN umwandeln!!}
-    \item \cor{Attenzione ad edge-cases con $n$ nei denominatori! (calcolare $n$ specifico
-    separatemente con formula base)}
-    \item \textbf{Integrazione a tratti:} dividere l'intervallo [0,T] in sotto-intervalli se 
-    l'espressione analitica di $f(t)$ cambia nel periodo.
+    \item \cor{Achtung auf Edge-Cases mit $n$ im Nenner! (spezifisches $n$ separat mit Basisformel berechnen)}
+    \item \textbf{Abschnittsweise Integration:} Intervall [0,T] in Teilintervalle aufteilen, falls sich der analytische Ausdruck von $f(t)$ ändert.
 \end{itemize}
 \subsubsection{Umrechnung der Fourierkoeffizienten}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}{ll}
     $c_n = \overline{c_{-n}} = \frac{a_n - \jimg \, b_n }{2}$   & ($n = 0, \, 1, \, 2, \, \ldots \text{ wobei } b_0 = 0$)   \\
-    $a_n = 2 \, \RE(c_n) = c_n + c_{-n}$                        & ($n = 0, \, 1, \, 2, \, \ldots$)                          \\
+    $a_n = 2 \, \RE(c_n) = c_n + c_{-n}$                        & ($n = 0, \, 1, \, 2, \, \ldots$)                           \\
     $b_n = -2 \, \IM(c_n) = \jimg (c_n - c_{-n})$               & ($n = 1, \, 2, \, 3, \, \ldots$) 
 \end{tabular}
 \renewcommand{\arraystretch}{1}
@@ -87,6 +85,7 @@ $\bm{f(t)}$\\auf dem Intervall [0 ; T)}
 \hfill
 \begin{minipage}{0.43\linewidth}
     \begin{tabular}{ll}
+   
         gerade:     &  $f(-t) = f(t)$ \\
         \\ 
         ungerade:   & $f(-t) = - f(t)$ 
@@ -96,9 +95,9 @@ $\bm{f(t)}$\\auf dem Intervall [0 ; T)}
 \smallskip
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{l|l|l}
-\textbf{Proprietà} & \multicolumn{2}{l}{\textbf{Coefficienti di Fourier}} \\ \hline
+\textbf{Eigenschaft} & \multicolumn{2}{l}{\textbf{Fourierkoeffizienten}} \\ \hline
 \multirow{2}{*}{$f(t)$ gerade}   & $\displaystyle a_n = \frac{4}{T} \int_{0}^{\frac{T}{2}} f(t) \cos(n \omega_f t) dt$ & $b_n = 0$ \\
-                                 & \color{blue}{$\text{Im}(c_k) = 0$} & \color{blue}{$c_n = \frac{a_n}{2}$ (reell)} \\ \hline
+                                  & \color{blue}{$\text{Im}(c_k) = 0$} & \color{blue}{$c_n = \frac{a_n}{2}$ (reell)} \\ \hline
 \multirow{2}{*}{$f(t)$ ungerade} & $\displaystyle a_n = 0$ & $\displaystyle b_n = \frac{4}{T} \int_{0}^{\frac{T}{2}} f(t) \sin(n \omega_f t) dt$ \\
                                  & \color{blue}{$\text{Re}(c_k) = 0$} & \color{blue}{$c_n = j \frac{b_n}{2}$ (imaginär)} \\ \hline
 \end{tabular}
@@ -111,7 +110,7 @@ $\bm{f(t)}$\\auf dem Intervall [0 ; T)}
 
 $h(t) = r \cdot f(t) + s \cdot g(t)$ mit festem $s, \, r \in \mathbb{R}$
 
-$g(x)$ o $f(x)$ potrebbero anche essere numeri costanti ($a_0 \in \mathbb{R}, \, a_n = b_n = 0$)
+$g(x)$ oder $f(x)$ könnten auch konstante Zahlen sein ($a_0 \in \mathbb{R}, \, a_n = b_n = 0$)
 
 $$ a_n^{(h)} = r \cdot a_n^{(f)} + s \cdot a_n^{(g)} \qquad b_n^{(h)} = r \cdot b_n^{(f)} + s \cdot b_n^{(g)} \qquad \cbl{c_k^{(h)} = r \cdot c_k^{(f)} + s \cdot c_k^{(g)}}$$
 
@@ -145,9 +144,7 @@ Abstand zwischen zwei Funktionen zeigt, wie gut die Approximation der Funktion i
 
 $$ \left\| f - g \right\| = \sqrt{\frac{2}{T} \int \limits_0^T  [f(t) - g(t)]^2 \, \diff t } $$ 
 
-\textrightarrow\ Fourier-Reihe approximiert eine Funktion am Besten!
-
-\smallskip
+\textrightarrow\ Fourier-Reihe approximiert eine Funktion am Besten! \smallskip
 
 mittlere quadrierte Abweichung: $\frac{T}{2} \vert \vert f - g \vert \vert ^2$
 
@@ -170,15 +167,13 @@ $$ \cbl{ \sum \limits_{k= -\infty}^\infty \vert c_k \vert ^2 = \frac{1}{T} \int 
 Jede Funktion $f$ kann durch eine abbrechende Fourierreihe bezüglich ihres Abstandes beliebig genau approximiert werden.
 Die Fläche zwischen Approximation und Funktion geht gegen 0 \quad $\Vert s_m(t) - f(t) \Vert \searrow 0$ \\
 \textrightarrow\ Das heisst nicht, dass man überall absolute Übereinstimmung hat!
-
-$$ \lim \limits_{m \to \infty} \left\|\sum\limits _{n=1}^m \big[ a_n \cdot \cos(n \, 
-\omega_f \, t) + b_n \cdot \sin(n \, \omega_f \, t) \big] - f(t) \right\| = 0 $$
+$$ \lim \limits_{m \to \infty} \left\|\sum\limits _{n=1}^m \big[ a_n \cdot \cos(n \, \omega_f \, t) + b_n \cdot \sin(n \, \omega_f \, t) \big] - f(t) \right\| = 0 $$
 $$ \cbl{\lim \limits_{m \to 0} \left\| \sum\limits _{k= -m}^m \: \big( c_k \, \e^{ \jimg \, k \, \omega_f \, t} \big) - f(t) \right\| = 0} $$
 
 
 \subsubsection{Konvergenz der Fourierkoeffizienten}
 
-Die Fourierkoeffizienten bilden Nullfolgen (Conseguenza: convergenza)
+Die Fourierkoeffizienten bilden Nullfolgen (Konsequenz: Konvergenz)
 
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{l}
@@ -218,7 +213,6 @@ Der Satz von Dirichlet wird gebraucht, um aus Fourier-Koeffizienten Reihen darzu
 \subsection{Summenberechnung S mit Fourierreihe}
 
 Die Summenberechnung soll anhand eines Beispiels erklärt werden.
-
 \example{Summenberechnung mit Fourierreihe}
 
 Aus der gegebenen Fourierreihe $\FR[\sin(t)]$ soll die Summe S berechnet werden:
@@ -242,9 +236,7 @@ Fourierreihen überschwingen bei Sprungstellen um 8.94 \%
 
 \smallskip
 
-\textrightarrow\ Je mehr Summanden in der Fourierreihe sind, desto kleiner ist der Effekt dieser Überschwinger! 
-
+\textrightarrow\ Je mehr Summanden in der Fourierreihe sind, desto kleiner ist der Effekt dieser Überschwinger!
 \begin{center}
     \includegraphics[width=0.85\linewidth]{images/gibbs.PNG}
 \end{center}
-
