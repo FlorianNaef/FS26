@@ -21,15 +21,15 @@ n_{at} = \frac{\rho_m \cdot N_A}{M} \qquad \qquad Z = \frac{n}{n_{at}}
 
 \begin{tabular}{@{}lll@{}}
     \toprule
-    \textbf{Simbolo} & \textbf{Descrizione} & \textbf{Unità di Misura (SI)} \\
+    \textbf{Symbol} & \textbf{Beschreibung} & \textbf{Masseinheit (SI)} \\
     \midrule
-    $\sigma$ & Conducibilità elettrica & S/m (Siemens al metro) \\
-    $n_{at}$ & Densità dei portatori di carica & $\text{m}^{-3}$ \\
-    $\tau$ & Tempo di relax (Stosszeit) & s (secondi) \\
-    $\rho_m$ & Densità di massa (Massendichte) & kg/$\text{m}^3$ \\
-    $M$ & Massa Molare & kg/mol (o g/mol) \\
-    $Z$ & Valenza (elettroni di conduzione per atomo) & adimensionale \\
-    $N_A$ & Costante di Avogadro ($\approx 6.022 \cdot 10^{23}$) & $\text{mol}^{-1}$ \\
+    $\sigma$ & Elektrische Leitfähigkeit & S/m (Siemens pro Meter) \\
+    $n_{at}$ & Ladungsträgerdichte & $\text{m}^{-3}$ \\
+    $\tau$ & Relaxationszeit (Stosszeit) & s (Sekunden) \\
+    $\rho_m$ & Massendichte & kg/$\text{m}^3$ \\
+    $M$ & Molare Masse & kg/mol (oder g/mol) \\
+    $Z$ & Wertigkeit (Leitungselektronen pro Atom) & dimensionslos \\
+    $N_A$ & Avogadro-Konstante ($\approx 6.022 \cdot 10^{23}$) & $\text{mol}^{-1}$ \\
     \bottomrule
 \end{tabular}
 
@@ -42,29 +42,27 @@ es entsteht ein weiteres Spannungspotential zwischen oben und unten, welches Hal
 \[R_H = - \frac{1}{e n} \qquad \mu = \sigma \cdot |R_H| \qquad \sigma =  n \cdot e \cdot \mu
 \qquad U_H = \frac{I\cdot B \cos \alpha}{n \cdot e \cdot d}\]
 
-\subsection{Skin-Effekt (Effetto Pelle)}
+\subsection{Skin-Effekt}
 \begin{itemize}
-    \item \textbf{Corrente Continua (DC):} La densità di corrente è distribuita in modo \textbf{omogeneo} su tutta la sezione trasversale del filo.
-    \item \textbf{Corrente Alternata (AC):} La densità di corrente non è più uniforme. All'aumentare della frequenza, il flusso di corrente tende a concentrarsi verso la \textbf{superficie esterna} del conduttore.
+    \item \textbf{Gleichstrom (DC):} Die Stromdichte ist über den gesamten Querschnitt \textbf{homogen} verteilt.
+    \item \textbf{Wechselstrom (AC):} Stromdichte ungleichmässig. Bei höherer Frequenz konzentriert sich der Strom auf die \textbf{Aussenfläche} des Leiters.
 \end{itemize}
 
 \vspace{0.3cm}
 
-La \textbf{profondità di penetrazione} (Skintiefe) $\delta$ indica lo spessore 
-dello strato superficiale in cui scorre la maggior parte della corrente ed è definita 
-dalla relazione:\vspace{-1em}
+Die \textbf{Skintiefe} $\delta$ gibt die Dicke der Randschicht an, in welcher der Grossteil des Stroms fliesst, gemäss:\vspace{-1em}
 
 \[
 \frac{1}{\delta} = \sqrt{\frac{1}{2}\sigma \mu_0 \mu_r \omega}
 \]
 
-\textbf{Legenda delle variabili:}
+\textbf{Legende der Variablen:}
 \begin{itemize}
-    \item $\delta$: Profondità di penetrazione [m]
-    \item $\sigma$: Conducibilità elettrica del materiale [S/m]
-    \item $\mu_0$: Permeabilità magnetica del vuoto ($1.256 \times 10^{-6}$ H/m)
-    \item $\mu_r$: Permeabilità relativa del materiale
-    \item $\omega$: Frequenza angolare ($2\pi f$) [rad/s]
+    \item $\delta$: Eindringtiefe (Skintiefe) [m]
+    \item $\sigma$: Elektr. Leitfähigkeit des Materials [S/m]
+    \item $\mu_0$: Magnetische Feldkonstante (Vakuum) ($1.256 \times 10^{-6}$ H/m)
+    \item $\mu_r$: Relative Permeabilität des Materials
+    \item $\omega$: Kreisfrequenz ($2\pi f$) [rad/s]
 \end{itemize}
 
 \subsection{Transporttherorie für Thermische Leitfähigkeit}
@@ -76,4 +74,4 @@ Folglich tragen zu den Gitterschwingungen auch die freien Ladungsträger zum Wä
 Eine höhere Kopplungsrate zwischen den Atomen führt zu einer schneller Übertragung von Gitterschwingungen. 
 Somit sind mechanisch harte Materialien thermisch besser leitend als mechanisch weiche Materialien.\vspace{-1em}
 
-\[\kappa = L \cdot \sigma \cdot T \qquad \text{dove } L = \frac{\pi^2 k_B^2}{3e^2} \approx 2.44 \cdot 10^{-8} \, \text{W}\Omega\text{K}^{-2} \qquad [T] = \kelvin\]
+\[\kappa = L \cdot \sigma \cdot T \qquad \text{wobei } L = \frac{\pi^2 k_B^2}{3e^2} \approx 2.44 \cdot 10^{-8} \, \text{W}\Omega\text{K}^{-2} \qquad [T] = \kelvin\]
