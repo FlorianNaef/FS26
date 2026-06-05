@@ -1,5 +1,5 @@
-% --- SEZIONE 2: MODELLO DI MEMORIA E STACK ---
-\section{Ottimizzazione e Strutture Dati}
+% --- SEKTION 2: SPEICHERMODELL UND STACK ---
+\section{Optimierung und Datenstrukturen}
 
 \subsubsection{Switch Case}
 \begin{itemize}
@@ -8,26 +8,27 @@
     \item \textbf{Hinweis:} Die Reihenfolge der \texttt{case} ist für die Effizienz der Suche relevant.
 \end{itemize}
 
-\subsubsection{Flusso di Controllo in Assembly}
+\subsubsection{Kontrollfluss in Assembly}
 \begin{itemize}
     \item \textbf{Selektionen (If/Else):} Es wird ein \textbf{Sprung nach vorn} mit der \textbf{invertierten Bedingung} gegenüber C verwendet (wenn die Bedingung falsch ist, springt man über den \textit{then}-Block hinaus).
     \item \textbf{Iterationen (Loop):} Es wird ein \textbf{Sprung nach hinten} am Ende der Schleife verwendet, wobei die \textbf{Assembly-Bedingung wie in C} beibehalten wird (Sprung zum Anfang, wenn die Bedingung noch wahr ist).
 \end{itemize}
 
-% \subsubsection{Tecniche di Ottimizzazione}
+% \subsubsection{Optimierungstechniken}
 % \begin{itemize}
-%     \item \textbf{Loop Unrolling:} Tecnica che consiste nel ripetere il corpo del loop 
-%     per ridurre l'overhead dei \textit{branch} e degli incrementi del contatore.
+%     \item \textbf{Loop Unrolling:} Technik, bei der der Schleifenkörper wiederholt wird, 
+%     um den Overhead von \textit{Branches} und Zählerinkrementen zu reduzieren.
 %     \texttt{\#pragma unroll (n)}
-%     \item \textbf{Pointers (Stackless):} L'uso dei registri invece dello stack per manipolare i puntatori è significativamente più veloce (spesso più del doppio).
+%     \item \textbf{Pointers (Stackless):} Die Verwendung von Registern anstelle des Stacks zur Manipulation von Zeigern ist deutlich schneller (oft mehr als doppelt so schnell).
 % \end{itemize}
 
-\subsubsection{Efficienza delle Strutture Dati}
+\subsubsection{Effizienz der Datenstrukturen}
 \begin{itemize}
-    \item \textbf{Lokale Arrays:} Sehr \textbf{ineffizient}. 
+    \item \textbf{Lokale Arrays:} Sehr \textbf{ineffizient}.
     hohe Anzahl von Zyklen nur für die Initialisierung im Stack-Frame 
-    \item \textbf{Strukturen:} Es ist empfehlenswert, die \textbf{Strukturen global zu definieren}. Die lokale Initialisierung auf dem Stack führt zu einem hohen Overhead an Taktzyklen.
-    \item \textbf{Bitfields:} Extrem \textbf{ineffizient}. 
+    \item \textbf{Strukturen:} Es ist empfehlenswert, die \textbf{Strukturen global zu definieren}.
+    Die lokale Initialisierung auf dem Stack führt zu einem hohen Overhead an Taktzyklen.
+    \item \textbf{Bitfields:} Extrem \textbf{ineffizient}.
     Obwohl sie Speicher sparen, erfordern sie komplexe Operationen von
      \textit{Read-Modify-Write} (LDR, Shift, Mask, OR, STR)
 \end{itemize}

@@ -1,15 +1,16 @@
-\section{Il Processo di Compilazione}
+\section{Der Kompilierungsprozess}
 Der Quellcode wird durch verschiedene Phasen in Binärdaten umgewandelt:
 
 \begin{enumerate}
-    \item \textbf{Präprozessor:} Verarbeitet Einbindungen und Makros. (\texttt{\#define}, \texttt{\#if}, \dots)
+    \item \textbf{Präprozessor:} Verarbeitet Einbindungen und Makros.
+    (\texttt{\#define}, \texttt{\#if}, \dots)
     \item \textbf{Compiler:} Übersetzt die Sprache auf hoher Ebene in Assembly.
     \item \textbf{Assembler:} Konvertiert Assembly in relokierbaren Maschinencode.
     \item \textbf{Linker/Binder:} Verbindet Objektdateien und Bibliotheken.
     \item \textbf{Loader:} Konvertiert relokierbare Adressen in absolute und lädt sie in den Speicher.
 \end{enumerate}
 
-\subsection{Analisi del Compilatore}
+\subsection{Compiler-Analyse}
 \begin{itemize}
     \item \textbf{Lexikalische Analyse:} Entfernen von Leerzeichen und Gruppierung von Tokens.
     \item \textbf{Syntaktische/Semantische Analyse:} Prüfung der Struktur und der Datentypen.
@@ -17,12 +18,10 @@ Der Quellcode wird durch verschiedene Phasen in Binärdaten umgewandelt:
     \item \textbf{Generierung:} Erzeugung des Zielcodes.
 \end{itemize}
 
-\section{Interfacciamento I/O}
+\section{I/O-Schnittstellen}
 Die Peripheriegeräte werden über spezifische Register in den Speicher abgebildet (\textit{Memory Mapped I/O}):
 \begin{itemize}
     \item \textbf{Datenregister:} Enthält die zu verarbeitenden Daten.
     \item \textbf{Steuerregister:} Konfiguration des Peripheriegeräts.
     \item \textbf{Statusregister:} Zeigt den aktuellen Zustand des I/O (z. B. Busy, Ready) an.
 \end{itemize}
-
-

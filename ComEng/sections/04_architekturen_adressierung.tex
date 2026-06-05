@@ -1,6 +1,6 @@
-% --- SEZIONE 3: ARCHITETTURE E COMPILAZIONE ---
+% --- SEKTION 3: ARCHITEKTUREN UND KOMPILIERUNG ---
 
-\section{Confronto Architetture ARM Cortex}
+\section{Vergleich ARM Cortex Architekturen}
 \begin{description}
     \item[Cortex-A (Application):] Generische Berechnung mit hoher Leistung (Linux/Android).
     \item[Cortex-R (Real-Time):] Geringe Latenz und hohe Zuverlässigkeit (Automotive/Medizin).
@@ -16,20 +16,20 @@
 Cortex-M0  & \cellcolor{green!60}Mostly & \cellcolor{green!60}Subset & \cellcolor{green!60}1/32 cyc & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & ARMv6-M \\
 Cortex-M0+ & \cellcolor{green!60}Mostly & \cellcolor{green!60}Subset & \cellcolor{green!60}1/32 cyc & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & ARMv6-M \\
 Cortex-M1  & \cellcolor{green!60}Mostly & \cellcolor{green!60}Subset & \cellcolor{green!60}3/33 cyc & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & \cellcolor{red!60}No & ARMv6-M \\
-Cortex-M3  & \cellcolor{green!60}Fully  & \cellcolor{green!60}Fully  & \cellcolor{green!60}1 cyc    & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{red!60}No  & \cellcolor{red!60}No & ARMv7-M \\
+Cortex-M3  & \cellcolor{green!60}Fully  & \cellcolor{green!60}Fully  & \cellcolor{green!60}1 cyc    & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{red!60}No  & \cellcolor{red!60}No & 
+ARMv7-M \\
 Cortex-M4  & \cellcolor{green!60}Fully  & \cellcolor{green!60}Fully  & \cellcolor{green!60}1 cyc    & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{yellow!60}Optional & ARMv7E-M \\
 Cortex-M7  & \cellcolor{green!60}Fully  & \cellcolor{green!60}Fully  & \cellcolor{green!60}1 cyc    & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{green!60}Yes & \cellcolor{yellow!60}Optional & ARMv7E-M \\
 \hline
 \end{tabular}}
 \renewcommand{\arraystretch}{1}
 
-\subsection{Evoluzione Cortex-M0 vs M0+}
+\subsection{Evolution Cortex-M0 vs M0+}
 \begin{minipage}[t]{0.49\columnwidth}
     \begin{itemize}
         \item \textbf{M0+ Pipeline:} Auf 2 Stufen reduziert für höhere Effizienz.
         \item \textbf{I/O-Zugriff:} Unterstützung für Single-Cycle GPIO.
         \item \textbf{Debugging:} Optionaler Micro Trace Buffer (MTB) zum Nachverfolgen von Sprüngen.
-        \item \textbf{MPU}
     \end{itemize}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\columnwidth}
@@ -38,6 +38,7 @@ Cortex-M7  & \cellcolor{green!60}Fully  & \cellcolor{green!60}Fully  & \cellcolo
         \item[+] Es wird in jedem Cycle ein Befehl ausgeführt
         \item [-] Bei Sprüngen muss die Pipeline 'geleert' werden
     \end{itemize}
+    \textbf{MPU}
 \end{minipage}
 
 
@@ -89,14 +90,14 @@ Cortex-M7  & \cellcolor{green!60}Fully  & \cellcolor{green!60}Fully  & \cellcolo
 
 \subsection{Registerlisten \& Stack (SP-Relative)}
 \begin{itemize}
-    \item \textbf{Multiple:} \texttt{LDM R7!, \{R0-R3, R5\}} $\rightarrow$ Lädt mehrere Register beginnend bei der Adresse in $R7$.
+    \item \textbf{Multiple:} \texttt{LDM R7!, \{R0-R3, R5\}} -> Lädt mehrere Register beginnend bei der Adresse in $R7$.
     \item \textbf{Stack:} \texttt{PUSH \{R0-R2\}}, \texttt{POP \{R0-R2\}}.
-    \item \textbf{Goldene Regel:} Das Register mit der niedrigsten Nummer (\texttt{R0}) geht immer in die niedrigste Speicheradresse. Die Reihenfolge in den geschweiften Klammern ist für die Hardware nicht relevant.
+    \item \textbf{Goldene Regel:} Das Register mit der niedrigsten Nummer (\texttt{R0}) geht immer in die niedrigste Speicheradresse.
+    Die Reihenfolge in den geschweiften Klammern ist für die Hardware nicht relevant.
 \end{itemize}
 
 \subsection{Stack Framing}
 Der Stack Frame ist der in RAM reservierte Bereich für lokale Variablen einer Funktion.
-
 \begin{minipage}{0.5\columnwidth}
     \begin{itemize}
         \item \textbf{Allokation:} \texttt{SUB SP, SP, \#X} reserviert $X$ Byte (der Stack wächst zu niedrigeren Adressen).
@@ -108,4 +109,3 @@ Der Stack Frame ist der in RAM reservierte Bereich für lokale Variablen einer F
 \begin{minipage}{0.5\columnwidth}
     \includegraphics[width=\linewidth]{images/stack_framing.png}
 \end{minipage}
-
