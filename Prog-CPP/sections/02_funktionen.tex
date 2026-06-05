@@ -1,10 +1,9 @@
 \section{Funktionen}
 \subsection{Default Argumente}
 \begin{itemize}
-    \item \textbf{Prototipo}: I valori predefiniti si assegnano \textbf{solo} nell'interfaccia.
-    \item \textbf{Omissione}: I parametri con default possono essere saltati nella chiamata.
-    \item \textbf{Ordine}: I parametri di default devono trovarsi \textbf{\cor{sempre alla fine (a destra)}} della lista parametri.
-\end{itemize}
+    \item \textbf{Prototipo}: I valori standard vengono assegnati \textbf{solo} nell'interfaccia.
+    \item \textbf{Omissione}: I parametri di default possono essere omessi durante la chiamata.
+    \item \textbf{Ordine}: I parametri di default devono stare \textbf{\cor{sempre alla fine (a destra)}} della lista dei parametri.\end{itemize}
 
 \lstinputlisting[language=c++]{code/02_funktionen/default_argumente.cpp}
 
@@ -14,13 +13,12 @@ Dort machen sie aber ohnehin keinen Sinn.
 
 \subsection{Funzioni Inline}
 \begin{itemize}
-    \item \textbf{Sostituto Macro}: Alternativa sicura alle macro C.
-    \item \textbf{Zero Overhead}: Codice inserito direttamente (nessun salto di funzione).
-    \item \textbf{Type Safety}: Il compilatore garantisce il controllo dei tipi.
-    \item \textbf{Target}: Funzioni piccole chiamate frequentemente (es. cicli).
-    \item \textbf{No-go}: Inapplicabile a ricorsione o puntatori a funzione.
-    \item \textbf{Header-only}: Se usato nei file Header, definizione func. direttamente in file.h
-    \item \textbf{Ottimizzazione}: Richiede flag attivi (es. \texttt{-O3}).
-\end{itemize}
+    \item \textbf{Sostituzione dei macro}: Alternativa sicura alle macro C.
+    \item \textbf{Zero Overhead}: Il codice viene inserito direttamente (nessun salto di funzione).
+    \item \textbf{Sicurezza dei tipi}: Il compilatore garantisce la verifica dei tipi.
+    \item \textbf{Obiettivo}: Funzioni piccole, richiamate molto frequentemente (ad es. loop).
+    \item \textbf{Divieto}: Non applicabile in caso di ricorsione o puntatori a funzioni.
+    \item \textbf{Solo header}: Se usato negli header, la definizione della Fkt. direttamente nel file.h
+    \item \textbf{Ottimizzazione}: Richiede flag attivi (ad es. \texttt{-O3}).\end{itemize}
 
 \lstinputlisting[language=C++]{code/02_funktionen/02_funktionen_snippet_1.cpp}
