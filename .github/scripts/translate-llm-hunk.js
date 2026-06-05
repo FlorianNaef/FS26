@@ -545,9 +545,11 @@ async function processFile(fileDiff) {
       [
         "apply",
         "--check",
+        "--reject",
+        "--verbose", // TODO: check how to read this output
         "--unidiff-zero",
         "--inaccurate-eof",
-        "--whitespace=nowarn",
+        "--whitespace=fix",
         patchFile,
       ],
       { cwd: tmpDir, encoding: "utf8" },
@@ -564,9 +566,10 @@ async function processFile(fileDiff) {
     "git",
     [
       "apply",
+      "--reject",
       "--unidiff-zero",
       "--inaccurate-eof",
-      "--whitespace=nowarn",
+      "--whitespace=fix",
       patchFile,
     ],
     { cwd: tmpDir, encoding: "utf8" },
