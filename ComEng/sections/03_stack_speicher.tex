@@ -1,0 +1,34 @@
+% --- SEKTION 2: SPEICHERMODELL UND STACK ---
+\section{Optimierung und Datenstrukturen}
+
+\subsubsection{Switch Case}
+\begin{itemize}
+    \item \textbf{Pro:} Numero di cicli di clock definiti e prevedibili.
+    \item \textbf{Contro:} La condizione deve necessariamente essere una costante di tipo \texttt{int}.
+    \item \textbf{Nota:} L'ordine dei \texttt{case} è rilevante per l'efficienza della ricerca.
+\end{itemize}
+
+\subsubsection{Kontrollfluss in Assembly}
+\begin{itemize}
+    \item \textbf{Selezioni (If/Else):} Si usa un \textbf{salto in avanti} con la \textbf{condizione invertita} rispetto a C (se la condizione è falsa, si salta oltre il blocco \textit{then}).
+    \item \textbf{Iterazioni (Loop):} Si usa un \textbf{salto all'indietro} alla fine del ciclo, mantenendo la \textbf{condizione in Assembly come in C} (salto all'inizio se la condizione è ancora vera).
+\end{itemize}
+
+% \subsubsection{Optimierungstechniken}
+% \begin{itemize}
+%     \item \textbf{Loop Unrolling:} Tecnica in cui il corpo del ciclo viene ripetuto, 
+%     per ridurre l'overhead di \textit{Branches} e incrementi del contatore.
+%     \texttt{\#pragma unroll (n)}
+%     \item \textbf{Pointers (Stackless):} L'uso dei registri al posto dello stack per manipolare i puntatori è nettamente più veloce (spesso più del doppio).
+% \end{itemize}
+
+\subsubsection{Effizienz der Datenstrukturen}
+\begin{itemize}
+    \item \textbf{Array locali:} Molto \textbf{inefficienti}.
+    alto numero di cicli solo per l'inizializzazione nel frame dello stack 
+    \item \textbf{Strutture:} È consigliabile definire le \textbf{strutture globalmente}.
+    L'inizializzazione locale sullo stack porta a un elevato overhead di cicli di clock.
+    \item \textbf{Bitfields:} Estremamente \textbf{inefficienti}.
+    Sebbene facciano risparmiare memoria, richiedono operazioni complesse di
+     \textit{Read-Modify-Write} (LDR, Shift, Mask, OR, STR)
+\end{itemize}
