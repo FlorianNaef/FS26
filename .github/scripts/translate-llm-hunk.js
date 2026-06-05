@@ -320,7 +320,11 @@ function buildPatch(filePath, hunks) {
         ? hunk.srcStart + contextBeforeCount
         : Math.max(0, hunk.srcStart + contextBeforeCount - 1);
 
-    const dstStart = hunk.dstStart + contextBeforeCount;
+    // For a replacement hunk (equal removed/added), both sides address the same position
+    const dstStart =
+      removedLines.length > 0
+        ? srcStart // replacement: same line position as removal
+        : srcStart + 1; // pure insertion: insert after srcStart
 
     const srcCount = removedLines.length;
     const dstCount = addedLines.length;
