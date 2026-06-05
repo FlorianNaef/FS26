@@ -14,6 +14,7 @@
     \begin{itemize}[itemsep=1pt, parsep=0pt]
         \item mit Kleinbuchstaben beginnen
         \item erster Buchstaben von zusammengesetzten Wörtern ist gross (mixed case)
+ 
         \item Namen beschreiben Tätigkeiten
         \item keine Underscores
     \end{itemize}
@@ -25,36 +26,29 @@
         \item keine Underscores
         \item Namen beschreiben Dinge
     \end{itemize}
+   
     Beispiele : MotorController, Queue, Color
 \end{itemize}
 
 \subsection{Code beispiele}
 \subsubsection{String formatting}
-Utilizza gli stream di output per costruire stringhe in memoria. È sicuro perché gestisce la memoria dinamicamente.
+Verwendet die Output-Streams, um jene Strings im Memory zu formen. Dies ist sehr sicher, weil es das Memory völlig dynamisch handlet.
 
 \lstinputlisting[language=C++]{code/99_anhang/99_anhang_snippet_1.cpp}
 
-Rappresenta lo standard moderno. Combina la sintassi concisa di \texttt{printf} con la sicurezza degli stream.
-
+Präsentiert modernen Standard. Kombiniert die prägnante Syntax von \texttt{printf} mit Streams-Sicherheit. 
 \lstinputlisting[language=C++]{code/99_anhang/99_anhang_snippet_2.cpp}
 
 \subsubsection{Ctor un dtor}
 \lstinputlisting[language=c++]{code/99_anhang/ctor_dtor_anhang.cpp}
 
-\subsection{Ritorno per Riferimento e Method Chaining}
+\subsection{Rückgabe per Referenz und Method Chaining}
 \begin{itemize}
-    \item \textbf{Meccanismo:} Una funzione restituisce un riferimento all'oggetto stesso
-    utilizzando \texttt{return *this;}. Il tipo di ritorno deve 
-    essere una referenza (es. \texttt{Complex\&}).
-    \item \textbf{Kaskadierung (Cascading):} Permette di chiamare più metodi in 
-    sequenza sulla stessa istanza in un'unica riga: \texttt{obj.funz1().funz2();}.
-    
-    \crd{Tramite ritorno \textit{by-value} funz2 verrebbe eseguita su un oggetto \textit{tmp}}
-    \item \textbf{Efficienza:} A differenza del ritorno per valore, 
-    non viene creata alcuna copia dei dati (nessun oggetto temporaneo \textit{tmp}), 
-    risparmiando risorse 
-    \item \textbf{Persistenza:} Le modifiche effettuate nella catena agiscono 
-    direttamente sull'oggetto originale e non su una sua copia destinata alla distruzione.
+    \item \textbf{Mechanismus:} Eine Funktion sendet exakt hier eine Referenz auf das Objekt selbst per \texttt{return *this;} zurück. Der Return-Typ muss zwingend Referenz sein (z.B. \texttt{Complex\&}).
+    \item \textbf{Kaskadierung (Cascading):} Macht es möglich, sehr viele Methoden am Stück auf der gleichen Instanz pro Zeile zu rufen: \texttt{obj.funz1().funz2();}.
+    \crd{Mit einem Return \textit{by-value} würde jene funz2 auf \textit{tmp} Objekt angewendet}
+    \item \textbf{Effizienz:} Im Gegensatz zu dem Return by Value entsteht gar keine Kopie der Daten (absolut kein \textit{tmp} Hilfsobjekt), was massiv Ressourcen schont.
+    \item \textbf{Persistenz:} Alle Änderungen tief in dieser Kette wirken nun wirklich ganz direkt auf das Original-Objekt statt auf eine zur Löschung verurteilte Kopie.
 \end{itemize}
 
 \lstinputlisting[language=c++]{code/99_anhang/method_chaining.cpp}
@@ -62,46 +56,40 @@ Rappresenta lo standard moderno. Combina la sintassi concisa di \texttt{printf} 
 \subsection{Vergleich von Gleitkommazahlen (double)}
 Beim Vergleich von \texttt{double}-Werten sollte aufgrund von Rundungsfehlern \textbf{niemals 
 der Operator \texttt{==} direkt verwendet werden}. 
-
 Stattdessen wird geprüft, ob die absolute Differenz zwischen zwei Werten kleiner als eine definierte Toleranz 
 (Epsilon) ist.\smallskip
 
 \lstinputlisting[language=C++]{code/99_anhang/99_anhang_snippet_3.cpp}
 
 
-\subsection{Parametri Template Non-Tipo (Static Allocation)}
+\subsection{Non-Type Template Parameter (Static Allocation)}
 
-I template accettano valori costanti (es. \texttt{std::size\_t N}) valutati a 
-\textbf{compile-time}. Questo è l'unico modo per definire la dimensione di array statici 
-(\texttt{T data[N]}) mantenendo la flessibilità del codice.
-
-In C++, il compilatore deve conoscere l'ingombro esatto di un oggetto nello \textbf{Stack}
-per generare istruzioni macchina con \textit{offset} fissi. Se \texttt{N} fosse una
-variabile, il compilatore non saprebbe quanto spazio riservare automaticamente e 
-l'allocazione fallirebbe.
-
-\subsubsection{Allocazione Statica vs Dinamica}
-Senza la risoluzione a tempo di compilazione, il compilatore non potrebbe riservare lo spazio nello \textbf{Stack}, obbligando all'uso della memoria \textbf{Heap} (più lenta).
-
+Diese Templates akzeptieren konstante Werte (Bsp. \texttt{std::size\_t N}), die erst via \textbf{Compile-Time} evaluiert werden. 
+Dies ist der einzige Weg, die Array-Grösse statisch festzulegen (\texttt{T data[N]}), um die hohe Flexibilität des Code zu wahren.
+In C++ muss der Compiler den exakten Platzbedarf vom Objekt drüben im \textbf{Stack} kennen, um Maschinen-Instruktionen mit recht fixen \textit{Offsets} zu gen.
+Wäre das \texttt{N} Variablen-basiert, so wüsste der Compiler echt überhaupt nicht, wie viel Platz zu reservieren ist, und die Allokation fiele durch.
+\subsubsection{Statische Allokation vs Dynamik}
+Ohne Auflösung bei der Compile-Time kann der Compiler keinen Platz exakt drüben im \textbf{Stack} blockieren, was zur Nutzung vom \textbf{Heap}-Memory zwingt (das ist träger).
 \resizebox{\columnwidth}{!}{
 \begin{tabular}{|l|l|l|}
 \hline
-\textbf{Caratteristica} & \textbf{Via Template (Statico)} & \textbf{Via Costruttore (Dinamico)} \\ \hline
-\textbf{Vincolo Size}   & Costante a compile-time & Variabile a run-time \\ \hline
-\textbf{Memoria}        & Stack (Veloce, fissa)   & Heap (Flessibile, lenta) \\ \hline
-\textbf{Gestione}       & Automatica (No memory leaks) & Manuale (\texttt{new}/\texttt{delete}) \\ \hline
-\textbf{Effetto Tipo}   & \texttt{Class<10>} $\neq$ \texttt{Class<20>} & Il tipo rimane identico \\ \hline
+\textbf{Eigenschaft} & \textbf{Via Template (statisch)} & \textbf{Via Konstruktor (dynamisch)} \\ \hline
+\textbf{Grössenlimit}   & Konstante am Compiletime & Variabel am Run-Time \\ \hline
+\textbf{Memory}        & Stack (schnell, fix)   & Heap (flexibel und träge) \\ \hline
+\textbf{Verwaltung}       & Automatisch (0 Memory Leaks) & Manuell (\texttt{new}/\texttt{delete}) \\ \hline
+\textbf{Typ-Effekt}   & \texttt{Class<10>} $\neq$ \texttt{Class<20>} & Der Typ bleibt identisch \\ \hline
 \end{tabular}}
 
-\subsubsection{Esempio e Default}
-È possibile impostare un valore di default per rendere il parametro opzionale.
+\subsubsection{Beispiel und Default}
+Möglich, einen Default-Wert zu setzen, um diesen Parameter nun absolut optional zu belassen.
 
 \lstinputlisting[language=C++]{code/99_anhang/99_anhang_snippet_4.cpp}
 
-\subsection{Inline Functions e Templates}
+\subsection{Inline Functions und Templates}
 
 \begin{itemize}
-    \item \textbf{Inlining Implicito:} Tutte le funzioni (template e non) definite direttamente all'interno della dichiarazione di una classe (\textit{in-class}) sono considerate \texttt{inline} automaticamente dal compilatore.
-    \item \textbf{Inlining Esplicito:} Le funzioni template definite al di fuori della classe (\textit{out-of-class}), anche se collocate nello stesso file header, \textbf{non} sono \texttt{inline} di default. Per renderle tali, la keyword \texttt{inline} deve essere inserita tra il tag \texttt{template} e il tipo di ritorno.
-    \item \textbf{Vantaggi e Limiti:} L'inlining elimina l'overhead della chiamata a funzione (\textit{zero overhead}), ma è sconsigliato per funzioni ricorsive o molto complesse.
+    \item \textbf{Implizites Inlining:} Alle Funktionen (ob Template o. nicht), die komplett innerhalb der Deklaration in einer Klasse (\textit{in-class}) stehen, gelten als völlig automatisch \texttt{inline} durch den C++ Compiler.
+    \item \textbf{Explizites Inlining:} Template-Fkt., die exakt ausserhalb der Klasse (\textit{out-of-class}) stehen (auch wenn im selben Header platziert), sind absolut \textbf{nicht} ganz per Default einfach so \texttt{inline}. 
+    Um dies wirklich zu erzwingen, muss das \texttt{inline}-Keyword zwischen dem \texttt{template}-Tag und dem eigentlichen Return-Typ ganz fest drin stehen.
+    \item \textbf{Vorteile und Limits:} Das Inlining tilgt exakt den Overhead des Fkt.-Aufrufs (\textit{Zero Overhead}), ist jedoch sehr stark abgeraten für komplex-rekursive Funktionen.
 \end{itemize}

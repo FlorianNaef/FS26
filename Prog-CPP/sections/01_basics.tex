@@ -29,7 +29,8 @@ Ein foreach funktioniert \textbf{nicht} mit einem \textbf{Pointerpointer}.
 
 \subsection{Streams}
 
-Ein Stream repräsentiert einen generischen sequentiellen Datenstrom. Z.b: ein Eingabefeld, Dateien oder Netzwerktraffic.\\
+Ein Stream repräsentiert einen generischen sequentiellen Datenstrom. 
+Z.b: ein Eingabefeld, Dateien oder Netzwerktraffic.\\
 Die wichtigsten Operatoren sind:
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
@@ -38,7 +39,6 @@ Die wichtigsten Operatoren sind:
 \end{itemize}
 
 Für Standardklassen sind diese Operatoren bereits definiert.
-
 \subsubsection*{Standardstreams}
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
@@ -89,10 +89,10 @@ Formatierungen der Streams können mit folgenden Schlüsselwörtern erreicht wer
 \begin{itemize}
     \item Namespaces helfen, Namenskonflikte zu verhindern. 
         Sie fügen ein Namensvorsatz zu allen Variablen. 
-    \item Per ogni Unit (Modul) dovrebbe essere definito un namespace
+    \item Für jede Unit (Modul) sollte ein Namespace definiert werden
     \item \cor{Mit kleine Buchstaben starten}
-    \item namespaces senza nome: evitano uso di \texttt{static} per var. locali
-    \item L'operatore \texttt{::} ritorna sempre la variabile o funz. più globale
+    \item Namenlose Namespaces: vermeiden \texttt{static} für lokale Variablen
+    \item Der \texttt{::}-Operator gibt immer die globalste Variable/Fkt. zurück
 \end{itemize}
 
 \lstinputlisting{code/01_basics/namespace.cpp}
@@ -102,7 +102,7 @@ Formatierungen der Streams können mit folgenden Schlüsselwörtern erreicht wer
 \begin{itemize}
     \item \texttt{\#define} soll nich mehr verwendet werden
     \item \texttt{constexpr} verwenden!
-    \item \texttt{enum} da usare solo se l'automatismo di $+1$ è utile
+    \item \texttt{enum} nur benutzen, falls die $+1$-Automatik nützlich ist
 \end{itemize}
 
 
@@ -111,7 +111,7 @@ Formatierungen der Streams können mit folgenden Schlüsselwörtern erreicht wer
 \begin{center}
     \begin{tabular}{ll}
     \toprule
-    \textbf{Ambito} & \textbf{Sintassi Consigliata} \\
+    \textbf{Bereich} & \textbf{Empfohlene Syntax} \\
     \midrule
     Header file & \texttt{inline constexpr} \\
     Class or function & \texttt{static constexpr} \\

@@ -27,9 +27,8 @@ Generell ist bei sehr vollem Speicher das Arbeiten erschwert.
 
 \subsubsection{Memory leaks}
 
-Falls ein Programm unkontrolliert Speicher aufnimmt oder den ihm zur Verfügung gestellte nicht wieder freigibt, spricht man von einem Speicherleck. 
-Diese sind zu verhindern da diese zu einer Systemüberlastung und Abstürzen führen.
-
+Falls ein Programm unkontrolliert Speicher aufnimmt oder den ihm zur Verfügung gestellte nicht wieder freigibt, spricht man von einem Speicherleck.
+Diese sind zu verhindern da diese zu einer Systemüberlastung und Abstürzen führen. 
 \example{}
 \begin{minipage}{0.5\columnwidth}
   \lstinputlisting[language=C++]{code/04_Memorymanagement/memory_leaks.cpp}
@@ -43,29 +42,24 @@ Diese sind zu verhindern da diese zu einer Systemüberlastung und Abstürzen fü
 Es gibt einige Funktionen für Speichermanagement. In C und C++ sind diese leicht verschieden. 
 Generell geben diese einen Pointer zurück, welcher auf freien Speicher zeigt. 
 \textbf{Diese müssen immer auf einen Nullpointer geprüft werden, da keine Garantie vorhanden ist, ob überhaupt Speicher vorhanden ist!}
-Generell sollte mit solchen Pointer immer misstrauisch gearbeitet werden und nach Abschluss immer wieder freigegeben werden.
-
+Generell sollte mit solchen Pointer immer misstrauisch gearbeitet werden und nach Abschluss immer wieder freigegeben werden. 
 \subsubsection{C: \texttt{malloc()},  \texttt{calloc()}, \texttt{free()}}
 
 \textbf{malloc()} gibt einen Voidpointer(pointercasting nicht vergessen) zurück welche auf eine angeforderte Grösse an Bytes Speicher zeigt. 
 Der Speicher ist \textbf{nicht} initialisiert
 \textbf{calloc()} macht dasselbe, initialisiert aber den Speicher auf 0.\\
-\textbf{free()} gibt den Speicherbereich wieder frei.
-
+\textbf{free()} gibt den Speicherbereich wieder frei. 
 \lstinputlisting{code/04_Memorymanagement/mem_mngmt_c.c}
 
-Falls kein Speicher allokiert werden kann, wird ein NULL-pointer zurückgegeben.
-
+Falls kein Speicher allokiert werden kann, wird ein NULL-pointer zurückgegeben. 
 \subsubsection{C++: \texttt{new}, \texttt{delete}, \texttt{new[]}, \texttt{delete[]} (Operatoren)}
 
-Der \textbf{new}-Operator erstellt ein Pointer welcher auf die mitgegebene Grösse zeigt.
-
+Der \textbf{new}-Operator erstellt ein Pointer welcher auf die mitgegebene Grösse zeigt. 
 \textbf{new[ ]} macht dasselbe, ausser das dieser ein Array zurückgibt.
 
 \textbf{delete} / \textbf{delete[ ]} gibt den Speicher wieder frei. 
 Dieser kann auch auf den Nullpointer ausgeführt werden. 
-Dieser ist \texttt{Delete} egal.
-
+Dieser ist \texttt{Delete} egal. 
 \lstinputlisting{code/04_Memorymanagement/mem_mngmt_cpp.cpp}
 
 \subsection{Speicheraufbau}
@@ -76,19 +70,20 @@ Der Speicheraufbau bildlich dargestellt sieht ungefähr so aus:
     \includegraphics[width=\columnwidth]{images/memorylayout.png}  
 \end{center}
 
-Je nach Architektur kann es auch sein, dass die hohen und tiefen Adressen anders herum sind.
-
+Je nach Architektur kann es auch sein, dass die hohen und tiefen Adressen anders herum sind. 
 \subsection{Referenzen}
-Una referenza è un \textbf{alias} (un nome alternativo) per una variabile o una cella di memoria già esistente. Rappresentano una versione più moderna, sicura e ristretta dei puntatori.
-
+Eine Referenz ist ein \textbf{Alias} (ein alternativer Name) für eine bereits bestehende Variable oder Speicherzelle.
+Sie stellen eine modernere, sicherere und striktere Version von Pointern dar. 
 \subsubsection{Caratteristiche Principali}
 \begin{itemize}
-    \item \textbf{Inizializzazione obbligatoria:} Deve essere inizializzata subito: \texttt{int\& r = x;}
-    \item \textbf{Immutabilità:} Non può essere modificata per puntare a un altro oggetto dopo la definizione.
-    \item \textbf{Sicurezza:} Non possono essere mai non inizializzate e non hanno mai il valore \texttt{nullptr}.
-    \item \textbf{Efficienza:} Possono risiedere nei registri della CPU e non occupano sempre memoria fisica. L'operatore \texttt{sizeof()} restituisce la dimensione del tipo a cui la referenza punta.
-    \item \textbf{Sintassi:} Vengono utilizzate come variabili normali, senza necessità di dereferenziazione.
-    \item \textbf{Limitazione con gli Array:} Le referenze non possono essere usate per scorrere gli array tramite aritmetica (incremento/decremento). Per questo scopo, i \textbf{puntatori} rimangono indispensabili.
+    \item \textbf{Zwingende Initialisierung:} Muss per sofort initialisiert werden \texttt{int\& r = x;}
+    \item \textbf{Unveränderlichkeit:} Darf nach Definition nicht modifiziert werden, um auf ein anderes Objekt zu zeigen.
+    \item \textbf{Sicherheit:} Dürfen niemals uninitialisiert sein und besitzen niemals den Wert \texttt{nullptr}.
+    \item \textbf{Effizienz:} Können in CPU-Registern liegen und belegen nicht in jedem Fall physischen Speicher. 
+    Der \texttt{sizeof()}-Operator gibt die Grösse des Typs zurück, auf welchen die Referenz zeigt.
+    \item \textbf{Syntax:} Werden wie normale Variablen benutzt, ohne eine Notwendigkeit zur Dereferenzierung.
+    \item \textbf{Limitierung bei Arrays:} Referenzen können nicht genutzt werden, um Arrays via Arithmetik (Inkrement/Dekrement) zu durchlaufen. 
+    Für genau diesen Zweck bleiben die \textbf{Pointer} unverzichtbar.
 \end{itemize}
 
 \subsubsection{Confronto: Value vs Reference}
@@ -96,40 +91,40 @@ Una referenza è un \textbf{alias} (un nome alternativo) per una variabile o una
 \begin{tabular}{@{}lll@{}}
 \toprule
 \textbf{Caratteristica} & \textbf{Call by Value} & \textbf{Call by Reference} \\ \midrule
-Copia dei dati          & Sì (costoso per oggetti grandi) & No (passa l'alias) \\
-Modifica originale      & No                             & Sì \\
+Datenkopie          & Ja (sehr teuer bei grossen Objekten) & Nein (übergibt Alias) \\
+Ändert Original      & No                             & Ja \\
 Sintassi                & \texttt{void f(int a)}         & \texttt{void f(int\& a)} \\ \bottomrule
 \end{tabular}
 \end{center}
 
 \subsubsection{Best Practices}
-L'utilizzo delle referenze riduce drasticamente i rischi di errori rispetto ai puntatori. Tuttavia, i puntatori rimangono necessari in casi specifici:
+Die Nutzung von Referenzen senkt die Fehlerrisiken im Vergleich zu Pointern drastisch.
+Dennoch bleiben Pointer in ganz bestimmten Fällen unumgänglich:
 \begin{itemize}
-    \item \textbf{Gestione degli Array:} Un array "decade" naturalmente in un puntatore al suo primo elemento (\textit{pointer decay}), rendendo i puntatori lo strumento standard per iterare o manipolare blocchi di memoria contigui.
-    \item \textbf{Programmazione Low-level:} Necessaria per l'interazione diretta con l'hardware o allocazione dinamica manuale (\texttt{new}/\texttt{delete}).
+    \item \textbf{Array-Verwaltung:} Ein Array "zerfällt" in Pointer auf das erste Element (\textit{pointer decay}), was Pointer zum Standard-Tool für das Durchlaufen o. Bearbeiten am Stück liegender Speicherblöcke macht.
+    \item \textbf{Low-Level Programmierung:} Nötig für die direkte Hardware-Interaktion oder für die manuelle dynamische Allokation (\texttt{new}/\texttt{delete}).
 \end{itemize}
 
 \lstinputlisting{code/04_Memorymanagement/referenz.cpp}
 
 \subsection{Speicherplatzbedarf von Objekten}
 
-Eine Unterklasse braucht immer mindestens so viel speicher wie eine Oberklasse.
-
+Eine Unterklasse braucht immer mindestens so viel speicher wie eine Oberklasse. 
 \subsubsection{Zuweisungen}
 
 Zuweisungen von Oberklasse zu Unterklasse sind in der regel möglich da alle geerbten Attribute ja vorhanden sind. 
-Umgekehrt geht das allerdings nicht, da der Speicher dafür nicht initialisiert ist.
-
+Umgekehrt geht das allerdings nicht, da der Speicher dafür nicht initialisiert ist. 
 \subsubsection{Slicing Problem}
 
 \begin{itemize}
-    \item \textbf{Definizione:} Si verifica quando un oggetto di una sottoclasse viene passato \textbf{per valore} a una funzione che si aspetta la superclasse.
+    \item \textbf{Definition:} Tritt auf, falls ein Subklassen-Objekt \textbf{als Value} einer Funktion übergeben wird, welche aber explizit eine Superklasse erwartet.
     \begin{itemize}
-        \item Viene invocato il \textit{Copy-Constructor} della superclasse.
-        \item Solo la parte "base" dell'oggetto viene copiata; le estensioni della sottoclasse vengono perse (slicing).
+        \item Dabei wird jener \textit{Copy-Constructor} der Superklasse aufgerufen.
+        \item Nur der "Basis"-Teil vom Objekt wird kopiert; die Erweiterungen jener Subklasse gehen verloren (Slicing).
     \end{itemize}
-    \item \textbf{Conseguenza:} All'interno della funzione, l'oggetto si comporta esclusivamente come un'istanza della classe base, perdendo ogni comportamento polimorfico.
-    \item \textbf{Soluzione:} Utilizzare sempre il passaggio \textbf{per referenza} (\texttt{const T\&}) o tramite puntatori. Questo preserva l'integrità dell'oggetto originale e permette il corretto funzionamento dei metodi \texttt{virtual}.
+    \item \textbf{Conseguenza:} Innerhalb der Funktion agiert das Objekt nun exklusiv als Basisklassen-Instanz und verliert jegliches polymorphes Verhalten absolut.
+    \item \textbf{Soluzione:} Nutze für die Übergabe immer \textbf{eine Referenz} (\texttt{const T\&}) oder mache es via Pointer.
+    Das erhält die Integrität vom Original-Objekt und erlaubt das korrekte Funktionieren der \texttt{virtual}-Methoden.
 \end{itemize}
 
 \subsection{Type Casting}\vspace{-1em}
@@ -144,59 +139,55 @@ Umgekehrt geht das allerdings nicht, da der Speicher dafür nicht initialisiert 
           \multicolumn{1}{c|}{{\color{blue} Wissenswertes}} &
           \multicolumn{1}{c|}{{\color{blue} Beispiele}} \\ \hline
         {\color{blue} \begin{tabular}[c]{@{}c@{}}implizit: \\ kein Cast\end{tabular}} &
-          \begin{tabular}[c]{@{}l@{}}• Numerische Typen u. bool\\ (ggf. mit Warnung, falls Wertebereich\\ möglicherweise nicht ausreicht)\\ • Objektinstanzen einer Unterklasse in\\ einer Variablen vom Typ der\\ Oberklasse speichern (Upcast).\\ • Pointertypen, deren Umkonvertierung\\ «ungefährlich» ist – die genauen\\ Regeln sind ziemlich kompliziert.\end{tabular} &
+      
+           \begin{tabular}[c]{@{}l@{}}• Numerische Typen u. bool\\ (ggf. mit Warnung, falls Wertebereich\\ möglicherweise nicht ausreicht)\\ • Objektinstanzen einer Unterklasse in\\ einer Variablen vom Typ der\\ Oberklasse speichern (Upcast).\\ • Pointertypen, deren Umkonvertierung\\ «ungefährlich» ist – die genauen\\ Regeln sind ziemlich kompliziert.\end{tabular} &
            &
-          \begin{tabular}[c]{@{}l@{}}1. {\color{codeGreen}signed char} a = 1;\\ {\color{codeGreen}int} b = a;\\ \\ 2. {\color{codeGreen}int} a = 1;\\ {\color{codeGreen}char} b = a; {\color{blue}// ggf. mit Warnung}\\ \\ 3. Bird b;\\ Animal a = b; {\color{blue}// Upcast: a ist ein Animal}\end{tabular} \\ \hline
+          \begin{tabular}[c]{@{}l@{}}1. {\color{codeGreen}signed char} a = 1;\\ {\color{codeGreen}int} b = a;\\ \\ 2. {\color{codeGreen}int} a = 1;\\ {\color{codeGreen}char} b = a;
+ {\color{blue}// ggf. mit Warnung}\\ \\ 3. Bird b;\\ Animal a = b;
+ {\color{blue}// Upcast: a ist ein Animal}\end{tabular} \\ \hline
         {\color{blue} static} &
           \begin{tabular}[c]{@{}l@{}}• Alles, was implizit möglich ist,\\ unterdrückt dabei etwaige Warnungen.\\ • Pointer- und Referenz-Typen auf\\ Instanzen von Ober- und\\ Unterklassen in beide Richtungen\\ umwandeln: Upcast und\\ Downcast (\textbf{ohne Typprüfung} zur\\ Laufzeit, Auswertung\\ ausschliesslich zur \textbf{Compilezeit})\end{tabular} &
-          \begin{tabular}[c]{@{}l@{}}Per convertire un tipo intero più \\ grande in uno più piccolo, il \\ compilatore semplicemente "taglia" \\ i bit in eccesso, mantenendo solo \\ quelli meno significativi (LSB).\end{tabular} &
-          \begin{tabular}[c]{@{}l@{}}1. {\color{codeGreen}int} a = 1;\\ {\color{codeGreen}char} b = {\color{codeGreen}static\_cast}\textless{}{\color{codeGreen}char}\textgreater{}(a);\\ 2. Bird* b = {\color{codeGreen}new} Bird;\\ Animal* a = b; {\color{blue}// geht implizit!}\\ Bird* c = {\color{codeGreen}static\_cast}\textless{}Bird*\textgreater{}(a);\\ {\color{blue}/* Braucht einen down-Cast} , \\ {\color{codeGreen}weil nicht jedes Animal ein Bird ist!*/}\end{tabular} \\ \hline
+          \begin{tabular}[c]{@{}l@{}}Um einen grösseren Integer in einen kleineren zu konvertieren, "schneidet" der Compiler überschüssige Bits einfach ab und behält nur die am wenigsten signifikanten (LSB).\end{tabular} &
+          \begin{tabular}[c]{@{}l@{}}1. {\color{codeGreen}int} a = 1;\\ {\color{codeGreen}char} b = {\color{codeGreen}static\_cast}\textless{}{\color{codeGreen}char}\textgreater{}(a);\\ 2. Bird* b = {\color{codeGreen}new} Bird;\\ Animal* a = b;
+ {\color{blue}// geht implizit!}\\ Bird* c = {\color{codeGreen}static\_cast}\textless{}Bird*\textgreater{}(a);\\ {\color{blue}/* Braucht einen down-Cast} , \\ {\color{codeGreen}weil nicht jedes Animal ein Bird ist!*/}\end{tabular} \\ \hline
         {\color{blue} dynamic} &
           \begin{tabular}[c]{@{}l@{}}• Pointer- und ReferenzTypen auf \\ Instanzen von\\ \textbf{polymorphen} Ober- und\\ Unterklassen in beide\\ Richtungen umwandeln:\\ Upcast und Downcast (\textbf{mit}\\ Typprüfung per RTTI zur\\ Laufzeit)\end{tabular} &
-          \begin{tabular}[c]{@{}l@{}}Unterstützt ausserdem einen\\ Upcast für Pointer- und\\ Referenztypen auf nichtpolymorphe Klassen\\ (normalerweise machen wir dies aber \\ implizit oder verwenden einen static\_cast!)\\ Falls der dynamic\_cast \textbf{fehlschlägt}, liefert \\ er bei Pointer-Typen den Wert\\ \textbf{nullptr}, bei Referenzen wird\\ eine \textbf{std::bad\_cast-Exception} geworfen\end{tabular} &
-          \begin{tabular}[c]{@{}l@{}}Animal* a = {\color{codeGreen}new} Ant;\\ Bird* b = {\color{codeGreen}dynamic\_cast}\textless{}Bird*\textgreater{}(a);\\ {\color{blue}/* Der Dynamic Cast wird}\\ {\color{blue}immer zur Laufzeit ausgewertet.  dh:}\\ {\color{blue}b ==nullptr */}\end{tabular} \\ \hline
+          \begin{tabular}[c]{@{}l@{}}Unterstützt ausserdem einen\\ Upcast für Pointer- und\\ Referenztypen auf nichtpolymorphe Klassen\\ (normalerweise machen wir dies aber \\ implizit oder verwenden einen static\_cast!)\\ Falls der 
+ dynamic\_cast \textbf{fehlschlägt}, liefert \\ er bei Pointer-Typen den Wert\\ \textbf{nullptr}, bei Referenzen wird\\ eine \textbf{std::bad\_cast-Exception} geworfen\end{tabular} &
+          \begin{tabular}[c]{@{}l@{}}Animal* a = {\color{codeGreen}new} Ant;\\ Bird* b = {\color{codeGreen}dynamic\_cast}\textless{}Bird*\textgreater{}(a);\\ {\color{blue}/* Der Dynamic Cast wird}\\ {\color{blue}immer zur Laufzeit ausgewertet. dh:}\\ {\color{blue}b ==nullptr */}\end{tabular} \\ \hline
         {\color{blue} const} &
           \begin{tabular}[c]{@{}l@{}}verändert die \texttt{constness} und/oder\\ \texttt{volatile-ness} des\\ Ziels eines Pointer oder Referenz Typs.\end{tabular} &
            &
-          \begin{tabular}[c]{@{}l@{}}{\color{codeGreen}const int} val = 10; \\ {\color{codeGreen}const int} *ptr = \&val; \\ {\color{codeGreen}int} *ptr1 = {\color{codeGreen}const\_cast} \textless{}{\color{codeGreen}int} *\textgreater{}(ptr);\end{tabular} \\ \hline
+          \begin{tabular}[c]{@{}l@{}}{\color{codeGreen}const int} val = 10;
+ \\ {\color{codeGreen}const int} *ptr = \&val; \\ {\color{codeGreen}int} *ptr1 = {\color{codeGreen}const\_cast} \textless{}{\color{codeGreen}int} *\textgreater{}(ptr);\end{tabular} \\ \hline
         {\color{blue} reinterpret} &
           \begin{tabular}[c]{@{}l@{}}• Konvertiert zwischen beliebigen Pointer-Typen \\ sowie zwischen beliebigen Pointer und int-Typen \\\textbf{ohne Typprüfung}.\\ • Kann auch mit Referenz-Typen\\ umgehen.\end{tabular} &
           \begin{tabular}[c]{@{}l@{}}Achtung: erzeugt\\ plattformspezifisches Verhalten\end{tabular} &
           \begin{tabular}[c]{@{}l@{}}Animal* a = {\color{codeGreen}new} Ant;\\ \\ {\color{codeGreen}uint8\_t}* b =\\ {\color{codeGreen}reinterpret\_cast}\textless{}{\color{codeGreen}uint8\_t}*\textgreater{}(a);\end{tabular} \\ \hline
         \end{tabular}%
+   
     }
     }          
 \end{center}
 
 Die C Syntax für Casting sollte nicht mehr verwendet werden da meistens nicht optimales verhalten. 
-
 \subsection{Templates}
 
 \begin{itemize}
-\item \textbf{Indipendenza dal tipo:} Consentono di scrivere codice generico utilizzando dei \textbf{placeholder} (segnaposti) al posto di tipi specifici.
-\item \textbf{Sicurezza dei tipi (Type Safety):} A differenza del C 
-(\lstinline|void*|), i template garantiscono un controllo dei tipi tramite \textit{early binding} in fase di compilazione.
-\item \textbf{Parametri di istanziazione:} Oltre ai tipi, è possibile 
-passare anche delle \textbf{costanti} come parametri del template 
-\item \textbf{Versatilità:} Possono essere applicati sia a \textbf{classi} che a 
-\textbf{funzioni}.
-\item \textbf{Valutazione a tempo di compilazione:} Il compilatore genera il codice 
-effettivo durante la fase di \textbf{compile-time}.
-\item \textbf{Struttura e File:} Richiedono dichiarazione, definizione e parametri; 
-solitamente vengono \crd{definiti interamente negli \textbf{header file} (.h / .hpp).}
-\item \textbf{Generazione del codice:} Il compilatore crea una copia separata della 
-funzione o classe per ogni \textbf{diverso tipo} utilizzato.
-\item \textbf{Zero Dead Code:} Se un template non viene mai utilizzato nel codice, 
-non viene generata alcuna istruzione nel binario finale
-\item \textbf{Footprint di memoria e Code Bloat:} L'istanziazione per molteplici tipi, 
-oppure l'uso eccessivo della keyword \lstinline|inline| per definizioni lunghe, 
-può causare \textit{code bloat}.
+\item \textbf{Typ-Unabhängigkeit:} Sie erlauben generischen Code mittels \textbf{Placeholdern} (Platzhaltern) anstelle der Nutzung von spezifischen Typen.
+\item \textbf{Typen-Sicherheit (Type Safety):} Im Ggs. zu C (\lstinline|void*|) garantieren Templates eine Typenprüfung durch \textit{Early Binding} bei der Kompilation.
+\item \textbf{Instanziierungs-Parameter:} Ausser Typen können auch \textbf{Konstanten} direkt als die expliziten Template-Parameter übergeben werden.
+\item \textbf{Vielseitigkeit:} Dürfen auf \textbf{Klassen} wie auch \textbf{Fkt.} angewendet werden.
+\item \textbf{Auswertung zur Kompilierzeit:} Der Compiler generiert den eigentlichen Code direkt während der \textbf{Compile-Time}-Phase.
+\item \textbf{Struktur und File:} Erfordern Deklaration, Definition und Parameter; meist \crd{vollständig in den \textbf{Header-Files} (.h / .hpp) definiert.}
+\item \textbf{Code-Erzeugung:} Der Compiler baut eine separate Kopie der Funktion oder Klasse für absolut jeden \textbf{unterschiedlichen Typ}, der genutzt wird.
+\item \textbf{Zero Dead Code:} Wird ein Template nie im Code genutzt, generiert es exakt keine einzige Anweisung im allerletzten finalen Binary.
+\item \textbf{Memory-Footprint und Code Bloat:} Eine Instanziierung für sehr viele Typen oder die übermässige Nutzung vom Keyword \lstinline|inline| für lange Defs. verursacht ev. \textit{Code Bloat}.
 \end{itemize}
 
 \subsubsection{Implementation}
 
 Die Typendefinitionen sind dann durch das T zu ersetzen. 
-
 \lstinputlisting{code/04_Memorymanagement/templatesswap.cpp}\vspace{-1.5em}
 
 \begin{center}
@@ -209,75 +200,65 @@ Die Typendefinitionen sind dann durch das T zu ersetzen.
 
 \subsubsection{Instanziierung}
 
-L'istanziazione è il processo con cui il compilatore genera codice macchina concreto\smallbreak
+Instanziierung ist der Prozess, mit dem der Compiler hier dann den konkreten Maschinencode generiert\smallbreak
 
 \begin{itemize}
-    \item \textbf{Implicita:} compilatore deduce il tipo dai parametri passati 
-    \textbf{Nota bene:} il tipo di ritorno non viene mai considerato per la deduzione
-    \item \textbf{Esplicita:} Il tipo viene specificato manualmente tra parentesi angolari 
+    \item \textbf{Implizit:} Der Compiler leitet den Typ aus übergebenen Parametern ab. \textbf{Wichtig:} Der Return-Typ wird nie für die Ableitung berücksichtigt.
+    \item \textbf{Explizit:} Der Typ wird manuell innerhalb der spitzen Klammern definiert.
 \end{itemize}\smallbreak
 
 \textbf{Klassentemplates} (\verb|<>| obbligatori):\\
-tipo sempre specificato per permettere al compilatore di determinare l'ingombro in memoria.\\
-\lstinline[language=C++]|Stack<int, 10> s1; // Istanzia uno Stack di 10 interi|
+Typ muss spezifiziert sein, damit der Compiler den effektiven Speicherbedarf ermitteln kann.\\
+\lstinline[language=C++]|Stack<int, 10> s1; // Instanziiert einen Stack von 10 Integern|
 
 \textbf{Funktionstemplates} (\verb|<>| opzionali se deducibili):\\
-Se il tipo è chiaro dai parametri, le parentesi angolari possono essere omesse.\\
-\lstinline[language=C++]|int i = minimum(iF, size); // Deduzione implicita del tipo int|
-\lstinline[language=C++]|int i = minimum<int>(iF, size); // Qualificazione esplicita|
-
+Ist der Typ via Parameter glasklar, können diese spitzen Klammern weggelassen werden.\\
+\lstinline[language=C++]|int i = minimum(iF, size); // Implizite Typ-Deduktion für int|
+\lstinline[language=C++]|int i = minimum<int>(iF, size); // Explizite Qualifikation|
 \subsubsection{Overloading}
 
-I template di funzione possono essere sovraccaricati (overloaded) con altri template o con funzioni "normali". In caso di chiamate omonime, il compilatore valuta le funzioni compatibili, istanzia quelle dei template, le aggiunge alle funzioni normali disponibili e infine seleziona la variante che offre il \textit{match} migliore con i tipi dei parametri passati.
-
+Die Funktions-Templates können auch mit anderen Templates oder "normalen" Funktionen überladen werden. 
+Bei gleichnamigen Aufrufen wertet der Compiler kompatible Fkt. aus, instanziiert jene der Templates, fügt sie den verfügbaren normalen Fkt. bei und wählt jene Variante, die den besten \textit{Match} für Parameter-Typen bietet. 
 \subsubsection{Kompilierung und Code-Organisation}
 \begin{itemize}
-    \item \textbf{Header-Only:}  il compilatore deve 'vedere' la definizione per ogni 
-    traduzione. Lo svantaggio principale è l'\textbf{aumento dei tempi di compilazione} 
-    \item \textbf{Explicit Instantiation (.cpp):} Per ridurre i tempi di compilazione, 
-    è possibile spostare la definizione in un file \verb|.cpp| e forzare l'istanziazione 
-    per tipi specifici (es. \lstinline|template class Stack<int>;|). 
+    \item \textbf{Header-Only:} Compiler muss Def. bei jeder Übersetzung "sehen". Hauptnachteil ist eine \textbf{erhebliche Zunahme jener finalen Kompilierungszeiten}.
+    \item \textbf{Explicit Instantiation (.cpp):} Um die Kompilierzeiten zu verringern, kann man Definitionen in ein \verb|.cpp|-File auslagern und Instanziierung forcieren (es. \lstinline|template class Stack<int>;|).
 \end{itemize}
 
 \section{Exceptions (Ausnahmen)}
 \begin{itemize}
-    \item \textbf{Error (Fehler):} Errore di implementazione. Dovrebbe essere rimosso durante il testing/verifica.
-    \item \textbf{Exception (Ausnahme):} Condizione anormale che può verificarsi a runtime (es. file non trovato, timeout di rete).
+    \item \textbf{Error (Fehler):} Ein Implementierungsfehler. Er sollte zwingend während dem Testing/Verify behoben werden.
+    \item \textbf{Exception (Ausnahme):} Eine abnormale Bedingung, welche in Runtime auftreten kann (Bsp. File fehlt, Network-Timeout).
 \end{itemize}
 
 
 \subsection{Meccanismo: Throw e Catch}
-Un'eccezione è un oggetto lanciato con la keyword \texttt{throw} e intercettato da un blocco \texttt{catch}.
-
+Eine Exception ist ein Objekt, per \texttt{throw} Keyword geworfen und per \texttt{catch} gefangen.
 \begin{itemize}
-    \item \textbf{Throw by value:} Le eccezioni dovrebbero sempre essere lanciate per valore.
-    \item \textbf{Catch by const reference:} Per evitare copie inutili e il problema dello \textit{slicing} degli oggetti, intercettare sempre per riferimento costante.
-    \item \textbf{Stack Unwinding:} lanciata un'eccezione, il programma distrugge 
-    automaticamente tutti gli oggetti (chiama i distruttori) e salta 
-    \textbf{al primo handler compatibile}.
+    \item \textbf{Throw by value:} Diese Exceptions sollten stets zwingend per Wert geworfen werden.
+    \item \textbf{Catch by const reference:} Um unnötige Kopien und das Objekt-\textit{Slicing}-Problem zu vermeiden, solltest du sie immer als konstante Referenz fangen.
+    \item \textbf{Stack Unwinding:} Wurde Exception geworfen, zerstört das Programm alle Objekte (ruft Destruktoren auf) und springt direkt \textbf{zum ersten kompatiblen Handler}.
 \end{itemize}
 
 \lstinputlisting[language=C++]{code/04_Memorymanagement/exceptionGenerellSyntax.cpp}\vspace{-1em}
 
 \subsection{Propagazione (Exception Propagation)}
-Se un'eccezione non viene gestita localmente, può essere passata "verso l'alto" (es. fino al livello applicativo) dove può essere presa una decisione sensata (Grundsatz: gestire solo ciò che si può decidere).
+Wird eine Exception lokal nicht gehandelt, reicht man sie "nach oben" weiter (z.B. auf die Applikations-Ebene), wo ein sinnvoller Entscheid fällt (Grundsatz: Handle nur das, worüber du entscheiden kannst). 
 \begin{itemize}
-    \item All'interno di un blocco \texttt{catch}, l'istruzione \texttt{throw;} (senza argomenti) ri-lancia l'eccezione corrente alla funzione chiamante.
+    \item Innerhalb von einem \texttt{catch}-Block wirft die \texttt{throw;}-Instruktion (ganz ohne Argumente) die genaue, aktuelle Exception erneut an die aufrufende Funktion.
 \end{itemize}
 
 \subsection{Gerarchia e Ordine dei Catch}
-In C++, le eccezioni sono organizzate gerarchicamente sotto la classe base \texttt{std::exception} (definita in \texttt{<exception>}).
-
+In C++ werden Exceptions hierarchisch unter der Basisklasse \texttt{std::exception} (ist in \texttt{<exception>} definiert) angeordnet. 
 \begin{itemize}
-    \item \textbf{logic\_error: \crd{DA NON USARE}} Errori prevenibili in fase di sviluppo
-    \item \textbf{runtime\_error:} Errori non prevedibili dovuti a eventi esterni\\
+    \item \textbf{logic\_error: \crd{NICHT BENUTZEN}} Fehler, die in der Entwicklung vermeidbar sind
+    \item \textbf{runtime\_error:} Unvorhersehbare Fehler in Folge von externen Ereignissen\\
     (es. \texttt{overflow\_error}, \texttt{system\_error}, \crd{includere \texttt{stdexcept}}).
 \end{itemize}
 
 \medbreak
 
-\textbf{\color{orange}Regola cruciale:} Gli handler devono essere ordinati dal più specifico al più 
-generico nel codice. \texttt{std::exception} o il catch-all \texttt{...} deve essere l'ultimo.
+\textbf{\color{orange}Cruciale Regel:} Handler müssen zwingend von sehr spezifisch zu sehr generisch im Code geordnet sein. \texttt{std::exception} oder der Catch-All \texttt{...} ist am Schluss.
 
 \begin{lstlisting}{language=C++}
 catch(...) {/* Catch everything */}
@@ -291,29 +272,26 @@ catch(...) {/* Catch everything */}
 \lstinputlisting[language=C++]{code/04_Memorymanagement/catchcatcher.cpp}\vspace{-1em}
 
 \subsection{Eccezioni non gestite}
-Se non viene trovato alcun handler nel \textit{Call Stack}:
+Wird absolut gar kein gültiger Handler im \textit{Call Stack} gefunden:
 
 
 \begin{enumerate}
-    \item Viene chiamata la funzione \texttt{std::terminate}.
-    \item \texttt{std::terminate} richiama un \texttt{terminate\_ handler} (di default \texttt{std::abort}).
-    \item Il programma termina bruscamente (no esecuzione dei distruttori)
+    \item Wird nun die Funktion namens \texttt{std::terminate} gerufen.
+    \item \texttt{std::terminate} ruft einen \texttt{terminate\_ handler} (Default ist \texttt{std::abort}).
+    \item Das Programm endet jetzt ziemlich brüsk (kein Ausführen der Destruktoren)
 \end{enumerate}\smallbreak
 
-È possibile personalizzare questo comportamento tramite \texttt{std::set\_terminate()}.
-
+Es ist möglich, dieses Verhalten spezifisch über \texttt{std::set\_terminate()} anzupassen. 
 \subsection{noexcept}
 \begin{itemize}
-    \item \textbf{noexcept:} Introdotto con C++11, indica che una funzione garantisce di non lanciare eccezioni. È utile per l'ottimizzazione del compilatore.
-    \item \textbf{Operatore noexcept(expr):} Restituisce \texttt{true} se l'espressione è specificata come \texttt{noexcept}.
+    \item \textbf{noexcept:} Eingeführt in C++11, zeigt es, dass Fkt garantiert keine Exceptions wirft. Dies ist sehr nützlich für die Optimierung des Compilers.
+    \item \textbf{Operatore noexcept(expr):} Gibt exakt \texttt{true} zurück, wenn die Expression als \texttt{noexcept} deklariert ist.
 \end{itemize}
 
 \lstinputlisting[language=C++]{code/04_Memorymanagement/noexcept.cpp}\vspace{-1em}
 
 \subsection{C++ e Low-Level Exceptions}
-A differenza di Java o C\#, il linguaggio C++ \textbf{non} effettua il \textit{mapping}
-automatico delle eccezioni di basso livello (come la divisione per zero) in eccezioni 
-del linguaggio.
+Anders als in Java oder C\# übernimmt die Sprache C++ \textbf{kein} auto \textit{Mapping} jener Low-Level Exceptions (wie z.B. bei der Division durch Null) in normale Sprach-Exceptions. 
 \smallskip
 
 Handling con \texttt{catch(...) \{ \}} 
@@ -321,13 +299,11 @@ Handling con \texttt{catch(...) \{ \}}
 \section{STD Library}
 \subsection{array}
 \begin{itemize}
-\item \textbf{Definizione:} \texttt{std::array<T, size>} è un contenitore a dimensione 
-fissa implementato come classe template.
-\item \textbf{Dimensione:} \texttt{std::array} conosce la propria dimensione tramite la 
-funzione membro \texttt{.size()}.
-\item \textbf{Accesso ai dati:} classica notazione a parentesi quadre \texttt{[]}.
-\item \textbf{Sicurezza:} \texttt{.at()} è accesso sicuro con controllo dei limiti, eccezione \lstinline|std::out_of_range| in caso di accesso non valido.
-\item Nei parametri delle funzioni passabili come \textbf{\color{red}referenza, sempre da fare} (perchè sono una classe)
+\item \textbf{Definition:} \texttt{std::array<T, size>} ist ein Container von absolut fester Grösse implementiert als Template-Klasse.
+\item \textbf{Dimension:} \texttt{std::array} weiss seine ganz exakte Dimension aus der Memberfunktion \texttt{.size()}.
+\item \textbf{Zugriff auf Daten:} Klassische eckige Klammer Notation in \texttt{[]}.
+\item \textbf{Sicherheit:} \texttt{.at()} greift dank Limit-Check sicher zu, Exeption \lstinline|std::out_of_range| tritt bei einem ungültigen Zugriff auf.
+\item In den Parametern von Fkt übergebbar als eine \textbf{\color{red}Referenz, ist stets zu tun} (da es ja Klassen sind)
 \end{itemize}
 
 \example{}
@@ -335,10 +311,9 @@ funzione membro \texttt{.size()}.
 
 \subsubsection{Matrix}
 \begin{itemize}
-\item \textbf{Struttura:} Dimensione esterna: righe, interna: colonne.
-\item \cor{Richiede una doppia coppia di parentesi graffe per l'inizializzazione} 
-(perchè \texttt{std:array} è una classe)
-\item \textbf{Accesso:} doppia index notation: \texttt{matrix[riga][colonna]}.
+\item \textbf{Struktur:} Externe Dimension: Zeilen, intern: die Spalten.
+\item \cor{Erfordert zwei Doppel-Paare an geschweiften Klammern zum Initialisieren (weil dieses \texttt{std:array} eine Klasse ist)}
+\item \textbf{Zugriff:} Doppelte Index Notation: \texttt{matrix[riga][colonna]}.
 \end{itemize}
 
 \example{}

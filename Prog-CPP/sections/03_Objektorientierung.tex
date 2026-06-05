@@ -37,7 +37,7 @@ Eine Beispielklasse:
 \end{enumerate}
 
 \begin{itemize}
-    \item Die \textit{blauen} Punkte müssen sich im Includeguard befinden(\#pragma once). 
+    \item Die \textit{blauen} Punkte müssen sich im Includeguard befinden(\#pragma once).
     \item Pro Header-Datei sollte nur eine Oberklasse deklariert sein. 
     \item Kleine Unterklassen können im gleichen Header stehen.
     \item Kein \lstinline[language=C++]|using namespace ...| in header files
@@ -79,7 +79,7 @@ Besteht immer aus 3 Boxen:\vspace{1em}
         \item Unten Methoden.
         \item Methoden und Attribute fangen mit einem Symbol an, welches die \textbf{Sichtbarkeit} 
                 definiert und haben ein bestimmtes Merkmal:
-        \item Parole come \lstinline[language=C++]|void| o \lstinline[language=C++]|const| sono specifiche per linguaggio, da non includere
+        \item Wörter wie \lstinline[language=C++]|void| o. \lstinline[language=C++]|const| sind sprachspezifisch, nicht einfügen
     \end{itemize}
 \end{minipage}\vspace{1em}
 
@@ -103,14 +103,14 @@ Eine class hat \textbf{standardmässig Sichtbarkeit private} sonst muss explizit
 \subsubsection{Zugriffsschutz}
 \begin{tabular}{|l|l|}
     \hline
-    \textbf{Modificatore} & \textbf{Descrizione e Best Practice} \\ \hline
-    \lstinline[language=C++]|public| & Accessibili dall'interno e dall'esterno della classe. \\ 
-    & $\rightarrow$ Quasi tutti i \textbf{metodi} sono pubblici. \\ 
-    & $\rightarrow$ \textbf{attributi} non dovrebbero \textit{mai} essere pubblici. \\ \hline
-    \lstinline[language=C++]|protected| & Accessibili dall'interno della classe e dalle \textbf{classi derivate}. \\ 
-    & $\rightarrow$ Da utilizzare con parsimonia. \\ \hline
-    \lstinline[language=C++]|private| & Accessibili \textbf{solo} all'interno della classe stessa. \\ 
-    & $\rightarrow$ Per tutti gli attributi e per metodi locali specifici. \\ \hline
+    \textbf{Modifikator} & \textbf{Beschreibung \& Best Practice} \\ \hline
+    \lstinline[language=C++]|public| & Zugriff von innerhalb und von ausserhalb der Klasse. \\ 
+    & $\rightarrow$ Fast alle \textbf{Methoden} sind public. \\ 
+    & $\rightarrow$ \textbf{Attribute} sollten \textit{nie} public sein. \\ \hline
+    \lstinline[language=C++]|protected| & Zugriff von innerhalb der Klasse und den \textbf{abgeleiteten Klassen}. \\ 
+    & $\rightarrow$ Nur sehr sparsam zu verwenden. \\ \hline
+    \lstinline[language=C++]|private| & Zugriff \textbf{nur} von innerhalb der eigenen Klasse aus. \\ 
+    & $\rightarrow$ Für alle Attribute und für spezifische lokale Methoden. \\ \hline
 \end{tabular}
 
 \subsection{Inkludierte Dokumentation}
@@ -124,48 +124,53 @@ Es kann immer mehr geschrieben werden, man sollte sich aber auf das Nötige besc
 
 \section{Konstruktoren und Destruktoren}
 
-I costruttori (CTOR) e i distruttori (DTOR) sono metodi speciali che gestiscono il ciclo di vita di un oggetto. Entrambi hanno lo stesso nome della classe e \textbf{non} hanno alcun tipo di ritorno (nemmeno \lstinline[language=C++]|void|).
+Konstruktoren (CTOR) und Destruktoren (DTOR) sind spezielle Methoden, die den Lebenszyklus des Objekts steuern. 
+Beide haben den exakten Klassennamen und haben \textbf{keinen} Rückgabetyp (nicht einmal \lstinline[language=C++]|void|).
 
 \subsection{Konstruktoren (CTOR)}
 
-Il compito principale del CTOR è l'inizializzazione "pulita" di tutti gli attributi della classe.
+Hauptaufgabe des CTORs ist die "saubere" Initialisierung aller Attribute der Klasse.
 
 \begin{itemize}
-    \item \textbf{Default-Konstruktor:} Non ha parametri. Viene invocato automaticamente se l'oggetto è dichiarato senza argomenti (es. \lstinline[language=C++]|Stack s;|). Se non definito, il compilatore ne crea uno implícito (che però non inizializza i tipi primitivi).
-    \item \textbf{Copy-Konstruktor:} Riceve una \lstinline[language=C++]|const|-Referenz alla propria classe (\lstinline[language=C++]|TString(const TString& s)|). Viene usato per creare un oggetto come copia di uno esistente.
-    \item \textbf{Explicit-Konstruktor:} Marcando un CTOR a parametro singolo con \lstinline[language=C++]|explicit|, si impediscono conversioni implicite indesiderate (es. \lstinline[language=C++]|TString s = 5;|).
+    \item \textbf{Default-Konstruktor:} Hat keine Parameter. Wird automatisch aufgerufen, wenn das Objekt ohne Argumente deklariert wird (z.B. \lstinline[language=C++]|Stack s;|). 
+    Falls nicht definiert, erstellt der Compiler einen implizit (der aber primitive Typen nicht initialisiert).
+    \item \textbf{Copy-Konstruktor:} Erhält eine \lstinline[language=C++]|const|-Referenz auf eigene Klasse (\lstinline[language=C++]|TString(const TString& s)|). 
+    Wird benutzt, um ein Objekt als Kopie eines bestehenden zu erzeugen.
+    \item \textbf{Explicit-Konstruktor:} Markiert man einen CTOR mit 1 Parameter als \lstinline[language=C++]|explicit|, verhindert man ungewollte implizite Konversionen (es. \lstinline[language=C++]|TString s = 5;|).
 \end{itemize}
 
 Werden verschiedene Konstruktoren definiert, muss der Default zuerst aufgerufen werden, wenn dieser erhalten bleiben soll.
 
 \subsubsection{Best Practices di Inizializzazione}
-Una delle responsabilità primarie del costruttore è garantire che l'oggetto nasca in uno stato valido. Ciò implica che \textbf{tutti} gli attributi della classe debbano essere inizializzati su un valore definito.
+Eine Hauptverantwortung des Konstruktors ist es, zu garantieren, dass das Objekt in einem validen Zustand entsteht. 
+Das heisst, dass \textbf{alle} Klassen-Attribute auf einen definierten Wert initialisiert werden müssen.
 
 \begin{itemize}
-    \item \textbf{Assegnamento nel corpo (\ref{chap:ctor_dtor_example}):} Meno efficiente, i membri vengono prima creati con valori predefiniti e poi sovrascritti.
-    \item \textbf{Initialisierungsliste (\ref{chap:user_ctor}):} Il metodo preferito per motivi di efficienza; gli attributi vengono inizializzati direttamente al momento della creazione.
-    \item \textbf{Member In-Class Initialization:} (Da C++11) Permette di impostare valori di default direttamente nella dichiarazione della classe, semplificando i costruttori ed evitando dimenticanze.
+    \item \textbf{Assegnamento nel corpo (\ref{chap:ctor_dtor_example}):} Weniger effizient, Member werden erst mit Default-Werten erzeugt und danach überschrieben.
+    \item \textbf{Initialisierungsliste (\ref{chap:user_ctor}):} Die bevorzugte Methode aus Effizienzgründen; Attribute werden direkt bei der Erstellung initialisiert.
+    \item \textbf{Member In-Class Initialization:} (Ab C++11) Erlaubt Default-Werte direkt in der Klassendeklaration zu setzen, was CTORs vereinfacht und Vergessen verhindert.
 \end{itemize}
 
 \subsection{Gestione Memoria: Shallow vs. Deep Copy}
 
-Quando una classe gestisce puntatori a memoria allocata sul Heap (\lstinline[language=C++]|new|), il comportamento di default è critico:
+Wenn eine Klasse Pointer auf dem Heap allokierten Speicher (\lstinline[language=C++]|new|) verwaltet, ist das Default-Verhalten kritisch:
 
 \begin{description}
-    \item[Shallow Copy (Default):] Il compilatore copia solo l'indirizzo del puntatore. Entrambi gli oggetti puntano alla stessa memoria. Se uno la libera, l'altro punta a memoria non valida (\textit{Double Free} o \textit{Segmentation Fault}).
-    \item[Deep Copy (Manuale):] \textbf{\color{red}È necessario} definire un Copy-Konstruktor proprio che allochi nuovo spazio sul Heap e copi i dati effettivi.
+    \item[Shallow Copy (Default):] Der Compiler kopiert lediglich die Adresse des Pointers. 
+    Beide Objekte zeigen auf denselben Speicher. Gibt einer ihn frei, zeigt der andere auf ungültigen Speicher (\textit{Double Free} oder \textit{Segmentation Fault}).
+    \item[Deep Copy (Manuale):] \textbf{\color{red}Zwingend nötig} ist ein eigener Copy-Konstruktor, der neuen Platz auf dem Heap allokiert und die Nutzdaten kopiert.
 \end{description}
 
 \subsection{Destruktor}
 
 Ein Destruktor eintfernt eine Instanz aus dem Speicher, 
-hat keine Aufrufparameter und auch kein Rückgabewert. 
+hat keine Aufrufparameter und auch kein Rückgabewert.
 Es kann immer nur \textbf{einen} Destruktor geben. 
 Wenn der Destruktor fertig ist, sollte kein Speicher mehr vom Objekt belegt sein.\\
 Destruktoren sollten immer \textbf{virtuell definiert werden} (siehe \ref{Virtual}). 
 Mit anderen virtuellen Funktionen \textbf{müssen} sie virtuel definiert werden. 
 Der Funktionsname beginnt mit einer Tilde($\sim$). 
-Der Destruktor wird evtl. auch Implizit aufgerufen z.b., wenn aus einer Funktion wieder herausgesprungen wird. 
+Der Destruktor wird evtl. auch Implizit aufgerufen z.b., wenn aus einer Funktion wieder herausgesprungen wird.
 
 \subsection{Beispiel}\label{chap:ctor_dtor_example}
 
@@ -188,18 +193,17 @@ Es wird zwischen Zuweisung und Initialisierung unterschieden.
 
 \subsection{User defined Constructor}\label{chap:user_ctor}
 
-Um eine Klasse richtig initialisieren zu können muss der Ctor korrekt definiert werden. 
+Um eine Klasse richtig initialisieren zu können muss der Ctor korrekt definiert werden.
 Eine sogenannte \textbf{Initialisierungsliste} wird verwendet:
 
 \lstinputlisting{code/03_Objektorientierung/userdefined_ctro.cpp}
 
 \section{Assertions}
-Assertions sollten Annahmen über korrekte Wertebelegung darstellen. 
-
+Assertions sollten Annahmen über korrekte Wertebelegung darstellen.
 Sie sind kein C spezifisches Konzept und sollten \textbf{nur zu Testzwecken} eingesetzt werden. 
-Im Releasebuild sollten sie deaktiviert werden. 
-Dafür gibt es spezifische Präprozessorflags.
-Der Header \textbf{$<$assert.h$>$} bzw. \textbf{$<$cassert$>$} stellt hierfür ein Präprozessor-Makro \lstinline[language=C++]|assert(Bedingung)| zur Verfügung, um solche Zusicherungen auszudrücken.\\
+Im Releasebuild sollten sie deaktiviert werden. Dafür gibt es spezifische Präprozessorflags.
+Der Header \textbf{$<$assert.h$>$} bzw. \textbf{$<$cassert$>$} stellt hierfür ein Präprozessor-Makro \lstinline[language=C++]|assert(Bedingung)|
+zur Verfügung, um solche Zusicherungen auszudrücken.\\
 \textbf{Beispiel}:
 
 \lstinputlisting{code/03_Objektorientierung/assertions.cpp}
@@ -209,7 +213,8 @@ Diese würde im Test, falls ein Nullpointer übergeben wird ein Fehler ausgegebe
 
 \section{This-Pointer}
 
-Mit dem \texttt{this Pointer} kann ein Pointer des aufrufenden Objekt zurückgegeben werden. Bsp:
+Mit dem \texttt{this Pointer} kann ein Pointer des aufrufenden Objekt zurückgegeben werden.
+Bsp:
 
 \lstinputlisting{code/03_Objektorientierung/this_pointer.cpp}
 
@@ -219,27 +224,28 @@ Die funktion wird \textbf{Kaskadiert}
 
 \section{Overloading}
 
-Operator Overloading bedeutet das bestehende Operatoren \texttt{überladen} werden im Sinne neu definiert / darüber geladen. 
+Operator Overloading bedeutet das bestehende Operatoren \texttt{überladen} werden im Sinne neu definiert / darüber geladen.
 Sie erhalten \textbf{neue Bedeutung} für eine Klasse.
 
 
 \subsection{Methodenoverloading}
 \begin{itemize}
-    \item \textbf{Definizione}: Stesso nome per funzioni con parametri diversi (tipo, numero o ordine).
-    \item \textbf{Firma}: Composta da \textit{Nome + Parametri}. Il tipo di ritorno è \textbf{escluso}.
-    \item \textbf{Regola}: Se differiscono solo per il tipo di ritorno, il compilatore genera un errore.
-    \item \textbf{Best Practice}: Usare l'overloading solo per operazioni comparabili e \textbf{non mescolarlo mai con i parametri di default.}
+    \item \textbf{Definition}: Gleicher Name für Funktionen mit anderen Parametern (Typ, Anzahl, Reihenfolge).
+    \item \textbf{Signatur}: Besteht aus \textit{Name + Paramtern}. Der Rückgabetyp ist \textbf{exkludiert}.
+    \item \textbf{Regel}: Unterscheiden sie sich nur im Rückgabetyp, generiert der Compiler einen Error.
+    \item \textbf{Best Practice}: Overloading nur für vergleichbare Ops nutzen und \textbf{nie mit Default-Parametern vermischen.}
 \end{itemize}
 
 \begin{center}
     
     \begin{tabular}{lll}
         \toprule
-        \textbf{Caratteristica} & \textbf{Overloading} & \textbf{Parametri Default} \\
+        \textbf{Eigenschaft} & \textbf{Overloading} & \textbf{Default Parameter} \\
         \midrule
-        Memoria & Più funzioni & Singola funzione \\
-        Manutenzione & Maggiore & Minore \\
-        Flessibilità & Tipi diversi & Valori predefiniti \\
+        Speicher & Mehr Funktionen & Eine Funtkion \\
+        Wartung & Höher & Geringer \\
+        Flexibilität & Verschied. Typen & Vordefinierte Werte \\
+  
         \bottomrule
     \end{tabular}
 \end{center}
@@ -248,7 +254,8 @@ Sie erhalten \textbf{neue Bedeutung} für eine Klasse.
 
 \subsection{Operator overloading}
 
-Es können die inkludierten Operatoren von C++ überladen werden. 
+Es können die inkludierten Operatoren von C++ überladen werden.
+
 % \begin{itemize}
 %     \item Die Anzahl an Operanden und die Bindungsrichtung (links nach rechts) kann \textbf{nicht} verändert werden.
 %     \item Die Präzedenz (Vorrangregeln) kann \textbf{nicht} verändert werden.
@@ -257,28 +264,33 @@ Es können die inkludierten Operatoren von C++ überladen werden.
 
 Erlaubte Operatoren sind:\\
 \begin{tabular}{lllllllll}
-    +            & -               & *           & ⁄                      & \%                           & $\wedge$                & \&                            & $|$              & $\sim$          \\
-    !            & =               & \textless{} & \textgreater{}         & +=                           & -=                      & *=                            & ⁄=               & \%=             \\
-    $\wedge$=    & \&=             & $|$=        & \textless{}\textless{} & \textgreater{}\textgreater{} & \textless{}\textless{}= & \textgreater{}\textgreater{}= & ==               & !=              \\
-    \textless{}= & \textgreater{}= & \&\&        & $\|$                   & ++                           & $--$                    & ,                             & -\textgreater{}* & -\textgreater{} \\
-    ( )          & {[} {]}         & new         & delete                 & new{[} {]}                   & delete{[} {]}           &                               &                  &                
+    +            & -               & * & ⁄                      & \%                           & $\wedge$ 
+                & \&                            & $|$              & $\sim$          \\
+    !
+& =               & \textless{} & \textgreater{}         & +=                           & -=                      & *=                    
+        & ⁄=               & \%=             \\
+    $\wedge$=    & \&=             & $|$=        & \textless{}\textless{} & \textgreater{}\textgreater{} & \textless{}\textless{}= & \textgreater{}\textgreater{}= & ==               & !=      
+        \\
+    \textless{}= & \textgreater{}= & \&\&        & $\|$                   & ++                           & $--$                    & ,      
+                       & -\textgreater{}* & -\textgreater{} \\
+    ( )          & {[} {]}         & new         & delete                 & new{[} {]}                 
+  & delete{[} {]}           &                               &                  &                
 \end{tabular}\medskip
 
-Nicht erlaubte Operatoren sind: '\lstinline[language=C++]|.| \quad \lstinline[language=C++]|.*| \quad \lstinline[language=C++]|::| \quad \lstinline[language=C++]|?:| \quad \lstinline[language=C++]|sizeof| \quad \lstinline[language=C++]|typeid|'.
-
+Nicht erlaubte Operatoren sind: '\lstinline[language=C++]|.|
+\quad \lstinline[language=C++]|.*| \quad \lstinline[language=C++]|::| \quad \lstinline[language=C++]|?:| \quad \lstinline[language=C++]|sizeof| \quad \lstinline[language=C++]|typeid|'.
 Es wird zwischen Overloading als \textit{globalen Funktion} und als \textit{Klassen-Methode} unterschieden.
 
 \subsubsection{Als Methode (Member function)}
 
-Ein Operator kann als Methode einer Klasse definiert werden. Dies ist der Standardfall, wenn der \textbf{linke Operand} ein Objekt der eigenen Klasse ist.
-
+Ein Operator kann als Methode einer Klasse definiert werden. 
+Dies ist der Standardfall, wenn der \textbf{linke Operand} ein Objekt der eigenen Klasse ist.
 Der linke Operand (Objekt selbst) ist dabei implizit, weshalb die Methode \textbf{einen Parameter weniger} annimmt als die globale Variante.\\
 Syntax: \lstinline[language=C++]|<returntype> operator<typ>(type in);|
-
 \begin{itemize}
-    \item \textbf{Visibilità a livello di Classe:} In C++, il controllo degli accessi (\lstinline[language=C++]|private|) agisce a livello di \textbf{classe}, non di singolo oggetto.
-    \item \textbf{Accesso Incrociato:} \cor{Un metodo della classe $A$ ha il permesso di accedere ai membri privati di \textit{qualsiasi} istanza di tipo $A$.}
-    \item \textbf{Applicazioni:} Questa caratteristica è indispensabile per implementare correttamente l'overloading degli operatori (es. \lstinline[language=C++]|operator+|), i costruttori di copia e i metodi di confronto, dove un oggetto deve leggere i dati interni di un suo 'simile'.
+    \item \textbf{Visibilità a livello di Classe:} In C++ agiert die Zugriffskontrolle (\lstinline[language=C++]|private|) auf Stufe der \textbf{Klasse}, nicht des einzelnen Objekts.
+    \item \textbf{Accesso Incrociato:} \cor{Eine Methode der Klasse $A$ darf auf private Member \textit{jeglicher} Instanz des Typs $A$ zugreifen.}
+    \item \textbf{Applicazioni:} Diese Eigenschaft ist unverzichtbar um Operator Overloading (z.B. \lstinline[language=C++]|operator+|), Copy-Konstruktoren oder Vergleichsmethoden zu bauen, wo ein Objekt interne Daten seines "Gleichen" lesen muss.
 \end{itemize}
 
 \lstinputlisting{code/03_Objektorientierung/operator_overloading_method.cpp}
@@ -303,31 +315,31 @@ von der eigenen Klasse ist.} Typische Beispiele sind:
 Syntax: \verb|<returntype> operator<type>(type val1, type val2);|\medskip
 
 \textbf{Friend Keyword:}\\
-Oft müssen globale Operatorfunktionen auf private Daten der Klasse zugreifen. In diesem 
+Oft müssen globale Operatorfunktionen auf private Daten der Klasse zugreifen. 
+In diesem 
 Fall werden sie innerhalb der Klasse mit dem Keyword \lstinline[language=C++]|friend| deklariert. 
 Dadurch erhalten sie als globale Funktionen Zugriff auf \textbf{alle privaten Attribute 
 und Methoden} der Klasse, ohne selbst Teil der Klasse (Methode) zu sein. 
-
 \crd{\textit{Achtung}: Friend-Funktionen sollten gezielt eingesetzt werden.}
 
 \lstinputlisting{code/03_Objektorientierung/operator_overloading_global.cpp}
 
 \textbf{Beispiel I/O Streams (\lstinline[language=C++]|<<|):}\\
-Damit Verkettungen wie \verb|cout << a << b;| funktionieren, muss als Rückgabewert eine Referenz auf den \verb|ostream| geliefert werden (\verb|return os;|).
+Damit Verkettungen wie \verb|cout << a << b;| 
+funktionieren, muss als Rückgabewert eine Referenz auf den \verb|ostream| geliefert werden (\verb|return os;|).
 \lstinputlisting[language=C++]{code/03_Objektorientierung/03_Objektorientierung_snippet_1.cpp}
 
 \subsubsection{Operatoren und Typumwandlungen}
 \begin{itemize}
-    \item Per evitare di dover definire innumerevoli varianti di un operatore per ogni combinazione di tipi, è possibile sfruttare le \textbf{conversioni di tipo definite dall'utente}.
-    \item Singolo operatore può gestire diversi input se esiste un costruttore in grado di convertire tali tipi nella classe di destinazione.
+    \item Um unzählige Varianten eines Operators für jede Typkombination zu vermeiden, kann man \textbf{benutzerdefinierte Typumwandlungen} nutzen.
+    \item Ein einzelner Operator kann diverse Inputs handhaben, falls ein Konstruktor existiert, der diese Typen in die Zielklasse wandelt.
 \end{itemize}
 
 \lstinputlisting[language=C++]{code/03_Objektorientierung/operatoren_typumwandlung.cpp}
 
 \section{Getter \& Settermethoden}
 
-Getter und Settermethoden werden Typischerweise verwendet um Lese und Schreibzugriffe auf eine Klasse zu regeln.
-
+Getter und Settermethoden werden Typischerweise verwendet um Lese und Schreibzugriffe auf eine Klasse zu regeln. 
 Attribute sind \textbf{alle Parameter einer Klasse}.
 Mit einer Get oder Set Methode kann der Zugriff auf diese kontrolliert / angepasst werden.\medskip
 
@@ -338,9 +350,7 @@ Mit einer Get oder Set Methode kann der Zugriff auf diese kontrolliert / angepas
 \lstinputlisting{code/03_Objektorientierung/getter_settermethoden.cpp}
 
 \subsubsection{Mutable}
-Si può permettere a determinati attributi di essere 
-modificati da metodi \lstinline[language=C++]|const| con la keyword \lstinline[language=C++]|mutable|,
-\textbf{usare il meno possibile}
+Gewisse Attribute dürfen von \lstinline[language=C++]|const| Methoden geändert werden mit dem \lstinline[language=C++]|mutable| Keyword, \textbf{so wenig wie möglich nutzen}
 \begin{lstlisting}
 ...
 mutable int error;
@@ -349,8 +359,8 @@ mutable int error;
 
 \subsubsection{Const correctness}
 \begin{itemize}
-    \item \textbf{Sola Lettura:} Un oggetto dichiarato come \lstinline[language=C++]|const| può invocare \textit{solo} metodi dichiarati \lstinline[language=C++]|const|.
-    \item \textbf{Sicurezza:} Se un metodo non è marcato \lstinline[language=C++]|const|, il compilatore assume che possa modificare l'oggetto e ne impedisce l'uso su istanze costanti per evitare effetti collaterali indesiderati.
+    \item \textbf{Nur Lesen:} Ein als \lstinline[language=C++]|const| deklariertes Objekt darf \textit{nur} \lstinline[language=C++]|const| Methoden aufrufen.
+    \item \textbf{Sicherheit:} Ist eine Methode nicht als \lstinline[language=C++]|const| markiert, nimmt der Compiler an, sie ändere das Objekt und verbietet sie auf konstanten Instanzen, um Seiteneffekte zu vermeiden.
 \end{itemize}
 
 \example{}
@@ -361,7 +371,6 @@ mutable int error;
 Vererbung erlaubt es Attribute und Methoden von anderen Klassen zu übernehmen. 
 Die Oberklasse, Baisklasse oder Superklasse \texttt{vererbt} an eine Unterklasse, derived class oder eine Spezialisierung. 
 Bei der Vererbung werden immer \textbf{alle} Attribute oder Methoden weitergegeben. 
-
 \subsubsection{UML}
 
 In einem UML Diagramm wird vererbung wie folgt dargestellt:\\
@@ -370,12 +379,11 @@ In einem UML Diagramm wird vererbung wie folgt dargestellt:\\
     \input{tikz/uml.tex}
 \end{minipage}\hfill
     \begin{minipage}{0.35\columnwidth}
-    Unterklasse erbt (die Attribute und Methoden) von Superklasse. 
+    Unterklasse erbt (die Attribute und Methoden) von Superklasse.
 \end{minipage}\vspace{1em}
 
 Dies stellt eine \texttt{ist ein beziehung} dar. 
 Es ist sehr wichtig, dass die Pfeilspitze \colorbox{red!65}{\textbf{genau so!}} aussieht wie in der Darstellung da ansonsten Verwechslungsgefahr mit anderen Mechanismen entstehen könnte.
-
 \subsubsection{Syntax}
 
 \lstinputlisting{code/03_Objektorientierung/vererbung_syntax.cpp}
@@ -395,22 +403,20 @@ Die Sichtbarkeit ist durch das Public definiert.
 Es ist möglich die Sichtbarkeit aller Attribute und Methoden einzuschränken. 
 Mit \textbf{Public} wird alles mit der originalen Sichtbarkeit übernommen. 
 Mit \textbf{protected} wird alles was public war protected. 
-Mit \textbf{private} wird alles private (nicht sehr nützlich).
-
+Mit \textbf{private} wird alles private (nicht sehr nützlich). 
 \resizebox{\columnwidth}{!}{  
     \input{tikz/sichtbarkeit.tex}
 }
 
 Wird eine Vererbung private durchgeführt, sind keine Attribute oder Methoden mehr sichtbar.
-
 Attribute soll nie \lstinline[language=C++]|protected| sein
 \subsubsection{Constructor / Destructor chaining}
 
 \par{Logica dei Costruttori (CTOR)}
 \begin{itemize}
-    \item \textbf{Principio di Responsabilità:} Il costruttore di una classe inizializza esplicitamente \textbf{solo i propri attributi}.
-    \item \textbf{Delegazione:} Per gli attributi della classe base, viene invocato il costruttore della classe base stessa (la base 'si occupa delle proprie faccende').
-    \item \textbf{Regola di Priorità:} Gli elementi della classe base devono essere \textbf{sempre inizializzati per primi}.
+    \item \textbf{Prinzip der Verantwortung:} Der Konstruktor einer Klasse initialisiert explizit \textbf{nur seine eigenen Attribute}.
+    \item \textbf{Delegation:} Für Basisklassen-Attribute wird der CTOR der Basisklasse selbst aufgerufen (die Basis "kümmert sich um ihre eigenen Dinge").
+    \item \textbf{Prioritätsregel:} Die Elemente der Basisklasse müssen \textbf{immer als erstes initialisiert werden}.
 \end{itemize}
 
 
@@ -418,8 +424,8 @@ Attribute soll nie \lstinline[language=C++]|protected| sein
 
 \par{Logica dei Distruttori (DTOR)}
 \begin{itemize}
-    \item \textbf{Ordine Inverso:} I distruttori vengono eseguiti nell'ordine esattamente opposto ai costruttori.
-    \item \textbf{Ordine di Esecuzione:} Dal basso verso l'alto (Sottoclasse $\rightarrow$ Classe Base).
+    \item \textbf{Umgekehrte Reihenfolge:} DTORs werden in der exakt umgekehrten Reihenfolge der CTORs ausgeführt.
+    \item \textbf{Ausführungs-Reihenfolge:} Von unten nach oben (Subklasse $\rightarrow$ Basisklasse).
 \end{itemize}
 
 \subsection{Überschreiben von Methoden}
@@ -431,80 +437,76 @@ Im folgenden Beispiel haben eine Subklasse und eine Oberklasse eine print Funkti
 
 \lstinputlisting{code/03_Objektorientierung/methodenueberschreiben.cpp}
 
-Dieses Beispiel soll zeigen, dass Pointer, welche eigentlich von einer Oberklasse auf eine Unterklasse zeigen auf die \texttt{Eigenen} Funktionen der Oberklasse zeigt, solange diese nicht überschrieben worden sind.
+Dieses Beispiel soll zeigen, dass Pointer, welche eigentlich von einer Oberklasse auf eine Unterklasse zeigen auf die \texttt{Eigenen} Funktionen der Oberklasse zeigt, solange diese nicht überschrieben worden sind. 
 Dies kann als Verhalten gewünscht sein. 
 
 \subsection{virtual, final, override und scopeoperator}
 
 \subsubsection{virtual}\label{Virtual}
 \begin{itemize}
-    \item \textbf{Zweck:} Kennzeichnet Methoden, die in Unterklassen überschrieben werden sollen. Dies ermöglicht \textbf{Dynamic Binding}, sodass zur Laufzeit immer die spezialisierte Methode der Unterklasse aufgerufen wird.
+    \item \textbf{Zweck:} Kennzeichnet Methoden, die in Unterklassen überschrieben werden sollen. 
+Dies ermöglicht \textbf{Dynamic Binding}, sodass zur Laufzeit immer die spezialisierte Methode der Unterklasse aufgerufen wird.
     \item \textbf{Polymorphie:} Eine Klasse, die mindestens eine virtuelle Funktion besitzt, wird als \textbf{polymorph} bezeichnet.
     \item \textbf{Vererbung:} Einmal als \lstinline[language=C++]|virtual| deklariert, bleibt die Methode in der gesamten Vererbungskette virtuell. 
     \item \textbf{Wichtige Syntax-Regel:} Das Schlüsselwort \lstinline[language=C++]|virtual| darf 
-    \textbf{nur bei der Deklaration} (im H-File) verwendet werden. 
+    \textbf{nur bei der Deklaration} (im H-File) verwendet werden.
 \end{itemize}
 
 \subsubsection{Virtual beim Dtor}
 
 Ist eine Methode als virtual deklariert, so muss der Dtor \textbf{ZWINGEND} auch als virtual deklariert werden.
-
 \subsubsection{Override}
 
 Soll eine Methode eine geerbte Methode ersetzen so muss diese mit \texttt{Override} gekennzeichnet werden. 
 Solch eine Methode ist automatisch auch virtual.
 Der Compiler kann so überprüfen, ob eine virtual Methode vorhanden ist.
-
 \subsubsection{Final}
 
 Final kann zum einen verbieten, dass eine Methode einer Klasse überschrieben wird
 (Logischerweise geht das nur bei virtuellen Methoden). 
-Zum anderen kann sie auch das weitere Erben einer Klasse verbieten. 
-
+Zum anderen kann sie auch das weitere Erben einer Klasse verbieten.
 \subsubsection{Scopeoperator}
 
 Per Scopeoperator kann (::) eine Methode aus einer Oberklasse gezielt aufgerufen werden. 
 Mit diesem wird garantiert die Funktion welche definiert wird aufgerufen, egal ob diese aufgrund virtual überschrieben wird. 
-
 \lstinputlisting{code/03_Objektorientierung/virtual.cpp}
 \subsection{Classi Polimorfe e Binding}
 
 \begin{itemize}
-    \item \textbf{Definizione:} Una classe è polimorfa se dichiara almeno una funzione \lstinline|virtual|.
-    \item \textbf{Tipi di Dato:}
+    \item \textbf{Definition:} Eine Klasse ist polymorph, wenn sie mindestens eine \lstinline|virtual| Fkt deklariert.
+    \item \textbf{Datentypen:}
     \begin{itemize}
-        \item \textbf{Statischer Datentyp (Tipo Statico):} Il tipo definito alla dichiarazione (tipo del puntatore o della referenza).
-        \item \textbf{Dynamischer Datentyp (Tipo Dinamico):} Il tipo effettivo dell'oggetto a runtime (l'istanza reale).
+        \item \textbf{Statischer Datentyp:} Der bei der Deklaration definierte Typ (Typ des Pointers oder der Referenz).
+        \item \textbf{Dynamischer Datentyp:} Der effektive Typ des Objekts zur Laufzeit (die echte Instanz).
     \end{itemize}
-    \item \textbf{Static Binding (Early Binding):} Avviene durante la compilazione. È lo standard per funzioni non-virtuali e non comporta overhead.
-    \item \textbf{Dynamic Binding (Late Binding):} La scelta della funzione avviene a runtime in base al tipo dinamico. Funziona solo tramite puntatori o referenze e comporta un leggero overhead gestito tramite V-Table.
+    \item \textbf{Static Binding (Early Binding):} Passiert während der Kompilierung. Standard für nicht-virtuelle Fkt und hat keinen Overhead.
+    \item \textbf{Dynamic Binding (Late Binding):} Funktionswahl passiert zur Laufzeit gemäss dynamischem Typ. Geht nur über Pointer o. Referenzen und hat leichten Overhead via V-Table.
 \end{itemize}
 
 \subsubsection{Best Practice e Regole}
 \begin{itemize}
-    \item \textbf{Distruttori:} Devono essere obbligatoriamente \lstinline|virtual| nelle classi base per garantire la corretta deallocazione delle sottoclassi, specialmente se gestite tramite puntatori alla classe base.
-    \item \textbf{Costruttori:} Non possono mai essere dichiarati \lstinline|virtual|.
-    \item \textbf{Metodi:} Dichiarare \texttt{virtual} solo se è prevista la sovrascrittura. I metodi non-virtuali non devono essere sovrascritti nelle classi derivate.
-    \item \textbf{Override:} Nelle sottoclassi, i metodi sovrascritti devono essere contrassegnati esplicitamente con la parola chiave \texttt{override}.
+    \item \textbf{Distruttori:} Müssen in Basisklassen zwingend \lstinline|virtual| sein, um die korrekte Deallokation der Subelemente zu garantieren, speziell wenn über Pointer der Basisklasse verwaltet.
+    \item \textbf{Costruttori:} Dürfen niemals als \lstinline|virtual| deklariert werden.
+    \item \textbf{Metodi:} Nur \texttt{virtual} deklarieren, falls Überschreiben geplant ist. Nicht-virtuelle Methoden dürfen in Subklassen nicht überschrieben werden.
+    \item \textbf{Override:} In Subklassen müssen überschriebene Methoden explizit mit dem Keyword \texttt{override} markiert werden.
 \end{itemize}
 
 \subsubsection{RTTI (Run-time Type Information)}
 
-L'RTTI permette di identificare il tipo di un oggetto durante l'esecuzione. Si utilizza la funzione \lstinline[language=C++]|typeid()| inclusa nell'header \lstinline[language=C++]|<typeinfo>|, che restituisce un oggetto di tipo \lstinline[language=C++]|std::type_info|.
-
+RTTI erlaubt es, den Typ eines Objekts während der Ausführung zu identifizieren. Si utilizza la funzione \lstinline[language=C++]|typeid()| 
+inclusa nell'header \lstinline[language=C++]|<typeinfo>|, welche ein Objekt vom Typ \lstinline[language=C++]|std::type_info| zurückgibt. 
 \lstinputlisting{code/03_Objektorientierung/RTTI.cpp}
 
 \subsubsection{Implementazione: La V-Table}
 
-L'implementazione tecnica del polimorfismo e del RTTI si basa sulla \textbf{V-Table}:
+Die techn. Implementation von Polymorphismus und RTTI basiert auf der \textbf{V-Table}:
 \begin{itemize}
-    \item Ogni classe polimorfa possiede una V-Table contenente i puntatori alle sue funzioni virtuali.
-    \item Ogni istanza della classe contiene un puntatore nascosto (\textbf{V-pointer}) che punta alla V-Table della propria classe.
-    \item A runtime, l'istanza utilizza il V-pointer per risolvere l'indirizzo della funzione corretta.
+    \item Jede polymorphe Klasse besitzt eine V-Table mit den Pointern auf ihre virtuellen Funktionen.
+    \item Jede Instanz der Klasse enthält einen versteckten Pointer (\textbf{V-pointer}), der auf die V-Table der eigenen Klasse zeigt.
+    \item Zur Laufzeit nutzt die Instanz den V-pointer, um die Adresse der korrekten Funktion aufzulösen.
 \end{itemize}
 
-Se un array di puntatori alla classe base contiene oggetti di diverse sottoclassi, ogni oggetto avrà un V-pointer che punta alla V-Table specifica della propria classe, garantendo che vengano chiamate le versioni corrette dei metodi sovrascritti.
-
+Enthält ein Basisklassen-Pointer-Array Objekte verschiedener Subklassen, so hat jedes Objekt einen V-pointer, der auf die spezifische V-Table der eigenen Klasse zeigt, was garantiert, dass korrekte überschriebene Versionen der Methoden aufgerufen werden.
 \begin{minipage}{0.42\columnwidth}
     \lstinputlisting[label=cpp]{code/03_Objektorientierung/vtable.cpp}
 \end{minipage}
@@ -518,9 +520,9 @@ Se un array di puntatori alla classe base contiene oggetti di diverse sottoclass
 
 Wenn Klassen zwar festlegt, dass eine Methode da ist, diese aber noch nicht implementieren, nennt man das eine abstrakte Methode. 
 Man spricht dann von einer abstrakten Klasse.
-Eine abstrakte Methode wird in UML \textit{\textbf{kursiv}} dargestellt.
+Eine abstrakte Methode wird in UML \textit{\textbf{kursiv}} dargestellt. 
 Es ist egal, ob die abstrakten Methoden selbst definiert sind oder geerbt. 
-Abstrakte Klassen kann man nicht instanziieren.
+Abstrakte Klassen kann man nicht instanziieren. 
 Es gibt kein spezielles Schlüsselwort dafür, man weist der Methode bei Definition 0 zu: 
 
 \lstinputlisting{code/03_Objektorientierung/abstraktemethode.cpp}
@@ -530,8 +532,7 @@ Es gibt kein spezielles Schlüsselwort dafür, man weist der Methode bei Definit
 Generell gilt immer noch: Jedes H File hat ein Cpp File. 
 Allerdings können Unterklassen in ein H File zusammengefasst werden, falls diese nicht allzu Umfänglich sind. 
 Ansonsten sollte ein neues H File erstellt werden. 
-Für abstrakte Klassen fällt die Implementierung in einem Cpp file weg.
-
+Für abstrakte Klassen fällt die Implementierung in einem Cpp file weg. 
 \subsection{Mehrfachvererbung}
 
 Folgender Vererbungszweig ist möglich:\\
@@ -543,8 +544,7 @@ Folgender Vererbungszweig ist möglich:\\
 Solche Gebilde sind zwar möglich, sollten jedoch vermieden werden, da schnell sehr kompliziert und kaum lesbar. 
 Es entsteht schnell Mehrdeutigkeit durch die verschiedenen Erbzweige.\\
 
-Se nelle 2 classi parenti è definito un \cor{\textbf{metodo} con lo \textbf{stesso nome}}, è necessario
-ridefinitrlo nella sottoclasse definendo il giusto comportamento (ad es. \lstinline[language=C++]|C1::print()|)
+Haben 2 Elternklassen eine \cor{\textbf{Methode} mit dem \textbf{gleichen Namen}}, muss sie in der Subklasse neu definiert werden, um das richtige Verhalten festzulegen (ad es. \lstinline[language=C++]|C1::print()|)
 \end{minipage}
 
 Bei der Definition einer Klasse können weitere Oberklassen mit einem Komma getrennt angegeben werden
@@ -553,25 +553,20 @@ Bei der Definition einer Klasse können weitere Oberklassen mit einem Komma getr
 \subsubsection{Diamond Problem}
 
 \begin{itemize}
-    \item \textbf{Il Problema}: Senza accorgimenti, \texttt{C4} conterrebbe due copie 
-    separate di \texttt{C1} (tramite \texttt{C2} e tramite \texttt{C3}). 
-    \cor{Generando ambiguità nell'accesso ai membri.}
-    \item \textbf{La Soluzione (\textit{Virtual Inheritance})}:la parola 
-    chiave \texttt{virtual} nelle classi intermedie (\texttt{C2} e \texttt{C3})
-    istruisce il compilatore a creare un'unica istanza condivisa di \texttt{C1}.
-    \item \textbf{Ordine di Inizializzazione}: Segue una priorità gerarchica:
+    \item \textbf{Das Problem}: Ohne Vorkehrung hätte \texttt{C4} zwei getrennte Kopien von \texttt{C1} (via \texttt{C2} und via \texttt{C3}). \cor{Erzeugt Mehrdeutigkeit beim Member-Zugriff.}
+    \item \textbf{Die Lösung (\textit{Virtual Inheritance})}: das Keyword \texttt{virtual} in den mittleren Klassen (\texttt{C2} und \texttt{C3}) weist den Compiler an, eine geteilte Instanz von \texttt{C1} zu bauen.
+    \item \textbf{Reihenfolge der Initialisierung}: Folgt einer hierarchischen Priorität:
     \begin{enumerate}
-        \item \textbf{Base Virtuale}: \texttt{C1} viene inizializzata per prima.
-        \item \textbf{Basi Non-Virtuali}: \texttt{C2} e poi \texttt{C3} (seguendo l'ordine di dichiarazione in \texttt{C4}).
-        \item \textbf{Classe Derivata}: Il corpo del costruttore di \texttt{C4}.
+        \item \textbf{Virtuelle Basis}: \texttt{C1} wird als erstes initialisiert.
+        \item \textbf{Nicht-Virtuelle Basen}: \texttt{C2} und dann \texttt{C3} (gemäss der Deklarations-Reihenfolge in \texttt{C4}).
+        \item \textbf{Abgeleitete Klasse}: Der Body vom Konstruktor von \texttt{C4}.
     \end{enumerate}
 \end{itemize}
 
 \lstinputlisting[language=C++]{code/03_Objektorientierung/03_Objektorientierung_snippet_3.cpp}
 \subsection{Static} 
 
-Static im Zusammenhang mit Klassen bindet eine Methode oder ein Attribut an die Objektklasse und nicht an die Objektinstanz (ähnlich zu Python Klassenvariablen).
-
+Static im Zusammenhang mit Klassen bindet eine Methode oder ein Attribut an die Objektklasse und nicht an die Objektinstanz (ähnlich zu Python Klassenvariablen). 
 
 \subsubsection{Methoden}
 

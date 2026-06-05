@@ -1,9 +1,9 @@
 \section{Funktionen}
 \subsection{Default Argumente}
 \begin{itemize}
-    \item \textbf{Prototipo}: I valori predefiniti si assegnano \textbf{solo} nell'interfaccia.
-    \item \textbf{Omissione}: I parametri con default possono essere saltati nella chiamata.
-    \item \textbf{Ordine}: I parametri di default devono trovarsi \textbf{\cor{sempre alla fine (a destra)}} della lista parametri.
+    \item \textbf{Prototyp}: Standardwerte werden \textbf{nur} im Interface zugewiesen.
+    \item \textbf{Weglassen}: Default-Parameter können beim Aufruf übersprungen werden.
+    \item \textbf{Reihenfolge}: Default-Parameter müssen \textbf{\cor{immer am Ende (rechts)}} der Parameterliste stehen.
 \end{itemize}
 
 \lstinputlisting[language=c++]{code/02_funktionen/default_argumente.cpp}
@@ -13,13 +13,13 @@ Dort machen sie aber ohnehin keinen Sinn.
 
 \subsection{Funzioni Inline}
 \begin{itemize}
-    \item \textbf{Sostituto Macro}: Alternativa sicura alle macro C.
-    \item \textbf{Zero Overhead}: Codice inserito direttamente (nessun salto di funzione).
-    \item \textbf{Type Safety}: Il compilatore garantisce il controllo dei tipi.
-    \item \textbf{Target}: Funzioni piccole chiamate frequentemente (es. cicli).
-    \item \textbf{No-go}: Inapplicabile a ricorsione o puntatori a funzione.
-    \item \textbf{Header-only}: Se usato nei file Header, definizione func. direttamente in file.h
-    \item \textbf{Ottimizzazione}: Richiede flag attivi (es. \texttt{-O3}).
+    \item \textbf{Makro-Ersatz}: Sichere Alternative zu C-Makros.
+    \item \textbf{Zero Overhead}: Code wird direkt eingefügt (keine Funktionssprünge).
+    \item \textbf{Type Safety}: Der Compiler garantiert die Typüberprüfung.
+    \item \textbf{Ziel}: Kleine, sehr häufig aufgerufene Funktionen (z.B. Loops).
+    \item \textbf{No-go}: Unanwendbar bei Rekursion oder Funktionspointern.
+    \item \textbf{Header-only}: Wenn in Headern genutzt, Fkt.-Def. direkt ins file.h
+    \item \textbf{Optimierung}: Erfordert aktive Flags (z.B. \texttt{-O3}).
 \end{itemize}
 
 \lstinputlisting[language=C++]{code/02_funktionen/02_funktionen_snippet_1.cpp}
