@@ -16,12 +16,12 @@
 \end{minipage}\hfill
 \begin{minipage}[b]{0.49\columnwidth}
     \begin{itemize}
-        \item Area sfera: $4\pi r^2$
-        \item Volume sfera: $\frac{4}{3} \pi r^2$
+        \item Kugeloberfläche: $4\pi r^2$
+        \item Kugelvolumen: $\frac{4}{3} \pi r^3$
     \end{itemize}
 \end{minipage}
 
-Elementi come $H_2$ sono e volte la molmassse di $H$
+Elemente wie $H_2$ haben die 2-fache Molmasse von $H$
 \renewcommand{\arraystretch}{1}
 
 \section{Ansätze zu Aufgaben}
@@ -38,7 +38,7 @@ Elementi come $H_2$ sono e volte la molmassse di $H$
     \begin{tabular}{ll}
         $p_x$   & Gemessener Druck  \\
         $p_0$   & Luftdruck         \\
-        $p_s$   & Schweredruck (Dal fluido)
+        $p_s$   & Schweredruck (vom Fluid)
     \end{tabular}
 
     \medskip
@@ -48,34 +48,34 @@ Elementi come $H_2$ sono e volte la molmassse di $H$
 \end{minipage}
 
 
-\subsection{Tubo di Pitot (Tubo di Prandtl)}
-Strumento per la misurazione della velocità di un fluido ($\rho_L$).
+\subsection{Pitotrohr (Prandtl-Rohr)}
+Instrument zur Messung der Fliessgeschwindigkeit des Fluids ($\rho_L$).
 
 \begin{center}
     % Inserisci qui l'immagine
     \includegraphics[width=0.73\columnwidth]{images/pitotrohr.png}
 \end{center}
 
-\textbf{Assunzioni:}
+\textbf{Annahmen:}
 \begin{itemize}
-    \item \textbf{Bernoulli orizzontale:} Poiché i fori $A$ e $B$ sono alla stessa quota 
-    ($y_1 \approx y_2$), la differenza di pressione idrostatica dell'aria 
-    ($\rho_L g \Delta y$) è trascurabile rispetto alla pressione dinamica.
-    \item \textbf{Punto di ristagno (1):} In punta l'aria si ferma completamente $\Rightarrow v_1 = 0$.
-    \item \textbf{Pressione statica (2):} Ai fori laterali l'aria scorre indisturbata $\Rightarrow v_2 = v$.
+    \item \textbf{Bernoulli horizontal:} Da Löcher $A$ und $B$ auf gleicher Höhe liegen 
+    ($y_1 \approx y_2$), ist die hydrostatische Druckdifferenz der Luft 
+    ($\rho_L g \Delta y$) gegenüber dem Staudruck zu vernachlässigen.
+    \item \textbf{Staupunkt (1):} An der Spitze stoppt die Strömung vollständig $\Rightarrow v_1 = 0$.
+    \item \textbf{Statischer Druck (2):} An seitlichen Löchern strömt Luft ungestört $\Rightarrow v_2 = v$.
 \end{itemize}
 
 \vspace{0.3cm}
-\textbf{Manometro a U:}
-La differenza di pressione è bilanciata dal dislivello $h$ del liquido manometrico ($\rho_{Fl}$):
+\textbf{U-Rohr-Manometer:}
+Die Druckdifferenz wird durch die Höhendifferenz $h$ der Manometerflüssigkeit ($\rho_{Fl}$) ausgeglichen:
 $$ p_1 = p_2 + \rho_{Fl} \cdot g \cdot h $$
 
-\textbf{Equazione di Bernoulli:}
-$$ p_1 + \frac{1}{2}\rho_L \cdot v_1^2 = p_2 + \frac{1}{2}\rho_L \cdot v_2^2 \qquad p_1 \text{ Sostituire con eq. manometro}$$ 
+\textbf{Bernoulli-Gleichung:}
+$$ p_1 + \frac{1}{2}\rho_L \cdot v_1^2 = p_2 + \frac{1}{2}\rho_L \cdot v_2^2 \qquad p_1 \text{ Mit Manometergleichung ersetzen}$$ 
 $$ p_2 + \rho_{Fl} \cdot g \cdot h = p_2 + \frac{1}{2}\rho_L \cdot v_2^2$$
 
 
-\textbf{Soluzione finale:}
+\textbf{Endgültige Lösung:}
 $$ \frac{1}{2} \rho_L v^2 = \rho_{Fl} \cdot g \cdot h \implies \boxed{v = \sqrt{\frac{2 \cdot \rho_{Fl} \cdot g \cdot h}{\rho_L}}} $$
 
 \subsection{U-Rohr}
@@ -106,8 +106,7 @@ $$ \boxed{ P =  \frac{W}{t} = \frac{p \cdot V}{t} = p  \cdot  \dot{V} } $$
     \includegraphics[width=0.8\linewidth]{images/torricelli.png}
 \end{minipage}
 \begin{minipage}[b]{0.48\columnwidth}
-    \cor{Attenzione} anche se il tubo andasse sopra 
-    al livello dell'$\rm H_2O$ l'altezza viene sempre calcolata dal livello dell'acqua
+    \cor{Achtung} Auch wenn das Rohr über das $\rm H_2O$-Niveau hinausgeht, wird die Höhe immer ausgehend vom Wasserspiegel berechnet.
 
     \[\boxed{v = \sqrt{2gh}} \qquad \boxed{x = 2\sqrt{h(H-h)}}\]  
 \end{minipage}  
@@ -145,17 +144,17 @@ $$ \Delta Q_{\rm ab} = \Delta Q_{\rm zu} $$
 $$ m_W \cdot c_W \cdot (T_W - T_M) = m_E \cdot c_E \cdot (T_0 - T_E) + q_f \cdot m_E + m_E \cdot c_W \cdot (T_M - T_0) $$
 
 
-\subsection[Concetto di temperatura Critica nelle bombole]
-{Concetto di Temperatura Critica ($T_k$) nelle Bombole}
+\subsection[Konzept der kritischen Temperatur in Gasflaschen]
+{Konzept der kritischen Temperatur ($T_k$) in Gasflaschen}
 
 \begin{itemize}
-    \item \textbf{Se $T_{amb} < T_k$ (es. $CO_2$ a $20^\circ C$):} 
-    All'interno della bombola coesistono fase liquida e gassosa. La pressione indicata dal manometro è la \textit{pressione di vapore saturo} ($p_s$), che dipende solo dalla temperatura.
-    \item \textbf{Comportamento:} Aprendo brevemente la valvola, la pressione rimane costante perché una parte del liquido evapora immediatamente per ripristinare l'equilibrio.
+    \item \textbf{Wenn $T_{amb} < T_k$ (z.B. $CO_2$ bei $20^\circ C$):} 
+    In der Flasche koexistieren die flüssige und gasförmige Phase. Der Druck auf dem Manometer ist der \textit{Sättigungsdampfdruck} ($p_s$), der einzig und allein temperaturabhängig ist.
+    \item \textbf{Verhalten:} Beim kurzen Öffnen des Ventils bleibt der Druck konstant, da ein Teil der Flüssigkeit sofort verdampft, um das Gleichgewicht wiederherzustellen.
     \medskip
-    \item \textbf{Se $T_{amb} > T_k$:} 
-    La sostanza è esclusivamente allo stato gassoso (gas supercritico). Non può esistere liquido indipendentemente dalla pressione applicata.
-    \item \textbf{Comportamento:} Aprendo la valvola, la pressione cala immediatamente poiché diminuisce la densità del gas senza che ci sia liquido a compensare la perdita di massa.
+    \item \textbf{Wenn $T_{amb} > T_k$:} 
+    Die Substanz liegt rein gasförmig vor (superkritisches Gas). Es kann unabhängig vom angewandten Druck überhaupt keine Flüssigkeit existieren.
+    \item \textbf{Verhalten:} Beim Öffnen des Ventils sinkt der Druck direkt, da die Gasdichte abnimmt, ohne dass es eine Flüssigkeit gibt, um den Massenverlust auszugleichen.
 \end{itemize}\smallbreak
 
 \subsection{Zeitliche Dynamik des Phasenübergangs }
@@ -185,30 +184,30 @@ Daraus resultiert die Gesamtdauer $t$ für den Prozess:
 t = \frac{q_f \cdot \rho \cdot \left(x_2^2 - x_1^2\right)}{2 \cdot \lambda_Q \cdot \Delta T}
 \end{equation*}
 
-\section{Sistemi Termodinamici}
-Un sistema termodinamico è un sistema fisico limitato spazialmente per il quale è possibile stabilire un bilancio energetico (e di massa, se aperto).
+\section{Thermodynamische Systeme}
+Ein thermodynamisches System ist ein räumlich begrenztes physikalisches System, für das eine Energie- (und Massen-) bilanz erstellt werden kann.
 
-I sistemi si distinguono in base alla possibilità di scambiare materia o energia con l'ambiente circostante:
+Systeme werden danach unterschieden, ob sie Materie oder Energie mit der Umgebung austauschen können:
 
 \begin{ctabular}{@{}lll@{}}
 \toprule
-\textbf{Sistema} & \textbf{Scambio di Materia} & \textbf{Scambio di Energia} \\ \midrule
-\textbf{Aperto} & Consentito & Consentito (Lavoro e Calore) \\
-\textbf{Chiuso} & Non consentito & Consentito (Lavoro e Calore) \\
-\textbf{Isolato} & Non consentito & Non consentito \\ \bottomrule
+\textbf{System} & \textbf{Austausch Materie} & \textbf{Austausch Energie} \\ \midrule
+\textbf{Offen} & Möglich & Möglich (Arbeit und Wärme) \\
+\textbf{Geschlossen} & Unmöglich & Möglich (Arbeit und Wärme) \\
+\textbf{Isoliert} & Unmöglich & Unmöglich \\ \bottomrule
 \end{ctabular}
 
-\subsection{Sotto-categorie e Casi Specifici}
+\subsection{Unterkategorien und Spezialfälle}
 \begin{itemize}
-    \item \textbf{Sistema Adiabatico:} Non permette lo scambio di calore ($Q = 0$), ma permette lo scambio di lavoro ($W$). Esempio: compressione rapida.
-    \item \textbf{Sistema Arbeitsdicht (Ermetico al lavoro):} Non permette lo scambio di lavoro meccanico.
-    \item \textbf{Sistema Energiedicht (Ermetico all'energia):} Non permette alcuno scambio di energia (né calore né lavoro).
+    \item \textbf{Adiabatisches System:} Erlaubt keinen Wärmeaustausch ($Q = 0$), aber den Austausch von Arbeit ($W$). Ein Beispiel hierfür ist schnelle Kompression.
+    \item \textbf{Arbeitsdichtes System:} Erlaubt keinen Austausch von mechanischer Arbeit.
+    \item \textbf{Energiedichtes System:} Erlaubt keinerlei Energieaustausch (weder Wärme noch Arbeit).
 \end{itemize}
 
 \includegraphics[width=\columnwidth]{images/thermodinamishce_systeme.png}
 
-\section{Grandezze Termodinamiche}
+\section{Thermodynamische Grössen}
 \begin{itemize}
-    \item \textbf{Grandezze di Stato:} Dipendono solo dallo stato attuale del sistema e non dal percorso seguito per raggiungerlo (es. Temperatura $T$, Pressione $p$, Volume $V$).
-    \item \textbf{Grandezze di Processo:} Descrivono il modo in cui il sistema passa da uno stato all'altro (es. Calore $Q$, Lavoro $W$). Il loro valore dipende dalla velocità o dalla modalità del processo.
+    \item \textbf{Zustandsgrössen:} Hängen nur vom momentanen Systemzustand ab und absolut nicht vom Weg dorthin (z. B. Temperatur $T$, Druck $p$, Volumen $V$).
+    \item \textbf{Prozessgrössen:} Beschreiben, wie das System von einem Zustand in einen anderen übergeht (z.B. Wärme $Q$, Arbeit $W$). Ihr Wert hängt immer von der Geschwindigkeit oder Art des Prozesses ab.
 \end{itemize}
