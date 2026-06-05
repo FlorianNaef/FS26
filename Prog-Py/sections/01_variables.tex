@@ -1,12 +1,12 @@
 \section{Python Overview}
 \begin{itemize}
-    \item \textbf{Origins:} Developed by Guido van Rossum with a focus on simplicity and power.
-    \item \textbf{Standard Library:} Known for the "batteries included" philosophy, meaning it comes with an extensive built-in library.
-    \item \textbf{Ecosystem:} For engineering tasks, Python replaces Matlab toolboxes with specialized packages like \textbf{NumPy} (numerical data), \textbf{pandas} (data processing), and \textbf{matplotlib} (visualization).
+    \item \textbf{Ursprung:} Entwickelt von Guido van Rossum mit Fokus auf Einfachheit und Stärke.
+    \item \textbf{Standardbib.:} Bekannt für "Batteries included", also eine umfangreiche, integrierte Bibliothek.
+    \item \textbf{Ökosystem:} Für Ingenieure ersetzt Python Matlab-Toolboxen durch Pakete wie \textbf{NumPy} (Zahlen), \textbf{pandas} (Daten) und \textbf{matplotlib} (Grafik).
 \end{itemize}
 
-\section{Variables and Objects}
-In Python, everything is an object. Variables are not containers but \textbf{references} (pointers) bound to objects.
+\section{Variablen und Objekte}
+In Python ist alles ein Objekt. Variablen sind keine Container, sondern an Objekte gebundene \textbf{Referenzen} (Pointer).
 
 \begin{minipage}{0.4\columnwidth}
     \includegraphics[width=\linewidth]{images/var_2.png}
@@ -15,81 +15,81 @@ In Python, everything is an object. Variables are not containers but \textbf{ref
     \includegraphics[width=\linewidth]{images/var_3.png}
 \end{minipage}
 
-\subsection{Built-in Data Types}
+\subsection{Integrierte Datentypen}
 \begin{center}
     \begin{tabular}{llll}
         \toprule
-        \textbf{Category} & \textbf{Data Type} & \textbf{Mutability} & \textbf{False Value} \\ \midrule
-        \textbf{None} & \texttt{NoneType} & Immutable & \texttt{None} \\ \addlinespace
-        \textbf{Numeric} & \texttt{int} & Immutable & \texttt{0} \\
-        & \texttt{float} & Immutable & \texttt{0.0} \\
-        & \texttt{bool} & Immutable & \texttt{False} \\
-        & \texttt{complex} & Immutable & \texttt{0 + 0j} \\ \addlinespace
-        \textbf{Sequence} & \texttt{str} & Immutable & \texttt{''} \\
-        & \texttt{list} & Mutable & \texttt{[]} \\
-        & \texttt{tuple} & Immutable & \texttt{()} \\
-        & \texttt{bytes} & Immutable & \texttt{b''} \\
-        & \texttt{bytearray} & Mutable & \texttt{bytearray(b'')} \\ \addlinespace
-        \textbf{Sets} & \texttt{set} & Mutable & \texttt{set()} \\
-        & \texttt{frozenset} & Immutable & \texttt{frozenset()} \\ \addlinespace
-        \textbf{Associative} & \texttt{dict} & Mutable & \texttt{\{\}} \\ \bottomrule
+        \textbf{Kategorie} & \textbf{Datentyp} & \textbf{Veränderbarkeit} & \textbf{Falsch-Wert} \\ \midrule
+        \textbf{None} & \texttt{NoneType} & Unveränderlich & \texttt{None} \\ \addlinespace
+        \textbf{Numerisch} & \texttt{int} & Unveränderlich & \texttt{0} \\
+        & \texttt{float} & Unveränderlich & \texttt{0.0} \\
+        & \texttt{bool} & Unveränderlich & \texttt{False} \\
+        & \texttt{complex} & Unveränderlich & \texttt{0 + 0j} \\ \addlinespace
+        \textbf{Sequenz} & \texttt{str} & Unveränderlich & \texttt{''} \\
+        & \texttt{list} & Veränderlich & \texttt{[]} \\
+        & \texttt{tuple} & Unveränderlich & \texttt{()} \\
+        & \texttt{bytes} & Unveränderlich & \texttt{b''} \\
+        & \texttt{bytearray} & Veränderlich & \texttt{bytearray(b'')} \\ \addlinespace
+        \textbf{Mengen} & \texttt{set} & Veränderlich & \texttt{set()} \\
+        & \texttt{frozenset} & Unveränderlich & \texttt{frozenset()} \\ \addlinespace
+        \textbf{Assoziativ} & \texttt{dict} & Veränderlich & \texttt{\{\}} \\ \bottomrule
     \end{tabular}
 \end{center}
 
-\subsection{Mutability}
+\subsection{Veränderbarkeit}
 \begin{itemize}
-    \item \textbf{Immutable:} Objects that cannot be modified after creation (e.g., \texttt{int}, \texttt{float}, \texttt{str}, \texttt{tuple}). Changing the value of an immutable variable actually creates a new object in memory.
-    \item \textbf{Mutable:} Objects that can be modified in-place (e.g., \texttt{list}, \texttt{set}, \texttt{dict}).
+    \item \textbf{Unveränderlich:} Objekte, die nach Erstellung nicht modifiziert werden können (z.B. \texttt{int}, \texttt{float}, \texttt{str}, \texttt{tuple}). Wertänderung erzeugt real ein komplett neues Objekt im Speicher.
+    \item \textbf{Veränderlich:} Objekte, die direkt in-place modifiziert werden können (z.B. \texttt{list}, \texttt{set}, \texttt{dict}).
 \end{itemize}\vspace{1em}
-The memory address of an object, can be visuasalized using the \texttt{id()} function. 
+Die Speicheradresse eines Objekts kann mit der Funktion \texttt{id()} visualisiert werden. 
 
-It returns a unique integer for the given object.
+Sie gibt eine eindeutige Ganzzahl für das jeweilige Objekt zurück.
 
-\section{Namespaces and Scope}
-A namespace is a system (implemented as a dictionary) that ensures all names in a program are unique and can be used without conflict.
+\section{Namensräume und Gültigkeitsbereich}
+Ein Namensraum ist ein System (Dictionary), das Eindeutigkeit und konfliktfreie Nutzung aller Namen im Programm sichert.
 
 \begin{itemize}
-    \item \textbf{Built-in:} Contains all integrated symbols available in Python (e.g., \texttt{print()}).
-    \item \textbf{Global:} Symbols defined at the top level of a module or script.
-    \item \textbf{Local:} Created for specific scopes, such as within a function.
-    \item \textbf{LEGB Rule:} Python searches for names from the inside out: \textbf{L}ocal $\rightarrow$ \textbf{G}lobal $\rightarrow$ \textbf{B}uilt-in.
+    \item \textbf{Built-in:} Enthält alle in Python verfügbaren, integrierten Symbole (z.B. \texttt{print()}).
+    \item \textbf{Global:} Symbole, definiert auf der obersten Ebene eines Moduls oder Skripts.
+    \item \textbf{Lokal:} Erstellt für spezifische Bereiche, wie etwa innerhalb einer Funktion.
+    \item \textbf{LEGB-Regel:} Python sucht Namen von innen nach aussen: \textbf{L}okal $\rightarrow$ \textbf{G}lobal $\rightarrow$ \textbf{B}uilt-in.
 \end{itemize}
 
-Built-in symbols can be overwritten by the user, however, it is not recommended.
+Built-in Symbole können überschrieben werden, was jedoch absolut nicht empfohlen wird.
 
-\section{Arithmetic and Magic Methods}
+\section{Arithmetik und Magic Methods}
 \begin{itemize}
-    \item \textbf{Special Operators:} \texttt{//} (integer division), \texttt{\%} (modulo/remainder), and \texttt{**} (exponentiation).
-    \item \textbf{Syntactic Sugar:} Operators are just a "friendly" way to call internal methods. For example, \texttt{x + y} is internally executed as \texttt{x.\_\_add\_\_(y)}.
+    \item \textbf{Spezielle Operatoren:} \texttt{//} (Ganzzahldivision), \texttt{\%} (Modulo/Rest) und \texttt{**} (Potenzierung).
+    \item \textbf{Syntactic Sugar:} Operatoren sind ein benutzerfreundlicher Weg zum Aufruf interner Methoden (z.B. wird \texttt{x + y} intern als \texttt{x.\_\_add\_\_(y)} ausgeführt).
 \end{itemize}
 
 \begin{center}
     \small
     \begin{tabular}{lll}
     \toprule
-    \textbf{Operator} & \textbf{Dunder Method} & \textbf{Description} \\ \midrule
-    \texttt{x + y} & \texttt{x.\_\_add\_\_(y)} & Sum \\
-    \texttt{x - y} & \texttt{x.\_\_sub\_\_(y)} & Difference \\
-    \texttt{x * y} & \texttt{x.\_\_mul\_\_(y)} & Product \\
+    \textbf{Operator} & \textbf{Dunder Methode} & \textbf{Beschreibung} \\ \midrule
+    \texttt{x + y} & \texttt{x.\_\_add\_\_(y)} & Summe \\
+    \texttt{x - y} & \texttt{x.\_\_sub\_\_(y)} & Differenz \\
+    \texttt{x * y} & \texttt{x.\_\_mul\_\_(y)} & Produkt \\
     \texttt{x / y} & \texttt{x.\_\_truediv\_\_(y)} & Quotient \\
-    \texttt{x // y} & \texttt{x.\_\_floordiv\_\_(y)} & Floored quotient$^1$ \\
-    \texttt{x \% y} & \texttt{x.\_\_mod\_\_(y)} & Remainder (Modulo)$^1$ \\
-    \texttt{x ** y} & \texttt{x.\_\_pow\_\_(y)} & Exponentiation ($x^y$) \\
-    \texttt{abs(x)} & \texttt{x.\_\_abs\_\_()} & Absolute value \\
-    \texttt{-x} & \texttt{x.\_\_neg\_\_()} & Negative sign \\ \midrule
-    \multicolumn{3}{l}{\small $^1$ Operator not defined for the data type \texttt{complex}} \\ \bottomrule
+    \texttt{x // y} & \texttt{x.\_\_floordiv\_\_(y)} & Ganzzahl-Quot.$^1$ \\
+    \texttt{x \% y} & \texttt{x.\_\_mod\_\_(y)} & Rest (Modulo)$^1$ \\
+    \texttt{x ** y} & \texttt{x.\_\_pow\_\_(y)} & Potenzierung ($x^y$) \\
+    \texttt{abs(x)} & \texttt{x.\_\_abs\_\_()} & Absolutwert \\
+    \texttt{-x} & \texttt{x.\_\_neg\_\_()} & Negatives Vorzeichen \\ \midrule
+    \multicolumn{3}{l}{\small $^1$ Operator für Datentyp \texttt{complex} nicht definiert} \\ \bottomrule
     \end{tabular}
 \end{center}
 
-\subsection*{Code Example}
-Ecco come Python interpreta gli operatori dietro le quinte:
+\subsection*{Code-Beispiel}
+So interpretiert Python die Operatoren hinter den Kulissen:
 
 \begin{lstlisting}[language=Python]
-# Standard operator usage
+# Standard-Operatornutzung
 result_a = 5 + 5
 
-# Behind the scenes (Magic Method)
+# Hinter den Kulissen (Magic Method)
 result_b = (5).__add__(5)
 
-print(result_a == result_b) # Output: True
+print(result_a == result_b) # Ausgabe: True
 \end{lstlisting}

@@ -1,9 +1,9 @@
-\section{Object-Oriented Programming (OOP)}
+\section{Objektorientierte Programmierung (OOP)}
 \label{sec:oop}
 
 Der grundlegende Grundsatz der OOP ist die Kapselung von Daten (Attributen) und Logik (Methoden) in Objekten. Diese Struktur stellt die Datenintegrität sicher, indem sie die direkte externe Manipulation einschränkt.
 
-\subsection{Class Definition and Instantiation}
+\subsection{Klassendefinition und Instanziierung}
 Eine Klasse dient als formale Blaupause. Gemäß PEP 8 folgen Klassennamen der Konvention \texttt{CapWords}. Objekte sind konkrete Instanzen, die aus diesen Blaupausen erzeugt werden.
 
 \begin{lstlisting}[language=Python]
@@ -11,14 +11,14 @@ class Cat:
     """Formale Struktur einer Katze."""
     pass
 
-# Instantiation
+# Instanziierung
 garfield = Cat()
 \end{lstlisting}
 
-\subsection{Attributes and State Integrity}
+\subsection{Attribute und Zustandsintegrität}
 Attribute speichern Daten innerhalb eines Objekts. Python unterscheidet zwischen Klassen- und Instanzvariablen anhand ihres Geltungsbereichs und ihrer Definition.
 
-\subsubsection{Class vs. Instance Variables}
+\subsubsection{Klassen- vs. Instanzvariablen}
 \begin{itemize}
     \item \textbf{Klassenvariablen:} Direkt innerhalb des Klassentextes definiert. Sie werden über alle Instanzen hinweg geteilt.
     \item \textbf{Instanzvariablen:} Mit \texttt{self} definiert. Sie sind eindeutig für jede Instanz.
@@ -30,14 +30,14 @@ erzeugt, das die Klassenvariable für dieses spezifische Objekt überdeckt.
 
 Aktualisiere Klassenvariablen immer über den Klassennamen: \texttt{ClassName.class\_var = value}.
 
-\subsubsection{Initialization and Dynamic Attributes}
+\subsubsection{Initialisierung und dynamische Attribute}
 Es wird dringend empfohlen, \textbf{alle} Instanzvariablen innerhalb der \texttt{\_\_init\_\_}-Methode zu definieren.
 \begin{itemize}
     \item \textbf{Vermeide 'On-the-fly'-Attribute:} Das macht die Struktur des Objekts unvorhersehbar und erschwert das Debugging.
     \item \textbf{Definierter Zustand:} Sicherstellen, dass alle Attribute im Konstruktor initialisiert werden
 \end{itemize}
 
-\subsection{Method Attributes and self}
+\subsection{Methoden-Attribute und self}
 Methoden sind Funktionen, die innerhalb einer Klasse definiert sind. Der erste Parameter ist immer \texttt{self}, was die Instanz darstellt, die die Methode aufruft. Python bindet die Instanz automatisch während des Aufrufs an diesen Parameter.
 
 \begin{lstlisting}[language=Python]
@@ -46,7 +46,7 @@ Methoden sind Funktionen, die innerhalb einer Klasse definiert sind. Der erste P
     Class_name.deposit(self=account1, amount=100) 
 \end{lstlisting}
 
-\subsection{Data Abstraction and Encapsulation}
+\subsection{Datenabstraktion und Kapselung}
 Kapselung verbirgt Implementierungsdetails und legt nur die notwendigen Informationen über definierte Schnittstellen offen. Python verwendet Namenskonventionen, um die beabsichtigte Sichtbarkeit von Attributen zu signalisieren:
 
 \resizebox{\columnwidth}{!}{
@@ -72,9 +72,9 @@ Das Gleiche könnte auch mit Decorators erreicht werden:
 
 \lstinputlisting[language=Python]{code/setter_and_getters_decorators.py}
 
-\section{Magic Methods and Custom Behavior}
+\section{Magic Methods und benutzerdefiniertes Verhalten}
 
-\subsection{Object Representation}
+\subsection{Objektrepräsentation}
 Magic Methods (oder dunder methods) ermöglichen es benutzerdefinierten Klassen, mit eingebauten Python-Funktionen und Operatoren zu interagieren.
 \begin{itemize}
     \item \texttt{\_\_str\_\_(self)}: Gibt eine benutzerfreundliche Zeichenkettenrepräsentation zurück (wird von \texttt{print()} verwendet).
@@ -94,7 +94,7 @@ class Book:
         return f"Book(title='{self.title}', author='{self.author}')"
 \end{lstlisting}
 
-\subsection{Emulating Container Types}
+\subsection{Emulation von Container-Typen}
 Klassen können sich wie Sequenzen (Listen) oder Abbildungen (Dictionaries) verhalten, indem sie bestimmte Methoden implementieren:
 \begin{itemize}
     \item \texttt{\_\_len\_\_(self)}: Gibt die Anzahl der Elemente zurück.
@@ -117,7 +117,7 @@ class Inventory:
         return len(self._items)
 \end{lstlisting}
 
-\subsection{Context Managers}
+\subsection{Context Manager}
 Context Manager stellen sicher, dass Ressourcen (wie Dateien oder Netzwerkverbindungen) mithilfe der \texttt{with}-Anweisung korrekt verwaltet werden. Dafür müssen zwei Methoden implementiert werden:
 \begin{itemize}
     \item \texttt{\_\_enter\_\_(self)}: Wird am Anfang des \texttt{with}-Blocks ausgeführt. Gibt die Ressource zurück.
@@ -141,7 +141,7 @@ with FileManager("data.txt", "w") as f:
     f.write("Structured data")
 \end{lstlisting}
 
-\subsection{Reflected Arithmetic Methods (The 'r' Prefix)}
+\subsection{Reflektierte Arithmetik-Methoden ('r'-Präfix)}
 Python unterscheidet zwischen einer Operation, bei der sich ein Objekt auf der linken Seite (LHS) befindet, und einer Operation, bei der es sich auf der rechten Seite (RHS) befindet. Das ist entscheidend für die Interoperabilität mit eingebauten Typen (wie \texttt{int} oder \texttt{float}).
 
 \begin{itemize}
@@ -155,17 +155,17 @@ class Price:
         self.amount = amount
 
     def __add__(self, other):
-        # Handhabt: Price(10) + 5
+        # Behandelt: Price(10) + 5
         val = other.amount if isinstance(other, Price) else other
         return Price(self.amount + val)
 
     def __radd__(self, other):
-        # Handhabt: 5 + Price(10)
+        # Behandelt: 5 + Price(10)
         # Verwendet __add__, da Addition kommutativ ist
         return self.__add__(other)
 \end{lstlisting}
 
-\subsection{The \texttt{NotImplemented} Singleton}
+\subsection{Das \texttt{NotImplemented}-Singleton}
 In Python ist \texttt{NotImplemented} ein spezielles Objekt (ein Singleton), das von binären Methoden (wie \texttt{\_\_add\_\_}, \texttt{\_\_sub\_\_}, \texttt{\_\_eq\_\_}, usw.) zurückgegeben wird, um anzuzeigen, dass die Operation für den Datentyp des anderen Operanden nicht implementiert ist.
 
 \textbf{Wichtig:} Es darf nicht mit \texttt{NotImplementedError} verwechselt werden, das eine Ausnahme ist. \texttt{NotImplemented} ist ein Rückgabewert, der Python signalisiert, eine alternative Strategie auszuprobieren.

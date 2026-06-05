@@ -1,34 +1,34 @@
-\section{Conditional Branching}
+\section{Bedingte Verzweigung}
 \begin{itemize}
-    \item \textbf{Basic Structures}: \texttt{if}, \texttt{elif}, and \texttt{else} execute code blocks based on conditions. Consistent indentation is required.
-    \item \textbf{Match-case}: Introduced in Python 3.10 to recognize specific patterns and data structures.
+    \item \textbf{Basisstrukturen}: \texttt{if}, \texttt{elif} und \texttt{else} führen Code bedingungsbasiert aus. Konsistente Einrückung ist zwingend.
+    \item \textbf{Match-case}: Eingeführt in Python 3.10 zur Erkennung spezifischer Muster und Datenstrukturen.
 \end{itemize}
 
 \lstinputlisting[language=python]{code/conditions.py}
 
-\subsection{Boolean Expressions and Operators}
+\subsection{Boolesche Ausdrücke und Operatoren}
 \begin{itemize}
-    \item \textbf{Walrus Operator (\texttt{:=})}: Assigns and returns a value within an expression.
-    \item \textbf{Ternary Operator}: Compact syntax for simple single-line conditional assignments.
+    \item \textbf{Walrus-Operator (\texttt{:=})}: Weist einen Wert zu und gibt ihn direkt innerhalb eines Ausdrucks zurück.
+    \item \textbf{Ternärer Operator}: Kompakte Syntax für einfache, einzeilige bedingte Zuweisungen.
     \item \textbf{\texttt{==} vs \texttt{is}}:
     \begin{itemize}
-        \item \texttt{==} checks value equality; 
-        \item \texttt{is} checks object identity in memory (ideal for checking \texttt{None}).
+        \item \texttt{==} prüft auf reine Wertgleichheit; 
+        \item \texttt{is} prüft Objektidentität im Speicher (ideal für \texttt{None}-Prüfung).
     \end{itemize} 
-    \item \textbf{\texttt{in} Operator}: Checks presence in objects implementing \texttt{\_\_contains\_\_()} (Only usable on iterable Objects: lists, strings, dicts).
+    \item \textbf{\texttt{in}-Operator}: Prüft Vorhandensein in Objekten via \texttt{\_\_contains\_\_()} (Nur für Iterables nutzbar: Listen, Strings, Dicts).
 \end{itemize}
 
 \lstinputlisting[language=python]{code/boolean_expressions.py}
 
-\subsection{Exception Handling}
+\subsection{Ausnahmebehandlung (Exception Handling)}
 \begin{itemize}
-    \item \textbf{LBYL (Look Before You Leap)}: A defensive style where you explicitly check for conditions (\texttt{if os.path.exists}) before making a call. This can be prone to "race conditions" where the state changes between the check and the action.
-    \item \textbf{EAFP (Easier to Ask Forgiveness than Permission)}: The 'Pythonic' approach. Assume the operation will succeed and wrap it in a \texttt{try/except} block. This is generally cleaner and more robust in multi-threaded environments.
-    \item \textbf{Catching Exceptions}: Always catch specific exceptions (e.g., \texttt{FileNotFoundError}) rather than generic ones. Use the \texttt{as} keyword to inspect the exception object.
-    \item \textbf{Flow Control}:
+    \item \textbf{LBYL (Look Before You Leap)}: Defensiver Stil, prüft explizit Bedingungen vor dem Aufruf. Anfällig für "Race Conditions" (Zustand ändert sich zw. Prüfung und Aktion).
+    \item \textbf{EAFP (Easier to Ask Forgiveness...)}: Pythonischer Ansatz. Geht von Erfolg aus und nutzt \texttt{try/except}. Meist sauberer und robuster in Multi-Threading.
+    \item \textbf{Exceptions fangen}: Immer spezifische Exceptions fangen, keine generischen. \texttt{as}-Keyword zur Inspektion des Exception-Objekts verwenden.
+    \item \textbf{Ablaufsteuerung}:
     \begin{itemize}
-        \item \texttt{else}: Runs only if the \texttt{try} block succeeded without errors.
-        \item \texttt{finally}: Always runs (e.g., for closing file handles), regardless of whether an exception was raised or caught.
+        \item \texttt{else}: Läuft nur, wenn der \texttt{try}-Block fehlerfrei erfolgreich war.
+        \item \texttt{finally}: Läuft immer (z.B. für Dateifreigabe), ungeachtet dessen, ob eine Exception auftrat.
     \end{itemize}
 \end{itemize}
 

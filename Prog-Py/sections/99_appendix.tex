@@ -1,4 +1,4 @@
-\section{Appendix}
+\section{Anhang}
 \subsection{Typumwandlung: \texttt{dict()} und \texttt{list()}}
 \begin{itemize}
     \item \textbf{Tuple zu Dict}: Die Funktion \texttt{dict()} kann eine Liste von 2-Element-Tupeln direkt in Schlüssel-Wert-Paare umwandeln.
@@ -25,7 +25,7 @@ def view_dashboard(user):
 \end{lstlisting}
 
 
-\subsection{Script Execution}
+\subsection{Skriptausführung}
 Um zu unterscheiden, ob ein Script direkt ausgeführt wird oder als Modul importiert wird, verwendet Python die Variable \texttt{\_\_name\_\_}.
 
 \begin{itemize}
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     main()
 \end{lstlisting}
 
-\subsection{Distribuzioni Casuali in NumPy}
+\subsection{Zufallsverteilungen in NumPy}
 
 \begin{itemize}
     \item \textbf{np.random.rand}: Erzeugt Stichproben aus einer \textbf{Gleichverteilung} im Intervall $[0, 1)$. Jeder Wert hat die gleiche Wahrscheinlichkeit, gezogen zu werden.
@@ -60,7 +60,7 @@ Wobei:
     \item $\mu$ (Mu): Erwartungswert (verschiebt das Zentrum der Verteilung).
 \end{itemize}
 
-\subsection{Indexing vs Slicing: Regola Rapida}
+\subsection{Indexing vs. Slicing: Faustregel}
 
 Der Unterschied hängt vom Typ des Selektors ab, der für die Achse verwendet wird:
 
@@ -69,7 +69,7 @@ Der Unterschied hängt vom Typ des Selektors ab, der für die Achse verwendet wi
     \item \textbf{Bereich (Slicing)}: Wenn du die beiden Doppelpunkte verwendest (z.B. \texttt{arr[2:3]}), wird die Dimension \textbf{beibehalten} (rank-2).
 \end{itemize}
 
-\subsubsection{Esempio Pratico}
+\subsubsection{Praxisbeispiel}
 Gegeben sei ein 2D-Array mit Shape \texttt{(3, 3)}:
 \begin{itemize}
     \item \texttt{arr[2, :]} $\rightarrow$ Ergebnis 1D, Shape \texttt{(3,)}.

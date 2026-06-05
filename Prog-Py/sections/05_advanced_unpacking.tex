@@ -1,7 +1,7 @@
-\section{Advanced Unpacking and Functions}
+\section{Erweitertes Unpacking und Funktionen}
 \label{sec:functions_unpacking}
 
-\subsection{Tuple Packing and Unpacking}
+\subsection{Tuple Packing und Unpacking}
 Python ermöglicht das Gruppieren und Verteilen von Objekten über Mechanismen zum Packen und Entpacken.
 
 \begin{itemize}
@@ -16,11 +16,11 @@ employee = 'Peter', 'Muller' # Ergibt ('Peter', 'Muller')
 # Unpacking
 first, last = employee
 
-# Multiple Assignment (combined packing/unpacking)
+# Mehrfachzuweisung (kombiniertes Packing/Unpacking)
 x, y, z = 5, 10, 15
 \end{lstlisting}
 
-\subsubsection{Extended Iterable Unpacking}
+\subsubsection{Erweitertes Iterable-Unpacking}
 Das Entpacken funktioniert mit jedem iterierbaren Objekt (Strings, Listen, Mengen) und unterstützt bestimmte Operatoren, um variable Längen oder unerwünschte Werte zu behandeln.
 
 \begin{itemize}
@@ -29,11 +29,11 @@ Das Entpacken funktioniert mit jedem iterierbaren Objekt (Strings, Listen, Menge
 \end{itemize}
 
 \begin{lstlisting}[language=Python]
-# Unpacking with rest
+# Unpacking mit Rest
 first, last, *address, birth_date = ("Peter", "Muller", "Street", 10, "14.04.1977")
 # address wird ["Street", 10]
 
-# Ignoring values
+# Werte ignorieren
 first, last, _, birth_date = employee_data
 
 # Entpacken in verschachtelten Strukturen
@@ -41,7 +41,7 @@ x = [1, 2, (3, [4, 5])]
 a, b, (c, (d, e)) = x
 \end{lstlisting}
 
-\subsubsection{Iterable Expansion}
+\subsubsection{Iterable-Expansion}
 Die Operatoren \texttt{*} und \texttt{**} ermöglichen das Entpacken iterierbarer Objekte in anderen Collection-Literalen.
 
 \begin{lstlisting}[language=Python]
@@ -52,7 +52,7 @@ dict1 = {"A": 1, "B": 2}
 dict2 = {"C": 3, **dict1} # {'C': 3, 'A': 1, 'B': 2}
 \end{lstlisting}
 
-\subsection{Functions}
+\subsection{Funktionen}
 Funktionen werden mit dem Schlüsselwort \texttt{def} definiert. Sie legen einen lokalen Gültigkeitsbereich fest und können Objekte an den Aufrufer zurückgeben.
 
 \begin{itemize}
@@ -61,7 +61,7 @@ Funktionen werden mit dem Schlüsselwort \texttt{def} definiert. Sie legen einen
     \item \textbf{Rückgabewert:} Funktionen geben standardmäßig \texttt{None} zurück. Mehrere Werte können als Tupel zurückgegeben werden.
 \end{itemize}
 
-\subsubsection{Argument Types and Constraints}
+\subsubsection{Argumenttypen und Einschränkungen}
 \begin{itemize}
     \item \textbf{Positional vs. Keyword:} Positionsargumente müssen vor Keyword-Argumenten in einem Aufruf stehen.
     \item \textbf{Standardparameter:} Parameter mit Standardwerten müssen auf diejenigen ohne Standardwert folgen.
@@ -69,7 +69,7 @@ Funktionen werden mit dem Schlüsselwort \texttt{def} definiert. Sie legen einen
     \crd{\textbf{tuple}}; \texttt{**kwargs} sammelt zusätzliche Keyword-Argumente in ein Dictionary.
 \end{itemize}
 
-\subsubsection{Argument Enforcement}
+\subsubsection{Argument-Erzwingung}
 Entwickler können bestimmte Aufrufstile erzwingen, indem sie \texttt{/} und \texttt{*} verwenden.
 
 \begin{lstlisting}[language=Python]
@@ -89,7 +89,7 @@ def add(a, b):
     return a + b
 \end{lstlisting}
 
-\subsection{Lambda Functions}
+\subsection{Lambda-Funktionen}
 Lambdas sind anonyme Funktionen mit einem einzigen Ausdruck. Sie werden hauptsächlich als "key"-Funktionen zum Sortieren oder Filtern verwendet.
 
 \textbf{Syntax:} \texttt{lambda parameters: expression}

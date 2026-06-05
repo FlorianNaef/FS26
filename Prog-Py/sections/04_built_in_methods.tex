@@ -1,11 +1,11 @@
-\section{Built in methods}
-\subsection{Lists}
+\section{Integrierte Methoden}
+\subsection{Listen}
 
 \textbf{Methoden \texttt{sort()} und \texttt{sorted()}}
 \begin{itemize}
     \item \texttt{sort()}: Modifiziert die Liste an Ort und Stelle. Ermöglicht einen \texttt{reverse=True}-Parameter für absteigende Reihenfolge.
     \item \texttt{sorted()}: Gibt eine neue sortierte Liste zurück und kann auf alle iterierbaren Objekte angewendet werden.
-    \item \textbf{Das \texttt{key}}-Argument}: Ermöglicht das Festlegen einer benutzerdefinierten Sortierfunktion. Es akzeptiert eingebaute Funktionen (z.B. \texttt{str}) oder anonyme \textit{lambda}-Funktionen für inline Sortierkriterien.
+    \item \textbf{Das \texttt{key}-Argument}: Ermöglicht das Festlegen einer benutzerdefinierten Sortierfunktion. Es akzeptiert eingebaute Funktionen (z.B. \texttt{str}) oder anonyme \textit{lambda}-Funktionen für inline Sortierkriterien.
     \item \textbf{Algorithmusstabilität und mehrere Prioritäten}: Python nutzt 
     \textit{Timsort}, einen stabilen Sortieralgorithmus. Stabilität bedeutet, dass, wenn zwei 
     Elemente denselben Sortierschlüssel haben, sie ihre ursprüngliche relative Reihenfolge beibehalten. 
@@ -22,19 +22,19 @@ In vielen Algorithmen ist es sehr effizient, ein Array von Indizes zu sortieren,
 
 \lstinputlisting[language=Python]{code/indirect_sorting.py}
 
-\textbf{List Slicing}
+\textbf{Listen-Slicing}
 Beim Slicing werden Teilsequenzen mit der Syntax \texttt{x[start:end:step]} extrahiert. Neben der Extraktion ist Slicing äußerst leistungsfähig, um Listen dynamisch zu verändern: Es ermöglicht, einen gesamten Bereich von Elementen zu ersetzen oder mehrere Elemente an einem bestimmten Index gleichzeitig einzufügen, ohne vorhandene Daten zu überschreiben.
 
 \begin{lstlisting}[language=Python]
 data = ['a', 'b', 'c']
-# Mehrere Elemente einfügen, ohne zu ersetzen (bei Index 3)
+# Mehrere Elemente einfuegen, ohne zu ersetzen (bei Index 3)
 data[3:3] = ['#', '$']   # Ergebnis: ['a', 'b', 'c', '#', '$']
 
 # Einen gesamten Bereich durch neue Elemente ersetzen
 data[1:3] = ['D', 'E']   # Ergebnis: ['a', 'D', 'E', '#', '$']
 \end{lstlisting}
 
-\subsection{Shallow and Deep Copy}
+\subsection{Shallow und Deep Copy}
 Die Zuweisung einer Variable bindet lediglich einen Namen an ein Objekt; sie erstellt keine Kopie.
 
 
@@ -53,9 +53,9 @@ list_deep = copy.deepcopy(list1)
 
 \subsection{Strings}
 
-\textbf{Most Used Methods}
+\textbf{Meistgenutzte Methoden}
 \begin{itemize}
-    \item \textbf{Aufteilen und Bereinigen}: \texttt{split(sep}} teilt anhand eines Trennzeichens. \texttt{splitlines()} teilt an Zeilenumbrüchen. \texttt{strip()}, \texttt{lstrip()} entfernen führende/trailing Zeichen.
+    \item \textbf{Aufteilen und Bereinigen}: \texttt{split(sep)} teilt anhand eines Trennzeichens. \texttt{splitlines()} teilt an Zeilenumbrüchen. \texttt{strip()}, \texttt{lstrip()} entfernen führende/trailing Zeichen.
     \item \textbf{Suchen und Ersetzen}: \texttt{find(sub)}. \texttt{count(sub)}. \texttt{replace(old, new)}.
     \item \textbf{Schreibweise}: \texttt{lower()}. \texttt{upper()}. \texttt{capitalize()}. \texttt{title()}.
     \item \textbf{Testen}: \texttt{isdigit()}. \texttt{isalpha()}. \texttt{isalnum()}. \texttt{islower()}. \texttt{isupper()}.
@@ -70,7 +70,7 @@ z = [(10, "Matthias"), (20, "Annabelle")]
 ranking = "\n".join(f"{name} ({points} Points)" for points, name in z)
 \end{lstlisting}
 
-\textbf{F-Strings Formatting}
+\textbf{F-Strings Formatierung}
 Die Formatierungslogik folgt der Syntax: \texttt{\{<f\_expression> ["="] [!<conversion>] [:<format\_spec>]\}}. Selbstdokumentierende Ausdrücke können erstellt werden, indem man ein Gleichheitszeichen \texttt{=} nach dem Variablennamen hinzufügt.
 
 \vspace{1em}
@@ -137,7 +137,7 @@ Die Formatierungslogik folgt der Syntax: \texttt{\{<f\_expression> ["="] [!<conv
 Mit \# ist es möglich, das alternative Ausgabeformat anzuzeigen (0xA10, 0b01101)
 
 \subsection{Dictionaries}
-\textbf{Most Used Methods}
+\textbf{Meistgenutzte Methoden}
 \begin{itemize}
     \item \texttt{get(key, default)}: Gibt den Wert für einen Schlüssel zurück oder einen Standardwert (wie \texttt{None}), falls der Schlüssel nicht existiert.
     \item \texttt{keys()}, \texttt{values()}, \texttt{items()}: Geben jeweils Ansichten der Schlüssel, Werte und Schlüssel-Wert-Paare des Dictionaries zurück.
@@ -146,7 +146,7 @@ Mit \# ist es möglich, das alternative Ausgabeformat anzuzeigen (0xA10, 0b01101
     \item \texttt{clear()}: Entfernt alle Schlüssel-Wert-Paare.
 \end{itemize}
 
-\subsection{File Handling}
+\subsection{Dateiverwaltung}
 Dateien werden mithilfe der Funktion \texttt{open()} behandelt, die einen Dateinamen und einen Modus akzeptiert (z.B. \texttt{'r'} zum Lesen, \texttt{'w'} zum Schreiben, \texttt{'a'} zum Anhängen). Das Festlegen von \texttt{encoding='utf-8'} wird dringend empfohlen, um Probleme bei der Zeichenauslegung zwischen Plattformen zu vermeiden. 
 
 Die \texttt{with}-Anweisung stellt einen Python-typischen Kontextmanager bereit, der sicherstellt, dass die Datei beim Verlassen des Blocks automatisch geschlossen wird. Das Modul \texttt{pathlib} ermöglicht robuste, objektorientierte Pfadmanipulationen mithilfe des \texttt{/}-Operators und stellt so eine nahtlose Ausführung in Umgebungen unter Unix/macOS sicher.

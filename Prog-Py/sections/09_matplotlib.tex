@@ -1,4 +1,4 @@
-\section{Data Visualization}
+\section{Data-visualization}
 Datenvisualisierung ist entscheidend, weil Kennzahlen der Zusammenfassung irreführend sein können und die Wahl des Diagramms die gezogenen Schlussfolgerungen direkt beeinflusst. Matplotlib ist eine umfassende Bibliothek zur Erstellung statischer, animierter und interaktiver Visualisierungen in Python.
 
 \subsection{Matplotlib APIs}
@@ -21,18 +21,18 @@ ax.legend()
 plt.show()
 \end{lstlisting}
 
-\subsection{Common Methods and Formatting Arguments}
+\subsection{Häufige Methoden und Formatierungsargumente}
 Beim Anpassen von Diagrammen werden mehrere zentrale Argumente häufig über verschiedene Matplotlib-Methoden hinweg verwendet:
 
 \begin{itemize}
-    \item \textbf{Figure and Layout (\texttt{plt.subplots}, \texttt{plt.figure}):}
+    \item \textbf{Abbildung und Layout (\texttt{plt.subplots}, \texttt{plt.figure}):}
     \begin{itemize}
         \item \texttt{figsize=(width, height)}: Legt die Abmessungen der Figure in Zoll fest.
         \item \texttt{layout="constrained"}: Passt Subplots automatisch so an, dass sie in den Bereich der Figure passen, und verhindert überlappende Elemente.
         \item \texttt{sharex, sharey}: Erzwingt, dass Subplots dieselbe Skalierung der X- oder Y-Achse teilen (nützlich für direkte Vergleiche).
     \end{itemize}
     
-    \item \textbf{Plot Styling (\texttt{ax.plot}, \texttt{ax.scatter}):}
+    \item \textbf{Plot-Styling (\texttt{ax.plot}, \texttt{ax.scatter}):}
     \begin{itemize}
         \item \texttt{color} oder \texttt{c}: Legt die Farbe der Diagrammelemente fest.
         \item \texttt{linestyle} oder \texttt{ls}: Definiert den Linienstil (\texttt{'-'} durchgezogen, \texttt{'---'} gestrichelt, \texttt{'-.'} strichpunktiert, \texttt{':'} gepunktet).
@@ -42,7 +42,7 @@ Beim Anpassen von Diagrammen werden mehrere zentrale Argumente häufig über ver
         \item \texttt{label}: Weist dem Plot-Trace eine Zeichenkette als Bezeichner zu, die anschließend von \texttt{ax.legend()} verwendet wird.
     \end{itemize}
     
-    \item \textbf{Text and Labels (\texttt{ax.set\_title}, \texttt{ax.set\_xlabel}, \texttt{ax.text}):}
+    \item \textbf{Text und Beschriftungen (\texttt{ax.set\_title}, \texttt{ax.set\_xlabel}, \texttt{ax.text}):}
     \begin{itemize}
         \item \texttt{fontsize}: Gibt die Größe der Textelemente an.
         \item \texttt{ha}, \texttt{va}: Horizontale und vertikale Ausrichtung für Textannotationen (z.B. \texttt{'center'}, \texttt{'left'}, \texttt{'top'}, \texttt{'bottom'}).
@@ -50,7 +50,7 @@ Beim Anpassen von Diagrammen werden mehrere zentrale Argumente häufig über ver
     \end{itemize}
 \end{itemize}
 
-\subsection{Common Plot Types}
+\subsection{Gängige Plot-Typen}
 Je nach Daten sind unterschiedliche Diagrammtypen effektiver:
 \begin{itemize}
     \item \textbf{Line Plots}: Nützlich für kontinuierliche Signale. Logarithmische Achsen können mit \texttt{loglog()}, \texttt{semilogx()} oder \texttt{semilogy()} angewendet werden.
@@ -60,7 +60,7 @@ Je nach Daten sind unterschiedliche Diagrammtypen effektiver:
     \item \textbf{3D and Contour Plots}: \texttt{contour()} oder \texttt{contourf()} für 2D-Querschnitte einer 3D-Oberfläche und \texttt{plot\_surface()} für 3D-Renderings.
 \end{itemize}
 
-\subsection{Subplots and Layouts}
+\subsection{Subplots und Layouts}
 Beim Verwalten mehrerer Diagramme erstellt \texttt{plt.subplots()} eine Figure und ein Array von Achsenobjekten.
 
 \begin{lstlisting}[language=Python]
@@ -70,7 +70,7 @@ axes[0, 0].plot(t, s1)
 axes[0, 0].set_title("First Plot")
 \end{lstlisting}
 
-\subsection{Library Comparison}
+\subsection{Bibliotheksvergleich}
 \begin{itemize}
     \item \textbf{Matplotlib}: Vollständige Kontrolle und Anpassung, sehr anpassbar, aber statisch.
     \item \textbf{Seaborn}: Auf Matplotlib aufbauend, bietet High-Level-statistische Diagramme mit klaren Standardstilen und integriert sich perfekt mit Pandas.

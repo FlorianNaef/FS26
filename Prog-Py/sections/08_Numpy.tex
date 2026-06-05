@@ -1,9 +1,9 @@
 \section{NumPy}
-\subsection{Introduction}
+\subsection{Einführung}
 NumPy (Numerical Python) ist eine Bibliothek zur Durchführung mathematischer Funktionen und Operationen auf großen mehrdimensionalen Arrays. Sie bietet:
 \begin{itemize}
-    \item \textbf{Speed}: Verwendet optimierten C-Code und ersetzt langsame Standard-Python \texttt{for}-Schleifen.
-    \item \textbf{Vectorization}: Arraybasierte Operationen werden automatisch elementweise ausgeführt.
+    \item \textbf{Geschwindigkeit}: Verwendet optimierten C-Code und ersetzt langsame Standard-Python \texttt{for}-Schleifen.
+    \item \textbf{Vektorisierung}: Arraybasierte Operationen werden automatisch elementweise ausgeführt.
     \item \textbf{Broadcasting}: Erweitert implizit Arrays unterschiedlicher Formate während arithmetischen Berechnungen.
 \end{itemize}
 
@@ -16,7 +16,7 @@ Das \texttt{ndarray} ist eine homogene Datenstruktur, in der jede Dimension als 
     \item \texttt{arr.astype(dtype)}: Gibt eine Kopie des Arrays zurück, die in einen bestimmten Typ umgewandelt wurde.
 \end{itemize}
 
-\subsubsection{Array Creation Methods}
+\subsubsection{Array-Erstellungsmethoden}
 \lstinputlisting[language=Python]{code/np_array_creation.py}
 
 
@@ -37,13 +37,13 @@ Das \texttt{ndarray} ist eine homogene Datenstruktur, in der jede Dimension als 
 \texttt{np.random.randint(0,10,3)} & \texttt{array([0, 5, 4])} \\
 \end{tabular}}\medbreak
 
-In \texttt{arange} ist es möglich, einen negativen \texttt{step} anzugeben, um ein absteigendes Array zu erzeugen.
+Bei \texttt{arange} ist es möglich, einen negativen \texttt{step} anzugeben, um ein absteigendes Array zu erzeugen.
 
 \crd{Achten Sie darauf, dass \texttt{end} aus dem Array ausgeschlossen ist,} wenn Sie einschließen möchten: (\texttt{end} $\pm$ \texttt{step})
 
 \columnbreak
 
-\subsection{Element Access}
+\subsection{Elementzugriff}
 \begin{itemize}
     \item \textbf{Indexing}: Achsen werden durch Kommas innerhalb von eckigen Klammern getrennt (z.B. \texttt{arr[row, col]}).
     \item \textbf{Slicing}: Folgt der \texttt{[start:end:step]}-Syntax über mehrere
@@ -55,7 +55,7 @@ In \texttt{arange} ist es möglich, einen negativen \texttt{step} anzugeben, um 
     der ersten Achse entpackt werden: \lstinline[language=Python]|row1, row2 = np_matrix|
 \end{itemize}
 
-\textbf{Examples:}
+\textbf{Beispiele:}
 
 \begin{center}
     \includegraphics[width=0.7\linewidth]{images/slicing.png}
@@ -78,8 +78,8 @@ Um Operationen auf Arrays unterschiedlicher Formen auszuführen, broadcastet Num
     \item Wenn die Größen unterschiedlich sind und weder das eine noch das andere 1 ist, wird ein \texttt{ValueError} ausgelöst.
 \end{enumerate}
 
-\subsection{Array Manipulation}
-\subsubsection{Concatenation and Stacking}
+\subsection{Array-Manipulation}
+\subsubsection{Verkettung und Stacking}
 \lstinputlisting[language=Python]{code/np_concatenation.py}
 
 
@@ -88,7 +88,7 @@ Um Operationen auf Arrays unterschiedlicher Formen auszuführen, broadcastet Num
     \includegraphics[width=0.7\linewidth]{images/stacking_1D_2D_spaltenweise.png}
 \end{center}
 
-\subsubsection{Dimension Changes}
+\subsubsection{Dimensionsänderungen}
 \lstinputlisting[language=Python]{code/np_dimesnions.py}
 
 \begin{itemize}
@@ -101,11 +101,11 @@ Um Operationen auf Arrays unterschiedlicher Formen auszuführen, broadcastet Num
 \end{itemize}
 
 
-\subsection{Mathematical Functions}
+\subsection{Mathematische Funktionen}
 NumPy stellt vektorisierte universelle Funktionen (ufuncs) wie \texttt{np.exp()}, \texttt{np.sin()}, \texttt{np.abs()}, \texttt{np.mean()}, \texttt{np.max()}, \texttt{np.std()} und \texttt{np.cumsum()} bereit.
 
 % --- SUBSECTION: ADVANCED CONCATENATION & LINEAR ALGEBRA ---
-\subsection{Concatenation}
+\subsection{Verkettung}
 \textbf{MATLAB-like Concatenation:}
 
 \begin{itemize}
@@ -115,9 +115,9 @@ NumPy stellt vektorisierte universelle Funktionen (ufuncs) wie \texttt{np.exp()}
     \item \textit{Beispiel:} \texttt{y = np.c\_[0:3]} $\rightarrow$ \texttt{[[0], [1], [2]]}
 \end{itemize}
 
-\subsection{NumPy Linear Algebra: Multiplication Summary}
+\subsection{NumPy Lineare Algebra: Multiplikation Zusammenfassung}
 
-\subsubsection{Scalar and Vector Products}
+\subsubsection{Skalar- und Vektorprodukte}
 \begin{itemize}
     \item \textbf{np.inner(a, b):} Am besten für das \textbf{Skalarprodukt} (inner product) zweier Vektoren. 
     \begin{itemize}
@@ -132,7 +132,7 @@ NumPy stellt vektorisierte universelle Funktionen (ufuncs) wie \texttt{np.exp()}
     \end{itemize}
 \end{itemize}
 
-\subsubsection{Matrix Multiplication: @ vs np.dot()}
+\subsubsection{Matrixmultiplikation: @ vs np.dot()}
 Während beide die standardmäßige Matrixmultiplikation für 2D-Arrays ausführen, verhalten sie sich für höherdimensionale Tensoren ($n > 2$) unterschiedlich.
 
 \begin{itemize}
@@ -150,10 +150,10 @@ Während beide die standardmäßige Matrixmultiplikation für 2D-Arrays ausführ
 \end{itemize}
 
 \cor{Meistens immer den \texttt{@}-Operator verwenden}
-\subsubsection{Comparison Example ($n > 2$)}
+\subsubsection{Vergleichsbeispiel ($n > 2$)}
 \lstinputlisting[language=Python]{code/comparison_dot.py}
 
-\subsubsection{Methods}
+\subsubsection{Methoden}
 Das Modul \texttt{np.linalg} stellt essentielle Werkzeuge für Matrixberechnungen bereit.
 
 \begin{itemize}
@@ -183,14 +183,14 @@ Das Modul \texttt{np.linalg} stellt essentielle Werkzeuge für Matrixberechnunge
 \textbf{Beispielverwendung:}
 \lstinputlisting[language=Python]{code/linalg_methods_example.py}
 
-\section{Data Preprocessing and Cleaning}
+\section{Datenvorverarbeitung und -bereinigung}
 
 \subsection{Resampling}
 \lstinputlisting[language=Python]{code/resampling.py}
 
 
-\subsection{Data Cleaning \& Scaling}
+\subsection{Datenbereinigung \& Skalierung}
 \lstinputlisting[language=Python]{code/data_cleaning.py}
 
-\subsection{NumPy File Handling}
+\subsection{NumPy Dateiverwaltung}
 \lstinputlisting[language=Python]{code/np_file_handling.py}
