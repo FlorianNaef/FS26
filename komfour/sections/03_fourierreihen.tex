@@ -14,24 +14,24 @@ deren Frequenzen ganzzahlige Vielfache der Kreisfrequenz (Winkelgeschwindigkeit)
 \subsection{Orthagonalitätsbeziehungen Basisfunktionen}
 
 \begin{tabular}{ll}
-    $\int \limits_{0}^{T} \cos(m \, \omega_f \, t) \cdot \cos(n \, \omega_f \, t) \, \diff t = 
-    \begin{cases}
-        T,              & m = n = 0 \\
-     
-        \frac{T}{2},    & m = n > 0 \\
-        0,              & m \neq n
-    \end{cases}$ 
-    & $(m, \; n \in \mathbb{N}_0)$ \\
+    $\int \limits_{0}^{T} \cos(m \, \omega_f \, t) \cdot \cos(n \, \omega_f \, t) \, \diff t =
+        \begin{cases}
+            T,           & m = n = 0 \\
+
+            \frac{T}{2}, & m = n > 0 \\
+            0,           & m \neq n
+        \end{cases}$
+     & $(m, \; n \in \mathbb{N}_0)$                \\
     \\
-    $\int \limits_{0}^{T} \sin(m \, \omega_f \, t) \cdot \sin(n \, \omega_f \, t) \, \diff t =      		
-    \begin{cases}
-        \frac{T}{2},    & m = n     \\
-        0,              & m \neq n
-    \end{cases} $ 
-    & $(m, \; n \in \mathbb{N})$    \\
+    $\int \limits_{0}^{T} \sin(m \, \omega_f \, t) \cdot \sin(n \, \omega_f \, t) \, \diff t =
+        \begin{cases}
+            \frac{T}{2}, & m = n    \\
+            0,           & m \neq n
+        \end{cases} $
+     & $(m, \; n \in \mathbb{N})$                  \\
     \\
-    $\int \limits_{0}^{T} \cos(m \, \omega_f \, t) \cdot \sin(n \, \omega_f \, t) \, \diff t = 0$ 	
-    & $(m \in \mathbb{N}_0, \; n \in \mathbb{N})$ 
+    $\int \limits_{0}^{T} \cos(m \, \omega_f \, t) \cdot \sin(n \, \omega_f \, t) \, \diff t = 0$
+     & $(m \in \mathbb{N}_0, \; n \in \mathbb{N})$
 \end{tabular}
 
 
@@ -43,9 +43,9 @@ $\bm{f(t)}$\\auf dem Intervall [0 ; T)}
 \renewcommand{\arraystretch}{2.5}
 \begin{tabular}{l c l}
     % $a_0 = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \, \diff t$\\
-    $a_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \cos(n \, \omega_f \, t) \, \diff t$                           & $(n = 0, \, 1, \, 2, \, \ldots)$                                                                   \\
-    $b_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \sin(n \, \omega_f \, t) \, \diff t$                           & $(n = 1, \, 2, \, 3, \, \ldots)$                                                                   \\	
-    \cbl{$c_n = \overline{c_{-n}} = \frac{1}{T} \int \limits_0^T f(t) \cdot \e^{- \jimg \, n \, \omega_f \, t} \, \diff t$} & $\cbl{(n = 0, \, 1, \, 2, \, \ldots)}$    & \textrightarrow\ Für $n = 0: \, c_0 = \frac{a_0}{2}$
+    $a_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \cos(n \, \omega_f \, t) \, \diff t$                           & $(n = 0, \, 1, \, 2, \, \ldots)$                                                              \\
+    $b_n = \frac{2}{T} \cdot \int \limits_{0}^{T} f(t) \cdot \sin(n \, \omega_f \, t) \, \diff t$                           & $(n = 1, \, 2, \, 3, \, \ldots)$                                                              \\
+    \cbl{$c_n = \overline{c_{-n}} = \frac{1}{T} \int \limits_0^T f(t) \cdot \e^{- \jimg \, n \, \omega_f \, t} \, \diff t$} & $\cbl{(n = 0, \, 1, \, 2, \, \ldots)}$ & \textrightarrow\ Für $n = 0: \, c_0 = \frac{a_0}{2}$
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
@@ -60,9 +60,9 @@ $\bm{f(t)}$\\auf dem Intervall [0 ; T)}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}{ll}
-    $c_n = \overline{c_{-n}} = \frac{a_n - \jimg \, b_n }{2}$   & ($n = 0, \, 1, \, 2, \, \ldots \text{ wobei } b_0 = 0$)   \\
-    $a_n = 2 \, \RE(c_n) = c_n + c_{-n}$                        & ($n = 0, \, 1, \, 2, \, \ldots$)                           \\
-    $b_n = -2 \, \IM(c_n) = \jimg (c_n - c_{-n})$               & ($n = 1, \, 2, \, 3, \, \ldots$) 
+    $c_n = \overline{c_{-n}} = \frac{a_n - \jimg \, b_n }{2}$ & ($n = 0, \, 1, \, 2, \, \ldots \text{ wobei } b_0 = 0$) \\
+    $a_n = 2 \, \RE(c_n) = c_n + c_{-n}$                      & ($n = 0, \, 1, \, 2, \, \ldots$)                        \\
+    $b_n = -2 \, \IM(c_n) = \jimg (c_n - c_{-n})$             & ($n = 1, \, 2, \, 3, \, \ldots$)
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
@@ -75,31 +75,31 @@ $\bm{f(t)}$\\auf dem Intervall [0 ; T)}
 
 \begin{minipage}{0.48\linewidth}
     \begin{tabular}{l | c | c}
-                    & gerade    & ungerade  \\ 
+                 & gerade   & ungerade \\
         \hline
-        gerade      & gerade    & ungerade  \\
+        gerade   & gerade   & ungerade \\
         \hline
-        ungerade    & ungerade  & gerade    \\
+        ungerade & ungerade & gerade   \\
     \end{tabular}
 \end{minipage}
 \hfill
 \begin{minipage}{0.43\linewidth}
     \begin{tabular}{ll}
-   
-        gerade:     &  $f(-t) = f(t)$ \\
-        \\ 
-        ungerade:   & $f(-t) = - f(t)$ 
+
+        gerade:   & $f(-t) = f(t)$   \\
+        \\
+        ungerade: & $f(-t) = - f(t)$
     \end{tabular}
 \end{minipage}
 
 \smallskip
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{l|l|l}
-\textbf{Eigenschaft} & \multicolumn{2}{l}{\textbf{Fourierkoeffizienten}} \\ \hline
-\multirow{2}{*}{$f(t)$ gerade}   & $\displaystyle a_n = \frac{4}{T} \int_{0}^{\frac{T}{2}} f(t) \cos(n \omega_f t) dt$ & $b_n = 0$ \\
-                                  & \color{blue}{$\text{Im}(c_k) = 0$} & \color{blue}{$c_n = \frac{a_n}{2}$ (reell)} \\ \hline
-\multirow{2}{*}{$f(t)$ ungerade} & $\displaystyle a_n = 0$ & $\displaystyle b_n = \frac{4}{T} \int_{0}^{\frac{T}{2}} f(t) \sin(n \omega_f t) dt$ \\
-                                 & \color{blue}{$\text{Re}(c_k) = 0$} & \color{blue}{$c_n = j \frac{b_n}{2}$ (imaginär)} \\ \hline
+    \textbf{Eigenschaft}             & \multicolumn{2}{l}{\textbf{Fourierkoeffizienten}}                                                                                                                         \\ \hline
+    \multirow{2}{*}{$f(t)$ gerade}   & $\displaystyle a_n = \frac{4}{T} \int_{0}^{\frac{T}{2}} f(t) \cos(n \omega_f t) dt$ & $b_n = 0$                                                                           \\
+                                     & \color{blue}{$\text{Im}(c_k) = 0$}                                                  & \color{blue}{$c_n = \frac{a_n}{2}$ (reell)}                                         \\ \hline
+    \multirow{2}{*}{$f(t)$ ungerade} & $\displaystyle a_n = 0$                                                             & $\displaystyle b_n = \frac{4}{T} \int_{0}^{\frac{T}{2}} f(t) \sin(n \omega_f t) dt$ \\
+                                     & \color{blue}{$\text{Re}(c_k) = 0$}                                                  & \color{blue}{$c_n = j \frac{b_n}{2}$ (imaginär)}                                    \\ \hline
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
@@ -118,8 +118,8 @@ $$ a_n^{(h)} = r \cdot a_n^{(f)} + s \cdot a_n^{(g)} \qquad b_n^{(h)} = r \cdot 
 
 $g(t) = f(r \cdot t)$ mit $0 \neq r \in \mathbb{R}$ \qquad \crd{$\omega_g = \frac{2 \pi}{T_g} = \abs{r} \cdot \omega_f$ in Basisfunktionen! ($\sin / \cos$)}
 
-\[ a_n^{(g)} = a_n^{(f)} \qquad \qquad b_n^{(g)} = \sgn(r) \cdot b_n^{(f)} 
-\qquad \qquad \cbl{c_k^{(g)} = c_{k\cdot \sgn(r)}^{(f)}}\]
+\[ a_n^{(g)} = a_n^{(f)} \qquad \qquad b_n^{(g)} = \sgn(r) \cdot b_n^{(f)}
+    \qquad \qquad \cbl{c_k^{(g)} = c_{k\cdot \sgn(r)}^{(f)}}\]
 
 \subsubsection{Zeitverschiebung}
 $g(t) = f(t + t_0)$
@@ -128,9 +128,9 @@ $g(t) = f(t + t_0)$
 
 \renewcommand{\arraystretch}{1.7}
 \begin{tabular}{ll}
-    $ a_n^{(g)} = \cos(n \, \omega_f \, t_0) \cdot a_n^{(f)} + \sin(n \, \omega_f \, t_0) \cdot b_n^{(f)}$      & $n = 0$ \quad [mit $b_0 = 0, \, 1, \, 2, \, \ldots$]  \\ 
-    $ b_n^{(g)} = -\sin(n \, \omega_f \, t_0) \cdot a_n^{(f)} + \cos(n \, \omega_f \, t_0) \cdot  b_n^{(f)}$    & $n = 1, \, 2, \, 3, \, \ldots$                        \\	
-    $ \cbl{c_k^{(g)} = \e^{\jimg \, k \, \omega_f \, t_0} \cdot c_k^{(f)}}$                                     & $\cbl{k  =1, \, 2, \, 3, \, \ldots}$
+    $ a_n^{(g)} = \cos(n \, \omega_f \, t_0) \cdot a_n^{(f)} + \sin(n \, \omega_f \, t_0) \cdot b_n^{(f)}$   & $n = 0$ \quad [mit $b_0 = 0, \, 1, \, 2, \, \ldots$] \\
+    $ b_n^{(g)} = -\sin(n \, \omega_f \, t_0) \cdot a_n^{(f)} + \cos(n \, \omega_f \, t_0) \cdot  b_n^{(f)}$ & $n = 1, \, 2, \, 3, \, \ldots$                       \\
+    $ \cbl{c_k^{(g)} = \e^{\jimg \, k \, \omega_f \, t_0} \cdot c_k^{(f)}}$                                  & $\cbl{k  =1, \, 2, \, 3, \, \ldots}$
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
@@ -142,7 +142,7 @@ $g(t) = f(t + t_0)$
 Abstand zwischen zwei Funktionen zeigt, wie gut die Approximation der Funktion ist \\
 \textrightarrow\ $f$ und $g$ sind $T$-periodisch und stückweise stetig mit Limes
 
-$$ \left\| f - g \right\| = \sqrt{\frac{2}{T} \int \limits_0^T  [f(t) - g(t)]^2 \, \diff t } $$ 
+$$ \left\| f - g \right\| = \sqrt{\frac{2}{T} \int \limits_0^T  [f(t) - g(t)]^2 \, \diff t } $$
 
 \textrightarrow\ Fourier-Reihe approximiert eine Funktion am Besten! \smallskip
 
@@ -177,8 +177,8 @@ Die Fourierkoeffizienten bilden Nullfolgen (Konsequenz: Konvergenz)
 
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{l}
-    $\lim \limits_{n \to \infty} a_n = \lim \limits_{n \to \infty} \frac{2}{T} \int \limits_0^T f(t) \cdot \cos(n\, \omega_f \, t) \, \diff t = 0$                                                                  \\
-    $\lim \limits_{n \to \infty} b_n = \lim \limits_{n \to \infty} \frac{2}{T} \int \limits_0^T f(t) \cdot \sin(n\, \omega_f \, t) \, \diff t = 0$                                                                  \\
+    $\lim \limits_{n \to \infty} a_n = \lim \limits_{n \to \infty} \frac{2}{T} \int \limits_0^T f(t) \cdot \cos(n\, \omega_f \, t) \, \diff t = 0$ \\
+    $\lim \limits_{n \to \infty} b_n = \lim \limits_{n \to \infty} \frac{2}{T} \int \limits_0^T f(t) \cdot \sin(n\, \omega_f \, t) \, \diff t = 0$ \\
     $\cbl{\lim \limits_{n \to \infty} c_n = \lim \limits_{n \to \infty} \overline{c_{-n}} = \lim \limits_{n \to\infty} \frac{1}{T} \int \limits_0^T f(t) \cdot  \e^{- \jimg \, n \, \omega_f \, t} \, \diff t = 0}$
 \end{tabular}
 \renewcommand{\arraystretch}{1}
@@ -186,7 +186,7 @@ Die Fourierkoeffizienten bilden Nullfolgen (Konsequenz: Konvergenz)
 
 \subsubsection{Konvergenzgeschwindingkeit der Fourierkoeffizienten}
 
-Ist die $T$-periodische Funktion $f$ ($m-2$)-mal stetig differenzierbar und ihre ($m-1$)-ste Ableitung stückweise stetig mit Limes und 
+Ist die $T$-periodische Funktion $f$ ($m-2$)-mal stetig differenzierbar und ihre ($m-1$)-ste Ableitung stückweise stetig mit Limes und
 stückweise monoton, so existiert eine (nur von $f$ abhängige) Konstante $\in \mathbb{R}$ mit
 
 $$ \vert a_n \vert \leq \frac{c}{n^m} \quad \text{und} \quad \vert b_n \vert \leq \frac{c}{n^m} \quad (m, \, n \in \mathbb{N}) $$
@@ -194,12 +194,12 @@ $$ \vert a_n \vert \leq \frac{c}{n^m} \quad \text{und} \quad \vert b_n \vert \le
 
 \subsubsection{Punktweise Konvergenz (Satz von Dirichlet)}
 
-Wenn die linksseitige $f(t_0 - 0)$ \textbf{und} die rechtsseitige Ableitung $f(t_0 + 0)$ existieren, dann konvergiert die Fourierreihe gegen:	
+Wenn die linksseitige $f(t_0 - 0)$ \textbf{und} die rechtsseitige Ableitung $f(t_0 + 0)$ existieren, dann konvergiert die Fourierreihe gegen:
 
 $$ \frac{f(t_0 - 0) + f(t_0 + 0)}{2} \qquad \text{(Mitte einer Sprungstelle)} $$
 
 
-Ist die Funktion in $t_0$ \textbf{stetig} und die beidseitigen Ableitungen existieren, dann konvergiert die Fourierreihe gegen:	
+Ist die Funktion in $t_0$ \textbf{stetig} und die beidseitigen Ableitungen existieren, dann konvergiert die Fourierreihe gegen:
 
 $$ \frac{f(t_0 - 0) + f(t_0 + 0)}{2} = \frac{f(t_0) + f(t_0)}{2} = f(t_0) \qquad \text{(Funktionswert)} $$
 
@@ -226,13 +226,13 @@ $$ \underbrace{\frac{1}{2\pi} + \frac{15}{5\pi} + \frac{15}{7\pi} + \ldots}_{Q} 
 
 Dies entspricht noch nicht der gesuchten Summe $S$. Es ist eine \textbf{Umformung} nötig:
 $$ Q * \frac{\pi}{15} = \frac{1}{30} + \underbrace{\frac{1}{5} + \frac{1}{7}+ \ldots}_{S} \qquad \underrightarrow{\text{auflösen nach }S} \qquad
-\bm{S = -\frac{1}{30}} $$
+    \bm{S = -\frac{1}{30}} $$
 % Ende Code Fabian Steiner
 
 
 \subsection{Gibbs'sches Phänomen}
 
-Fourierreihen überschwingen bei Sprungstellen um 8.94 \% 
+Fourierreihen überschwingen bei Sprungstellen um 8.94 \%
 
 \smallskip
 
