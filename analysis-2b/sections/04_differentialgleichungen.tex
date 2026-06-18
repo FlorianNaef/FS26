@@ -172,26 +172,30 @@ $$ \text{\textbf{Lösungsmenge:}} \quad \boxed{\mathbb{L} = \mathbb{L}_H + y_p} 
 
 \subsection{Kurvenmengen}
 
-\begin{minipage}{0.7\columnwidth}
-    \begin{tabular}{lll}
-        A   & $y = c \cdot x$ \quad Parameter $(c \in \mathbb{R}$)                  \\  \smallskip
-    	& Geraden durch (0;0), $c$ = Steigung                                   \\
-        B   & $\frac{x^2}{a} + \frac{y^2}{b} = 1$ \quad Parameter ($a; \, b > 0$)   \\  \smallskip
-        & Ellipsen zentriert in (0;0), Halbachsen $\sqrt{a} \, ; \, \sqrt{b}$   \\  
-        C   & $x^2 + y^2 = c^2$ \\ 
-        & Kreise zentriert in (0;0), Radius $\sqrt{c}$
-    \end{tabular}
-\end{minipage}
-\begin{minipage}{0.3\columnwidth}
-    \textbf{Auflösung:}
-    \begin{enumerate}
-        \item Gleichung mit Parameter $c$
-        \item Auflösen nach $c$
-        \item Ableitung von Gl. aus 1
-        \item $c$ substituieren
-        \item DGL auflösen
-    \end{enumerate}
-\end{minipage}
+\begin{tabular}{lll}
+    A   & $y = c \cdot x$  Parameter $(c \in \mathbb{R}$) Geraden durch (0;0), $c$ = Steigung       \\  \smallskip
+    B   & $\frac{x^2}{a} + \frac{y^2}{b} = 1$  Parameter ($a; \, b > 0$); Ellipsen zentriert (0;0), Halbachsen $\sqrt{a} ; \sqrt{b}$  \\  \smallskip 
+    C   & $x^2 + y^2 = c^2$  Kreise zentriert in (0;0); Radius $\sqrt{c}$ \\ 
+\end{tabular}
+
+\medskip
+
+\textbf{Auflösung Parameter-GL. in DGL:}
+\begin{enumerate}
+    \item Bsp. $y = e^{x+c} = f(x)$
+    \item Gleichung f(x) nach $c$ auflösen: $c= ln(y)-x$
+    \item Ableitung von der GL. f(x): $f'(x) = e^{x+c} = y'$
+    \item $c$ substituieren in $y'$: $y' = e^{x+ln(y)-x}$
+    \item DGL auflösen: $y' = e^{ln(y)} = y$
+\end{enumerate}
+\textbf{Aufstellung einer DGL aus einer Kurvenschar (Anspruchsvolleres Beispiel):}
+\begin{enumerate}
+    \item Bsp. Kurvenschar (Wurzelfunktionen): $y = \sqrt{cx+1}$
+    \item Gleichung nach Parameter $c$ auflösen: $y^2 = cx + 1 \implies c = \frac{y^2-1}{x}$
+    \item Ableitung der Ausgangsgleichung bilden (Kettenregel): $y' = \frac{1}{2\sqrt{cx+1}} \cdot c$
+    \item Das isolierte $c$ in die Ableitung substituieren: $y' = \frac{1}{2\sqrt{\left(\frac{y^2-1}{x}\right)x+1}} \cdot \frac{y^2-1}{x}$
+    \item DGL auflösen und vereinfachen (Wurzelterm vereinfacht sich wieder zu $y$): $y' = \frac{1}{2\sqrt{y^2}} \cdot \frac{y^2-1}{x} \implies y' = \frac{y^2-1}{2xy}$
+\end{enumerate}
     
 \medskip
 
@@ -404,12 +408,13 @@ $$ \text{ \textbf{Faltungsintegral = Grundlösung}} \quad
 
 \begin{tabular}{ll}
     (1) & homogene Lösung mit Anfang: $g(x_0) = 0, \, g'(x_0) = 0, \quad \ldots \quad \bm{g^{(n-1)} = 1}$    \\
+    (1.Bsp) & $g(x_0) = y_0 = A\e^{\lambda_1 x_0} + B1\e^{\lambda_2 x_0} + x_0 \cdot B2\e^{\lambda_3 x_0} $ \\
+    (1.Bsp) & $g'(x_0) = y_1 = A\lambda_1\e^{\lambda_1 x_0} + B1\lambda_2\e^{\lambda_2 x_0} + x_0 \cdot B2\e^{\lambda_3 x_0} + B2\lambda_3\e^{\lambda_3 x_0}  $ \\
     (2) & Störterm $f(t)$
 \end{tabular}
 
 \medskip
-
-Vorteile: wie \ref{chap:inhomogen_n2}
+1.Bsp continous: Das Gleichungsystem nach allen Koeffizienten(A, B1 und B2) auflösen und dann die Koef. mit den berechneten Werten ersetzen in g($x+x_0-t$).
 
 
 \subsection[Ansatz rechte Seite]{Ansatz rechte Seite (Störung $\bm{f(x)\neq 0}$)}

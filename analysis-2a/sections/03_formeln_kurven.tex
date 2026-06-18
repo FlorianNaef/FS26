@@ -60,8 +60,8 @@ Hinweis: $\dot{r} = \dfrac{\diff r}{\diff \varphi} =- \dfrac{p \, \varepsilon \,
 
 \subsubsection{Berechnung Tangentensteigung bei impliziter Kurvenformel}
 
-\textrightarrow\ Implizite Differentiation! \qquad \textbf{Ziel:} $f'(x) = y' = \dfrac{\diff y}{\diff x}$
-\qquad Kettenregeln auf $y$ anwenden
+\textrightarrow\ Implizites Diffrentzieren! \qquad \textbf{Ziel:} $f'(x) = y' = \dfrac{\diff y}{\diff x}$ oder $f'(y) = x' = \dfrac{\diff x}{\diff y}$
+\newline Kettenregeln auf $y$ anwenden weil $y(x)$ und umgekehrt $x(y)$ wenn nach $\diff x$ diffrentiert wird.
 \medskip
 
 \begin{minipage}[t]{0.48\columnwidth}
@@ -69,10 +69,9 @@ Hinweis: $\dot{r} = \dfrac{\diff r}{\diff \varphi} =- \dfrac{p \, \varepsilon \,
 
 	\renewcommand{\arraystretch}{2.2}
 	\begin{tabular}{l}
-		$x^2 + y^2 = 4 \quad \Big| \diff(\ldots)$ Differential 			\\
-		$2x \, \diff x + 2y \, \diff y = 0 \quad \Big| \div \, \diff x$	\\
-		$2x + 2y \, \dfrac{\diff y}{\diff x} = 0$ 							\\
-		$\dfrac{\diff y}{\diff x} = - \dfrac{2x}{2y} = - \dfrac{x}{y}$
+		$x^2 + y^2 = 4 \quad \Big| $ nach $ \diff x $ ableiten  			\\
+		$2x \, + 2yy' \, = 0 \quad $	\\
+		$y' = \dfrac{\diff y}{\diff x} = - \dfrac{2x}{2y} = - \dfrac{x}{y}$
 	\end{tabular}
 	\renewcommand{\arraystretch}{1}
 \end{minipage}		
@@ -82,11 +81,10 @@ Hinweis: $\dot{r} = \dfrac{\diff r}{\diff \varphi} =- \dfrac{p \, \varepsilon \,
 
 	\renewcommand{\arraystretch}{2.2}
 	\begin{tabular}{l}
-		$y^3 = 2 x^2 + 5 xy \quad \Big| \diff(\ldots)$ Differential 													\\ 
-		$3 y^2 \, \diff y = 4x \, \diff x + 5(1y + xy') \, \diff x \quad \Big| \div \, \diff x$ 						\\ 
-		$3 y^2 \cbl{\dfrac{\diff y}{\diff x}} = 4x + 5(y + xy') \; \Leftrightarrow \; 3 y^2 \cbl{y'} = 4x + 5y + 5xy'$	\\
-		$3 y^2 y' - 5 xy' = 4x + 5y \; \Leftrightarrow \; y'(3y^2 - 5x) = 4x + 5y$ 										\\
-		$y' = f'(x) = \dfrac{4x + 5y}{3y^2 - 5x}$ 
+		$y^3 = (2 x^2 + 5 xy)^2 \quad \Big| $ nach $ \diff x$ ableiten		\\ 
+		%%$\Big|$ Produkt-&Kettenregel										\\
+		$3 y^2y' = 2(2 x^2 + 5 xy) * ( 4x + 5(1y + xy')) \, \quad$			\\ 
+		-> nach $y'$ auflösen oder Steigung in $y'$ einsetzen
 	\end{tabular}
 	\renewcommand{\arraystretch}{1}
 \end{minipage}
