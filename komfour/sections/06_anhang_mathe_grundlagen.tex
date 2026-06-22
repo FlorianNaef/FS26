@@ -289,3 +289,15 @@ $\int \limits_{\crd{0}}^{\crd{\pi}} a \, \sqrt{a} \cdot \cos(a) \frac{\diff a}{2
     \end{tabular}
     \renewcommand{\arraystretch}{1}
 \end{center}
+
+\subsection{\textbf{Beispiel:} Überlagerung}
+\textbf{Gegeben:} $x_1(t) = \cos(3t - \pi/6)$ und $x_2(t) = \sqrt{3}\cos(3t + 2\pi/3)$ \\
+\textbf{Gesucht:} $x(t) = x_1(t) + x_2(t)$
+
+\textbf{Lösung:}
+\begin{itemize}
+    \item[] $A_1 = \e^{-\jimg \pi/6} = \frac{\sqrt{3}}{2} - \jimg \frac{1}{2}$
+    \item[] $A_2 = \sqrt{3}\cdot\e^{\jimg 2\pi/3} = \sqrt{3}\left(-\frac{1}{2} + \jimg \frac{\sqrt{3}}{2}\right) = -\frac{\sqrt{3}}{2} + \jimg \frac{3}{2}$
+    \item[] $A = A_1 + A_2 = \jimg = \e^{\jimg \pi/2}$
+    \item[] $x(t) = \RE\{ A \cdot \e^{\jimg 3t} \} = \cos(3t + \pi/2)$
+\end{itemize}
